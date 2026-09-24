@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "homepage": "https://MayurDhawad.github.io/poojari4u",
+  "homepage": "https://MayurDhawad.github.io/poojari4u/",
   "private": true,
   "packageManager": "npm@11.19.0",
   "dependencies": {
@@ -30,6 +30,7 @@
     "@angular/build": "^22.1.8",
     "@angular/cli": "^22.1.8",
     "@angular/compiler-cli": "^22.1.0",
+    "angular-cli-ghpages": "^3.1.0",
     "gh-pages": "^6.3.0",
     "jsdom": "^28.0.0",
     "prettier": "^3.8.1",
