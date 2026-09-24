@@ -1,0 +1,77 @@
+
+<section >
+  <div class="container my-5">
+    <div class="hero-content">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          TRADITIONAL SERVICES FOR YOUR SPECIAL MOMENTS
+        </div>
+
+        <h1>
+          Book Verified Poojaris,<br />
+          Bajanthri &amp; Puja Samagri<br />
+          All in One Place
+        </h1>
+
+        <p>
+          From daily poojas to grand celebrations, Poojari4U
+          brings tradition, trust and convenience together.
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-sm-3">
+        <div class="search-field">
+          <mat-icon class="field-icon">self_improvement</mat-icon>
+      
+          <div class="field-content">
+            <label>Select Service</label>
+      
+            <mat-select [(ngModel)]="selectedService" panelClass="puja-select-panel" placeholder="Choose service">
+              @for (service of services; track service) {
+              <mat-option [value]="service">
+                {{ service }}
+              </mat-option>
+              }
+            </mat-select>
+          </div>
+      
+          <mat-icon class="field-chevron">expand_more</mat-icon>
+        </div>
+      </div>
+      <div class="col-12 col-sm-3">
+        <div class="search-field">
+          <mat-icon class="field-icon">location_on</mat-icon>
+      
+          <div class="field-content">
+            <label for="location">Location</label>
+      
+            <input id="location" matInput type="text" [(ngModel)]="location" placeholder="Enter city or area" />
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-3">
+        <div class="search-field">
+          <mat-icon class="field-icon">calendar_today</mat-icon>
+      
+          <div class="field-content">
+            <label for="date">Date</label>
+      
+            <input id="date" matInput [matDatepicker]="picker" [(ngModel)]="date" placeholder="Select date" />
+          </div>
+      
+          <mat-datepicker-toggle matIconSuffix [for]="picker" class="date-toggle">
+          </mat-datepicker-toggle>
+      
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+      </div>
+      <div class="col-12 col-sm-3">
+      <button mat-flat-button class="search-submit" type="button" (click)="search()">
+        <mat-icon>search</mat-icon>
+        <span>Search</span>
+      </button>
+      </div>
+    </div>
+  </div>
+</section>

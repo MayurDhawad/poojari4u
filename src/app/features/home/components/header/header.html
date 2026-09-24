@@ -1,0 +1,71 @@
+<header class="site-header">
+
+  <div class="header-inner">
+
+    <!-- Logo -->
+    <a routerLink="/" class="brand">
+
+      <div class="brand-logo">
+        <span class="brand-logo-text">POOJARI</span>
+        <span class="brand-logo-small">4U.COM</span>
+      </div>
+
+      <div class="brand-content">
+        <div class="brand-name">
+          Poojari4U<sup>™</sup>
+        </div>
+
+        <div class="brand-tagline">
+          Your Poojari. Your Puja. Your Way.
+        </div>
+      </div>
+
+    </a>
+
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+
+      @for (item of navItems; track item.path) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.path === '/' }"
+        >
+          {{ item.label }}
+        </a>
+      }
+
+    </nav>
+
+
+    <!-- Actions -->
+    <div class="header-actions">
+
+      <button
+        mat-icon-button
+        type="button"
+        class="search-button"
+        aria-label="Search"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+
+
+      <button
+        mat-stroked-button
+        type="button"
+        class="account-button"
+      >
+        <mat-icon>person_outline</mat-icon>
+
+        <span>Account</span>
+
+        <mat-icon>expand_more</mat-icon>
+      </button>
+
+    </div>
+
+  </div>
+
+</header>

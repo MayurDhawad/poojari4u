@@ -1,0 +1,54 @@
+<section class="popular-section">
+
+  <div class="section-header">
+
+    <div>
+      <span class="section-eyebrow">
+        EXPLORE OUR SERVICES
+      </span>
+
+      <h2>
+        Popular Pujas
+      </h2>
+    </div>
+
+    <a href="/poojaris" class="view-all">
+      View All →
+    </a>
+
+  </div>
+
+
+  <div class="puja-grid">
+
+    @for (puja of pujas; track puja.id) {
+
+      <article class="puja-card">
+
+        <div class="puja-image">
+          {{ puja.icon }}
+        </div>
+
+        <div class="puja-body">
+
+          <h3>
+            {{ puja.name }}
+          </h3>
+
+          <p>
+            {{ puja.description }}
+          </p>
+
+          <button>
+            Explore
+          </button>
+
+        </div>
+
+      </article>
+
+    }
+
+  </div>
+
+</section>

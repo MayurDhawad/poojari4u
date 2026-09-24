@@ -1,0 +1,34 @@
+<section class="services-section">
+
+  <div class="services-container">
+
+    @for (category of categories; track category.id) {
+
+      <a
+        class="service-card"
+        [href]="'/' + category.id"
+      >
+
+        <div class="service-icon">
+          {{ category.icon }}
+        </div>
+
+        <div class="service-content">
+
+          <h3>
+            {{ category.title }}
+          </h3>
+
+          <p>
+            {{ category.description }}
+          </p>
+
+        </div>
+
+      </a>
+
+    }
+
+  </div>
+
+</section>
