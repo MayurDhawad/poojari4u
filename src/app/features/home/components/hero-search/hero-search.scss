@@ -1,0 +1,168 @@
+.search-field {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  padding: 0 12px;
+
+  border: 1px solid #e5e0d9;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.field-icon {
+  width: 38px !important;
+  height: 38px !important;
+  flex-shrink: 0;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 9px;
+
+  border-radius: 50%;
+  background: #fff6e8;
+  color: #df7413;
+
+  font-size: 20px !important;
+}
+
+.field-content {
+  min-width: 0;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.field-content label {
+  color: #4b4743;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+/* Material select */
+
+.field-content mat-select {
+  width: 100%;
+  color: #6d6863;
+  font-size: 12px;
+}
+
+.field-content mat-select .mat-mdc-select-trigger {
+  min-height: 20px;
+}
+
+.field-content mat-select .mat-mdc-select-value {
+  color: #6d6863;
+}
+
+.field-content mat-select .mat-mdc-select-placeholder {
+  color: #77716b;
+}
+
+/* Remove Material's default underline */
+
+.field-content .mat-mdc-select {
+  border: 0;
+}
+
+
+/* Material input */
+
+.field-content input {
+  width: 100%;
+
+  padding: 0;
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #6d6863;
+  font-size: 12px;
+}
+
+.field-content input::placeholder {
+  color: #77716b;
+}
+
+.field-content input:focus {
+  outline: none;
+}
+
+
+/* Chevron */
+
+.field-chevron {
+  width: 18px !important;
+  height: 18px !important;
+
+  flex-shrink: 0;
+
+  color: #777;
+  font-size: 18px !important;
+
+  margin-left: 5px;
+}
+
+
+/* Date picker toggle */
+
+.date-toggle {
+  width: 28px !important;
+  height: 28px !important;
+
+  flex-shrink: 0;
+}
+
+.date-toggle .mat-mdc-icon-button {
+  width: 28px !important;
+  height: 28px !important;
+
+  padding: 0 !important;
+}
+
+.date-toggle mat-icon {
+  font-size: 18px;
+}
+
+
+/* Search button */
+
+.search-submit {
+  border: 0 !important;
+  border-radius: 12px !important;
+
+  background: #e8790b !important;
+  color: #fff !important;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  box-shadow: none !important;
+
+  transition:
+    transform 150ms ease,
+    background 150ms ease;
+}
+
+.search-submit:hover {
+  background: #d86b08 !important;
+  transform: translateY(-1px);
+}
+
+.search-submit mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+}
