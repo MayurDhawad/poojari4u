@@ -1,344 +1,83 @@
-:host {
-  display: block;
-}
-
-/* =========================
-   HEADER
-========================= */
-
 .site-header {
-  height: 106px;
-  background: #fffdf9;
-  border-bottom: 1px solid #eee7dc;
-
-  position: relative;
-  z-index: 10;
-}
-
-.header-inner {
-  height: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
-
-  display: flex;
-  align-items: center;
-}
-
-
-/* =========================
-   BRAND
-========================= */
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  text-decoration: none;
-  color: inherit;
-
-  min-width: 390px;
-}
-
-.brand-logo {
-  width: 74px;
-  height: 74px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle at center,
-      #f39a19 0,
-      #ef8010 38%,
-      #111 39%,
-      #111 100%
-    );
-
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #fff;
-  font-weight: 800;
-}
-
-.brand-logo-text {
-  font-size: 10px;
-  letter-spacing: 1px;
-  transform: rotate(-35deg);
-}
-
-.brand-logo-small {
-  position: absolute;
-  bottom: 12px;
-
-  font-size: 7px;
-}
-
-.brand-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.brand-name {
-  color: #d66b13;
-
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 30px;
-  font-weight: 700;
-
-  line-height: 1;
-}
-
-.brand-name sup {
-  font-family: Arial, sans-serif;
-  font-size: 8px;
-}
-
-.brand-tagline {
-  margin-top: 6px;
-
-  color: #555;
-  font-size: 13px;
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.main-nav {
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-
-  gap: 30px;
-
-  flex: 1;
-}
-
-.main-nav a {
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-
-  position: relative;
-
-  color: #292929;
-  text-decoration: none;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  white-space: nowrap;
-}
-
-.main-nav a:hover {
-  color: #d86c12;
-}
-
-.main-nav a.active {
-  color: #d86c12;
-}
-
-.main-nav a.active::after {
-  content: '';
-
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  bottom: 30px;
-
-  height: 2px;
-
-  background: #e77a16;
-}
-
-
-/* =========================
-   HEADER ACTIONS
-========================= */
-
-.header-actions {
-  display: flex;
-  align-items: center;
-
-  gap: 18px;
-}
-
-
-/* -------------------------
-   Material Search Button
-------------------------- */
-
-.search-button {
-  width: 38px !important;
-  height: 38px !important;
-
-  padding: 0 !important;
-
-  color: #222 !important;
-
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-button mat-icon {
-  font-size: 22px;
-  width: 22px;
-  height: 22px;
-}
-
-.search-button:hover {
-  color: #d86c12 !important;
-}
-
-
-/* -------------------------
-   Material Account Button
-------------------------- */
-
-.account-button {
-  height: 44px !important;
-
-  padding: 0 15px !important;
-
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-
-  gap: 9px;
-
-  background: #fffdf9 !important;
-
-  border: 1px solid #e7dfd2 !important;
-  border-radius: 14px !important;
-
-  color: #2b2b2b !important;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  min-width: 120px;
-}
-
-.account-button:hover {
-  border-color: #d86c12 !important;
-  color: #d86c12 !important;
-}
-
-.account-button mat-icon {
-  width: 18px;
-  height: 18px;
-
-  font-size: 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 1200px) {
+  background: #fff8ed;
+
+  // .navbar {
+  //   min-height: 78px;
+  // }
 
   .brand {
-    min-width: 330px;
+    text-decoration: none;
+    color: inherit;
+
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #f5eee4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .brand-logo-text {
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .brand-logo-small {
+      font-size: 7px;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .brand-tagline {
+      font-size: 10px;
+      color: #777;
+      margin-top: 3px;
+    }
   }
 
-  .main-nav {
-    gap: 20px;
-  }
+  .nav-link {
+    color: #444;
+    font-weight: 500;
+    padding: 0.75rem 1rem !important;
 
-  .main-nav a {
-    font-size: 13px;
-  }
-
-}
-
-@media (max-width: 1050px) {
-
-  .brand {
-    min-width: auto;
-  }
-
-  .brand-tagline {
-    display: none;
-  }
-
-  .main-nav {
-    gap: 16px;
-  }
-
-}
-
-@media (max-width: 900px) {
-
-  .main-nav {
-    display: none;
-  }
-
-  .header-inner {
-    justify-content: space-between;
-  }
-
-}
-
-@media (max-width: 576px) {
-
-  .site-header {
-    height: 78px;
-  }
-
-  .header-inner {
-    padding: 0 16px;
-  }
-
-  .brand {
-    gap: 10px;
-  }
-
-  .brand-logo {
-    width: 52px;
-    height: 52px;
-  }
-
-  .brand-name {
-    font-size: 22px;
-  }
-
-  .brand-tagline {
-    display: none;
+    &:hover,
+    &.active {
+      color: #b56a1d;
+    }
   }
 
   .account-button {
-    min-width: 44px !important;
-    width: 44px !important;
-
-    padding: 0 !important;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 
-  .account-button span {
-    display: none;
+  .search-button {
+    color: #444;
   }
+}
 
-  .account-button mat-icon:first-child {
-    margin: 0;
+@media (max-width: 991.98px) {
+  .site-header {
+    .navbar-collapse {
+      padding: 1rem 0;
+    }
+
+    .navbar-nav {
+      margin-left: 0 !important;
+    }
+
+    .header-actions {
+      margin-top: 0.5rem;
+    }
   }
-
-  .account-button mat-icon:last-child {
-    display: none;
-  }
-
 }
