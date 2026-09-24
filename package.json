@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build --configuration production --base-href /poojari4u/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist/poojari4u",
+    "deploy": "gh-pages -d dist/poojari4u/browser",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
