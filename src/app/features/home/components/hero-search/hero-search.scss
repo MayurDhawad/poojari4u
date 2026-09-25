@@ -1,7 +1,6 @@
 /* ==========================================
    HERO
 ========================================== */
-
 .hero-section {
   position: relative;
   width: 100%;
@@ -9,51 +8,36 @@
   overflow: hidden;
 }
 
-
 /* ==========================================
    CAROUSEL
 ========================================== */
-
 .hero-carousel {
   position: absolute;
   inset: 0;
-
   width: 100%;
   height: 100%;
-
   z-index: 1;
 }
-
-
 .hero-carousel .carousel-inner,
 .hero-carousel .carousel-item {
   width: 100%;
   height: 100%;
 }
-
-
 .hero-carousel .carousel-item img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
   object-position: center;
 }
 
-
 /* ==========================================
    GRADIENT OVER IMAGE
 ========================================== */
-
 .hero-gradient {
   position: absolute;
-
   inset: 0;
-
   z-index: 2;
-
   pointer-events: none;
-
   background:
     linear-gradient(
       90deg,
@@ -65,387 +49,312 @@
     );
 }
 
-
 /* ==========================================
    HERO CONTENT
 ========================================== */
-
 .hero-content-wrapper {
   position: absolute;
-
   inset: 0;
-
   z-index: 3;
-
   display: flex;
-
   align-items: flex-start;
-
-  padding-top: 75px;
-
+  padding-top: 85px;
   pointer-events: none;
 }
-
-
 .hero-copy {
   max-width: 650px;
-
   pointer-events: auto;
 }
-
-
 .hero-eyebrow {
   color: #d86f12;
-
   font-size: 12px;
-
   font-weight: 700;
-
   letter-spacing: 0.8px;
-
   margin-bottom: 14px;
 }
-
-
 .hero-copy h1 {
   margin: 0;
-
   color: #38251b;
-
-  font-family:
-    Georgia,
-    'Times New Roman',
-    serif;
-
+  font-family:Georgia,'Times New Roman',serif;
   font-size: clamp(38px, 4vw, 50px);
-
   line-height: 1.08;
-
   font-weight: 700;
-
   letter-spacing: -1px;
 }
-
-
 .hero-copy p {
   max-width: 510px;
-
   margin-top: 18px;
-
   color: #62564e;
-
   font-size: 16px;
-
   line-height: 1.55;
 }
-
 
 /* ==========================================
    SEARCH
 ========================================== */
-
 .hero-search-wrapper {
   position: absolute;
-
   left: 0;
   right: 0;
-  bottom: 60px;
-
+  bottom: 75px;
   z-index: 5;
 }
-
-
 .hero-search {
   display: flex;
-
   align-items: center;
-
   gap: 10px;
-
-  width: 100%;
-
+  width: 65%;
   padding: 10px;
-
   background: rgba(255, 255, 255, 0.96);
-
   border: 1px solid rgba(220, 210, 195, 0.8);
-
   border-radius: 14px;
-
-  box-shadow:
-    0 8px 30px rgba(60, 40, 20, 0.14);
-
+  box-shadow: 0 8px 30px rgba(60, 40, 20, 0.14);
   backdrop-filter: blur(8px);
 }
-
 
 /* ==========================================
    SEARCH FIELD
 ========================================== */
-
 .search-field {
   flex: 1;
-
   display: flex;
-
   align-items: center;
-
-  height: 62px;
-
+  height: 45px;
   min-width: 0;
-
-  padding: 7px 12px;
-
+  padding: 7px;
   background: #fff;
-
   border: 1px solid #eee8df;
-
   border-radius: 10px;
 }
-
-
 .search-icon {
   width: 36px;
-
   flex-shrink: 0;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   color: #e8750b;
-
   font-size: 18px;
 }
-
-
 .search-field-content {
   min-width: 0;
-
   flex: 1;
 }
-
-
 .search-field-content label {
   display: block;
-
   margin: 0 0 2px;
-
   color: #3e3732;
-
   font-size: 11px;
-
   font-weight: 600;
 }
-
-
 .search-field .form-control,
 .search-field .form-select {
   height: 22px;
-
   padding: 0;
-
   border: 0;
-
   outline: none;
-
   box-shadow: none;
-
   background: transparent;
-
   color: #8a817a;
-
   font-size: 11px;
 }
-
-
 .search-field .form-control:focus,
 .search-field .form-select:focus {
   box-shadow: none;
 }
 
-
 /* ==========================================
    SEARCH BUTTON
 ========================================== */
-
 .search-button {
   width: 140px;
-
   height: 52px;
-
   flex-shrink: 0;
-
   border: 0;
-
   border-radius: 10px;
-
   background: #e87508;
-
   color: #fff;
-
   font-size: 13px;
-
   font-weight: 600;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   gap: 8px;
-
   transition: 0.2s ease;
 }
-
-
 .search-button:hover {
   background: #d76600;
 }
-
-
 .search-button i {
   font-size: 14px;
 }
 
-
 /* ==========================================
    CAROUSEL CONTROLS
 ========================================== */
-
 .hero-carousel .carousel-control-prev,
 .hero-carousel .carousel-control-next {
   z-index: 4;
-
   width: 6%;
 }
-
-
 .hero-carousel .carousel-indicators {
   z-index: 4;
-
   bottom: 100px;
 }
-
 
 /* ==========================================
    TABLET
 ========================================== */
 
 @media (max-width: 991px) {
-
   .hero-section {
     height: 700px;
   }
-
   .hero-content-wrapper {
     padding-top: 70px;
   }
-
   .hero-copy h1 {
     font-size: 44px;
   }
-
   .hero-search {
     flex-wrap: wrap;
   }
-
   .search-field {
     flex: 1 1 calc(50% - 10px);
   }
-
   .search-button {
     width: 100%;
     flex: 1 1 100%;
   }
 }
 
-
 /* ==========================================
    MOBILE
 ========================================== */
 
 @media (max-width: 575px) {
-
   .hero-section {
-    height: 780px;
+    height: 510px;
   }
-
+  /* Carousel stays as the background */
+  .hero-carousel {
+    height: 100%;
+  }
+  .hero-carousel .carousel-inner,
+  .hero-carousel .carousel-item {
+    height: 100%;
+  }
   .hero-carousel .carousel-item img {
+    height: 100%;
+    object-fit: cover;
     object-position: 65% center;
   }
 
-
+  /* ========================================
+     MOBILE GRADIENT
+  ======================================== */
   .hero-gradient {
     background:
       linear-gradient(
         180deg,
         rgba(255, 248, 236, 0.98) 0%,
-        rgba(255, 248, 236, 0.90) 38%,
-        rgba(255, 248, 236, 0.35) 75%,
+        rgba(255, 248, 236, 0.94) 38%,
+        rgba(255, 248, 236, 0.55) 62%,
         rgba(255, 248, 236, 0.15) 100%
       );
   }
 
-
+  /* ========================================
+     HERO CONTENT
+  ======================================== */
   .hero-content-wrapper {
-    padding-top: 55px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    padding-top: 45px;
+    display: block;
   }
-
-
   .hero-copy {
     padding: 0 10px;
+    max-width: 100%;
   }
-
-
   .hero-eyebrow {
     font-size: 10px;
+    margin-bottom: 12px;
   }
-
-
   .hero-copy h1 {
-    font-size: 34px;
-
+    font-size: 28px;
     line-height: 1.1;
+    letter-spacing: -0.5px;
   }
-
-
   .hero-copy p {
     font-size: 14px;
+    line-height: 1.5;
+    max-width: 100%;
+    margin-top: 15px;
   }
 
-
+  /* ========================================
+     SEARCH BOX
+     Move it ABOVE the image area
+  ======================================== */
   .hero-search-wrapper {
-    bottom: 15px;
+    position: absolute;
+    top: 265px;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    z-index: 6;
   }
-
-
   .hero-search {
+    width: 100%;
     padding: 8px;
-
+    display: flex;
     flex-direction: column;
+    gap: 8px;
+    border-radius: 14px;
   }
-
-
   .search-field {
     width: 100%;
-
     flex: none;
-
-    height: 55px;
+    height: 40px;
+    min-height: 40px;
   }
-
-
   .search-button {
     width: 100%;
-
-    height: 48px;
+    height: 40px;
+    flex: none;
   }
 
-
+  /* ========================================
+     INDICATORS
+     Always at bottom
+  ======================================== */
   .hero-carousel .carousel-indicators {
-    bottom: 340px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 18px;
+    z-index: 10;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-carousel .carousel-indicators button {
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+    border-radius: 50%;
+    border: 0;
   }
 
+  /* ========================================
+     MOBILE CONTROLS
+  ======================================== */
+  .hero-carousel .carousel-control-prev,
+  .hero-carousel .carousel-control-next {
+    width: 12%;
+    z-index: 8;
+  }
 }
