@@ -233,7 +233,7 @@
 
 @media (max-width: 575px) {
   .hero-section {
-    height: 750px;
+    height: 740px;
   }
   /* Carousel stays as the background */
   .hero-carousel {
@@ -272,7 +272,7 @@
     left: 0;
     right: 0;
     height: auto;
-    padding-top: 75px;
+    padding-top: 50px;
     display: block;
   }
   .hero-copy {
@@ -289,7 +289,7 @@
     letter-spacing: -0.5px;
   }
   .hero-copy p {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.5;
     max-width: 100%;
     margin-top: 15px;
@@ -318,12 +318,12 @@
   .search-field {
     width: 100%;
     flex: none;
-    height: 45px;
-    min-height: 45px;
+    height: 50px;
+    min-height: 50px;
   }
   .search-button {
     width: 100%;
-    height: 45px;
+    height: 50px;
     flex: none;
   }
 
