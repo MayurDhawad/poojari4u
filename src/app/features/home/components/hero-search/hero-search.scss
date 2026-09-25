@@ -1,194 +1,451 @@
-.search-field {
-  min-width: 0;
-  display: flex;
-  align-items: center;
+/* ==========================================
+   HERO
+========================================== */
+
+.hero-section {
   position: relative;
-
-  padding: 0 12px;
-
-  border: 1px solid #e5e0d9;
-  border-radius: 12px;
-  background: #fff;
+  width: 100%;
+  height: 565px;
+  overflow: hidden;
 }
 
-.field-icon {
-  width: 38px !important;
-  height: 38px !important;
-  flex-shrink: 0;
 
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
+/* ==========================================
+   CAROUSEL
+========================================== */
 
-  margin-right: 9px;
+.hero-carousel {
+  position: absolute;
+  inset: 0;
 
-  border-radius: 50%;
-  background: #fff6e8;
-  color: #df7413;
+  width: 100%;
+  height: 100%;
 
-  font-size: 20px !important;
+  z-index: 1;
 }
 
-.field-content {
-  min-width: 0;
-  flex: 1;
+
+.hero-carousel .carousel-inner,
+.hero-carousel .carousel-item {
+  width: 100%;
+  height: 100%;
+}
+
+
+.hero-carousel .carousel-item img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+
+/* ==========================================
+   GRADIENT OVER IMAGE
+========================================== */
+
+.hero-gradient {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 248, 236, 0.98) 0%,
+      rgba(255, 248, 236, 0.93) 25%,
+      rgba(255, 248, 236, 0.72) 42%,
+      rgba(255, 248, 236, 0.25) 62%,
+      rgba(255, 248, 236, 0) 80%
+    );
+}
+
+
+/* ==========================================
+   HERO CONTENT
+========================================== */
+
+.hero-content-wrapper {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
 
   display: flex;
-  flex-direction: column;
+
+  align-items: flex-start;
+
+  padding-top: 75px;
+
+  pointer-events: none;
 }
 
-.field-content label {
-  color: #4b4743;
-  font-size: 11px;
-  font-weight: 600;
-  margin-bottom: 2px;
+
+.hero-copy {
+  max-width: 650px;
+
+  pointer-events: auto;
 }
 
-/* Material select */
 
-.field-content mat-select {
-  width: 100%;
-  color: #6d6863;
+.hero-eyebrow {
+  color: #d86f12;
+
   font-size: 12px;
-}
 
-.field-content mat-select .mat-mdc-select-trigger {
-  min-height: 20px;
-}
+  font-weight: 700;
 
-.field-content mat-select .mat-mdc-select-value {
-  color: #6d6863;
-}
+  letter-spacing: 0.8px;
 
-.field-content mat-select .mat-mdc-select-placeholder {
-  color: #77716b;
-}
-
-/* Remove Material's default underline */
-
-.field-content .mat-mdc-select {
-  border: 0;
+  margin-bottom: 14px;
 }
 
 
-/* Material input */
+.hero-copy h1 {
+  margin: 0;
 
-.field-content input {
-  width: 100%;
+  color: #38251b;
 
-  padding: 0;
-  border: 0;
-  outline: 0;
+  font-family:
+    Georgia,
+    'Times New Roman',
+    serif;
 
-  background: transparent;
+  font-size: clamp(38px, 4vw, 50px);
 
-  color: #6d6863;
-  font-size: 12px;
-}
+  line-height: 1.08;
 
-.field-content input::placeholder {
-  color: #77716b;
-}
+  font-weight: 700;
 
-.field-content input:focus {
-  outline: none;
+  letter-spacing: -1px;
 }
 
 
-/* Chevron */
+.hero-copy p {
+  max-width: 510px;
 
-.field-chevron {
-  width: 18px !important;
-  height: 18px !important;
+  margin-top: 18px;
 
-  flex-shrink: 0;
+  color: #62564e;
 
-  color: #777;
-  font-size: 18px !important;
+  font-size: 16px;
 
-  margin-left: 5px;
+  line-height: 1.55;
 }
 
 
-/* Date picker toggle */
+/* ==========================================
+   SEARCH
+========================================== */
 
-.date-toggle {
-  width: 28px !important;
-  height: 28px !important;
+.hero-search-wrapper {
+  position: absolute;
 
-  flex-shrink: 0;
-}
+  left: 0;
+  right: 0;
+  bottom: 60px;
 
-.date-toggle .mat-mdc-icon-button {
-  width: 28px !important;
-  height: 28px !important;
-
-  padding: 0 !important;
-}
-
-.date-toggle mat-icon {
-  font-size: 18px;
+  z-index: 5;
 }
 
 
-/* Search button */
+.hero-search {
+  display: flex;
 
-.search-submit {
-  border: 0 !important;
-  border-radius: 12px !important;
-
-  background: #e8790b !important;
-  color: #fff !important;
-
-  font-size: 15px;
-  font-weight: 600;
-
-  display: flex !important;
   align-items: center;
-  justify-content: center;
 
   gap: 10px;
 
-  box-shadow: none !important;
+  width: 100%;
 
-  transition:
-    transform 150ms ease,
-    background 150ms ease;
+  padding: 10px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid rgba(220, 210, 195, 0.8);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 8px 30px rgba(60, 40, 20, 0.14);
+
+  backdrop-filter: blur(8px);
 }
 
-.search-submit:hover {
-  background: #d86b08 !important;
-  transform: translateY(-1px);
+
+/* ==========================================
+   SEARCH FIELD
+========================================== */
+
+.search-field {
+  flex: 1;
+
+  display: flex;
+
+  align-items: center;
+
+  height: 62px;
+
+  min-width: 0;
+
+  padding: 7px 12px;
+
+  background: #fff;
+
+  border: 1px solid #eee8df;
+
+  border-radius: 10px;
 }
 
-.search-submit mat-icon {
-  width: 18px;
-  height: 18px;
+
+.search-icon {
+  width: 36px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #e8750b;
+
   font-size: 18px;
 }
 
 
+.search-field-content {
+  min-width: 0;
+
+  flex: 1;
+}
 
 
+.search-field-content label {
+  display: block;
+
+  margin: 0 0 2px;
+
+  color: #3e3732;
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
 
 
-/* Bootstrap 5*/
-.carousel {
-  width: 100%;
+.search-field .form-control,
+.search-field .form-select {
+  height: 22px;
 
-  .carousel-item {
-    height: 500px;
+  padding: 0;
+
+  border: 0;
+
+  outline: none;
+
+  box-shadow: none;
+
+  background: transparent;
+
+  color: #8a817a;
+
+  font-size: 11px;
+}
+
+
+.search-field .form-control:focus,
+.search-field .form-select:focus {
+  box-shadow: none;
+}
+
+
+/* ==========================================
+   SEARCH BUTTON
+========================================== */
+
+.search-button {
+  width: 140px;
+
+  height: 52px;
+
+  flex-shrink: 0;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  background: #e87508;
+
+  color: #fff;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  transition: 0.2s ease;
+}
+
+
+.search-button:hover {
+  background: #d76600;
+}
+
+
+.search-button i {
+  font-size: 14px;
+}
+
+
+/* ==========================================
+   CAROUSEL CONTROLS
+========================================== */
+
+.hero-carousel .carousel-control-prev,
+.hero-carousel .carousel-control-next {
+  z-index: 4;
+
+  width: 6%;
+}
+
+
+.hero-carousel .carousel-indicators {
+  z-index: 4;
+
+  bottom: 100px;
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 991px) {
+
+  .hero-section {
+    height: 700px;
   }
 
-  .carousel-item img {
+  .hero-content-wrapper {
+    padding-top: 70px;
+  }
+
+  .hero-copy h1 {
+    font-size: 44px;
+  }
+
+  .hero-search {
+    flex-wrap: wrap;
+  }
+
+  .search-field {
+    flex: 1 1 calc(50% - 10px);
+  }
+
+  .search-button {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    flex: 1 1 100%;
   }
 }
 
-@media (max-width: 768px) {
-  .carousel .carousel-item {
-    height: 300px;
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 575px) {
+
+  .hero-section {
+    height: 780px;
   }
+
+  .hero-carousel .carousel-item img {
+    object-position: 65% center;
+  }
+
+
+  .hero-gradient {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 248, 236, 0.98) 0%,
+        rgba(255, 248, 236, 0.90) 38%,
+        rgba(255, 248, 236, 0.35) 75%,
+        rgba(255, 248, 236, 0.15) 100%
+      );
+  }
+
+
+  .hero-content-wrapper {
+    padding-top: 55px;
+  }
+
+
+  .hero-copy {
+    padding: 0 10px;
+  }
+
+
+  .hero-eyebrow {
+    font-size: 10px;
+  }
+
+
+  .hero-copy h1 {
+    font-size: 34px;
+
+    line-height: 1.1;
+  }
+
+
+  .hero-copy p {
+    font-size: 14px;
+  }
+
+
+  .hero-search-wrapper {
+    bottom: 15px;
+  }
+
+
+  .hero-search {
+    padding: 8px;
+
+    flex-direction: column;
+  }
+
+
+  .search-field {
+    width: 100%;
+
+    flex: none;
+
+    height: 55px;
+  }
+
+
+  .search-button {
+    width: 100%;
+
+    height: 48px;
+  }
+
+
+  .hero-carousel .carousel-indicators {
+    bottom: 340px;
+  }
+
 }
