@@ -22,11 +22,11 @@ export class Header {
 
   navItems = [
     { label: 'Home', path: '/' },
-    { label: 'Poojaris', path: '/poojaris' },
-    { label: 'Bajanthri', path: '/bajanthri' },
-    { label: 'Puja Samagri', path: '/pooja-samagri' },
-    { label: 'Packages', path: '/packages' },
-    { label: 'My Bookings', path: '/my-bookings' },
+    { label: 'Poojaris', path: '/poojaris1' },
+    { label: 'Bajanthri', path: '/bajanthri1' },
+    { label: 'Puja Samagri', path: '/pooja-samagri1' },
+    { label: 'Packages', path: '/packages1' },
+    { label: 'My Bookings', path: '/my-bookings1' },
   ];
 
 }
