@@ -1,4 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+
+export interface ServiceItem {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl?: string;
+  linkUrl: string;
+}
 
 @Component({
   selector: 'app-popular-pujas',
@@ -8,30 +16,34 @@ import { Component } from '@angular/core';
 })
 export class PopularPujas {
 
-  pujas = [
+  services = signal<ServiceItem[]>([
     {
       id: 1,
-      name: 'Gruhapravesham',
-      description: 'Traditional house warming puja',
-      icon: '🏠',
+      title: 'Poojaris',
+      description: 'Griha Pravesh, Satyanarayana, Homam, Wedding & more',
+      imageUrl: 'poojaris/poojari-4.jpg',
+      linkUrl: '#'
     },
     {
       id: 2,
-      name: 'Satyanarayana Swamy Puja',
-      description: 'For prosperity and blessings',
-      icon: '🪔',
+      title: 'Bajanthri',
+      description: 'Nadaswaram, Thavil, Dolu, Dappu & Traditional Teams',
+      imageUrl: 'pooja-samagri/samagri-ganesh.jpg',
+      linkUrl: '#'
     },
     {
       id: 3,
-      name: 'Ganapathi Puja',
-      description: 'Remove obstacles and seek blessings',
-      icon: '🙏',
+      title: 'Puja Samagri',
+      description: 'Kits for all pujas & festivals',
+      imageUrl: 'pooja-samagri/samagri-havan.jpg',
+      linkUrl: '#'
     },
     {
       id: 4,
-      name: 'Homam',
-      description: 'Sacred fire rituals',
-      icon: '🔥',
-    },
-  ];
+      title: 'Packages',
+      description: 'Griha Pravesh, Wedding, Homam & Festival Packages',
+      imageUrl: 'package/package-wedding.jpg',
+      linkUrl: '#'
+    }
+  ]);
 }

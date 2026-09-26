@@ -1,136 +1,185 @@
-:host {
-  display: block;
+// :host {
+//   display: block;
+// }
+
+// .popular-section {
+//   max-width: 1180px;
+
+//   margin: 0 auto;
+
+//   padding: 70px 24px;
+// }
+
+// .section-header {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: flex-end;
+
+//   margin-bottom: 30px;
+// }
+
+// .section-eyebrow {
+//   color: #d87419;
+
+//   font-size: 12px;
+//   font-weight: 700;
+
+//   letter-spacing: 0.7px;
+// }
+
+// .section-header h2 {
+//   margin: 7px 0 0;
+
+//   color: #291f19;
+
+//   font-family: Georgia, 'Times New Roman', serif;
+
+//   font-size: 34px;
+// }
+
+// .view-all {
+//   color: #d86e13;
+
+//   text-decoration: none;
+
+//   font-size: 14px;
+//   font-weight: 600;
+// }
+
+// .puja-grid {
+//   display: grid;
+
+//   grid-template-columns:
+//     repeat(4, 1fr);
+
+//   gap: 20px;
+// }
+
+// .puja-card {
+//   overflow: hidden;
+
+//   background: #fff;
+
+//   border: 1px solid #eee4d8;
+
+//   border-radius: 14px;
+
+//   box-shadow:
+//     0 4px 16px rgba(60, 35, 10, 0.06);
+// }
+
+// .puja-image {
+//   height: 145px;
+
+//   background: #fff1dc;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   font-size: 55px;
+// }
+
+// .puja-body {
+//   padding: 18px;
+// }
+
+// .puja-body h3 {
+//   margin: 0 0 7px;
+
+//   color: #2c231e;
+
+//   font-family: Georgia, 'Times New Roman', serif;
+
+//   font-size: 18px;
+// }
+
+// .puja-body p {
+//   min-height: 38px;
+
+//   margin: 0 0 15px;
+
+//   color: #756b62;
+
+//   font-size: 13px;
+//   line-height: 1.5;
+// }
+
+// .puja-body button {
+//   border: 0;
+
+//   background: transparent;
+
+//   color: #d86e13;
+
+//   font-weight: 600;
+
+//   padding: 0;
+
+//   cursor: pointer;
+// }
+
+// @media (max-width: 900px) {
+
+//   .puja-grid {
+//     grid-template-columns: 1fr 1fr;
+//   }
+
+// }
+
+// @media (max-width: 550px) {
+
+//   .puja-grid {
+//     grid-template-columns: 1fr;
+//   }
+
+// }
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.popular-section {
-  max-width: 1180px;
-
-  margin: 0 auto;
-
-  padding: 70px 24px;
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
 }
 
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-
-  margin-bottom: 30px;
-}
-
-.section-eyebrow {
-  color: #d87419;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  letter-spacing: 0.7px;
-}
-
-.section-header h2 {
-  margin: 7px 0 0;
-
-  color: #291f19;
-
-  font-family: Georgia, 'Times New Roman', serif;
-
-  font-size: 34px;
-}
-
-.view-all {
-  color: #d86e13;
-
-  text-decoration: none;
-
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.puja-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 20px;
-}
-
-.puja-card {
+/* Image styling */
+.card-img-container {
+  height: 140px;
+  width: 100%;
   overflow: hidden;
-
-  background: #fff;
-
-  border: 1px solid #eee4d8;
-
-  border-radius: 14px;
-
-  box-shadow:
-    0 4px 16px rgba(60, 35, 10, 0.06);
 }
 
-.puja-image {
-  height: 145px;
-
-  background: #fff1dc;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 55px;
+.card-img-top {
+  height: 100%;
+  width: 100%;
 }
 
-.puja-body {
-  padding: 18px;
+.empty-image-placeholder {
+  height: 100%;
+  background-color: #ffffff;
 }
 
-.puja-body h3 {
-  margin: 0 0 7px;
-
-  color: #2c231e;
-
-  font-family: Georgia, 'Times New Roman', serif;
-
-  font-size: 18px;
+.card-text{
+  font-size: 14px;
+  padding: 0 20px;
 }
 
-.puja-body p {
-  min-height: 38px;
-
-  margin: 0 0 15px;
-
-  color: #756b62;
-
-  font-size: 13px;
-  line-height: 1.5;
+/* Circular arrow button styling */
+.btn-arrow {
+  width: 32px;
+  height: 32px;
+  background-color: #fff3e0;
+  color: #e66a0a;
+  border: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
 }
 
-.puja-body button {
-  border: 0;
-
-  background: transparent;
-
-  color: #d86e13;
-
-  font-weight: 600;
-
-  padding: 0;
-
-  cursor: pointer;
-}
-
-@media (max-width: 900px) {
-
-  .puja-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-}
-
-@media (max-width: 550px) {
-
-  .puja-grid {
-    grid-template-columns: 1fr;
-  }
-
+.btn-arrow:hover {
+  background-color: #ffe0b2;
+  color: #cd5c06;
 }

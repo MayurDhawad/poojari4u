@@ -19,8 +19,7 @@ import { SearchBox } from '../../../shared/search-box';
     MatSelectModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule,
-    SearchBox
+    MatNativeDateModule
 ],
   templateUrl: './home-section.html',
   styleUrl: './home-section.scss',

@@ -58,7 +58,7 @@
   z-index: 3;
   display: flex;
   align-items: flex-start;
-  padding-top: 85px;
+  padding-top: 45px;
   pointer-events: none;
 }
 .hero-copy {
@@ -66,20 +66,20 @@
   pointer-events: auto;
 }
 .hero-eyebrow {
-  color: #d86f12;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  margin-bottom: 14px;
+    color: #d75f08;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: .2px;
+    margin-bottom: 15px;
 }
-.hero-copy h1 {
-  margin: 0;
-  color: #38251b;
-  font-family:Georgia,'Times New Roman',serif;
-  font-size: clamp(38px, 4vw, 50px);
-  line-height: 1.08;
-  font-weight: 700;
-  letter-spacing: -1px;
+.hero-copy h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 42px;
+    line-height: 1.12;
+    max-width: 620px;
+    margin-bottom: 18px;
+    color: #3a2417;
+    font-weight: 700;
 }
 .hero-copy p {
   max-width: 510px;
@@ -96,14 +96,14 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 75px;
+  bottom: 150px;
   z-index: 5;
 }
 .hero-search {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 65%;
+  width: 80%;
   padding: 10px;
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(220, 210, 195, 0.8);

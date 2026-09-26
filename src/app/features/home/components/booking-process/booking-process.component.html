@@ -1,0 +1,57 @@
+<section class="py-5" style="background-color: #fdfbf7;">
+  <div class="container-fluid px-lg-5 text-center py-4">
+    
+    <!-- Title and Subtitle -->
+    <h2 class="display-6 fw-bold mb-3" style="color: #2b1d16; font-family: serif;">
+      Simple Booking
+    </h2>
+    <p class="text-secondary mb-5">
+      Choose what you need, select a date and request your service.
+    </p>
+
+    <!-- Cards Grid -->
+    <div class="row g-4 justify-content-center">
+      @for (step of steps(); track step.stepNumber) {
+        <div class="col-12 col-sm-6 col-lg-3">
+          <div class="card h-100 border-1 rounded-4 shadow-sm p-3 border-light-subtle">
+            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+              
+              <!-- Step Number -->
+              <span class="fs-2 mb-2 fw-medium text-dark">
+                {{ step.stepNumber }}
+              </span>
+              
+              <!-- Step Title -->
+              <h5 class="card-title fw-bold text-dark mb-2">
+                {{ step.title }}
+              </h5>
+              
+              <!-- Step Description -->
+              <p class="card-text text-muted small mb-0">
+                {{ step.description }}
+              </p>
+              
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container-fluid px-lg-5 my-5">
+    <div class="p-4 p-md-5 rounded-4 text-white d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3" style="background-color: #2e1c14;">
+      <div>
+        <h3 class="fw-bold mb-2">Are You a Poojari or Bajanthri Team?</h3>
+        <p class="mb-0 text-white-50">Join Poojari4U and connect with families looking for traditional services.</p>
+      </div>
+      <div class="flex-shrink-0">
+        <a href="#" class="btn fw-semibold px-4 py-2 text-white rounded-pill" style="background-color: #e66a0a; border: none;">
+          Register as a Provider
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
