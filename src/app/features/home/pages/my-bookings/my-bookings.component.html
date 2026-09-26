@@ -1,0 +1,391 @@
+<app-header></app-header>
+
+<section class="bookings-page">
+
+  <!-- ================= HERO ================= -->
+
+  <section class="bookings-hero">
+    <div class="container">
+
+      <div class="row align-items-center">
+
+        <div class="col-lg-8">
+
+          <span class="hero-eyebrow">
+            YOUR PUJA JOURNEY
+          </span>
+
+          <h1>
+            My Bookings
+          </h1>
+
+          <p>
+            View and manage all your upcoming and previous
+            puja bookings in one place.
+          </p>
+
+        </div>
+
+        <div class="col-lg-4 text-lg-end">
+
+          <a
+            routerLink="/poojaris"
+            class="btn btn-light book-puja-btn"
+          >
+            <i class="bi bi-plus-lg me-2"></i>
+            Book a New Puja
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= CONTENT ================= -->
+
+  <section class="bookings-content">
+
+    <div class="container">
+
+
+      <!-- ================= SUMMARY ================= -->
+
+      <div class="row g-3 booking-summary">
+
+        <div class="col-md-4">
+
+          <div class="summary-card">
+
+            <div class="summary-icon upcoming-icon">
+              <i class="bi bi-calendar-check"></i>
+            </div>
+
+            <div>
+              <span>Upcoming</span>
+              <strong>{{ upcomingCount }}</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+          <div class="summary-card">
+
+            <div class="summary-icon completed-icon">
+              <i class="bi bi-check-circle"></i>
+            </div>
+
+            <div>
+              <span>Completed</span>
+              <strong>{{ completedCount }}</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+          <div class="summary-card">
+
+            <div class="summary-icon cancelled-icon">
+              <i class="bi bi-x-circle"></i>
+            </div>
+
+            <div>
+              <span>Cancelled</span>
+              <strong>{{ cancelledCount }}</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================= TABS ================= -->
+
+      <div class="booking-tabs">
+
+        <button
+          type="button"
+          [class.active]="activeTab === 'all'"
+          (click)="setTab('all')"
+        >
+          All Bookings
+          <span>{{ bookings.length }}</span>
+        </button>
+
+        <button
+          type="button"
+          [class.active]="activeTab === 'upcoming'"
+          (click)="setTab('upcoming')"
+        >
+          Upcoming
+          <span>{{ upcomingCount }}</span>
+        </button>
+
+        <button
+          type="button"
+          [class.active]="activeTab === 'completed'"
+          (click)="setTab('completed')"
+        >
+          Completed
+          <span>{{ completedCount }}</span>
+        </button>
+
+        <button
+          type="button"
+          [class.active]="activeTab === 'cancelled'"
+          (click)="setTab('cancelled')"
+        >
+          Cancelled
+          <span>{{ cancelledCount }}</span>
+        </button>
+
+      </div>
+
+
+      <!-- ================= BOOKING LIST ================= -->
+
+      <div class="booking-list">
+
+        <div
+          class="booking-card"
+          *ngFor="let booking of filteredBookings"
+        >
+
+          <!-- Booking Header -->
+
+          <div class="booking-header">
+
+            <div>
+
+              <span class="booking-label">
+                BOOKING ID
+              </span>
+
+              <strong>
+                {{ booking.id }}
+              </strong>
+
+            </div>
+
+
+            <span
+              class="status-badge"
+              [ngClass]="{
+                'status-upcoming': booking.status === 'Upcoming',
+                'status-completed': booking.status === 'Completed',
+                'status-cancelled': booking.status === 'Cancelled'
+              }"
+            >
+              <i
+                class="bi"
+                [ngClass]="{
+                  'bi-clock': booking.status === 'Upcoming',
+                  'bi-check-circle-fill': booking.status === 'Completed',
+                  'bi-x-circle-fill': booking.status === 'Cancelled'
+                }"
+              ></i>
+
+              {{ booking.status }}
+
+            </span>
+
+          </div>
+
+
+          <!-- Booking Body -->
+
+          <div class="booking-body">
+
+            <!-- Poojari -->
+
+            <div class="poojari-info">
+
+              <img
+                [src]="booking.poojariImage"
+                [alt]="booking.poojariName"
+              />
+
+              <div>
+
+                <span class="small-label">
+                  POOJARI
+                </span>
+
+                <h5>
+                  {{ booking.poojariName }}
+                </h5>
+
+                <div class="verified">
+                  <i class="bi bi-patch-check-fill"></i>
+                  Verified Poojari
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- Puja -->
+
+            <div class="booking-detail">
+
+              <span>
+                <i class="bi bi-flower1"></i>
+                Puja
+              </span>
+
+              <strong>
+                {{ booking.service }}
+              </strong>
+
+            </div>
+
+
+            <!-- Date -->
+
+            <div class="booking-detail">
+
+              <span>
+                <i class="bi bi-calendar3"></i>
+                Date & Time
+              </span>
+
+              <strong>
+                {{ booking.date }}
+              </strong>
+
+              <small>
+                {{ booking.time }}
+              </small>
+
+            </div>
+
+
+            <!-- Location -->
+
+            <div class="booking-detail">
+
+              <span>
+                <i class="bi bi-geo-alt"></i>
+                Location
+              </span>
+
+              <strong>
+                {{ booking.location }}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <!-- Booking Footer -->
+
+          <div class="booking-footer">
+
+            <div class="price">
+
+              <span>
+                Total Amount
+              </span>
+
+              <strong>
+                ₹{{ booking.amount | number }}
+              </strong>
+
+            </div>
+
+
+            <div class="booking-actions">
+
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+              >
+                <i class="bi bi-eye me-1"></i>
+                View Details
+              </button>
+
+
+              <button
+                *ngIf="booking.status === 'Upcoming'"
+                type="button"
+                class="btn btn-outline-danger"
+              >
+                <i class="bi bi-x-lg me-1"></i>
+                Cancel
+              </button>
+
+
+              <button
+                *ngIf="booking.status === 'Completed'"
+                type="button"
+                class="btn btn-outline-primary"
+              >
+                <i class="bi bi-star me-1"></i>
+                Review
+              </button>
+
+
+              <a
+                *ngIf="booking.status === 'Cancelled'"
+                routerLink="/poojaris"
+                class="btn btn-primary"
+              >
+                Book Again
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= EMPTY STATE ================= -->
+
+        <div
+          class="empty-state"
+          *ngIf="filteredBookings.length === 0"
+        >
+
+          <div class="empty-icon">
+            <i class="bi bi-calendar-x"></i>
+          </div>
+
+          <h4>
+            No bookings found
+          </h4>
+
+          <p>
+            You don't have any bookings in this category yet.
+          </p>
+
+          <a
+            routerLink="/poojaris"
+            class="btn btn-primary"
+          >
+            Find a Poojari
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</section>

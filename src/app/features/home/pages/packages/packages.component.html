@@ -1,0 +1,403 @@
+<app-header></app-header>
+
+<section class="packages-page">
+
+  <!-- ================= HERO ================= -->
+
+  <section class="packages-hero">
+
+    <div class="container">
+
+      <div class="row align-items-center">
+
+        <div class="col-lg-7">
+
+          <span class="hero-eyebrow">
+            PUJA PACKAGES
+          </span>
+
+          <h1>
+            Everything You Need
+            <br />
+            for Your <span>Special Puja</span>
+          </h1>
+
+          <p>
+            Choose from thoughtfully designed puja packages that include
+            experienced Poojaris, essential rituals and Samagri.
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              routerLink="/poojaris"
+              class="btn btn-primary"
+            >
+              Find a Poojari
+              <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+
+            <a
+              routerLink="/my-bookings"
+              class="btn btn-outline-dark"
+            >
+              My Bookings
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="col-lg-5">
+
+          <div class="hero-image">
+
+            <img
+              src="package/packages-hero.jpg"
+              alt="Traditional Hindu puja ceremony"
+            />
+
+            <div class="hero-floating-card">
+
+              <div class="floating-icon">
+                <i class="bi bi-patch-check-fill"></i>
+              </div>
+
+              <div>
+                <strong>Verified Services</strong>
+                <span>Trusted Poojaris & Samagri</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= CATEGORIES ================= -->
+
+  <section class="category-section">
+
+    <div class="container">
+
+      <div class="category-header">
+
+        <div>
+
+          <span class="section-eyebrow">
+            EXPLORE PACKAGES
+          </span>
+
+          <h2>
+            Choose a Package
+          </h2>
+
+        </div>
+
+        <p>
+          Complete puja solutions for every occasion.
+        </p>
+
+      </div>
+
+
+      <div class="category-tabs">
+
+        <button
+          *ngFor="let category of categories"
+          type="button"
+          [class.active]="selectedCategory === category"
+          (click)="selectCategory(category)"
+        >
+          {{ category }}
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= PACKAGES ================= -->
+
+  <section class="package-section">
+
+    <div class="container">
+
+      <div class="row g-4">
+
+        <div
+          class="col-lg-4 col-md-6"
+          *ngFor="let pkg of filteredPackages"
+        >
+
+          <div
+            class="package-card"
+            [class.popular-card]="pkg.popular"
+          >
+
+            <!-- Image -->
+
+            <div class="package-image">
+
+              <img
+                [src]="pkg.image"
+                [alt]="pkg.name"
+              />
+
+              <span
+                *ngIf="pkg.popular"
+                class="popular-badge"
+              >
+                <i class="bi bi-star-fill"></i>
+                Most Popular
+              </span>
+
+              <span class="duration-badge">
+                <i class="bi bi-clock"></i>
+                {{ pkg.duration }}
+              </span>
+
+            </div>
+
+
+            <!-- Body -->
+
+            <div class="package-body">
+
+              <span class="package-category">
+                {{ pkg.category }}
+              </span>
+
+              <h3>
+                {{ pkg.name }}
+              </h3>
+
+              <p class="package-subtitle">
+                {{ pkg.subtitle }}
+              </p>
+
+              <p class="package-description">
+                {{ pkg.description }}
+              </p>
+
+
+              <!-- Included -->
+
+              <div class="included-section">
+
+                <h6>
+                  What's Included
+                </h6>
+
+                <div class="included-list">
+
+                  <div
+                    class="included-item"
+                    *ngFor="let item of pkg.items"
+                  >
+
+                    <i
+                      class="bi"
+                      [ngClass]="item.icon"
+                    ></i>
+
+                    <span>
+                      {{ item.name }}
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <!-- Footer -->
+
+              <div class="package-footer">
+
+                <div class="package-price">
+
+                  <span>
+                    Starting from
+                  </span>
+
+                  <div>
+
+                    <strong>
+                      ₹{{ pkg.price | number }}
+                    </strong>
+
+                    <del *ngIf="pkg.oldPrice">
+                      ₹{{ pkg.oldPrice | number }}
+                    </del>
+
+                  </div>
+
+                </div>
+
+
+                <div class="package-actions">
+
+                  <a
+                    [routerLink]="['/packages', pkg.id]"
+                    class="btn btn-outline-primary"
+                  >
+                    Details
+                  </a>
+
+                  <a
+                    [routerLink]="['/booking']"
+                    [queryParams]="{
+                      packageId: pkg.id
+                    }"
+                    class="btn btn-primary"
+                  >
+                    Book Now
+                  </a>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Empty -->
+
+      <div
+        class="empty-packages"
+        *ngIf="filteredPackages.length === 0"
+      >
+
+        <i class="bi bi-flower1"></i>
+
+        <h4>
+          No packages available
+        </h4>
+
+        <p>
+          Please try another category.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= WHY PACKAGES ================= -->
+
+  <section class="why-section">
+
+    <div class="container">
+
+      <div class="text-center">
+
+        <span class="section-eyebrow">
+          WHY CHOOSE OUR PACKAGES
+        </span>
+
+        <h2>
+          A Simple Way to Plan Your Puja
+        </h2>
+
+        <p class="section-description">
+          We bring everything together so you can focus on
+          your family's special moments.
+        </p>
+
+      </div>
+
+
+      <div class="row g-4 mt-4">
+
+        <div class="col-md-4">
+
+          <div class="benefit-card">
+
+            <div class="benefit-icon">
+              <i class="bi bi-person-check"></i>
+            </div>
+
+            <h5>
+              Verified Poojaris
+            </h5>
+
+            <p>
+              Experienced and verified Poojaris for traditional
+              rituals and ceremonies.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+          <div class="benefit-card">
+
+            <div class="benefit-icon">
+              <i class="bi bi-basket"></i>
+            </div>
+
+            <h5>
+              Puja Samagri
+            </h5>
+
+            <p>
+              Essential Samagri can be included with selected
+              packages for a convenient experience.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="col-md-4">
+
+          <div class="benefit-card">
+
+            <div class="benefit-icon">
+              <i class="bi bi-calendar-check"></i>
+            </div>
+
+            <h5>
+              Easy Booking
+            </h5>
+
+            <p>
+              Select your package, choose a date and complete
+              your booking in just a few steps.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</section>

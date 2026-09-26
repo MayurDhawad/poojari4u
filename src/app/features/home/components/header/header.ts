@@ -24,9 +24,9 @@ export class Header {
     { label: 'Home', path: '/' },
     { label: 'Poojaris', path: '/poojaris' },
     { label: 'Bajanthri', path: '/bajanthri' },
-    { label: 'Puja Samagri', path: '/samagri' },
+    { label: 'Puja Samagri', path: '/pooja-samagri' },
     { label: 'Packages', path: '/packages' },
-    { label: 'My Bookings', path: '/bookings' },
+    { label: 'My Bookings', path: '/my-bookings' },
   ];
 
 }

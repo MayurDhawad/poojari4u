@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { Header } from '../../components/header/header';
-import { HeroSearch } from '../../components/hero-search/hero-search';
+import { HomeSection } from '../../components/home-section/home-section';
 import { ServiceCategories } from '../../components/service-categories/service-categories';
 import { PopularPujas } from '../../components/popular-pujas/popular-pujas';
 
@@ -9,10 +9,10 @@ import { PopularPujas } from '../../components/popular-pujas/popular-pujas';
   selector: 'app-home',
   imports: [
     Header,
-    HeroSearch,
+    HomeSection,
     ServiceCategories,
     PopularPujas,
-  ],
+],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

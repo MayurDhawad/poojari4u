@@ -1,0 +1,410 @@
+.poojari-page {
+  background: #faf9f7;
+  min-height: 100vh;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.poojari-hero {
+  background: linear-gradient(
+    135deg,
+    #fff8ed 0%,
+    #fff 100%
+  );
+
+  padding: 70px 0;
+}
+
+.hero-eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #d97706;
+}
+
+.hero-title {
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 700;
+  line-height: 1.12;
+  margin: 15px 0;
+  color: #27211d;
+}
+
+.hero-title span {
+  color: #d97706;
+}
+
+.hero-description {
+  max-width: 600px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #6b625c;
+}
+
+.hero-image {
+  height: 330px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-section {
+  margin-top: -35px;
+  position: relative;
+  z-index: 5;
+}
+
+.search-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 18px;
+  border: 1px solid #eee;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #504941;
+}
+
+.input-group-text {
+  background: #fff;
+  border-right: 0;
+  color: #d97706;
+}
+
+.input-group .form-select,
+.input-group .form-control {
+  border-left: 0;
+}
+
+.search-btn {
+  min-height: 44px;
+  font-weight: 600;
+}
+
+
+/* =========================
+   LIST SECTION
+========================= */
+
+.poojari-list-section {
+  padding: 60px 0;
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+.filter-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 22px;
+  position: sticky;
+  top: 20px;
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-header h5 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.filter-header .btn-link {
+  color: #d97706;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.filter-group {
+  margin-top: 25px;
+}
+
+.filter-group h6 {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.form-check {
+  margin-bottom: 10px;
+}
+
+.form-check-label {
+  font-size: 14px;
+  color: #625b55;
+}
+
+
+/* =========================
+   RESULTS
+========================= */
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.results-header h4 {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.sort-select {
+  width: 190px;
+}
+
+
+/* =========================
+   POOJARI CARD
+========================= */
+
+.poojari-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  overflow: hidden;
+  height: 100%;
+  transition: all 0.25s ease;
+}
+
+.poojari-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.card-image {
+  height: 240px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.poojari-card:hover .card-image img {
+  transform: scale(1.04);
+}
+
+.verified-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+
+  background: #fff;
+  color: #198754;
+
+  padding: 6px 10px;
+  border-radius: 20px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.poojari-name {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #29231f;
+}
+
+.location {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 0;
+}
+
+.location i {
+  color: #d97706;
+}
+
+.rating {
+  background: #fff7e6;
+  color: #b45309;
+
+  padding: 5px 8px;
+  border-radius: 7px;
+
+  font-size: 13px;
+  font-weight: 700;
+  height: fit-content;
+}
+
+.rating i {
+  margin-right: 3px;
+}
+
+.experience {
+  margin-top: 15px;
+  color: #5f5751;
+  font-size: 13px;
+}
+
+.experience i {
+  color: #d97706;
+  margin-right: 5px;
+}
+
+.specializations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 15px;
+}
+
+.specializations span {
+  background: #f7f3ef;
+  color: #655c54;
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.card-footer-custom {
+  border-top: 1px solid #eee;
+  margin-top: 18px;
+  padding-top: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-footer-custom small {
+  display: block;
+  font-size: 10px;
+  color: #888;
+}
+
+.card-footer-custom strong {
+  font-size: 18px;
+  color: #29231f;
+}
+
+.card-footer-custom .btn {
+  font-size: 12px;
+  padding: 7px 12px;
+}
+
+
+/* =========================
+   PAGINATION
+========================= */
+
+.pagination .page-link {
+  color: #d97706;
+  border-color: #eee;
+}
+
+.pagination .active .page-link {
+  background: #d97706;
+  border-color: #d97706;
+  color: #fff;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 991.98px) {
+
+  .poojari-hero {
+    padding: 45px 0 70px;
+  }
+
+  .hero-image {
+    margin-top: 30px;
+    height: 280px;
+  }
+
+  .search-section {
+    margin-top: -35px;
+  }
+
+  .filter-card {
+    position: static;
+  }
+
+}
+
+
+@media (max-width: 767.98px) {
+
+  .poojari-hero {
+    padding: 35px 0 60px;
+  }
+
+  .hero-title {
+    font-size: 38px;
+  }
+
+  .hero-description {
+    font-size: 15px;
+  }
+
+  .hero-image {
+    height: 240px;
+  }
+
+  .search-card {
+    padding: 18px;
+  }
+
+  .poojari-list-section {
+    padding: 40px 0;
+  }
+
+  .results-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .sort-select {
+    width: 100%;
+  }
+
+  .card-image {
+    height: 260px;
+  }
+
+  .card-footer-custom {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .card-footer-custom .d-flex {
+    flex-wrap: wrap;
+  }
+
+}
