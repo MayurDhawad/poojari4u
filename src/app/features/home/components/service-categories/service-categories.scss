@@ -8,7 +8,7 @@
 }
 
 .services-container {
-  max-width: 1234px;
+  max-width: 1300px;
   margin: 0 auto;
   display: grid;
   grid-template-columns:
@@ -33,15 +33,15 @@
 }
 
 .service-icon {
-  width: 62px;
-  height: 62px;
+  width: 72px;
+  height: 72px;
   flex-shrink: 0;
   border-radius: 50%;
   background: #fff0d8;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
+  font-size: 35px;
 }
 
 .service-content h3 {

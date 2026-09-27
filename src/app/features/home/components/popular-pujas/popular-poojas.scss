@@ -10,7 +10,7 @@
 
 /* Image styling */
 .card-img-container {
-  height: 100px;
+  height: 135px;
   width: 100%;
   overflow: hidden;
 }
@@ -21,14 +21,25 @@
   object-position: center 33%;
 }
 
+.card-body{
+  height: 75px;
+  h6{
+    font-size: 15px;
+  }
+  .p-2 {
+    padding: 0.75rem !important;
+  }
+}
+
 .empty-image-placeholder {
   height: 100%;
   background-color: #ffffff;
 }
 
 .card-text{
-  font-size: 14px;
+  font-size: 12px;
   padding: 0 10px 0px 0px;
+  line-height: 15px;
 }
 
 /* Circular arrow button styling */

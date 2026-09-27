@@ -121,4 +121,7 @@
     margin-top: 2px;
     color: #3e2c20;
   }
+  .nav-link.active,.nav-link:hover{
+    width: fit-content;
+  }
 }
