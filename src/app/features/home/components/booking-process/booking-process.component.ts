@@ -20,17 +20,17 @@ export class BookingProcessComponent {
     {
       stepNumber: 1,
       title: 'Choose Service',
-      description: 'Select Poojari, Bajanthri, Samagri or a package.'
+      description: 'Sathyanarayana Pooja, Griha Pravesham, Homam, wedding and more.'
     },
     {
       stepNumber: 2,
-      title: 'Select Location',
-      description: 'Enter your city or area for service availability.'
+      title: 'Select Location & Date',
+      description: 'Enter your preferred City and Ceremony Date for Service availability.'
     },
     {
       stepNumber: 3,
-      title: 'Select Date',
-      description: 'Choose your preferred ceremony or delivery date.'
+      title: 'Select verified Poojari',
+      description: 'Choose your preferred poojari for the ceremony.'
     },
     {
       stepNumber: 4,

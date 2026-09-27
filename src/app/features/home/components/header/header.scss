@@ -17,8 +17,8 @@
     z-index: 2;
 
     img {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
       object-fit: cover;
     }
   }
@@ -41,8 +41,18 @@
     font-size: 17px;
     margin-top: 6px;
     color: #3e2c20;
-  }   
+  } 
 }
+.book-poojari-btn {
+  background: #e87512;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 15px;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 2px solid #e87512;
+}  
 .nav-item {
   padding: 6px 10px !important;
 }
