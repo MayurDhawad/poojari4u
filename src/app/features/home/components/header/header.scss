@@ -23,23 +23,31 @@
     }
   }
   .brand-name {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 43px;
-    line-height: 1;
-    color: #e87512;
-    font-weight: 700;
-    sup {
-      top: -15px;
-      position: relative;
-      font-size: 12px;
-      line-height: 0;
-      vertical-align: baseline;
+    object-fit: contain;
+    border-radius: 50%;
+    z-index: 2;
+    img {
+      width: 80%;
+      height: 62px;
+      object-fit: cover;
     }
+    // font-family: Georgia, 'Times New Roman', serif;
+    // font-size: 43px;
+    // line-height: 1;
+    // color: #e87512;
+    // font-weight: 700;
+    // sup {
+    //   top: -15px;
+    //   position: relative;
+    //   font-size: 12px;
+    //   line-height: 0;
+    //   vertical-align: baseline;
+    // }
   }
 
   .brand-tagline {
-    font-size: 17px;
-    margin-top: 6px;
+    font-size: 15px;
+    margin-top: 0px;
     color: #3e2c20;
   } 
 }
@@ -106,6 +114,7 @@
   .brand .brand-logo {
     margin-top: 0px;
     margin-bottom: 0px;
+    margin-right: 10px;
   }
   .brand .brand-logo img {
     width: 75px;
@@ -113,8 +122,10 @@
     object-fit: cover;
   }
 
-  .brand .brand-name {
-    font-size: 30px;
+  .brand .brand-name img{
+    width: 100%;
+    height: 50px;
+    object-fit: cover;
   }
   .brand .brand-tagline {
     font-size: 11px;

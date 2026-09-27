@@ -22,7 +22,7 @@ export class Header {
 
   navItems = [
     { label: 'Home', path: '/' },
-    { label: 'Poojaris', path: '/poojaris1' },
+    { label: 'Poojaris', path: '/poojaris' },
     { label: 'Bajanthri', path: '/bajanthri1' },
     { label: 'Pooja Samagri', path: '/pooja-samagri1' },
     { label: 'Packages', path: '/packages1' },

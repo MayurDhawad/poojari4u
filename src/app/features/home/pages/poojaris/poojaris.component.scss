@@ -1,6 +1,7 @@
 .poojari-page {
   background: #faf9f7;
   min-height: 100vh;
+  padding-top: 108px;
 }
 
 /* =========================
@@ -13,8 +14,6 @@
     #fff8ed 0%,
     #fff 100%
   );
-
-  padding: 70px 0;
 }
 
 .hero-eyebrow {
@@ -44,8 +43,6 @@
 }
 
 .hero-image {
-  height: 330px;
-  border-radius: 24px;
   overflow: hidden;
 }
 
@@ -56,44 +53,44 @@
 }
 
 
-/* =========================
-   SEARCH
-========================= */
+// /* =========================
+//    SEARCH
+// ========================= */
 
-.search-section {
-  margin-top: -35px;
-  position: relative;
-  z-index: 5;
-}
+// .search-section {
+//   margin-top: -35px;
+//   position: relative;
+//   z-index: 5;
+// }
 
-.search-card {
-  background: #fff;
-  padding: 25px;
-  border-radius: 18px;
-  border: 1px solid #eee;
-}
+// .search-card {
+//   background: #fff;
+//   padding: 25px;
+//   border-radius: 18px;
+//   border: 1px solid #eee;
+// }
 
-.form-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #504941;
-}
+// .form-label {
+//   font-size: 13px;
+//   font-weight: 600;
+//   color: #504941;
+// }
 
-.input-group-text {
-  background: #fff;
-  border-right: 0;
-  color: #d97706;
-}
+// .input-group-text {
+//   background: #fff;
+//   border-right: 0;
+//   color: #d97706;
+// }
 
-.input-group .form-select,
-.input-group .form-control {
-  border-left: 0;
-}
+// .input-group .form-select,
+// .input-group .form-control {
+//   border-left: 0;
+// }
 
-.search-btn {
-  min-height: 44px;
-  font-weight: 600;
-}
+// .search-btn {
+//   min-height: 44px;
+//   font-weight: 600;
+// }
 
 
 /* =========================
