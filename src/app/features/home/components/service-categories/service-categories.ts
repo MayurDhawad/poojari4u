@@ -23,7 +23,7 @@ export class ServiceCategories {
     },
     {
       id: 'samagri',
-      title: 'Puja Samagri',
+      title: 'Pooja Samagri',
       description: 'Complete puja kits and individual items',
       icon: '🪔',
     },

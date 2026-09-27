@@ -129,7 +129,7 @@
 
         <h2>
           Book Verified Poojaris,<br>
-          Bajanthri &amp; Puja Samagri<br>
+          Bajanthri &amp; Pooja Samagri<br>
           All in One Place
         </h2>
 
@@ -153,12 +153,13 @@
         <!-- Service -->
         <div class="search-field">
           <div class="search-icon">
-            <i class="bi bi-person-arms-up"></i>
+            <i class="bi bi-fire"></i>
           </div>
 
           <div class="search-field-content">
-            <select class="form-select">
-              <option selected>Choose ceremony</option>
+            <label for="service-select">Select Service</label>
+            <select  id="service-select" class="form-select">
+              <option selected>Choose Service</option>
               <option>Pooja</option>
               <option>Havan</option>
               <option>Abhishekam</option>
@@ -173,8 +174,15 @@
             <i class="bi bi-geo-alt"></i>
           </div>
 
-          <div class="search-field-content">
-            <input type="text" class="form-control" placeholder="Enter city or area">
+         <div class="search-field-content">
+            <label for="location-select">Select Location</label>
+            <select  id="location-select" class="form-select">
+              <option selected>Choose location</option>
+              <option>Bangalore</option>
+              <option>Chennai</option>
+              <option>Hyderabad</option>
+              <option> Mumbai</option>
+            </select>
           </div>
         </div>
 
@@ -185,7 +193,8 @@
           </div>
 
           <div class="search-field-content">
-            <input type="date" class="form-control">
+            <label for="date-input">Date</label>
+            <input type="date" class="form-control" id="date-input">
           </div>
         </div>
 

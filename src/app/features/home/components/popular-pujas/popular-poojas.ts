@@ -9,12 +9,12 @@ export interface ServiceItem {
 }
 
 @Component({
-  selector: 'app-popular-pujas',
+  selector: 'app-popular-poojas',
   imports: [],
-  templateUrl: './popular-pujas.html',
-  styleUrl: './popular-pujas.scss',
+  templateUrl: './popular-poojas.html',
+  styleUrl: './popular-poojas.scss',
 })
-export class PopularPujas {
+export class PopularPoojas {
 
   services = signal<ServiceItem[]>([
     {
@@ -33,7 +33,7 @@ export class PopularPujas {
     },
     {
       id: 3,
-      title: 'Puja Samagri',
+      title: 'Pooja Samagri',
       description: 'Kits for all pujas & festivals',
       imageUrl: 'pooja-samagri/samagri-havan.jpg',
       linkUrl: '#'

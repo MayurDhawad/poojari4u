@@ -119,7 +119,7 @@
   flex: 1;
   display: flex;
   align-items: center;
-  height: 45px;
+  height: 55px;
   min-width: 0;
   padding: 7px;
   background: #fff;
@@ -127,65 +127,55 @@
   border-radius: 10px;
 }
 .search-icon {
-  width: 36px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #faecda;
   color: #e8750b;
   font-size: 18px;
 }
 .search-field-content {
   min-width: 0;
   flex: 1;
+  margin: 5px 10px;
 }
 .search-field-content label {
   display: block;
-  margin: 0 0 2px;
-  color: #3e3732;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
+  margin-bottom: 1px;
 }
 .search-field .form-control,
 .search-field .form-select {
-  height: 22px;
-  padding: 0;
   border: 0;
-  outline: none;
-  box-shadow: none;
+  outline: 0;
   background: transparent;
-  color: #8a817a;
-  font-size: 11px;
+  color: #76695e;
+  width: 100%;
+  font-size: 12px;
+  padding: 0px !important;
+}
+.form-select option{
+  font-size: 14px;
 }
 .search-field .form-control:focus,
 .search-field .form-select:focus {
   box-shadow: none;
 }
-
-/* ==========================================
-   SEARCH BUTTON
-========================================== */
 .search-button {
-  width: 140px;
-  height: 52px;
   flex-shrink: 0;
-  border: 0;
+  width: 175px;
+  height: 55px;
   border-radius: 10px;
-  background: #e87508;
+  background: #e8750b;
   color: #fff;
-  font-size: 13px;
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  transition: 0.2s ease;
-}
-.search-button:hover {
-  background: #d76600;
-}
-.search-button i {
   font-size: 14px;
+  border: none;
 }
 
 /* ==========================================
@@ -198,7 +188,7 @@
 }
 .hero-carousel .carousel-indicators {
   z-index: 4;
-  bottom: 100px;
+  bottom: 50px;
 }
 
 /* ==========================================
@@ -318,8 +308,8 @@
   .search-field {
     width: 100%;
     flex: none;
-    height: 50px;
-    min-height: 50px;
+    height: 55px;
+    min-height: 55px;
   }
   .search-button {
     width: 100%;

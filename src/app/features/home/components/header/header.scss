@@ -14,13 +14,11 @@
   .brand-logo {
     object-fit: contain;
     border-radius: 50%;
-    margin-top: 8px;
-    margin-bottom: -25px;
     z-index: 2;
 
     img {
-      width: 110px;
-      height: 110px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
     }
   }
