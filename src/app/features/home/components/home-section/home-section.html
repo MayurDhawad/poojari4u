@@ -157,8 +157,9 @@
           </div>
 
           <div class="search-field-content">
-            <label for="service-select">Select Service</label>
+            <!-- <label for="service-select">Select Service</label> -->
             <select  id="service-select" class="form-select">
+              <!-- <option value="" disabled selected>Select Service</option> -->
                @for (ceremony of ceremonies; track ceremony.value) {
                 <option [value]="ceremony.value">
                   {{ ceremony.label }}
@@ -175,9 +176,9 @@
           </div>
 
          <div class="search-field-content">
-            <label for="location-select">Select Location</label>
+            <!-- <label for="location-select">Select Location</label> -->
             <select  id="location-select" class="form-select">
-              <option value="" disabled selected>Select Location</option>
+              <!-- <option value="" disabled selected>Select Location</option> -->
               @for (group of locationGroups; track group.groupName) {
                 <optgroup [label]="group.groupName">
                   @for (item of group.locations; track item) {
@@ -198,7 +199,7 @@
           </div>
 
           <div class="search-field-content">
-            <label for="date-input">Date</label>
+            <!-- <label for="date-input">Date</label> -->
             <input type="date" class="form-control" id="date-input">
           </div>
         </div>

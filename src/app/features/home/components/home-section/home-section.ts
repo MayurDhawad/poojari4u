@@ -31,6 +31,10 @@ export class HomeSection {
 
   ceremonies = [
     {
+      value: '',
+      label: 'Select Service'
+    },
+    {
       value: 'ganapathi-pooja',
       label: 'Ganapathi Pooja'
     },
@@ -84,6 +88,7 @@ export class HomeSection {
     {
       groupName: 'Hyderabad',
       locations: [
+        'Select Location',
         'Kondapur',
         'Gachibowli',
         'Madhapur',
