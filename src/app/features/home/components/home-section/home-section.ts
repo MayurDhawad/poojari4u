@@ -7,7 +7,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { SearchBox } from '../../../shared/search-box';
 
 
 @Component({
@@ -30,14 +29,80 @@ export class HomeSection {
   location = '';
   date: Date | null = null;
 
-  services = [
-    'Satyanarayana Swamy Puja',
-    'Gruhapravesham',
-    'Wedding',
-    'Ganapathi Puja',
-    'Homam',
-    'Naming Ceremony',
-    'Other Puja',
+  ceremonies = [
+    {
+      value: 'ganapathi-pooja',
+      label: 'Ganapathi Pooja'
+    },
+    {
+      value: 'gruhapravesham',
+      label: 'Gruhapravesham'
+    },
+    {
+      value: 'homam-havan',
+      label: 'Homam / Havan'
+    },
+    {
+      value: 'satyanarayana-swamy-pooja',
+      label: 'Satyanarayana Swamy Pooja'
+    },
+    {
+      value: 'lakshmi-pooja',
+      label: 'Lakshmi Pooja'
+    },
+    {
+      value: 'wedding-rituals',
+      label: 'Wedding Rituals'
+    },
+    {
+      value: 'namakarana',
+      label: 'Namakarana'
+    },
+    {
+      value: 'vratham',
+      label: 'Vratham'
+    },
+    {
+      value: 'pitru-karma',
+      label: 'Pitru Karma'
+    },
+    {
+      value: 'temple-pooja-services',
+      label: 'Temple Pooja Services'
+    },
+    {
+      value: 'birthday-ayushya-pooja',
+      label: 'Birthday / Ayushya Pooja'
+    },
+    {
+      value: 'business-opening-pooja',
+      label: 'Business Opening Pooja'
+    }
+  ];
+
+  locationGroups = [
+    {
+      groupName: 'Hyderabad',
+      locations: [
+        'Kondapur',
+        'Gachibowli',
+        'Madhapur',
+        'Kukatpally',
+        'Miyapur',
+        'Banjara Hills',
+        'Jubilee Hills',
+        'Secunderabad'
+      ]
+    },
+    {
+      groupName: 'Other Cities',
+      locations: [
+        'Warangal',
+        'Karimnagar',
+        'Nizamabad',
+        'Khammam'
+      ]
+    }
   ];
 
   search(): void {

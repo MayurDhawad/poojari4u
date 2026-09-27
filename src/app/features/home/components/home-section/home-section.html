@@ -159,11 +159,11 @@
           <div class="search-field-content">
             <label for="service-select">Select Service</label>
             <select  id="service-select" class="form-select">
-              <option selected>Choose Service</option>
-              <option>Pooja</option>
-              <option>Havan</option>
-              <option>Abhishekam</option>
-              <option>Wedding Pooja</option>
+               @for (ceremony of ceremonies; track ceremony.value) {
+                <option [value]="ceremony.value">
+                  {{ ceremony.label }}
+                </option>
+              }
             </select>
           </div>
         </div>
@@ -177,11 +177,16 @@
          <div class="search-field-content">
             <label for="location-select">Select Location</label>
             <select  id="location-select" class="form-select">
-              <option selected>Choose location</option>
-              <option>Bangalore</option>
-              <option>Chennai</option>
-              <option>Hyderabad</option>
-              <option> Mumbai</option>
+              <option value="" disabled selected>Select Location</option>
+              @for (group of locationGroups; track group.groupName) {
+                <optgroup [label]="group.groupName">
+                  @for (item of group.locations; track item) {
+                    <option [value]="item">
+                      {{ item }}
+                    </option>
+                  }
+                </optgroup>
+              }
             </select>
           </div>
         </div>

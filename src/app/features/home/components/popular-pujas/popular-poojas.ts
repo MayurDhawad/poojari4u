@@ -34,7 +34,7 @@ export class PopularPoojas {
     {
       id: 3,
       title: 'Pooja Samagri',
-      description: 'Kits for all pujas & festivals',
+      description: 'Pooja kits and materials for all Poojas and festivals',
       imageUrl: 'pooja-samagri/samagri-havan.jpg',
       linkUrl: '#'
     },
