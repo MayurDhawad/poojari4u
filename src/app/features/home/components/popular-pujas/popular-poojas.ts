@@ -21,28 +21,28 @@ export class PopularPoojas {
       id: 1,
       title: 'Poojaris',
       description: 'Griha Pravesh, Satyanarayana, Homam, Wedding & more',
-      imageUrl: 'poojaris/poojari-4.jpg',
+      imageUrl: 'home/poojari.png',
       linkUrl: '#'
     },
     {
       id: 2,
       title: 'Bajanthri',
       description: 'Nadaswaram, Thavil, Dolu, Dappu & Traditional Teams',
-      imageUrl: 'pooja-samagri/samagri-ganesh.jpg',
+      imageUrl: 'home/bajanthri.png',
       linkUrl: '#'
     },
     {
       id: 3,
       title: 'Pooja Samagri',
       description: 'Pooja kits and materials for all Poojas and festivals',
-      imageUrl: 'pooja-samagri/samagri-havan.jpg',
+      imageUrl: 'home/pooja-samagri.png',
       linkUrl: '#'
     },
     {
       id: 4,
       title: 'Packages',
       description: 'Griha Pravesh, Wedding, Homam & Festival Packages',
-      imageUrl: 'package/package-wedding.jpg',
+      imageUrl: 'home/packages.png',
       linkUrl: '#'
     }
   ]);

@@ -4,16 +4,16 @@
       <!-- Logo -->
       <a routerLink="/" class="navbar-brand brand d-flex align-items-center">
         <div class="brand-logo me-lg-2">
-          <img src="images/logo.png" alt="4U Logo"/>
+          <img src="header/logo.png" alt="4U Logo"/>
         </div>
 
         <div class="brand-content">
           <div class="brand-name">
-             <img src="logo-text.png" alt="4U Logo"/>
+             <img src="header/logo-text.png" alt="4U Logo"/>
           </div>
 
           <div class="brand-tagline">
-            Your Poojari. Your Pooja. Your Way.
+            Your Spiritual Partner.
           </div>
         </div>
       </a>
@@ -28,15 +28,23 @@
       <div class="collapse navbar-collapse" id="mainNavbar">
 
         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-
           @for (item of navItems; track item.path) {
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="item.path" routerLinkActive="active" [routerLinkActiveOptions]="{
-                  exact: item.path === '/'
-                }">
-              {{ item.label }}
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="item.path" routerLinkActive="active"[routerLinkActiveOptions]="{exact: item.path === '/'}">
+                {{ item.label }}
+              </a>
+            </li>
+
+            @if (item.label === 'Bajanthri') {
+              <li class="nav-item vinayaka-item">
+                <img
+                  src="header/vinayaka.jpeg"
+                  alt="Lord Vinayaka"
+                  class="vinayaka-img"
+                />
+              </li>
+            }
+
           }
 
         </ul>
@@ -47,16 +55,6 @@
           <button class="book-poojari-btn" type="button">
             <span>Register as a Poojari</span>  
           </button>
-
-          <!-- <button mat-icon-button type="button" class="search-button" aria-label="Search">
-            <mat-icon>search</mat-icon>
-          </button> -->
-
-          <!-- <button mat-stroked-button type="button" class="account-button">
-            <mat-icon>person_outline</mat-icon>
-            <span>Account</span>
-            <mat-icon>expand_more</mat-icon>
-          </button> -->
 
         </div>
 

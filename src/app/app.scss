@@ -11,22 +11,21 @@
 .instant-booking-float {
   position: fixed;
   right: 24px;
-  bottom: 94px;
-  width: 50px;
-  height: 50px;
+  bottom: 24px;
+  width: 165px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: #e87512;
+  background: #e66a0a;
   color: #fff;
-  border-radius: 50%;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
-  overflow: hidden;
   white-space: nowrap;
-
+  border-radius: 28px;
+  cursor: pointer;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 
   transition:
@@ -37,38 +36,13 @@
   z-index: 1040;
 }
 
-/* Hide text initially */
-.instant-booking-float span {
-  display: none;
-}
-
-/* Hover */
-.instant-booking-float:hover {
-  width: 165px;
-  border-radius: 28px;
-  color: #fff;
-}
-
-/* Show text on hover */
-.instant-booking-float:hover span {
-  display: inline;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-/* Icon */
-.instant-booking-float i {
-  flex-shrink: 0;
-  font-size: 21px;
-}
-
 /* WhatsApp */
 .whatsapp-float {
   position: fixed;
   right: 24px;
-  bottom: 24px;
-  width: 50px;
-  height: 50px;
+  bottom: 80px;
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,30 +62,26 @@
 @media (max-width: 576px) {
    .instant-booking-float {
     right: 16px;
-    bottom: 82px;
-
-    width: 52px;
-    height: 52px;
-
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    i{
+      font-size: 18px;
+    }
   }
 
   .instant-booking-float span {
     display: none !important;
   }
-
-  .instant-booking-float:hover {
-    width: 52px;
-    border-radius: 50%;
-  }
-
+  
   .whatsapp-float {
     right: 16px;
-    bottom: 16px;
-
-    width: 52px;
-    height: 52px;
-
-    font-size: 27px;
+    bottom: 65px;
+    width: 40px;
+    height: 40px;
+    i{
+      font-size: 18px;
+    }
   }
 }
