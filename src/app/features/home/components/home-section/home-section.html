@@ -150,6 +150,26 @@
   <div class="hero-search-wrapper">
     <div class="container-fluid px-3 px-lg-5">
       <div class="hero-search">
+
+        <!-- Language -->
+        <div class="search-field">
+          <div class="search-icon">
+            <i class="bi bi-translate"></i>
+          </div>
+
+          <div class="search-field-content">
+            <!-- <label for="service-select">Select Service</label> -->
+            <select  id="service-select" class="form-select">
+              <!-- <option value="" disabled selected>Select Service</option> -->
+               @for (language of languages; track language.value) {
+                <option [value]="language.value">
+                  {{ language.label }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+
         <!-- Service -->
         <div class="search-field">
           <div class="search-icon">

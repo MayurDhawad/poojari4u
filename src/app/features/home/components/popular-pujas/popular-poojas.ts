@@ -28,7 +28,7 @@ export class PopularPoojas {
       id: 2,
       title: 'Bajanthri',
       description: 'Nadaswaram, Thavil, Dolu, Dappu & Traditional Teams',
-      imageUrl: 'home/bajanthri.png',
+      imageUrl: 'home/bajantri1.jpeg',
       linkUrl: '#'
     },
     {

@@ -40,7 +40,7 @@
 .whatsapp-float {
   position: fixed;
   right: 24px;
-  bottom: 80px;
+  bottom: 24px;
   width: 45px;
   height: 45px;
   display: flex;
@@ -59,16 +59,48 @@
   line-height: 1;
 }
 
+.book-pandit-floating {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1050;
+  width: 45px;
+  height: 180px;
+  background: #e87512;
+  color: #fff;
+  border-radius: 32px 0 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.book-pandit-floating span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+.book-pandit-floating:hover {
+  width: 50px;
+  background: #d96508;
+  color: #fff;
+}
+
 @media (max-width: 576px) {
    .instant-booking-float {
-    right: 16px;
-    bottom: 16px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    i{
-      font-size: 18px;
-    }
+    display: none;
+    // right: 16px;
+    // bottom: 16px;
+    // width: 40px;
+    // height: 40px;
+    // border-radius: 50%;
+    // i{
+    //   font-size: 18px;
+    // }
   }
 
   .instant-booking-float span {
@@ -77,11 +109,30 @@
   
   .whatsapp-float {
     right: 16px;
-    bottom: 65px;
+    bottom: 16px;
     width: 40px;
     height: 40px;
     i{
       font-size: 18px;
     }
   }
+
+  .book-pandit-floating{
+    width: 35px;
+  }
+  // .book-pandit-floating {
+  //   width: auto;
+  //   height: 48px;
+  //   right: 15px;
+  //   bottom: 20px;
+  //   top: auto;
+  //   transform: none;
+  //   padding: 0 20px;
+  //   border-radius: 25px;
+  // }
+
+  // .book-pandit-floating span {
+  //   writing-mode: initial;
+  //   transform: none;
+  // }
 }

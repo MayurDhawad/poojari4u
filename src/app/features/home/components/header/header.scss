@@ -36,7 +36,9 @@
   .brand-tagline {
     font-size: 15px;
     margin-top: 0px;
-    color: #3e2c20;
+    color: #696969;
+    font-family: Georgia, "Times New Roman", serif;
+    margin-left: 5px;
   } 
 }
 .book-poojari-btn {
@@ -65,8 +67,11 @@
     border-bottom: 2px solid #e87512;
   }
 }
+.nav-item-link{
+  margin-top: 15px
+}
 .vinayaka-item img{
-  height: 35px;
+  height: 65px;
   width: 100%;
 }
 .account-button {

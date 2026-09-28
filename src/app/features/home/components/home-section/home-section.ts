@@ -29,6 +29,37 @@ export class HomeSection {
   location = '';
   date: Date | null = null;
 
+  languages = [
+    {
+      value: '',
+      label: 'Select Language'
+    },
+    {
+      value: 'telugu',
+      label: 'Telugu'
+    },
+    {
+      value: 'sanskrit',
+      label: 'Sanskrit'
+    },
+    {
+      value: 'hindi',
+      label: 'Hindi'
+    },
+    {
+      value: 'tamil',
+      label: 'Tamil'
+    },
+    {
+      value: 'malayalam',
+      label: ' Malayalam'
+    },
+    {
+      value: 'kannada',
+      label: 'Kannada'
+    },
+  ]
+
   ceremonies = [
     {
       value: '',
