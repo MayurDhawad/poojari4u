@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SearchBox } from '../../../shared/search-box';
 import { Poojari } from '../../../../models/poojari.model';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { PoojariProfileCardComponent } from './profile-card/poojari-profile-card.component';
 export interface SearchCriteria {
   ceremony: string;
   location: string;
@@ -33,7 +35,7 @@ export class PoojarisComponent implements OnInit {
   @Input() totalAvailable: number = 6;
   @Input({ required: true }) poojari!: Poojari;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -142,7 +144,10 @@ export class PoojarisComponent implements OnInit {
   }
 
   onProfileClick(): void {
-    this.viewProfile.emit(this.poojari.id);
+    // this.viewProfile.emit(this.poojari.id);
+    // const dialogConfig = new MatDialogConfig()
+    // dialogConfig.width = "50%";
+    // const dialogRef = this.dialog.open(PoojariProfileCardComponent, dialogConfig)
   }
 
   onReserveClick(): void {

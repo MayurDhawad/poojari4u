@@ -1,4 +1,5 @@
 import { Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export interface ServiceItem {
   id: number;
@@ -10,7 +11,7 @@ export interface ServiceItem {
 
 @Component({
   selector: 'app-popular-poojas',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './popular-poojas.html',
   styleUrl: './popular-poojas.scss',
 })
@@ -22,7 +23,7 @@ export class PopularPoojas {
       title: 'Poojaris',
       description: 'Griha Pravesh, Satyanarayana, Homam, Wedding & more',
       imageUrl: 'home/poojari.png',
-      linkUrl: '#'
+      linkUrl: '/poojaris'
     },
     {
       id: 2,

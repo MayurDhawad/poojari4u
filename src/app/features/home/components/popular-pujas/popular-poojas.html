@@ -39,7 +39,7 @@
                 <p class="card-text text-muted small mb-0">
                   {{ service.description }}
                 </p>
-                <a [href]="service.linkUrl" aria-label="Explore service" class="btn btn-arrow rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
+                <a routerLink="{{service.linkUrl}}" aria-label="Explore service" class="btn btn-arrow rounded-circle d-flex align-items-center justify-content-center text-decoration-none">
                   &rarr;
                 </a>
               </div>

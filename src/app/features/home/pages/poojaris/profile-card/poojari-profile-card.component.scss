@@ -1,2 +1,95 @@
-.card-hover { transition: transform 0.2s ease, shadow 0.2s ease; }
-.card-hover:hover { transform: translateY(-4px); }
+/* Top Maroon Bar */
+.maroon-modal-header {
+  background-color: #580016;
+}
+
+.text-gold-light {
+  color: #fef9c3;
+}
+
+.text-gold-subtle {
+  color: #fde047;
+}
+
+/* Custom Modal Body Height */
+.custom-modal-body {
+  max-height: 75vh;
+  overflow-y: auto;
+}
+
+/* Highlight Light Yellow Container */
+.bg-yellow-subtle {
+  background-color: #fefce8;
+}
+
+.border-yellow {
+  border: 1px solid #fef08a !important;
+}
+
+.bg-slate-50 {
+  background-color: #f8fafc;
+}
+
+/* Profile Avatar */
+.profile-modal-avatar {
+  width: 72px;
+  height: 72px;
+  border: 2px solid #d97706;
+}
+
+/* Badges */
+.bg-amber-tag {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  font-size: 0.7rem;
+}
+
+.bg-gold-certified {
+  background-color: #d97706;
+  color: #ffffff;
+  font-size: 0.7rem;
+}
+
+.bg-amber-price-tag {
+  background-color: #fef3c7;
+  border: 1px solid #fde68a;
+  font-size: 0.8rem;
+}
+
+.text-maroon {
+  color: #580016;
+}
+
+/* Checkbox & Addon styling */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #d97706;
+  border-color: #d97706;
+}
+
+/* Footer Button */
+.btn-gold-proceed {
+  background-color: #c2410c;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-gold-proceed:hover {
+  background-color: #9a3412;
+}
+
+.extra-small {
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

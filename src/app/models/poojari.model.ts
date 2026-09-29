@@ -13,13 +13,23 @@ export interface Poojari {
   name: string;
   tagline: string;
   isGoldCertified?: boolean;
+  scholarTag?: string;
   avatarUrl: string;
   experienceYears: number;
   rating: number;
   reviewCount: number;
   languages: string[];
+  locationCoverage?: string;
   description: string;
   ceremonyFee: number;
+  vidhiSteps?: string[];
+  samagriDetails?: string;
+  addons?: {
+    id: string;
+    title: string;
+    description: string;
+    price: number;
+  }[];
 }
 
 export interface SearchFilterState {
