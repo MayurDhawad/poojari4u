@@ -1,407 +1,230 @@
-.poojari-page {
-  background: #faf9f7;
-  min-height: 100vh;
-  padding-top: 108px;
+/* Deep maroon background with subtle dotted grid pattern */
+.hero-mandala-bg {
+  background-color: #580016;
+  background-image: 
+    radial-gradient(#d97706 0.75px, transparent 0.75px), 
+    radial-gradient(#d97706 0.75px, #580016 0.75px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
 }
 
-/* =========================
-   HERO
-========================= */
-
-.poojari-hero {
-  background: linear-gradient(
-    135deg,
-    #fff8ed 0%,
-    #fff 100%
-  );
+/* Rounded pill badge styling */
+.badge-pill-gold {
+  background-color: rgba(217, 119, 6, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fde68a;
+  letter-spacing: 1px;
 }
 
-.hero-eyebrow {
-  font-size: 13px;
+/* Custom Maroon Button */
+.btn-maroon {
+  background-color: #580016;
+  color: #fef3c7;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-maroon:hover {
+  background-color: #3a000e;
+  color: #ffffff;
+}
+
+/* Text and Field styling */
+.text-gold-light {
+  color: #fef9c3;
+}
+
+.text-gold-subtle {
+  color: #fde047;
+}
+
+.text-maroon {
+  color: #580016;
+}
+
+.form-field-bg {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+}
+
+.form-field-bg:focus {
+  background-color: #ffffff;
+  border-color: #d97706;
+  box-shadow: 0 0 0 0.25rem rgba(217, 119, 6, 0.25);
+}
+/* Soft yellow/cream banner background matching the image */
+.search-status-banner {
+  background-color: #fef9c3; /* Light cream/yellow hue */
+  border-color: #fde047 !important; /* Soft saffron/gold border */
+}
+
+/* Diya icon container with saffron gradient */
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  font-size: 1.25rem;
+}
+
+/* Text styles */
+.banner-title {
+  color: #3a000e; /* Deep maroon/dark reddish brown */
+  font-size: 0.95rem;
+}
+
+.ceremony-link {
+  color: #b45309; /* Warm amber/saffron link color */
   font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #d97706;
+  text-underline-offset: 3px;
+  text-decoration-color: #d97706 !important;
 }
 
-.hero-title {
-  font-size: clamp(36px, 5vw, 58px);
-  font-weight: 700;
-  line-height: 1.12;
-  margin: 15px 0;
-  color: #27211d;
+.banner-subtitle {
+  color: #71717a !important;
+  font-size: 0.825rem;
 }
 
-.hero-title span {
-  color: #d97706;
+/* Right side white status badge */
+.badge-pill-counter {
+  color: #580016; /* Deep maroon text */
+  font-size: 0.825rem;
+  border-color: #fde047 !important;
 }
 
-.hero-description {
-  max-width: 600px;
-  font-size: 17px;
-  line-height: 1.7;
-  color: #6b625c;
+/* Card Container Outline */
+.card {
+  border: 1px solid #e2e8f0 !important;
 }
 
-.hero-image {
-  overflow: hidden;
+/* Label styling */
+.filter-label, .sort-label {
+  color: #475569;
+  letter-spacing: 0.5px;
 }
 
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Base Select styling */
+.custom-filter-select {
+  width: auto;
+  min-width: 160px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-weight: 500;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 }
 
-
-// /* =========================
-//    SEARCH
-// ========================= */
-
-// .search-section {
-//   margin-top: -35px;
-//   position: relative;
-//   z-index: 5;
-// }
-
-// .search-card {
-//   background: #fff;
-//   padding: 25px;
-//   border-radius: 18px;
-//   border: 1px solid #eee;
-// }
-
-// .form-label {
-//   font-size: 13px;
-//   font-weight: 600;
-//   color: #504941;
-// }
-
-// .input-group-text {
-//   background: #fff;
-//   border-right: 0;
-//   color: #d97706;
-// }
-
-// .input-group .form-select,
-// .input-group .form-control {
-//   border-left: 0;
-// }
-
-// .search-btn {
-//   min-height: 44px;
-//   font-weight: 600;
-// }
-
-
-/* =========================
-   LIST SECTION
-========================= */
-
-.poojari-list-section {
-  padding: 60px 0;
+.custom-filter-select:focus {
+  background-color: #ffffff;
+  border-color: #d97706;
+  box-shadow: 0 0 0 0.2rem rgba(217, 119, 6, 0.15);
 }
 
-
-/* =========================
-   FILTER
-========================= */
-
-.filter-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 16px;
-  padding: 22px;
-  position: sticky;
-  top: 20px;
+/* Active Highlighted Select Border (Matching 'All Specializations' in image) */
+.active-accent-border {
+  border: 2px solid #d97706 !important;
+  background-color: #ffffff;
 }
 
-.filter-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Gold Certified Checkbox Container Tag */
+.gold-badge-checkbox {
+  background-color: #fefce8;
+  border-color: #fde047 !important;
+  user-select: none;
+  transition: background-color 0.2s ease;
 }
 
-.filter-header h5 {
-  margin: 0;
-  font-weight: 700;
+.gold-badge-checkbox:hover {
+  background-color: #fef9c3;
 }
 
-.filter-header .btn-link {
-  color: #d97706;
-  font-size: 13px;
-  text-decoration: none;
+/* Checkbox Color Customization */
+.gold-badge-checkbox .form-check-input:checked {
+  background-color: #d97706;
+  border-color: #d97706;
 }
 
-.filter-group {
-  margin-top: 25px;
+.cursor-pointer {
+  cursor: pointer;
+}
+.form-select {
+  font-size: 0.80rem !important;
 }
 
-.filter-group h6 {
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.form-check {
-  margin-bottom: 10px;
-}
-
-.form-check-label {
-  font-size: 14px;
-  color: #625b55;
-}
-
-
-/* =========================
-   RESULTS
-========================= */
-
-.results-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.results-header h4 {
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.sort-select {
-  width: 190px;
-}
-
-
-/* =========================
-   POOJARI CARD
-========================= */
-
+/* Card Container */
 .poojari-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 18px;
-  overflow: hidden;
-  height: 100%;
-  transition: all 0.25s ease;
+  border-color: #e2e8f0 !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .poojari-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
-.card-image {
-  height: 240px;
-  position: relative;
-  overflow: hidden;
+/* Header Banner */
+.card-header-banner {
+  background-color: #fefce8;
+  border-bottom: 1px solid #fef08a;
 }
 
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+.text-maroon {
+  color: #713f12;
 }
 
-.poojari-card:hover .card-image img {
-  transform: scale(1.04);
+.gold-certified-badge {
+  background-color: #d97706;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
-.verified-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-
-  background: #fff;
-  color: #198754;
-
-  padding: 6px 10px;
-  border-radius: 20px;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+/* Avatar Image */
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #ffffff;
 }
 
-.card-body {
-  padding: 20px;
-}
-
+/* Name and Font */
 .poojari-name {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 4px;
-  color: #29231f;
+  color: #1e293b;
+  font-size: 1.1rem;
 }
 
-.location {
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 0;
+/* Language Badges */
+.language-badge {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  border: 1px solid #e2e8f0;
 }
 
-.location i {
-  color: #d97706;
+/* Footer & Buttons */
+.extra-small {
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
 }
 
-.rating {
-  background: #fff7e6;
-  color: #b45309;
-
-  padding: 5px 8px;
-  border-radius: 7px;
-
-  font-size: 13px;
-  font-weight: 700;
-  height: fit-content;
+.price-text {
+  color: #111827;
 }
 
-.rating i {
-  margin-right: 3px;
-}
-
-.experience {
-  margin-top: 15px;
-  color: #5f5751;
-  font-size: 13px;
-}
-
-.experience i {
-  color: #d97706;
-  margin-right: 5px;
-}
-
-.specializations {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 15px;
-}
-
-.specializations span {
-  background: #f7f3ef;
-  color: #655c54;
-  padding: 5px 9px;
-  border-radius: 6px;
-  font-size: 11px;
-}
-
-.card-footer-custom {
-  border-top: 1px solid #eee;
-  margin-top: 18px;
-  padding-top: 16px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card-footer-custom small {
-  display: block;
-  font-size: 10px;
-  color: #888;
-}
-
-.card-footer-custom strong {
-  font-size: 18px;
-  color: #29231f;
-}
-
-.card-footer-custom .btn {
-  font-size: 12px;
-  padding: 7px 12px;
-}
-
-
-/* =========================
-   PAGINATION
-========================= */
-
-.pagination .page-link {
-  color: #d97706;
-  border-color: #eee;
-}
-
-.pagination .active .page-link {
-  background: #d97706;
+.btn-gold {
+  background-color: #d97706;
   border-color: #d97706;
-  color: #fff;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 991.98px) {
-
-  .poojari-hero {
-    padding: 45px 0 70px;
-  }
-
-  .hero-image {
-    margin-top: 30px;
-    height: 280px;
-  }
-
-  .search-section {
-    margin-top: -35px;
-  }
-
-  .filter-card {
-    position: static;
-  }
-
+.btn-gold:hover {
+  background-color: #b45309;
+  border-color: #b45309;
 }
 
-
-@media (max-width: 767.98px) {
-
-  .poojari-hero {
-    padding: 35px 0 60px;
-  }
-
-  .hero-title {
-    font-size: 38px;
-  }
-
-  .hero-description {
-    font-size: 15px;
-  }
-
-  .hero-image {
-    height: 240px;
-  }
-
-  .search-card {
-    padding: 18px;
-  }
-
-  .poojari-list-section {
-    padding: 40px 0;
-  }
-
-  .results-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .sort-select {
-    width: 100%;
-  }
-
-  .card-image {
-    height: 260px;
-  }
-
-  .card-footer-custom {
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .card-footer-custom .d-flex {
-    flex-wrap: wrap;
-  }
-
+/* Truncate text to 3 lines */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

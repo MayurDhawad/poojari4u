@@ -1,719 +1,225 @@
+<section class="hero-mandala-bg py-5 px-3 position-relative">
+  <div class="container-xl">
+    
+    <!-- Top Header Text Block -->
+    <div class="text-center text-white mb-4">
+      <div class="d-inline-block px-3 py-1 rounded-pill badge-pill-gold text-uppercase fw-semibold small mb-3">
+        ✨ TRADITIONAL SACRED CEREMONIES AT YOUR DOORSTEP
+      </div>
+      
+      <h1 class="display-5 font-serif fw-bold text-gold-light mb-2">
+        Search & Reserve Verified Vedic Poojaris
+      </h1>
+      
+      <p class="text-gold-subtle mx-auto mb-0" style="max-width: 650px; font-size: 0.95rem;">
+        Select your ceremony, enter your location, and pick your preferred auspicious date to browse available scholars, check transparent pricing, and add custom Bajanthri music teams.
+      </p>
+    </div>
 
-<section class="poojari-page">
+    <div class="container">
+      <app-search-box></app-search-box>
+    </div>
+  </div>
+</section>
 
-  <!-- Hero Section -->
-  <section class="poojari-hero">
-    <div class="overflow-hidden">
-      <div class="row align-items-center">
-
-        <!-- <div class="col-lg-7">
-          <span class="hero-eyebrow">
-            VERIFIED PUROHITS & POOJARIS
-          </span>
-
-          <h1 class="hero-title">
-            Find the Right Poojari
-            <br />
-            for Your <span>Puja & Rituals</span>
-          </h1>
-
-          <p class="hero-description">
-            Book experienced and verified Poojaris for traditional Hindu
-            pujas, havans, ceremonies and special occasions.
-          </p>
-        </div> -->
-
-        <div class="col-lg-12">
-          <div class="hero-image">
-            <img
-              src="poojaris/poojari-hero.jpg"
-              alt="Poojari performing puja"
-            />
+<section>
+  <div class='container'>
+    <div class="search-status-banner rounded-4 p-3 p-sm-3 border shadow-sm my-3">
+      <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
+        
+        <!-- Left Section: Icon & Details -->
+        <div class="d-flex align-items-center gap-3">
+          <!-- Diya / Sacred Icon Circle -->
+          <div class="icon-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 shadow-sm">
+            🪔
           </div>
+
+          <div>
+            <h6 class="mb-0 fw-bold banner-title d-flex flex-wrap align-items-center gap-1">
+              <span>Showing Available Poojaris for</span>
+              <span class="ceremony-link text-decoration-underline ms-1">{{ ceremonyName }}</span>
+            </h6>
+            <p class="mb-0 banner-subtitle text-muted small">
+              Location: {{ location }} | Date: {{ date }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Section: Result Counter Pill -->
+        <div class="badge-pill-counter bg-white px-3 py-2 rounded-pill fw-bold border shadow-sm text-nowrap">
+          {{ totalAvailable }} Verified Purohits Available
         </div>
 
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<section>
+  <div class="container card border-0 rounded-4 shadow-sm p-3 my-3 bg-white">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+      
+      <!-- Left Section: Filters -->
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <!-- Filter Label -->
+        <span class="fw-bold text-uppercase small filter-label d-flex align-items-center me-1">
+          <i class="bi bi-funnel-fill text-warning me-1 fs-6"></i> FILTERS:
+        </span>
 
-  <!-- Search & Filters -->
-  <!-- <section class="search-section">
-    <div class="container">
+        <!-- 1. Languages Dropdown -->
+        <select 
+          class="form-select custom-filter-select rounded-3 small"
+          [(ngModel)]="filters.language" 
+          (change)="onFilterUpdate()">
+          <option value="all">All Languages</option>
+          <option value="telugu">Telugu</option>
+          <option value="hindi">Hindi</option>
+          <option value="tamil">Tamil</option>
+          <option value="kannada">Kannada</option>
+          <option value="sanskrit">Sanskrit</option>
+        </select>
 
-      <div class="search-card shadow-sm">
+        <!-- 2. Specializations Dropdown (Highlighted Active Border) -->
+        <select 
+          class="form-select custom-filter-select active-accent-border rounded-3 small"
+          [(ngModel)]="filters.specialization" 
+          (change)="onFilterUpdate()">
+          <option value="all">All Specializations</option>
+          <option value="vedic">Vedic Rituals</option>
+          <option value="smarta">Smarta Sampradaya</option>
+          <option value="agama">Agama Shastra</option>
+          <option value="astrology">Jyotish & Muhurtham</option>
+        </select>
 
-        <div class="row g-3 align-items-end">
+        <!-- 3. Experience Levels Dropdown -->
+        <select 
+          class="form-select custom-filter-select rounded-3 small"
+          [(ngModel)]="filters.experience" 
+          (change)="onFilterUpdate()">
+          <option value="all">All Experience Levels</option>
+          <option value="5+">5+ Years</option>
+          <option value="10+">10+ Years</option>
+          <option value="15+">15+ Years</option>
+        </select>
 
-          <div class="col-lg-3 col-md-6">
-            <label class="form-label">
-              Location
-            </label>
+        <!-- 4. Gold Certified Tag Checkbox -->
+        <label class="gold-badge-checkbox rounded-3 px-3 py-1.5 d-flex align-items-center gap-2 cursor-pointer border">
+          <input 
+            type="checkbox" 
+            class="form-check-input mt-0"
+            [(ngModel)]="filters.goldCertifiedOnly" 
+            (change)="onFilterUpdate()">
+          <span class="small fw-semibold text-dark">Gold Certified Only</span>
+        </label>
+      </div>
 
-            <div class="input-group">
-              <span class="input-group-text">
-                <i class="bi bi-geo-alt"></i>
-              </span>
+      <!-- Right Section: Sort By -->
+      <div class="d-flex align-items-center gap-2 ms-auto ms-lg-0">
+        <span class="fw-bold text-uppercase small sort-label d-flex align-items-center">
+          <i class="bi bi-filter-left text-warning me-1 fs-5"></i> SORT BY:
+        </span>
 
-              <select class="form-select">
-                <option selected>Select City</option>
-                <option>Nagpur</option>
-                <option>Pune</option>
-                <option>Mumbai</option>
-                <option>Nashik</option>
-                <option>Bangalore</option>
-              </select>
-            </div>
-          </div>
-
-
-          <div class="col-lg-3 col-md-6">
-            <label class="form-label">
-              Puja / Service
-            </label>
-
-            <div class="input-group">
-              <span class="input-group-text">
-                <i class="bi bi-flower1"></i>
-              </span>
-
-              <select class="form-select">
-                <option selected>Select Puja</option>
-                <option>Ganesh Puja</option>
-                <option>Satyanarayan Puja</option>
-                <option>Griha Pravesh</option>
-                <option>Havan</option>
-                <option>Marriage Puja</option>
-              </select>
-            </div>
-          </div>
-
-
-          <div class="col-lg-2 col-md-6">
-            <label class="form-label">
-              Date
-            </label>
-
-            <div class="input-group">
-              <span class="input-group-text">
-                <i class="bi bi-calendar3"></i>
-              </span>
-
-              <input
-                type="date"
-                class="form-control"
-              />
-            </div>
-          </div>
-
-
-          <div class="col-lg-2 col-md-6">
-            <label class="form-label d-none d-lg-block">
-              &nbsp;
-            </label>
-
-            <button class="btn btn-primary w-100 search-btn">
-              <i class="bi bi-search me-2"></i>
-              Search
-            </button>
-          </div>
-
-        </div>
-
+        <select 
+          class="form-select custom-filter-select rounded-3 small"
+          [(ngModel)]="filters.sortBy" 
+          (change)="onFilterUpdate()">
+          <option value="rating_high">Highest Rating</option>
+          <option value="exp_high">Most Experienced</option>
+          <option value="price_low">Price: Low to High</option>
+          <option value="price_high">Price: High to Low</option>
+        </select>
       </div>
 
     </div>
-  </section> -->
+  </div>
+</section>
 
-  <!-- <app-search-box></app-search-box> -->
+<section>
+  <div class="container mb-5">
+    <div class="row g-4">
+      <div class="col-12 col-md-6 col-lg-4" *ngFor="let poojari of poojarisList">
+        <div class="card poojari-card h-100 rounded-4 border shadow-sm overflow-hidden d-flex flex-column">
 
-  <!-- Main Content -->
-  <section class="poojari-list-section">
-    <div class="container">
+          <!-- Top Highlight Banner Header -->
+          <div class="card-header-banner px-3 py-2 d-flex align-items-center justify-content-between">
+            <span class="small fw-bold text-maroon d-flex align-items-center gap-1 text-truncate">
+              🎓 {{ poojari.tagline }}
+            </span>
+            <span *ngIf="poojari.isGoldCertified" class="gold-certified-badge badge text-uppercase rounded-2 px-2 py-1">
+              GOLD CERTIFIED
+            </span>
+          </div>
 
-      <div class="row g-4">
+          <!-- Card Body -->
+          <div class="card-body p-3 flex-grow-1">
 
-        <!-- Sidebar -->
-        <div class="col-lg-3">
+            <!-- Profile Info Header -->
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <!-- Profile Picture -->
+              <img [src]="poojari.avatarUrl" [alt]="poojari.name"
+                class="profile-avatar rounded-circle object-fit-cover flex-shrink-0 shadow-sm" />
 
-          <div class="filter-card">
+              <div>
+                <h5 class="fw-bold font-serif poojari-name mb-1">{{ poojari.name }}</h5>
 
-            <div class="filter-header">
-              <h5>Filters</h5>
+                <!-- Experience -->
+                <div class="text-muted small mb-1 d-flex align-items-center gap-1">
+                  <i class="bi bi-briefcase-fill text-warning"></i>
+                  <span>{{ poojari.experienceYears }}+ Years Experience</span>
+                </div>
 
-              <button class="btn btn-link p-0">
-                Clear All
+                <!-- Rating & Reviews -->
+                <div class="d-flex align-items-center gap-1 small">
+                  <span
+                    class="badge bg-success-subtle text-success fw-bold px-1.5 py-0.5 rounded d-flex align-items-center gap-1">
+                    ⭐ {{ poojari.rating }}
+                  </span>
+                  <span class="text-muted">({{ poojari.reviewCount }} reviews)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Languages Spoken -->
+            <div class="mb-3 d-flex align-items-center flex-wrap gap-1.5">
+              <span class="small text-muted fw-semibold me-1">Languages:</span>
+              <span *ngFor="let lang of poojari.languages" class="badge language-badge fw-normal rounded-2">
+                {{ lang }}
+              </span>
+            </div>
+
+            <!-- Short Description -->
+            <p class="card-text text-secondary small line-clamp-3 mb-0">
+              {{ poojari.description }}
+            </p>
+
+          </div>
+
+          <!-- Card Footer: Price & Action Buttons -->
+          <div
+            class="card-footer bg-light-subtle border-top p-3 d-flex align-items-center justify-content-between mt-auto">
+
+            <!-- Ceremony Fee -->
+            <div>
+              <div class="text-uppercase text-muted extra-small fw-bold tracking-wider">CEREMONY FEE</div>
+              <div class="fw-bold fs-5 price-text">₹ {{ poojari.ceremonyFee | number:'1.0-0' }}</div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex align-items-center gap-2">
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-3 px-3 fw-semibold py-1.5"
+                (click)="onProfileClick()">
+                Profile
+              </button>
+
+              <button type="button" class="btn btn-gold btn-sm rounded-3 px-3 fw-bold text-white py-1.5"
+                (click)="onReserveClick()">
+                Reserve Slot
               </button>
             </div>
-
-            <hr />
-
-            <!-- Experience -->
-            <div class="filter-group">
-
-              <h6>Experience</h6>
-
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="exp1"
-                />
-                <label class="form-check-label" for="exp1">
-                  5+ Years
-                </label>
-              </div>
-
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="exp2"
-                />
-                <label class="form-check-label" for="exp2">
-                  10+ Years
-                </label>
-              </div>
-
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="exp3"
-                />
-                <label class="form-check-label" for="exp3">
-                  20+ Years
-                </label>
-              </div>
-
-            </div>
-
-
-            <!-- Language -->
-            <div class="filter-group">
-
-              <h6>Language</h6>
-
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="marathi"
-                />
-                <label class="form-check-label" for="marathi">
-                  Marathi
-                </label>
-              </div>
-
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="hindi"
-                />
-                <label class="form-check-label" for="hindi">
-                  Hindi
-                </label>
-              </div>
-
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="sanskrit"
-                />
-                <label class="form-check-label" for="sanskrit">
-                  Sanskrit
-                </label>
-              </div>
-
-            </div>
-
-
-            <!-- Puja Type -->
-            <div class="filter-group">
-
-              <h6>Puja Type</h6>
-
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="homePuja"
-                />
-                <label class="form-check-label" for="homePuja">
-                  Home Puja
-                </label>
-              </div>
-
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="havan"
-                />
-                <label class="form-check-label" for="havan">
-                  Havan
-                </label>
-              </div>
-
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="marriage"
-                />
-                <label class="form-check-label" for="marriage">
-                  Marriage Rituals
-                </label>
-              </div>
-
-            </div>
-
           </div>
-
         </div>
-
-
-        <!-- Poojari Results -->
-        <div class="col-lg-9">
-
-          <div class="results-header">
-
-            <div>
-              <h4>Verified Poojaris</h4>
-
-              <p class="text-muted mb-0">
-                24 Poojaris available
-              </p>
-            </div>
-
-            <select class="form-select sort-select">
-              <option>Sort: Recommended</option>
-              <option>Experience</option>
-              <option>Rating</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
-            </select>
-
-          </div>
-
-
-          <!-- Cards -->
-          <div class="row g-4 mt-1">
-
-            <!-- Card 1 -->
-            <div class="col-md-6">
-
-              <div class="poojari-card">
-
-                <div class="card-image">
-
-                  <img
-                    src="poojaris/poojari-1.jpg"
-                    alt="Pandit Rajesh Sharma"
-                  />
-
-                  <span class="verified-badge">
-                    <i class="bi bi-patch-check-fill"></i>
-                    Verified
-                  </span>
-
-                </div>
-
-
-                <div class="card-body">
-
-                  <div class="d-flex justify-content-between">
-
-                    <div>
-                      <h5 class="poojari-name">
-                        Pandit Rajesh Sharma
-                      </h5>
-
-                      <p class="location">
-                        <i class="bi bi-geo-alt"></i>
-                        Nagpur, Maharashtra
-                      </p>
-                    </div>
-
-                    <div class="rating">
-                      <i class="bi bi-star-fill"></i>
-                      4.9
-                    </div>
-
-                  </div>
-
-
-                  <div class="experience">
-                    <i class="bi bi-award"></i>
-                    18+ Years Experience
-                  </div>
-
-
-                  <div class="specializations">
-
-                    <span>Ganesh Puja</span>
-                    <span>Havan</span>
-                    <span>Griha Pravesh</span>
-
-                  </div>
-
-
-                  <div class="card-footer-custom">
-
-                    <div>
-                      <small>Starting from</small>
-
-                      <strong>
-                        ₹1,501
-                      </strong>
-                    </div>
-
-                    <div class="d-flex gap-2">
-
-                      <button
-                        class="btn btn-outline-primary"
-                      >
-                        View
-                      </button>
-
-                      <button
-                        class="btn btn-primary"
-                      >
-                        Book Now
-                      </button>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- Card 2 -->
-            <div class="col-md-6">
-
-              <div class="poojari-card">
-
-                <div class="card-image">
-
-                  <img
-                    src="poojaris/poojari-2.jpg"
-                    alt="Pandit Amit Joshi"
-                  />
-
-                  <span class="verified-badge">
-                    <i class="bi bi-patch-check-fill"></i>
-                    Verified
-                  </span>
-
-                </div>
-
-
-                <div class="card-body">
-
-                  <div class="d-flex justify-content-between">
-
-                    <div>
-                      <h5 class="poojari-name">
-                        Pandit Amit Joshi
-                      </h5>
-
-                      <p class="location">
-                        <i class="bi bi-geo-alt"></i>
-                        Pune, Maharashtra
-                      </p>
-                    </div>
-
-                    <div class="rating">
-                      <i class="bi bi-star-fill"></i>
-                      4.8
-                    </div>
-
-                  </div>
-
-
-                  <div class="experience">
-                    <i class="bi bi-award"></i>
-                    12+ Years Experience
-                  </div>
-
-
-                  <div class="specializations">
-
-                    <span>Satyanarayan Puja</span>
-                    <span>Havan</span>
-                    <span>Vastu Puja</span>
-
-                  </div>
-
-
-                  <div class="card-footer-custom">
-
-                    <div>
-                      <small>Starting from</small>
-
-                      <strong>
-                        ₹1,201
-                      </strong>
-                    </div>
-
-                    <div class="d-flex gap-2">
-
-                      <button
-                        class="btn btn-outline-primary"
-                      >
-                        View
-                      </button>
-
-                      <button
-                        class="btn btn-primary"
-                      >
-                        Book Now
-                      </button>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- Card 3 -->
-            <div class="col-md-6">
-
-              <div class="poojari-card">
-
-                <div class="card-image">
-
-                  <img
-                    src="poojaris/poojari-3.jpg"
-                    alt="Pandit Suresh Shastri"
-                  />
-
-                  <span class="verified-badge">
-                    <i class="bi bi-patch-check-fill"></i>
-                    Verified
-                  </span>
-
-                </div>
-
-
-                <div class="card-body">
-
-                  <div class="d-flex justify-content-between">
-
-                    <div>
-                      <h5 class="poojari-name">
-                        Pandit Suresh Shastri
-                      </h5>
-
-                      <p class="location">
-                        <i class="bi bi-geo-alt"></i>
-                        Mumbai, Maharashtra
-                      </p>
-                    </div>
-
-                    <div class="rating">
-                      <i class="bi bi-star-fill"></i>
-                      4.9
-                    </div>
-
-                  </div>
-
-
-                  <div class="experience">
-                    <i class="bi bi-award"></i>
-                    22+ Years Experience
-                  </div>
-
-
-                  <div class="specializations">
-
-                    <span>Marriage Puja</span>
-                    <span>Havan</span>
-                    <span>Vedic Rituals</span>
-
-                  </div>
-
-
-                  <div class="card-footer-custom">
-
-                    <div>
-                      <small>Starting from</small>
-
-                      <strong>
-                        ₹2,001
-                      </strong>
-                    </div>
-
-                    <div class="d-flex gap-2">
-
-                      <button
-                        class="btn btn-outline-primary"
-                      >
-                        View
-                      </button>
-
-                      <button
-                        class="btn btn-primary"
-                      >
-                        Book Now
-                      </button>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- Card 4 -->
-            <div class="col-md-6">
-
-              <div class="poojari-card">
-
-                <div class="card-image">
-
-                  <img
-                    src="poojaris/poojari-4.jpg"
-                    alt="Pandit Vinay Kulkarni"
-                  />
-
-                  <span class="verified-badge">
-                    <i class="bi bi-patch-check-fill"></i>
-                    Verified
-                  </span>
-
-                </div>
-
-
-                <div class="card-body">
-
-                  <div class="d-flex justify-content-between">
-
-                    <div>
-                      <h5 class="poojari-name">
-                        Pandit Vinay Kulkarni
-                      </h5>
-
-                      <p class="location">
-                        <i class="bi bi-geo-alt"></i>
-                        Nashik, Maharashtra
-                      </p>
-                    </div>
-
-                    <div class="rating">
-                      <i class="bi bi-star-fill"></i>
-                      4.7
-                    </div>
-
-                  </div>
-
-
-                  <div class="experience">
-                    <i class="bi bi-award"></i>
-                    15+ Years Experience
-                  </div>
-
-
-                  <div class="specializations">
-
-                    <span>Griha Pravesh</span>
-                    <span>Ganesh Puja</span>
-                    <span>Vastu</span>
-
-                  </div>
-
-
-                  <div class="card-footer-custom">
-
-                    <div>
-                      <small>Starting from</small>
-
-                      <strong>
-                        ₹1,501
-                      </strong>
-                    </div>
-
-                    <div class="d-flex gap-2">
-
-                      <button
-                        class="btn btn-outline-primary"
-                      >
-                        View
-                      </button>
-
-                      <button
-                        class="btn btn-primary"
-                      >
-                        Book Now
-                      </button>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-
-          <!-- Pagination -->
-          <nav class="mt-5">
-
-            <ul class="pagination justify-content-center">
-
-              <li class="page-item disabled">
-                <a class="page-link">
-                  Previous
-                </a>
-              </li>
-
-              <li class="page-item active">
-                <a class="page-link">1</a>
-              </li>
-
-              <li class="page-item">
-                <a class="page-link">2</a>
-              </li>
-
-              <li class="page-item">
-                <a class="page-link">3</a>
-              </li>
-
-              <li class="page-item">
-                <a class="page-link">
-                  Next
-                </a>
-              </li>
-
-            </ul>
-
-          </nav>
-
-        </div>
-
       </div>
-
     </div>
-  </section>
-
+  </div>
 </section>
+

@@ -21,4 +21,130 @@ import { MatSelectModule } from '@angular/material/select';
   styleUrl: './search-box.scss',
   templateUrl: './search-box.html',
 })
-export class SearchBox {}
+export class SearchBox {
+
+  selectedService = '';
+  location = '';
+  date: Date | null = null;
+
+  languages = [
+    {
+      value: '',
+      label: 'Select Language'
+    },
+    {
+      value: 'telugu',
+      label: 'Telugu'
+    },
+    {
+      value: 'sanskrit',
+      label: 'Sanskrit'
+    },
+    {
+      value: 'hindi',
+      label: 'Hindi'
+    },
+    {
+      value: 'tamil',
+      label: 'Tamil'
+    },
+    {
+      value: 'malayalam',
+      label: ' Malayalam'
+    },
+    {
+      value: 'kannada',
+      label: 'Kannada'
+    },
+  ]
+
+  ceremonies = [
+    {
+      value: '',
+      label: 'Select Service'
+    },
+    {
+      value: 'ganapathi-pooja',
+      label: 'Ganapathi Pooja'
+    },
+    {
+      value: 'gruhapravesham',
+      label: 'Gruhapravesham'
+    },
+    {
+      value: 'homam-havan',
+      label: 'Homam / Havan'
+    },
+    {
+      value: 'satyanarayana-swamy-pooja',
+      label: 'Satyanarayana Swamy Pooja'
+    },
+    {
+      value: 'lakshmi-pooja',
+      label: 'Lakshmi Pooja'
+    },
+    {
+      value: 'wedding-rituals',
+      label: 'Wedding Rituals'
+    },
+    {
+      value: 'namakarana',
+      label: 'Namakarana'
+    },
+    {
+      value: 'vratham',
+      label: 'Vratham'
+    },
+    {
+      value: 'pitru-karma',
+      label: 'Pitru Karma'
+    },
+    {
+      value: 'temple-pooja-services',
+      label: 'Temple Pooja Services'
+    },
+    {
+      value: 'birthday-ayushya-pooja',
+      label: 'Birthday / Ayushya Pooja'
+    },
+    {
+      value: 'business-opening-pooja',
+      label: 'Business Opening Pooja'
+    }
+  ];
+
+  locationGroups = [
+    {
+      groupName: 'Hyderabad',
+      locations: [
+        'Select Location',
+        'Kondapur',
+        'Gachibowli',
+        'Madhapur',
+        'Kukatpally',
+        'Miyapur',
+        'Banjara Hills',
+        'Jubilee Hills',
+        'Secunderabad'
+      ]
+    },
+    {
+      groupName: 'Other Cities',
+      locations: [
+        'Warangal',
+        'Karimnagar',
+        'Nizamabad',
+        'Khammam'
+      ]
+    }
+  ];
+
+  search(): void {
+    console.log({
+      service: this.selectedService,
+      location: this.location,
+      date: this.date,
+    });
+  }
+
+}
