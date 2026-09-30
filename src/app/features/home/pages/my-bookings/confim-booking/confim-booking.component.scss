@@ -1,0 +1,101 @@
+/* Dark Maroon Header Banner */
+.modal-header-banner {
+  background: linear-gradient(135deg, #4a050d 0%, #2b0206 100%);
+  border-bottom: 3px solid #f5a623;
+}
+
+.modal-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+
+.order-ref {
+  color: #ffc107;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* Yellow Checkmark Icon */
+.checkmark-circle {
+  width: 42px;
+  height: 42px;
+  background-color: #f5a623;
+  color: #2b0206;
+  border-radius: 50%;
+}
+
+/* Close Button Overlay */
+.btn-close-custom {
+  width: 24px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.btn-close-custom:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Card Themes */
+.bg-light-gray {
+  background-color: #f8fafc;
+}
+
+.bg-cream {
+  background-color: #fffdf5;
+}
+
+.border-gold {
+  border-color: #fde68a !important;
+}
+
+.text-amber-gold {
+  color: #b45309;
+}
+
+.text-maroon {
+  color: #4a050d;
+}
+
+/* Table Styling */
+.bg-light-header {
+  background-color: #f1f5f9;
+}
+
+.bg-total-footer {
+  background-color: #fffbeb;
+}
+
+/* Modal Actions */
+.btn-outline-custom {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-custom:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.btn-maroon {
+  background-color: #4a050d;
+  color: #ffffff;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-maroon:hover {
+  background-color: #360309;
+  color: #ffffff;
+}
+
+/* Font Size Helpers */
+.fs-7 { font-size: 0.875rem; }
+.fs-8 { font-size: 0.75rem; }
+.fs-9 { font-size: 0.6rem; }
+.tracking-wider { letter-spacing: 0.05em; }

@@ -5,6 +5,7 @@ import { SearchBox } from '../../../shared/search-box';
 import { Poojari } from '../../../../models/poojari.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { PoojariProfileCardComponent } from './profile-card/poojari-profile-card.component';
+import { Route, Router } from '@angular/router';
 export interface SearchCriteria {
   ceremony: string;
   location: string;
@@ -35,7 +36,10 @@ export class PoojarisComponent implements OnInit {
   @Input() totalAvailable: number = 6;
   @Input({ required: true }) poojari!: Poojari;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -167,6 +171,6 @@ onProfileClick(poojari: Poojari): void {
 }
 
   onReserveClick(): void {
-    this.reserveSlot.emit(this.poojari);
+    this.router.navigate(['/my-bookings']);
   }
 }

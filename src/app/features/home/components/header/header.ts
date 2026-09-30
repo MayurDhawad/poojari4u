@@ -19,9 +19,9 @@ export class Header {
   navItems = [
     { label: 'Home', path: '/' },
     { label: 'Poojaris', path: '/poojaris' },
-    { label: 'Bajanthri', path: '/bajanthri1' },
-    { label: 'Pooja Samagri', path: '/pooja-samagri1' },
-    { label: 'Packages', path: '/packages1' },
+    { label: 'Bajanthri', path: '/bajanthri' },
+    { label: 'Pooja Samagri', path: '/pooja-samagri' },
+    { label: 'Packages', path: '/packages' },
     { label: 'My Bookings', path: '/my-bookings' },
   ];
 
