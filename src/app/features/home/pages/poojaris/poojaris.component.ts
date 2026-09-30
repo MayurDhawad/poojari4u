@@ -143,12 +143,28 @@ export class PoojarisComponent implements OnInit {
     this.filterChange.emit({ ...this.filters });
   }
 
-  onProfileClick(): void {
-    // this.viewProfile.emit(this.poojari.id);
-    // const dialogConfig = new MatDialogConfig()
-    // dialogConfig.width = "50%";
-    // const dialogRef = this.dialog.open(PoojariProfileCardComponent, dialogConfig)
-  }
+onProfileClick(poojari: Poojari): void {
+
+  console.log('Opening profile:', poojari);
+
+  const dialogRef = this.dialog.open(
+    PoojariProfileCardComponent,
+    {
+      width: '600px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      data: poojari
+    }
+  );
+
+  dialogRef.afterClosed().subscribe(result => {
+
+    if (result) {
+      console.log('Reservation:', result);
+    }
+
+  });
+}
 
   onReserveClick(): void {
     this.reserveSlot.emit(this.poojari);

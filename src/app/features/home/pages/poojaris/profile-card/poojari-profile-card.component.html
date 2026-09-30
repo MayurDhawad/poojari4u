@@ -1,165 +1,225 @@
-<section>
-    <!-- Modal Backdrop -->
-  <div 
-    class="modal-backdrop fade show" 
-    *ngIf="isOpen" 
-    (click)="onClose()">
+<div class="poojari-profile-dialog">
+
+  <!-- Header -->
+  <div class="maroon-modal-header p-3 d-flex align-items-center justify-content-between text-white">
+
+    <div class="d-flex align-items-center gap-2">
+      <span class="fs-4">📜</span>
+
+      <div>
+        <h5 class="fw-bold font-serif mb-0 text-gold-light">
+          {{ poojari.name }}
+        </h5>
+
+        <div class="small opacity-90 text-gold-subtle">
+          {{ poojari.tagline }}
+          •
+          {{ poojari.experienceYears }} Yrs Experience
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn-close btn-close-white"
+      aria-label="Close"
+      (click)="onClose()">
+    </button>
+
   </div>
 
-  <!-- Modal Dialog -->
-  <div 
-    class="modal fade show d-block" 
-    tabindex="-1" 
-    *ngIf="isOpen && poojari"
-    (click)="onClose()">
 
-    <div class="modal-dialog modal-dialog-centered modal-lg" (click)="$event.stopPropagation()">
-      <div class="modal-content border-0 rounded-4 shadow-lg overflow-hidden">
-        
-        <!-- Top Maroon Header Bar -->
-        <div class="maroon-modal-header p-3 d-flex align-items-center justify-content-between text-white">
-          <div class="d-flex align-items-center gap-2">
-            <span class="fs-4">📜</span>
-            <div>
-              <h5 class="fw-bold font-serif mb-0 text-gold-light">{{ poojari.name }}</h5>
-              <div class="small opacity-90 text-gold-subtle">
-                {{ poojari.tagline }} • {{ poojari.experienceYears }} Yrs Experience
-              </div>
-            </div>
-          </div>
+  <!-- Scrollable Body -->
+  <div class="dialog-body p-3 p-md-4">
 
-          <button 
-            type="button" 
-            class="btn-close btn-close-white" 
-            aria-label="Close" 
-            (click)="onClose()">
-          </button>
-        </div>
+    <!-- Profile Summary -->
+    <div class="bg-yellow-subtle border-yellow rounded-4 p-3 mb-3">
 
-        <!-- Scrollable Modal Body -->
-        <div class="modal-body p-3 p-md-4 custom-modal-body">
-          
-          <!-- Top Summary Card (Yellow Gold Border & Background) -->
-          <div class="bg-yellow-subtle border-yellow rounded-4 p-3 mb-3">
-            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3">
-              <img 
-                [src]="poojari.avatarUrl" 
-                [alt]="poojari.name" 
-                class="profile-modal-avatar rounded-circle object-fit-cover shadow-sm flex-shrink-0" />
+      <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3">
 
-              <div class="flex-grow-1">
-                <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-                  <span class="badge bg-amber-tag text-amber-dark fw-bold px-2 py-1">
-                    {{ poojari.scholarTag || 'Rig Veda Scholar' }}
-                  </span>
-                  <span *ngIf="poojari.isGoldCertified" class="badge bg-gold-certified fw-bold px-2 py-1">
-                    Gold Certified
-                  </span>
-                </div>
+        <img
+          [src]="poojari.avatarUrl"
+          [alt]="poojari.name"
+          class="profile-modal-avatar rounded-circle object-fit-cover shadow-sm flex-shrink-0"
+        />
 
-                <p class="text-secondary small mb-2 line-clamp-2">
-                  {{ poojari.description }}
-                </p>
+        <div class="flex-grow-1">
 
-                <div class="d-flex flex-wrap align-items-center gap-3 small text-muted font-semibold">
-                  <span class="d-flex align-items-center gap-1">
-                    <i class="bi bi-translate text-warning"></i> 
-                    {{ poojari.languages.join(', ') }}
-                  </span>
-                  <span class="d-flex align-items-center gap-1 ms-sm-2">
-                    <i class="bi bi-geo-alt-fill text-warning"></i> 
-                    {{ poojari.locationCoverage || 'Hyderabad & Surrounds' }}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
 
-          <!-- Two Column Section: Vidhi Steps & Samagri -->
-          <div class="row g-3 mb-3">
-            
-            <!-- Column 1: Ceremony Vidhi Steps -->
-            <div class="col-12 col-md-6">
-              <div class="card h-100 rounded-4 border-light-subtle bg-slate-50 p-3">
-                <h6 class="fw-bold small text-uppercase text-maroon mb-2 d-flex align-items-center gap-2">
-                  <span>📑</span> CEREMONY VIDHI STEPS
-                </h6>
-                <ul class="list-unstyled mb-0 small text-secondary d-grid gap-1.5">
-                  <li *ngFor="let step of poojari.vidhiSteps || defaultVidhiSteps" class="d-flex align-items-start gap-2">
-                    <span class="text-warning fw-bold">•</span>
-                    <span>{{ step }}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <span class="badge bg-amber-tag text-amber-dark fw-bold px-2 py-1">
+              {{ poojari.scholarTag || 'Rig Veda Scholar' }}
+            </span>
 
-            <!-- Column 2: Standard Samagri Included -->
-            <div class="col-12 col-md-6">
-              <div class="card h-100 rounded-4 border-light-subtle bg-slate-50 p-3">
-                <h6 class="fw-bold small text-uppercase text-maroon mb-2 d-flex align-items-center gap-2">
-                  <span>🎁</span> STANDARD SAMAGRI INCLUDED
-                </h6>
-                <p class="small text-secondary mb-0 leading-relaxed">
-                  {{ poojari.samagriDetails || defaultSamagriText }}
-                </p>
-              </div>
-            </div>
+            <span
+              *ngIf="poojari.isGoldCertified"
+              class="badge bg-gold-certified fw-bold px-2 py-1">
+              Gold Certified
+            </span>
 
           </div>
 
-          <!-- Optional Sacred Add-Ons Section -->
-          <div class="bg-yellow-subtle border-yellow rounded-4 p-3">
-            <h6 class="fw-bold small text-uppercase text-maroon mb-2 d-flex align-items-center gap-2">
-              <span>🪄</span> OPTIONAL SACRED ADD-ONS
-            </h6>
+          <p class="text-secondary small mb-2 line-clamp-2">
+            {{ poojari.description }}
+          </p>
 
-            <div 
-              *ngFor="let addon of poojari.addons || defaultAddons" 
-              class="card bg-white border rounded-3 p-3 mt-2 cursor-pointer shadow-2xs"
-              (click)="toggleAddon(addon.id)">
-              <div class="d-flex align-items-center justify-content-between gap-3">
-                <div class="d-flex align-items-start gap-2.5">
-                  <input 
-                    type="checkbox" 
-                    class="form-check-input mt-1 cursor-pointer"
-                    [checked]="isAddonSelected(addon.id)"
-                    (click)="$event.stopPropagation(); toggleAddon(addon.id)">
-                  <div>
-                    <div class="fw-bold small text-dark d-flex align-items-center gap-1.5">
-                      <span>🎺</span> {{ addon.title }}
-                    </div>
-                    <div class="extra-small text-muted mt-0.5">
-                      {{ addon.description }}
-                    </div>
-                  </div>
-                </div>
+          <div class="d-flex flex-wrap align-items-center gap-3 small text-muted">
 
-                <div class="badge bg-amber-price-tag text-dark fw-bold px-2.5 py-1.5 rounded-2">
-                  +₹ {{ addon.price | number:'1.0-0' }}
-                </div>
-              </div>
-            </div>
+            <span class="d-flex align-items-center gap-1">
+              <i class="bi bi-translate text-warning"></i>
+              {{ poojari.languages.join(', ') }}
+            </span>
+
+            <span class="d-flex align-items-center gap-1">
+              <i class="bi bi-geo-alt-fill text-warning"></i>
+              {{ poojari.locationCoverage || 'Hyderabad & Surrounds' }}
+            </span>
+
           </div>
 
-        </div>
-
-        <!-- Sticky Footer -->
-        <div class="modal-footer bg-white border-top p-3 d-flex align-items-center justify-content-between">
-          <div>
-            <span class="text-uppercase text-muted extra-small fw-bold d-block">TOTAL ESTIMATED PRICE</span>
-            <span class="fw-bold fs-4 text-maroon">₹ {{ totalPrice | number:'1.0-0' }}</span>
-          </div>
-
-          <button 
-            type="button" 
-            class="btn btn-gold-proceed rounded-3 px-4 py-2.5 fw-bold text-white d-flex align-items-center gap-2"
-            (click)="onProceed()">
-            <span>Proceed to Slot Reserve</span>
-            <i class="bi bi-arrow-right"></i>
-          </button>
         </div>
 
       </div>
+
     </div>
+
+
+    <!-- Vidhi + Samagri -->
+    <div class="row g-3 mb-3">
+
+      <!-- Vidhi -->
+      <div class="col-12 col-md-6">
+
+        <div class="card h-100 rounded-4 border-light-subtle bg-slate-50 p-3">
+
+          <h6 class="fw-bold small text-uppercase text-maroon mb-2 d-flex align-items-center gap-2">
+            <span>📑</span>
+            CEREMONY VIDHI STEPS
+          </h6>
+
+          <ul class="list-unstyled mb-0 small text-secondary d-grid gap-2">
+
+            <li
+              *ngFor="let step of poojari.vidhiSteps || defaultVidhiSteps"
+              class="d-flex align-items-start gap-2">
+
+              <span class="text-warning fw-bold">•</span>
+
+              <span>{{ step }}</span>
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+
+      <!-- Samagri -->
+      <div class="col-12 col-md-6">
+
+        <div class="card h-100 rounded-4 border-light-subtle bg-slate-50 p-3">
+
+          <h6 class="fw-bold small text-uppercase text-maroon mb-2 d-flex align-items-center gap-2">
+            <span>🎁</span>
+            STANDARD SAMAGRI INCLUDED
+          </h6>
+
+          <p class="small text-secondary mb-0 leading-relaxed">
+            {{ poojari.samagriDetails || defaultSamagriText }}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Add-ons -->
+    <div class="bg-yellow-subtle border-yellow rounded-4 p-3">
+
+      <h6 class="fw-bold small text-uppercase text-maroon mb-2 d-flex align-items-center gap-2">
+        <span>🪄</span>
+        OPTIONAL SACRED ADD-ONS
+      </h6>
+
+
+      <div
+        *ngFor="let addon of poojari.addons || defaultAddons"
+        class="card bg-white border rounded-3 p-3 mt-2 cursor-pointer shadow-2xs"
+        (click)="toggleAddon(addon.id)">
+
+        <div class="d-flex align-items-center justify-content-between gap-3">
+
+          <div class="d-flex align-items-start gap-2">
+
+            <input
+              type="checkbox"
+              class="form-check-input mt-1 cursor-pointer"
+              [checked]="isAddonSelected(addon.id)"
+              (click)="$event.stopPropagation(); toggleAddon(addon.id)"
+            />
+
+            <div>
+
+              <div class="fw-bold small text-dark">
+                <span>🎺</span>
+                {{ addon.title }}
+              </div>
+
+              <div class="extra-small text-muted mt-1">
+                {{ addon.description }}
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="badge bg-amber-price-tag text-dark fw-bold px-2 py-1 rounded-2 text-nowrap">
+            +₹ {{ addon.price | number:'1.0-0' }}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
-</section>
+
+
+  <!-- Footer -->
+  <div class="dialog-footer bg-white border-top p-3">
+
+    <div class="d-flex align-items-center justify-content-between gap-3">
+
+      <div>
+        <span class="text-uppercase text-muted extra-small fw-bold d-block">
+          TOTAL ESTIMATED PRICE
+        </span>
+
+        <span class="fw-bold fs-4 text-maroon">
+          ₹ {{ totalPrice | number:'1.0-0' }}
+        </span>
+      </div>
+
+
+      <button
+        type="button"
+        class="btn btn-gold-proceed rounded-3 px-4 py-2 fw-bold text-white d-flex align-items-center gap-2"
+        (click)="onProceed()">
+
+        <span>Proceed to Slot Reserve</span>
+
+        <i class="bi bi-arrow-right"></i>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
