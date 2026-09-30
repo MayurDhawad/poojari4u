@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Header } from '../../components/header/header';
 
 interface PackageItem {
   name: string;
@@ -25,7 +24,7 @@ interface PoojaPackage {
 @Component({
   selector: 'app-packages',
   standalone: true,
-  imports: [CommonModule, RouterLink, Header],
+  imports: [CommonModule, RouterLink],
   templateUrl: './packages.component.html',
   styleUrl: './packages.component.scss'
 })

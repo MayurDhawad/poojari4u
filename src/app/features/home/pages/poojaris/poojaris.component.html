@@ -222,121 +222,79 @@
 
 <section class="poojari-page">
 
-  <!-- Hero Section -->
-  <section class="poojari-hero">
-    <div class="overflow-hidden">
-      <div class="row align-items-center">
+<!-- =========================
+     HERO
+========================= -->
 
-        <!-- <div class="col-lg-7">
-          <span class="hero-eyebrow">
-            VERIFIED PUROHITS & POOJARIS
-          </span>
+<section class="bajanthri-hero">
 
-          <h1 class="hero-title">
-            Find the Right Poojari
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <div class="col-lg-7">
+
+        <div class="hero-content">
+
+          <div class="hero-eyebrow">
+            <!-- <i class="bi bi-music-note-beamed"></i> -->
+           🪔 Traditional Sacred Ceremonies at Your Doorstep
+          </div>
+
+          <h1>
+            Book Verified
             <br />
-            for Your <span>Puja & Rituals</span>
+            <span>Vedic Poojaris & Purohits</span>
           </h1>
 
-          <p class="hero-description">
-            Book experienced and verified Poojaris for traditional Hindu
-            pujas, havans, ceremonies and special occasions.
+          <p>
+            Perform authentic rituals, homams, and ceremonies with experienced, background-verified Vedic scholars tailored to your language and traditions.
           </p>
-        </div> -->
 
-        <div class="col-lg-12">
-          <div class="hero-image">
-            <img
-              src="poojaris/poojari-hero.jpg"
-              alt="Poojari performing puja"
-            />
+          <div class="hero-features">
+
+            <div>
+              <i class="bi bi-patch-check-fill"></i>
+              Verified Vedic Scholars
+            </div>
+
+            <div>
+              <i class="bi bi-book-half"></i>
+               Authentic Shastraic Rituals
+            </div>
+
+            <div>
+              <i class="bi bi-calendar-check"></i>
+               Easy Online Booking
+            </div>
+
           </div>
+
         </div>
 
       </div>
-    </div>
-  </section>
 
 
-  <!-- Search & Filters -->
-  <!-- <section class="search-section">
-    <div class="container">
+      <div class="col-lg-5 d-none d-lg-block">
 
-      <div class="search-card shadow-sm">
+        <div class="hero-image">
 
-        <div class="row g-3 align-items-end">
+          <img
+            src="poojaris/poojari-1.png"
+            alt="Verified Vedic Scholars"
+          />
 
-          <div class="col-lg-3 col-md-6">
-            <label class="form-label">
-              Location
-            </label>
+          <div class="hero-floating-card">
 
-            <div class="input-group">
-              <span class="input-group-text">
-                <i class="bi bi-geo-alt"></i>
-              </span>
-
-              <select class="form-select">
-                <option selected>Select City</option>
-                <option>Nagpur</option>
-                <option>Pune</option>
-                <option>Mumbai</option>
-                <option>Nashik</option>
-                <option>Bangalore</option>
-              </select>
+            <div class="floating-icon">
+              <i class="bi bi-book-half"></i>
             </div>
-          </div>
 
-
-          <div class="col-lg-3 col-md-6">
-            <label class="form-label">
-              Puja / Service
-            </label>
-
-            <div class="input-group">
-              <span class="input-group-text">
-                <i class="bi bi-flower1"></i>
-              </span>
-
-              <select class="form-select">
-                <option selected>Select Puja</option>
-                <option>Ganesh Puja</option>
-                <option>Satyanarayan Puja</option>
-                <option>Griha Pravesh</option>
-                <option>Havan</option>
-                <option>Marriage Puja</option>
-              </select>
+            <div>
+              <strong>Verified Vedic Scholars</strong>
+              <span>For your special moments</span>
             </div>
-          </div>
 
-
-          <div class="col-lg-2 col-md-6">
-            <label class="form-label">
-              Date
-            </label>
-
-            <div class="input-group">
-              <span class="input-group-text">
-                <i class="bi bi-calendar3"></i>
-              </span>
-
-              <input
-                type="date"
-                class="form-control"
-              />
-            </div>
-          </div>
-
-
-          <div class="col-lg-2 col-md-6">
-            <label class="form-label d-none d-lg-block">
-              &nbsp;
-            </label>
-
-            <button class="btn btn-primary w-100 search-btn">
-              <i class="bi bi-search me-2"></i>
-              Search
-            </button>
           </div>
 
         </div>
@@ -344,18 +302,196 @@
       </div>
 
     </div>
-  </section> -->
 
-  <!-- <app-search-box></app-search-box> -->
+  </div>
 
+</section>
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<section class="search-section">
+
+  <div class="container">
+
+    <div class="search-card">
+
+      <div class="search-field">
+
+        <div class="field-icon">
+          <i class="bi bi-search"></i>
+        </div>
+
+        <div class="field-content">
+
+          <label>Search Poojaris</label>
+
+          <input
+            type="text"
+            [(ngModel)]="searchText"
+            placeholder="Name, Poojaris or service"
+          />
+
+        </div>
+
+      </div>
+
+
+      <div class="search-field">
+
+        <div class="field-icon">
+          <i class="bi bi-geo-alt"></i>
+        </div>
+
+        <div class="field-content">
+
+          <label>Location</label>
+
+          <select [(ngModel)]="selectedLocation">
+
+            <option
+              *ngFor="let location of locations"
+              [value]="location"
+            >
+              {{ location }}
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <button class="search-button">
+
+        <i class="bi bi-search"></i>
+        Search
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     MAIN
+========================= -->
   <!-- Main Content -->
   <section class="poojari-list-section">
     <div class="container">
 
+          <!-- Header -->
+
+    <div class="section-header">
+
+      <div>
+
+        <span class="section-eyebrow">
+          FIND YOUR Poojaris
+        </span>
+
+        <h2>
+          Vedic Poojaris & Purohits
+        </h2>
+
+        <p>
+          Perform authentic rituals, homams, and ceremonies.
+        </p>
+
+      </div>
+
+
+      <div class="sort-wrapper">
+
+        <label>Sort by</label>
+
+        <select
+          class="form-select"
+          [(ngModel)]="sortBy"
+        >
+
+          <option value="popular">
+            Popular
+          </option>
+
+          <option value="rating">
+            Top Rated
+          </option>
+
+          <option value="experience">
+            Most Experienced
+          </option>
+
+          <option value="price-low">
+            Price: Low to High
+          </option>
+
+          <option value="price-high">
+            Price: High to Low
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- Specialty Pills -->
+
+    <div class="specialty-pills">
+
+      <button
+        *ngFor="let specialty of specialties"
+        class="specialty-pill"
+        [class.active]="selectedSpecialty === specialty"
+        (click)="selectSpecialty(specialty)"
+      >
+
+        <i
+          *ngIf="specialty === 'All'"
+          class="bi bi-grid"
+        ></i>
+
+        <i
+          *ngIf="specialty === 'Wedding'"
+          class="bi bi-heart"
+        ></i>
+
+        <i
+          *ngIf="specialty === 'Puja & Homam'"
+          class="bi bi-fire"
+        ></i>
+
+        <i
+          *ngIf="specialty === 'Griha Pravesh'"
+          class="bi bi-house-heart"
+        ></i>
+
+        <i
+          *ngIf="specialty === 'Procession'"
+          class="bi bi-music-note-beamed"
+        ></i>
+
+        <i
+          *ngIf="specialty === 'Temple Events'"
+          class="bi bi-building"
+        ></i>
+
+        {{ specialty }}
+
+      </button>
+
+    </div>
+
       <div class="row g-4">
 
         <!-- Sidebar -->
-        <div class="col-lg-3">
+        <div class="col-lg-3 d-none">
 
           <div class="filter-card">
 
@@ -497,7 +633,7 @@
 
 
         <!-- Poojari Results -->
-        <div class="col-lg-9">
+        <div class="col-lg-12">
 
           <div class="results-header">
 
@@ -509,13 +645,13 @@
               </p>
             </div>
 
-            <select class="form-select sort-select">
+            <!-- <select class="form-select sort-select">
               <option>Sort: Recommended</option>
               <option>Experience</option>
               <option>Rating</option>
               <option>Price: Low to High</option>
               <option>Price: High to Low</option>
-            </select>
+            </select> -->
 
           </div>
 

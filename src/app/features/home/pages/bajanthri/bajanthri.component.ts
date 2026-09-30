@@ -170,7 +170,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Header } from '../../components/header/header';
 
 interface Bajanthri {
   id: number;
@@ -191,7 +190,7 @@ interface Bajanthri {
 @Component({
   selector: 'app-bajanthri',
   standalone: true,
-  imports: [CommonModule, FormsModule, Header],
+  imports: [CommonModule, FormsModule],
   templateUrl: './bajanthri.component.html',
   styleUrl: './bajanthri.component.scss'
 })

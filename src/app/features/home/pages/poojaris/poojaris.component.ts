@@ -1,11 +1,10 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SearchBox } from '../../../shared/search-box';
 import { Poojari } from '../../../../models/poojari.model';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { PoojariProfileCardComponent } from './profile-card/poojari-profile-card.component';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 export interface SearchCriteria {
   ceremony: string;
   location: string;
@@ -22,7 +21,7 @@ export interface FilterOptions {
   selector: 'app-poojaris',
   templateUrl: './poojaris.component.html',
   styleUrls: ['./poojaris.component.scss'],
-  imports: [CommonModule, FormsModule, SearchBox]
+  imports: [CommonModule, FormsModule]
 })
 export class PoojarisComponent implements OnInit {
 
@@ -43,6 +42,29 @@ export class PoojarisComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  searchText = '';
+  selectedSpecialty = 'All';
+  selectedLocation = 'All';
+  sortBy = 'popular';
+
+    specialties = [
+    'All',
+    'Wedding',
+    'Puja & Homam',
+    'Griha Pravesh',
+    'Procession',
+    'Temple Events'
+  ];
+
+  locations = [
+    'All',
+    'Bengaluru',
+    'Hyderabad',
+    'Pune',
+    'Mumbai',
+    'Nagpur'
+  ];
 
   poojarisList: Poojari[] = [
     {
@@ -124,6 +146,70 @@ export class PoojarisComponent implements OnInit {
       ceremonyFee: 4500
     }
   ];
+
+   get filteredBajanthris(): Poojari[] {
+
+    let result = this.poojarisList.filter(item => {
+
+      const search = this.searchText
+        .trim()
+        .toLowerCase();
+
+      // const matchesSearch =
+      //   !search ||
+      //   item.name.toLowerCase().includes(search) ||
+      //   item.location.toLowerCase().includes(search) ||
+      //   item.specialty.toLowerCase().includes(search) ||
+      //   item.instruments.some(
+      //     instrument =>
+      //       instrument.toLowerCase().includes(search)
+      //   );
+
+      // const matchesSpecialty =
+      //   this.selectedSpecialty === 'All' ||
+      //   item.specialty === this.selectedSpecialty;
+
+      // const matchesLocation =
+      //   this.selectedLocation === 'All' ||
+      //   item.location === this.selectedLocation;
+
+      // return (
+      //   matchesSearch &&
+      //   matchesSpecialty &&
+      //   matchesLocation
+      // );
+    });
+
+    if (this.sortBy === 'rating') {
+      result = [...result].sort(
+        (a, b) => b.rating - a.rating
+      );
+    }
+
+    // if (this.sortBy === 'price-low') {
+    //   result = [...result].sort(
+    //     (a, b) => a.price - b.price
+    //   );
+    // }
+
+    // if (this.sortBy === 'price-high') {
+    //   result = [...result].sort(
+    //     (a, b) => b.price - a.price
+    //   );
+    // }
+
+    // if (this.sortBy === 'experience') {
+    //   result = [...result].sort(
+    //     (a, b) => b.experience - a.experience
+    //   );
+    // }
+
+    return result;
+  }
+
+  selectSpecialty(specialty: string): void {
+    this.selectedSpecialty = specialty;
+  }
 
   searchParams: SearchCriteria = {
     ceremony: 'Griha Pravesham (Housewarming)',

@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Header } from '../../components/header/header';
 
 interface SamagriItem {
   id: number;
@@ -20,7 +19,7 @@ interface SamagriItem {
 @Component({
   selector: 'app-pooja-samagri',
   standalone: true,
-  imports: [CommonModule, FormsModule, Header],
+  imports: [CommonModule, FormsModule],
   templateUrl: './pooja-samagri.component.html',
   styleUrl: './pooja-samagri.component.scss'
 })
