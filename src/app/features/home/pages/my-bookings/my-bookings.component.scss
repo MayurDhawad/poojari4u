@@ -1,529 +1,232 @@
-.bookings-page {
-  min-height: 100vh;
-  background: #faf9f7;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.bookings-hero {
-  background:
-    linear-gradient(
-      135deg,
-      #8f3f0b 0%,
-      #c45c0c 55%,
-      #e87912 100%
-    );
-
-  color: #fff;
-  padding: 55px 0;
-}
-
-.hero-eyebrow {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.8px;
-  margin-bottom: 10px;
-  opacity: 0.85;
-}
-
-.bookings-hero h1 {
-  font-size: clamp(36px, 5vw, 52px);
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.bookings-hero p {
-  margin: 0;
-  max-width: 650px;
-  font-size: 16px;
-  line-height: 1.7;
-  opacity: 0.9;
-}
-
-.book-puja-btn {
-  color: #c45c0c;
-  font-weight: 600;
-  padding: 12px 20px;
-  border-radius: 10px;
-}
-
-
-/* =========================
-   CONTENT
-========================= */
-
-.bookings-content {
-  padding: 40px 0 70px;
-}
-
-
-/* =========================
-   SUMMARY
-========================= */
-
-.booking-summary {
-  margin-bottom: 35px;
-}
-
-.summary-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 15px;
-  padding: 20px;
-
-  display: flex;
-  align-items: center;
-  gap: 15px;
-
-  transition: 0.2s ease;
-}
-
-.summary-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-}
-
-.summary-icon {
-  width: 50px;
-  height: 50px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 12px;
-  font-size: 22px;
-}
-
-.upcoming-icon {
-  background: #fff3df;
-  color: #d97706;
-}
-
-.completed-icon {
-  background: #e9f8ef;
-  color: #198754;
-}
-
-.cancelled-icon {
-  background: #fdecec;
-  color: #dc3545;
-}
-
-.summary-card span {
+:host {
   display: block;
-  color: #777;
-  font-size: 13px;
+  width: 100%;
 }
 
-.summary-card strong {
-  display: block;
-  margin-top: 3px;
-  font-size: 25px;
-  color: #29231f;
+.stepper-bar {
+  background-color: #fef4cb; /* Light cream background */
+  border-top: 2px solid #e08300; /* Top orange highlight border */
+  border-bottom: 1px solid #e5dbb8; /* Subtle bottom border */
 }
 
-
-/* =========================
-   TABS
-========================= */
-
-.booking-tabs {
-  display: flex;
-  gap: 8px;
-
-  border-bottom: 1px solid #e7e3df;
-
-  margin-bottom: 25px;
+/* Step Circle Badge */
+.step-badge {
+  width: 24px;
+  height: 24px;
+  background-color: #d87000; /* Solid orange background */
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  line-height: 1;
 }
 
-.booking-tabs button {
-  background: transparent;
-  border: 0;
-
-  padding: 12px 18px;
-
-  color: #706963;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  border-bottom: 3px solid transparent;
-
-  cursor: pointer;
+/* Step Text Label */
+.step-title {
+  color: #8c420b; /* Dark brownish-orange text */
+  font-size: 0.70rem;
 }
 
-.booking-tabs button:hover {
-  color: #d97706;
-}
-
-.booking-tabs button.active {
-  color: #d97706;
-  border-bottom-color: #d97706;
-}
-
-.booking-tabs button span {
-  margin-left: 5px;
-
-  background: #f2efeb;
-  color: #777;
-
-  border-radius: 20px;
-
-  padding: 3px 7px;
-  font-size: 11px;
-}
-
-.booking-tabs button.active span {
-  background: #fff0dc;
-  color: #d97706;
+/* Right Side Pill */
+.selected-pill {
+  background-color: #f7e6a1; /* Slightly darker yellow-gold pill */
+  color: #5c3303; /* Dark brown text */
+  border-radius: 50rem; /* Bootstrap pill rounded style */
+  font-size: 0.7rem;
+  font-weight: 500;
 }
 
 
-/* =========================
-   BOOKING CARD
-========================= */
-
-.booking-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+/* Color Palette & Base Styles */
+body {
+  background-color: #fdfbf7;
 }
 
-.booking-card {
-  background: #fff;
-  border: 1px solid #e9e5e1;
-  border-radius: 17px;
-
-  overflow: hidden;
-
-  transition: 0.2s ease;
+.section-title {
+  color: #4a1018; /* Dark maroon/burgundy color */
 }
 
-.booking-card:hover {
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+/* Cream Background Card */
+.card-cream-bg {
+  background-color: #fdf8e9; /* Light soft cream */
 }
 
-
-/* =========================
-   HEADER
-========================= */
-
-.booking-header {
-  padding: 15px 22px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  border-bottom: 1px solid #eee;
-  background: #fdfcfb;
+/* Sticky Position Logic for Fixed Right Sidebar */
+.sticky-summary {
+  position: sticky;
+  top: 1.5rem;
+  z-index: 10;
 }
 
-.booking-label {
-  display: block;
-
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: #999;
-  margin-bottom: 2px;
+/* Banner Card Styles */
+.purohit-banner-card {
+  background: linear-gradient(135deg, #3d050c 0%, #200105 100%);
+  border-bottom: 3px solid #f5a623;
+  padding: 0.75rem;
 }
-
-.booking-header strong {
-  font-size: 13px;
-  color: #49423d;
+.small{
+  font-size: 10px !important;
 }
-
-
-/* =========================
-   STATUS
-========================= */
-
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-
-  padding: 6px 10px;
-
-  border-radius: 20px;
-
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.status-upcoming {
-  background: #fff3df;
-  color: #c56a00;
-}
-
-.status-completed {
-  background: #e8f7ed;
-  color: #198754;
-}
-
-.status-cancelled {
-  background: #fdecec;
-  color: #dc3545;
-}
-
-
-/* =========================
-   BODY
-========================= */
-
-.booking-body {
-  padding: 22px;
-
-  display: grid;
-
-  grid-template-columns:
-    1.4fr
-    1fr
-    1.1fr
-    1.2fr;
-
-  gap: 25px;
-
-  align-items: center;
-}
-
-
-/* =========================
-   POOJARI
-========================= */
-
-.poojari-info {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-}
-
-.poojari-info img {
-  width: 72px;
-  height: 72px;
-
-  border-radius: 12px;
-
+.avatar-img {
+  width: 60px;
+  height: 60px;
   object-fit: cover;
 }
 
-.small-label {
-  display: block;
+/* Form Styles */
+.step-num {
+  width: 24px;
+  height: 24px;
+  background-color: #fef0d5;
+  color: #b25e00;
+  font-size: 0.85rem;
+}
 
-  color: #999;
-  font-size: 10px;
-  letter-spacing: 1px;
+.custom-input {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
 
+.custom-input:focus {
+  background-color: #ffffff;
+  border-color: #d97706;
+  box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.1);
+}
+
+/* Option Cards (Cards 3 & 4) */
+.option-card {
+  background-color: #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+
+.option-card:hover {
+  border-color: #f5a623 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.active-card {
+  border-color: #f5a623 !important;
+  box-shadow: 0 0 0 1px #f5a623;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.custom-bullet-list li {
   margin-bottom: 4px;
 }
 
-.poojari-info h5 {
-  font-size: 15px;
-  font-weight: 700;
-
-  margin: 0 0 5px;
-
-  color: #29231f;
+/* Troupe Image Placeholder Box */
+.troupe-img-box {
+  height: 90px;
+  background-color: #f3eedc;
+  background-image: linear-gradient(45deg, #eee3c8 25%, transparent 25%), 
+                    linear-gradient(-45deg, #eee3c8 25%, transparent 25%);
+  background-size: 20px 20px;
 }
 
-.verified {
-  font-size: 11px;
-  color: #198754;
+.bg-dark-maroon {
+  background-color: #4a0d0d;
 }
 
-.verified i {
-  margin-right: 3px;
+/* Custom Badges */
+.bg-amber-subtle {
+  background-color: #fef3c7;
 }
 
-
-/* =========================
-   DETAILS
-========================= */
-
-.booking-detail span {
-  display: block;
-
-  color: #999;
-  font-size: 11px;
-
-  margin-bottom: 5px;
+.text-amber-emphasis {
+  color: #92400e;
 }
 
-.booking-detail span i {
-  color: #d97706;
-  margin-right: 5px;
+.bg-emerald-subtle {
+  background-color: #d1fae5;
 }
 
-.booking-detail strong {
-  display: block;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  color: #413b36;
+.text-emerald-emphasis {
+  color: #065f46;
 }
 
-.booking-detail small {
-  display: block;
-
-  color: #777;
-  font-size: 11px;
-
-  margin-top: 3px;
+.bg-golden-subtle {
+  background-color: #fef08a;
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
-.booking-footer {
-  border-top: 1px solid #eee;
-
-  padding: 15px 22px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.text-golden-emphasis {
+  color: #854d0e;
 }
 
-.price span {
-  display: block;
-
-  color: #999;
-  font-size: 10px;
+/* Grand Total Section */
+.grand-total-box {
+  background-color: #fff8df;
 }
 
-.price strong {
-  display: block;
-
-  color: #29231f;
-
-  font-size: 19px;
-  margin-top: 2px;
-}
-
-.booking-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.booking-actions .btn {
-  font-size: 12px;
-  padding: 8px 13px;
-  border-radius: 8px;
-}
-
-
-/* =========================
-   EMPTY STATE
-========================= */
-
-.empty-state {
-  background: #fff;
-  border: 1px solid #eee;
-
-  border-radius: 17px;
-
-  padding: 70px 20px;
-
-  text-align: center;
-}
-
-.empty-icon {
-  width: 65px;
-  height: 65px;
-
-  margin: 0 auto 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #fff3df;
-  color: #d97706;
-
+.circle-decoration {
+  width: 36px;
+  height: 36px;
+  background-color: #f7e2a9;
   border-radius: 50%;
-
-  font-size: 28px;
+  opacity: 0.7;
 }
 
-.empty-state h4 {
-  font-weight: 700;
+/*- buttons -*/
+/* Outlined Secondary Button */
+.btn-outline-custom {
+  background-color: #ffffff;
+  border: 1px solid #c7d2fe; /* Light bluish/gray outline border */
+  color: #1e3a8a; /* Dark navy text */
+  font-size: 0.70rem;
+  transition: all 0.2s ease-in-out;
 }
 
-.empty-state p {
-  color: #777;
+.btn-outline-custom:hover {
+  background-color: #f8fafc;
+  border-color: #93c5fd;
+  color: #1e40af;
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 991.98px) {
-
-  .booking-body {
-    grid-template-columns: 1fr 1fr;
-  }
-
+/* Gradient Primary Button */
+.btn-primary-gradient {
+  background: linear-gradient(180deg, #e67300 0%, #b84d00 100%); /* Orange vertical gradient */
+  border: none;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 16px rgba(184, 77, 0, 0.25) !important;
+  transition: all 0.2s ease-in-out;
 }
 
-@media (max-width: 767.98px) {
+.btn-primary-gradient:hover {
+  background: linear-gradient(180deg, #f57c00 0%, #c65300 100%);
+  box-shadow: 0 10px 20px rgba(184, 77, 0, 0.35) !important;
+  transform: translateY(-1px);
+}
 
-  .bookings-hero {
-    padding: 40px 0;
-  }
+.btn-primary-gradient:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(184, 77, 0, 0.2) !important;
+}
 
-  .book-puja-btn {
-    margin-top: 25px;
-  }
+.py-2-5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  font-size: 0.70rem;
+}
 
-  .booking-tabs {
-    overflow-x: auto;
-    white-space: nowrap;
-  }
+.border-light {
+  --bs-border-opacity: 1;
+  border-color: #ffdf7e !important;
+}
+.total{
+  font-size: 1.4rem;
+  color: rgb(88 0 22 );
+}
 
-  .booking-tabs button {
-    flex-shrink: 0;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
+/* Utility Font Sizes */
+.fs-10 { font-size: 0.5rem; }
+.fs-9 { font-size: 0.6rem; }
+.fs-7 { font-size: 0.825rem; }
+.fs-8 { font-size: 0.75rem; }
+.tracking-wider { letter-spacing: 0.05em; }
 
-  .booking-body {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .booking-header {
-    padding: 14px 16px;
-  }
-
-  .booking-body {
-    padding: 18px 16px;
-  }
-
-  .booking-footer {
-    padding: 15px 16px;
-
-    align-items: flex-start;
-    flex-direction: column;
-
-    gap: 15px;
-  }
-
-  .booking-actions {
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  .booking-actions .btn {
-    flex: 1;
-  }
-
+.line-height-15{
+  line-height: 15px;
 }

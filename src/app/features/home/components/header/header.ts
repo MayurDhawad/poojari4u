@@ -22,7 +22,7 @@ export class Header {
     { label: 'Bajanthri', path: '/bajanthri1' },
     { label: 'Pooja Samagri', path: '/pooja-samagri1' },
     { label: 'Packages', path: '/packages1' },
-    { label: 'My Bookings', path: '/my-bookings1' },
+    { label: 'My Bookings', path: '/my-bookings' },
   ];
 
 }
