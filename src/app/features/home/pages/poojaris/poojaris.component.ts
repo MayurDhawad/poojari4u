@@ -33,6 +33,7 @@ interface Slide {
   styleUrls: ['./poojaris.component.scss'],
   imports: [CommonModule, FormsModule, SearchBox]
 })
+
 export class PoojarisComponent implements OnInit, OnDestroy {
 
   @Output() search = new EventEmitter<SearchCriteria>();
@@ -221,6 +222,7 @@ export class PoojarisComponent implements OnInit, OnDestroy {
     this.router.navigate(['/my-bookings']);
   }
 
+  /*---- Slider ----*/
   slides: Slide[] = [
     { id: 1, name: 'Acharya Prem', image: 'poojaris/poojari-1.png' },
     { id: 2, name: 'Pt. Ram Naresh', image: 'poojaris/poojari-2.jfif' },

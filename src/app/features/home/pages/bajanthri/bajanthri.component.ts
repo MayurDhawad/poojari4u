@@ -1,392 +1,224 @@
-// import { CommonModule } from '@angular/common';
-// import { Component } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
-// import { MatDialog } from '@angular/material/dialog';
-// import { InfoCardComponent } from './info-card/info-card.component';
-
-// interface Troupe {
-//   id: number;
-//   category: string;
-//   badgeText: string;
-//   badgeClass: string;
-//   icon: string;
-//   title: string;
-//   leader: string;
-//   rating: number;
-//   reviews: number;
-//   experience: number;
-//   size: number;
-//   location: string;
-//   instruments: string;
-//   audioSample: string;
-//   price: number;
-// }
-// @Component({
-//   selector: 'app-bajanthri',
-//   standalone: true,
-//   templateUrl: './bajanthri.component.html',
-//   styleUrl: './bajanthri.component.scss',
-//   imports: [CommonModule, FormsModule],
-// })
-// export class BajanthriComponent {
-
-//   constructor(public dialog: MatDialog){}
-
-//   activeFilter: string = 'all';
-
-//   filters = [
-//     { id: 'all', label: 'All Instruments', icon: '✨' },
-//     { id: 'nadaswaram', label: 'Nadaswaram & Thavil', icon: '🎺' },
-//     { id: 'shehnai', label: 'Royal Shehnai & Dholak', icon: '🎷' },
-//     { id: 'panchavadyam', label: 'Panchavadyam & Chanda', icon: '🥁' },
-//     { id: 'saxophone', label: 'Classical Saxophone Band', icon: '🎷' }
-//   ];
-
-//   troupes: Troupe[] = [
-//     {
-//       id: 1,
-//       category: 'NADASWARAM',
-//       badgeText: 'Top Rated',
-//       badgeClass: 'bg-maroon-badge',
-//       icon: '🪈',
-//       title: 'Sri Swara Nadaswaram Troupe',
-//       leader: 'Vidwan M. Ramanathan',
-//       rating: 4.9,
-//       reviews: 142,
-//       experience: 18,
-//       size: 5,
-//       location: 'Hyderabad',
-//       instruments: '2x Nadaswaram, 2x Thavil Percussion, 1x Sruti Box',
-//       audioSample: 'Kalyana Melam Raga',
-//       price: 15000
-//     },
-//     {
-//       id: 2,
-//       category: 'SHEHNAI',
-//       badgeText: 'Verified',
-//       badgeClass: 'bg-dark-badge',
-//       icon: '🎷',
-//       title: 'Royal Shehnai Ensemble',
-//       leader: 'Ustad Pandit R. K. Sharma',
-//       rating: 4.8,
-//       reviews: 98,
-//       experience: 22,
-//       size: 6,
-//       location: 'Varanasi',
-//       instruments: '2x Master Shehnai, 2x Dholak / Tabla, 1x Harmonium, 1...',
-//       audioSample: 'Mangala Dhwani Raga',
-//       price: 18500
-//     },
-//     {
-//       id: 3,
-//       category: 'KERALA MELAM',
-//       badgeText: 'Express Booking',
-//       badgeClass: 'bg-express-badge',
-//       icon: '🥁',
-//       title: 'Thrissur Panchavadyam & Chanda Melam',
-//       leader: 'Asan K. V. Panicker',
-//       rating: 5,
-//       reviews: 86,
-//       experience: 15,
-//       size: 8,
-//       location: 'Kochi',
-//       instruments: '4x Chanda Drums, 2x Elathalam Cymbals, 1x Kombu Ho...',
-//       audioSample: 'Utsava Chanda Melam',
-//       price: 24000
-//     },
-//     {
-//       id: 4,
-//       category: 'Saxophone',
-//       badgeText: 'Top Rated',
-//       badgeClass: 'bg-maroon-badge',
-//       icon: '🪈',
-//       title: 'Sri Venugopala Saxophone Band',
-//       leader: 'Vidwan M. Ramanathan',
-//       rating: 4.9,
-//       reviews: 142,
-//       experience: 18,
-//       size: 5,
-//       location: 'Hyderabad',
-//       instruments: '2x Nadaswaram, 2x Thavil Percussion, 1x Sruti Box',
-//       audioSample: 'Kalyana Melam Raga',
-//       price: 15000
-//     },
-//     {
-//       id: 5,
-//       category: 'NADASWARAM',
-//       badgeText: 'Verified',
-//       badgeClass: 'bg-dark-badge',
-//       icon: '🎷',
-//       title: 'Saraswathi Mangala Melam',
-//       leader: 'Ustad Pandit R. K. Sharma',
-//       rating: 4.8,
-//       reviews: 98,
-//       experience: 22,
-//       size: 6,
-//       location: 'Varanasi',
-//       instruments: '2x Master Shehnai, 2x Dholak / Tabla, 1x Harmonium, 1...',
-//       audioSample: 'Mangala Dhwani Raga',
-//       price: 18500
-//     },
-//     {
-//       id: 6,
-//       category: 'NADASWARAM',
-//       badgeText: 'Express Booking',
-//       badgeClass: 'bg-express-badge',
-//       icon: '🥁',
-//       title: 'Amaravati Traditional Bajanthris',
-//       leader: 'Asan K. V. Panicker',
-//       rating: 5,
-//       reviews: 86,
-//       experience: 15,
-//       size: 8,
-//       location: 'Kochi',
-//       instruments: '4x Chanda Drums, 2x Elathalam Cymbals, 1x Kombu Ho...',
-//       audioSample: 'Utsava Chanda Melam',
-//       price: 24000
-//     }
-//   ];
-
-//   details(){
-//     const dialogRef = this.dialog.open(
-//         InfoCardComponent,
-//         {
-//           maxWidth: '40vw',
-//           maxHeight: '80vh',
-//           // data: poojari
-//         }
-//       );
-    
-//       dialogRef.afterClosed().subscribe(result => {
-    
-//         if (result) {
-//           console.log('Reservation:', result);
-//         }
-    
-//       });
-//   }
-// }
-
+import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Poojari } from '../../../../models/poojari.model';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { SearchBox } from '../../../shared/search-box';
 
-interface Bajanthri {
+export interface BajanthriTroupe {
   id: number;
   name: string;
-  location: string;
-  specialty: string;
-  instruments: string[];
-  experience: number;
+  maestro: string;
+  category: 'nadaswaram' | 'shehnai' | 'kerala-melam' | 'saxophone';
   rating: number;
-  reviews: number;
-  price: number;
-  priceUnit: string;
-  image: string;
+  reviewsCount: number;
+  experienceYears: number;
+  teamSize: number;
+  location: string;
+  instruments: string[];
+  audioSample: string;
+  basePrice: number;
   badge?: string;
-  available: boolean;
+}
+
+export interface SearchCriteria {
+  ceremony: string;
+  location: string;
+  date: string;
+}
+
+export interface FilterOptions {
+  language: string;
+  specialization: string;
+  experience: string;
+  goldCertifiedOnly: boolean;
+  sortBy: string;
+}
+
+interface Slide {
+  id: number;
+  name: string;
+  image: string;
 }
 
 @Component({
   selector: 'app-bajanthri',
   standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './bajanthri.component.html',
-  styleUrl: './bajanthri.component.scss'
+  styleUrl: './bajanthri.component.scss',
+  imports: [CommonModule, FormsModule, SearchBox],
 })
-export class BajanthriComponent {
 
-  searchText = '';
-  selectedSpecialty = 'All';
-  selectedLocation = 'All';
-  sortBy = 'popular';
+export class BajanthriComponent implements OnInit, OnDestroy{
 
-  specialties = [
-    'All',
-    'Wedding',
-    'Puja & Homam',
-    'Griha Pravesh',
-    'Procession',
-    'Temple Events'
+  constructor(
+    public dialog: MatDialog,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.startAutoPlay();
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoPlay();
+  }
+
+  categories = [
+    { name: 'All Instruments', icon: '✨', active: true },
+    { name: 'Nadaswaram & Thavil', icon: '🎷', active: false },
+    { name: 'Royal Shehnai & Dholak', icon: '🎺', active: false },
+    { name: 'Panchavadyam & Chanda', icon: '🥁', active: false },
+    { name: 'Classical Saxophone Band', icon: '🎷', active: false }
   ];
 
-  locations = [
-    'All',
-    'Bengaluru',
-    'Hyderabad',
-    'Pune',
-    'Mumbai',
-    'Nagpur'
-  ];
+  activeTab: string = 'all';
 
-  bajanthris: Bajanthri[] = [
+  troupes: BajanthriTroupe[] = [
     {
       id: 1,
-      name: 'Sri Lakshmi Bajanthri Group',
-      location: 'Bengaluru',
-      specialty: 'Wedding',
-      instruments: ['Nadaswaram', 'Thavil'],
-      experience: 18,
+      name: 'Sri Swara Nadaswaram Troupe',
+      maestro: 'Vidwan M. Ramanathan',
+      category: 'nadaswaram',
       rating: 4.9,
-      reviews: 146,
-      price: 6500,
-      priceUnit: 'per event',
-      image: 'bajanthris/bajanthri-1.jfif',
-      badge: 'Top Rated',
-      available: true
+      reviewsCount: 142,
+      experienceYears: 18,
+      teamSize: 5,
+      location: 'Hyderabad',
+      instruments: ['2x Nadaswaram', '2x Thavil Percussion', '1x Sruti Box'],
+      audioSample: 'Kalyana Melam Raga',
+      basePrice: 15000,
+      badge: 'Top Rated'
     },
     {
       id: 2,
-      name: 'Sri Venkateshwara Bajanthri',
-      location: 'Hyderabad',
-      specialty: 'Wedding',
-      instruments: ['Nadaswaram', 'Dhol'],
-      experience: 15,
+      name: 'Royal Shehnai Ensemble',
+      maestro: 'Ustad Pandit R. K. Sharma',
+      category: 'shehnai',
       rating: 4.8,
-      reviews: 118,
-      price: 5500,
-      priceUnit: 'per event',
-      image: 'bajanthris/bajanthri-2.jfif',
-      badge: 'Popular',
-      available: true
+      reviewsCount: 98,
+      experienceYears: 22,
+      teamSize: 6,
+      location: 'Varanasi',
+      instruments: ['2x Master Shehnai', '2x Dholak / Tabla', '1x Harmonium', '1x Brass Manjira'],
+      audioSample: 'Mangala Dhwani Raga',
+      basePrice: 18500,
+      badge: 'Verified'
     },
     {
       id: 3,
-      name: 'Sri Ganesh Traditional Band',
-      location: 'Pune',
-      specialty: 'Procession',
-      instruments: ['Dhol', 'Tasha', 'Lezim'],
-      experience: 12,
-      rating: 4.7,
-      reviews: 92,
-      price: 4500,
-      priceUnit: 'per event',
-      image: 'bajanthris/bajanthri-3.jfif',
-      badge: 'Popular',
-      available: true
+      name: 'Thrissur Panchavadyam & Chanda Melam',
+      maestro: 'Asan K. V. Panicker',
+      category: 'kerala-melam',
+      rating: 5.0,
+      reviewsCount: 86,
+      experienceYears: 15,
+      teamSize: 8,
+      location: 'Kochi',
+      instruments: ['4x Chanda Drums', '2x Elathalam Cymbals', '1x Kombu Horn', '1x Timila'],
+      audioSample: 'Utsava Chanda Melam',
+      basePrice: 24000,
+      badge: 'Express Booking'
     },
     {
       id: 4,
-      name: 'Sri Shiva Bajanthri Seva',
-      location: 'Nagpur',
-      specialty: 'Puja & Homam',
-      instruments: ['Nadaswaram', 'Thavil'],
-      experience: 20,
-      rating: 4.9,
-      reviews: 87,
-      price: 4000,
-      priceUnit: 'per event',
-      image: 'bajanthris/bajanthri-2.jfif',
-      badge: 'Experienced',
-      available: true
-    },
-    {
-      id: 5,
-      name: 'Sri Anjaneya Mangala Vadya',
-      location: 'Mumbai',
-      specialty: 'Griha Pravesh',
-      instruments: ['Nadaswaram', 'Dhol'],
-      experience: 10,
-      rating: 4.6,
-      reviews: 65,
-      price: 3500,
-      priceUnit: 'per event',
-      image: 'bajanthris/bajanthri-3.jfif',
-      available: true
-    },
-    {
-      id: 6,
-      name: 'Sri Durga Traditional Music',
+      name: 'Sri Venugopala Saxophone Band',
+      maestro: 'Symphony G. Venkatesh',
+      category: 'saxophone',
+      rating: 4.7,
+      reviewsCount: 110,
+      experienceYears: 12,
+      teamSize: 5,
       location: 'Bengaluru',
-      specialty: 'Temple Events',
-      instruments: ['Nadaswaram', 'Thavil', 'Dhol'],
-      experience: 16,
-      rating: 4.8,
-      reviews: 104,
-      price: 5000,
-      priceUnit: 'per event',
-      image: 'bajanthris/bajanthri-1.jfif',
-      badge: 'Verified',
-      available: true
+      instruments: ['2x Classical Saxophone', '1x Thavil Percussion', '1x Keyboard', '1x Pad Percussion'],
+      audioSample: 'Tyagaraja Sankeertanam',
+      basePrice: 16500,
+      badge: 'Verified'
     }
   ];
 
-  get filteredBajanthris(): Bajanthri[] {
-
-    let result = this.bajanthris.filter(item => {
-
-      const search = this.searchText
-        .trim()
-        .toLowerCase();
-
-      const matchesSearch =
-        !search ||
-        item.name.toLowerCase().includes(search) ||
-        item.location.toLowerCase().includes(search) ||
-        item.specialty.toLowerCase().includes(search) ||
-        item.instruments.some(
-          instrument =>
-            instrument.toLowerCase().includes(search)
-        );
-
-      const matchesSpecialty =
-        this.selectedSpecialty === 'All' ||
-        item.specialty === this.selectedSpecialty;
-
-      const matchesLocation =
-        this.selectedLocation === 'All' ||
-        item.location === this.selectedLocation;
-
-      return (
-        matchesSearch &&
-        matchesSpecialty &&
-        matchesLocation
-      );
-    });
-
-    if (this.sortBy === 'rating') {
-      result = [...result].sort(
-        (a, b) => b.rating - a.rating
-      );
-    }
-
-    if (this.sortBy === 'price-low') {
-      result = [...result].sort(
-        (a, b) => a.price - b.price
-      );
-    }
-
-    if (this.sortBy === 'price-high') {
-      result = [...result].sort(
-        (a, b) => b.price - a.price
-      );
-    }
-
-    if (this.sortBy === 'experience') {
-      result = [...result].sort(
-        (a, b) => b.experience - a.experience
-      );
-    }
-
-    return result;
+  setTab(tabCategory: string): void {
+    this.activeTab = tabCategory;
   }
 
-  selectSpecialty(specialty: string): void {
-    this.selectedSpecialty = specialty;
+  get filteredTroupes(): BajanthriTroupe[] {
+    if (this.activeTab === 'all') {
+      return this.troupes;
+    }
+    return this.troupes.filter(troupe => troupe.category === this.activeTab);
   }
 
-  clearFilters(): void {
-    this.searchText = '';
-    this.selectedSpecialty = 'All';
-    this.selectedLocation = 'All';
-    this.sortBy = 'popular';
+  onProfileClick(poojari: Poojari): void {
+    console.log('Opening profile:', poojari);
+
+    // const dialogRef = this.dialog.open(PoojariProfileCardComponent, {
+    //   width: '600px',
+    //   maxWidth: '95vw',
+    //   maxHeight: '90vh',
+    //   data: poojari
+    // });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result) {
+    //     console.log('Reservation:', result);
+    //   }
+    // });
   }
 
-  bookNow(item: Bajanthri): void {
-    console.log('Book Bajanthri:', item);
+  onReserveClick(): void {
+    this.router.navigate(['/my-bookings']);
+  }
+   /*---- Slider ----*/
+  slides: Slide[] = [
+    { id: 1, name: 'Acharya Prem', image: 'bajanthris/bajanthri-1.jfif' },
+    { id: 2, name: 'Pt. Ram Naresh', image: 'bajanthris/bajanthri-2.jfif' },
+    { id: 3, name: 'Saanvi Sharma', image: 'bajanthris/bajanthri-3.jfif' }
+  ];
+
+  activeIndex = 0;
+  private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+
+  getSlideClass(index: number): string {
+    const total = this.slides.length;
+    const diff = (index - this.activeIndex + total) % total;
+
+    if (diff === 0) return 'active';
+    if (diff === 1 || diff === -(total - 1)) return 'next';
+    if (diff === total - 1 || diff === -1) return 'prev';
+
+    return 'hidden';
   }
 
-  viewProfile(item: Bajanthri): void {
-    console.log('View profile:', item);
+  setActive(index: number): void {
+    this.activeIndex = index;
+    this.resetAutoPlay();
+  }
+
+  next(): void {
+    this.activeIndex = (this.activeIndex + 1) % this.slides.length;
+  }
+
+  prev(): void {
+    this.activeIndex = (this.activeIndex - 1 + this.slides.length) % this.slides.length;
+  }
+
+  private startAutoPlay(): void {
+    this.stopAutoPlay();
+    this.autoPlayInterval = setInterval(() => {
+      this.next();
+    }, 2000);
+  }
+
+  private stopAutoPlay(): void {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+      this.autoPlayInterval = null;
+    }
+  }
+
+  private resetAutoPlay(): void {
+    this.stopAutoPlay();
+    this.startAutoPlay();
   }
 }

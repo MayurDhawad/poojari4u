@@ -1,277 +1,4 @@
-/* Deep maroon background with subtle dotted grid pattern */
-.hero-mandala-bg {
-  background-color: #580016;
-  background-image: 
-    radial-gradient(#d97706 0.75px, transparent 0.75px), 
-    radial-gradient(#d97706 0.75px, #580016 0.75px);
-  background-size: 24px 24px;
-  background-position: 0 0, 12px 12px;
-}
-
-/* Rounded pill badge styling */
-.badge-pill-gold {
-  background-color: rgba(217, 119, 6, 0.15);
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  color: #fde68a;
-  letter-spacing: 1px;
-}
-
-/* Custom Maroon Button */
-.btn-maroon {
-  background-color: #580016;
-  color: #fef3c7;
-  border: none;
-  transition: all 0.2s ease-in-out;
-}
-
-.btn-maroon:hover {
-  background-color: #3a000e;
-  color: #ffffff;
-}
-
-/* Text and Field styling */
-.text-gold-light {
-  color: #fef9c3;
-}
-
-.text-gold-subtle {
-  color: #fde047;
-}
-
-.text-maroon {
-  color: #580016;
-}
-
-.form-field-bg {
-  background-color: #f8fafc;
-  border: 1px solid #cbd5e1;
-}
-
-.form-field-bg:focus {
-  background-color: #ffffff;
-  border-color: #d97706;
-  box-shadow: 0 0 0 0.25rem rgba(217, 119, 6, 0.25);
-}
-/* Soft yellow/cream banner background matching the image */
-.search-status-banner {
-  background-color: #fef9c3; /* Light cream/yellow hue */
-  border-color: #fde047 !important; /* Soft saffron/gold border */
-}
-
-/* Diya icon container with saffron gradient */
-.icon-circle {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  font-size: 1.25rem;
-}
-
-/* Text styles */
-.banner-title {
-  color: #3a000e; /* Deep maroon/dark reddish brown */
-  font-size: 0.95rem;
-}
-
-.ceremony-link {
-  color: #b45309; /* Warm amber/saffron link color */
-  font-weight: 700;
-  text-underline-offset: 3px;
-  text-decoration-color: #d97706 !important;
-}
-
-.banner-subtitle {
-  color: #71717a !important;
-  font-size: 0.825rem;
-}
-
-/* Right side white status badge */
-.badge-pill-counter {
-  color: #580016; /* Deep maroon text */
-  font-size: 0.825rem;
-  border-color: #fde047 !important;
-}
-
-/* Card Container Outline */
-.card {
-  border: 1px solid #e2e8f0 !important;
-}
-
-/* Label styling */
-.filter-label, .sort-label {
-  color: #475569;
-  letter-spacing: 0.5px;
-}
-
-/* Base Select styling */
-.custom-filter-select {
-  width: auto;
-  min-width: 160px;
-  background-color: #f8fafc;
-  border: 1px solid #cbd5e1;
-  color: #334155;
-  font-weight: 500;
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
-}
-
-.custom-filter-select:focus {
-  background-color: #ffffff;
-  border-color: #d97706;
-  box-shadow: 0 0 0 0.2rem rgba(217, 119, 6, 0.15);
-}
-
-/* Active Highlighted Select Border (Matching 'All Specializations' in image) */
-.active-accent-border {
-  border: 2px solid #d97706 !important;
-  background-color: #ffffff;
-}
-
-/* Gold Certified Checkbox Container Tag */
-.gold-badge-checkbox {
-  background-color: #fefce8;
-  border-color: #fde047 !important;
-  user-select: none;
-  transition: background-color 0.2s ease;
-}
-
-.gold-badge-checkbox:hover {
-  background-color: #fef9c3;
-}
-
-/* Checkbox Color Customization */
-.gold-badge-checkbox .form-check-input:checked {
-  background-color: #d97706;
-  border-color: #d97706;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-.form-select {
-  font-size: 0.80rem !important;
-}
-
-/* Card Container */
-.poojari-card {
-  border-color: #e2e8f0 !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.poojari-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Header Banner */
-.card-header-banner {
-  background-color: #fefce8;
-  border-bottom: 1px solid #fef08a;
-}
-
-.text-maroon {
-  color: #713f12;
-}
-
-.gold-certified-badge {
-  background-color: #d97706;
-  color: #ffffff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-/* Avatar Image */
-.profile-avatar {
-  width: 64px;
-  height: 64px;
-  border: 2px solid #ffffff;
-}
-
-/* Name and Font */
-.poojari-name {
-  color: #1e293b;
-  font-size: 1.1rem;
-}
-
-/* Language Badges */
-.language-badge {
-  background-color: #f1f5f9;
-  color: #475569;
-  font-size: 0.75rem;
-  border: 1px solid #e2e8f0;
-}
-
-/* Footer & Buttons */
-.extra-small {
-  font-size: 0.65rem;
-  letter-spacing: 0.5px;
-}
-
-.price-text {
-  color: #111827;
-}
-
-.btn-gold {
-  background-color: #d97706;
-  border-color: #d97706;
-}
-
-.btn-gold:hover {
-  background-color: #b45309;
-  border-color: #b45309;
-}
-
-/* Truncate text to 3 lines */
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* =========================
-   HERO
-========================= */
-.main-section {
-  background: radial-gradient(circle at 80% 30%, rgba(245, 158, 11, .18), transparent 35%), linear-gradient(135deg, #fff9f0, #fff3df);
-  height: 85vh;
-}
-.hero-eyebrow {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #d97706;
-}
-
-.hero-title {
-  font-size: clamp(36px, 5vw, 58px);
-  font-weight: 700;
-  line-height: 1.12;
-  margin: 15px 0;
-  color: #27211d;
-}
-
-.hero-title span {
-  color: #d97706;
-}
-
-.hero-description {
-  max-width: 600px;
-  font-size: 17px;
-  line-height: 1.7;
-  color: #6b625c;
-}
-
-.hero-image {
-  overflow: hidden;
-}
-
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
+/* Poojari discovery page */
 
 :host {
   display: block;
@@ -279,7 +6,6 @@
   --primary: #d97706;
   --primary-dark: #b45309;
   --orange-light: #fff1df;
-  --cream: #fffaf3;
   --border: #eadfce;
   --text: #34251b;
   --muted: #76685c;
@@ -290,131 +16,73 @@
    HERO
 ========================= */
 
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.main-section {
+  height: 85vh;
+  background:
+    radial-gradient(circle at 80% 30%, rgba(245, 158, 11, 0.18), transparent 35%),
+    linear-gradient(135deg, #fff9f0, #fff3df);
 
-  color: var(--primary);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.4px;
-  margin-bottom: 15px;
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+
+    i {
+      font-size: 19px;
+    }
+  }
+
+  .hero-content {
+    h1 {
+      margin-bottom: 20px;
+      color: var(--text);
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 1.08;
+      font-weight: 800;
+
+      span {
+        color: var(--primary);
+      }
+    }
+
+    p {
+      max-width: 620px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+  }
+
+  .hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #57483b;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    i {
+      color: var(--green);
+      font-size: 17px;
+    }
+  }
 }
 
-.hero-eyebrow i {
-  font-size: 19px;
-}
-
-.hero-content h1 {
-  color: var(--text);
-  font-size: clamp(40px, 5vw, 64px);
-  line-height: 1.08;
-  font-weight: 800;
-  margin-bottom: 20px;
-}
-.hero-content h1 span {
-  color: var(--primary);
-}
-
-.hero-content p {
-  max-width: 620px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.4;
-
-  margin-bottom: 28px;
-}
-
-.hero-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.hero-features div {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-
-  color: #57483b;
-
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.hero-features i {
-  color: var(--green);
-  font-size: 17px;
-}
-
-
-/* Hero image */
-
-.hero-image {
-  position: relative;
-  padding-left: 35px;
-}
-
-.hero-image img {
-  width: 100%;
-  height: 380px;
-
-  object-fit: cover;
-
-  border-radius: 28px;
-
-  box-shadow:
-    0 25px 60px rgba(100, 60, 20, 0.18);
-}
-
-.hero-floating-card {
-  position: absolute;
-
-  left: 5px;
-  bottom: 25px;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 12px 16px;
-
-  background: rgba(255, 255, 255, 0.96);
-
-  border-radius: 14px;
-
-  box-shadow:
-    0 10px 30px rgba(70, 45, 20, 0.16);
-}
-
-.floating-icon {
-  width: 40px;
-  height: 40px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: var(--orange-light);
-  color: var(--primary);
-
-  border-radius: 10px;
-}
-
-.hero-floating-card strong {
-  display: block;
-
-  color: var(--text);
-  font-size: 13px;
-}
-
-.hero-floating-card span {
-  display: block;
-
-  color: var(--muted);
-  font-size: 10px;
-}
+/* =========================
+   SLIDER
+========================= */
 
 .slider-container {
   width: 100%;
@@ -427,55 +95,253 @@
   height: 380px;
 }
 
-/* Base style for all slides (Oval/Pill shape) */
 .slide-item {
   width: 210px;
   height: 300px;
-  border-radius: 120px; /* Oval shape */
-  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0.5s;
+  border-radius: 120px;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out,
+    z-index 0.5s;
+
+  &.active {
+    width: 225px;
+    height: 333px;
+    transform: translateX(0) scale(1.05);
+    z-index: 3;
+    opacity: 1;
+    border: 3px solid #e2bc68;
+  }
+
+  &.prev {
+    transform: translateX(-170px) scale(0.75);
+    z-index: 2;
+    opacity: 0.9;
+  }
+
+  &.next {
+    transform: translateX(170px) scale(0.75);
+    z-index: 2;
+    opacity: 0.9;
+  }
+
+  &.hidden {
+    transform: translateX(0) scale(0.5);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
 }
 
-/* Active Center Slide */
-.slide-item.active {
-  width: 225px;
-  height: 333px;
-  transform: translateX(0) scale(1.05);
-  z-index: 3;
-  opacity: 1;
-  border: 3px solid #e2bc68; /* Golden border highlight */
+/* =========================
+   SEARCH STATUS
+========================= */
+
+.search-status-banner {
+  background-color: #fef9c3;
+  border-color: #fde047 !important;
+
+  .icon-circle {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    font-size: 1.25rem;
+  }
+
+  .banner-title {
+    color: #3a000e;
+    font-size: 0.95rem;
+  }
+
+  .ceremony-link {
+    color: #b45309;
+    font-weight: 700;
+    text-underline-offset: 3px;
+    text-decoration-color: #d97706 !important;
+  }
+
+  .banner-subtitle {
+    color: #71717a !important;
+    font-size: 0.825rem;
+  }
+
+  .badge-pill-counter {
+    color: #580016;
+    font-size: 0.825rem;
+    border-color: #fde047 !important;
+  }
 }
 
-/* Previous (Left) Side Slide */
-.slide-item.prev {
-  transform: translateX(-170px) scale(0.75);
-  z-index: 2;
-  opacity: 0.9;
+/* =========================
+   FILTERS
+========================= */
+
+.filter-label,
+.sort-label {
+  color: #475569;
+  letter-spacing: 0.5px;
 }
 
-/* Next (Right) Side Slide */
-.slide-item.next {
-  transform: translateX(170px) scale(0.75);
-  z-index: 2;
-  opacity: 0.9;
+.custom-filter-select {
+  width: auto;
+  min-width: 160px;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-size: 0.8rem !important;
+  font-weight: 500;
+
+  &:focus {
+    background-color: #fff;
+    border-color: #d97706;
+    box-shadow: 0 0 0 0.2rem rgba(217, 119, 6, 0.15);
+  }
+
+  &.active-accent-border {
+    border: 2px solid #d97706 !important;
+    background-color: #fff;
+  }
 }
 
-/* Hidden Slides */
-.slide-item.hidden {
-  transform: translateX(0) scale(0.5);
-  opacity: 0;
-  z-index: 1;
-  pointer-events: none;
+.gold-badge-checkbox {
+  background-color: #fefce8;
+  border-color: #fde047 !important;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #fef9c3;
+  }
+
+  .form-check-input:checked {
+    background-color: #d97706;
+    border-color: #d97706;
+  }
 }
+
+/* =========================
+   POOJARI CARDS
+========================= */
+
+.poojari-card {
+  border-color: #e2e8f0 !important;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .card-header-banner {
+    background-color: #fefce8;
+    border-bottom: 1px solid #fef08a;
+  }
+
+  .profile-avatar {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #fff;
+  }
+
+  .poojari-name {
+    color: #1e293b;
+    font-size: 1.1rem;
+  }
+
+  .language-badge {
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    font-size: 0.75rem;
+  }
+
+  .gold-certified-badge {
+    background-color: #d97706;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .price-text {
+    color: #111827;
+  }
+
+  .btn-gold {
+    background-color: #d97706;
+    border-color: #d97706;
+
+    &:hover {
+      background-color: #b45309;
+      border-color: #b45309;
+    }
+  }
+
+  .extra-small {
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Used by the card header tagline */
+.text-maroon {
+  color: #713f12;
+}
+
+/* =========================
+   LARGE DESKTOP
+========================= */
 
 @media (min-width: 1200px) {
-    .container{
-        max-width: 1200px;
-    }
+  .main-section {
+    // Bootstrap's container is not changed globally.
+  }
 }
 
-/* Responsive adjustments for mobile screens */
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 991.98px) {
+  .main-section {
+    height: auto;
+
+    .hero-content {
+      margin: auto;
+      text-align: center;
+
+      p {
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+
+    .hero-eyebrow,
+    .hero-features {
+      justify-content: center;
+    }
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 576px) {
   .slider-wrapper {
     width: 100%;
@@ -485,718 +351,36 @@
     width: 160px;
     height: 240px;
     border-radius: 90px;
+
+    &.active {
+      width: 180px;
+      height: 270px;
+    }
+
+    &.prev {
+      transform: translateX(-80px) scale(0.85);
+    }
+
+    &.next {
+      transform: translateX(80px) scale(0.85);
+    }
   }
 
-  .slide-item.active {
-    width: 180px;
-    height: 270px;
-  }
-
-  .slide-item.prev {
-    transform: translateX(-80px) scale(0.85);
-  }
-
-  .slide-item.next {
-    transform: translateX(80px) scale(0.85);
-  }
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.search-section {
-  position: relative;
-  z-index: 5;
-
-  margin-top: -35px;
-}
-
-.search-card {
-  display: flex;
-  align-items: center;
-
-  background: #fff;
-
-  border: 1px solid var(--border);
-
-  border-radius: 18px;
-
-  padding: 14px;
-
-  box-shadow:
-    0 14px 40px rgba(70, 45, 20, 0.12);
-}
-
-.search-field {
-  flex: 1;
-
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 7px 18px;
-
-  border-right: 1px solid var(--border);
-}
-
-.field-icon {
-  width: 42px;
-  height: 42px;
-
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: var(--orange-light);
-  color: var(--primary);
-
-  border-radius: 11px;
-}
-
-.field-content {
-  flex: 1;
-}
-
-.field-content label {
-  display: block;
-
-  color: #746456;
-
-  font-size: 11px;
-  font-weight: 700;
-
-  margin-bottom: 3px;
-}
-
-.field-content input,
-.field-content select {
-  width: 100%;
-
-  border: 0;
-  outline: 0;
-
-  background: transparent;
-
-  color: var(--text);
-
-  font-size: 14px;
-}
-
-.field-content input::placeholder {
-  color: #a4978b;
-}
-
-.search-button {
-  flex-shrink: 0;
-
-  border: 0;
-
-  background: var(--primary);
-  color: #fff;
-
-  padding: 13px 25px;
-
-  border-radius: 12px;
-
-  font-weight: 700;
-}
-
-.search-button:hover {
-  background: var(--primary-dark);
-}
-
-/* =========================
-   LIST SECTION
-========================= */
-
-.poojari-list-section {
-  padding: 60px 0;
-}
-
-/* =========================
-   MAIN
-========================= */
-
-.bajanthri-section {
-  padding: 70px 0;
-  background: #fff;
-}
-
-.section-header {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-
-  margin-bottom: 28px;
-}
-
-.section-eyebrow {
-  display: block;
-
-  color: var(--primary);
-
-  font-size: 12px;
-  font-weight: 800;
-
-  letter-spacing: 1.5px;
-
-  margin-bottom: 8px;
-}
-
-.section-header h2,
-.section-heading h2 {
-  color: var(--text);
-
-  font-size: 32px;
-  font-weight: 800;
-
-  margin: 0;
-}
-
-.section-header p {
-  color: var(--muted);
-
-  font-size: 14px;
-
-  margin: 8px 0 0;
-}
-
-.sort-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.sort-wrapper label {
-  color: var(--muted);
-
-  font-size: 13px;
-}
-
-.sort-wrapper .form-select {
-  width: 190px;
-
-  border-color: var(--border);
-  border-radius: 10px;
-
-  font-size: 13px;
-
-  box-shadow: none;
-}
-
-
-/* =========================
-   SPECIALTY PILLS
-========================= */
-
-.specialty-pills {
-  display: flex;
-  gap: 10px;
-
-  overflow-x: auto;
-
-  padding-bottom: 28px;
-
-  scrollbar-width: none;
-}
-
-.specialty-pills::-webkit-scrollbar {
-  display: none;
-}
-
-.specialty-pill {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-
-  flex-shrink: 0;
-
-  border: 1px solid var(--border);
-
-  background: #fff;
-
-  color: #66584c;
-
-  padding: 10px 17px;
-
-  border-radius: 30px;
-
-  font-size: 13px;
-  font-weight: 600;
-
-  transition: 0.2s ease;
-}
-
-.specialty-pill:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-.specialty-pill.active {
-  background: var(--primary);
-  border-color: var(--primary);
-
-  color: #fff;
-}
-
-/* =========================
-   FILTER
-========================= */
-
-.filter-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 16px;
-  padding: 22px;
-  position: sticky;
-  top: 20px;
-}
-
-.filter-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.filter-header h5 {
-  margin: 0;
-  font-weight: 700;
-}
-
-.filter-header .btn-link {
-  color: #d97706;
-  font-size: 13px;
-  text-decoration: none;
-}
-
-.filter-group {
-  margin-top: 25px;
-}
-
-.filter-group h6 {
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-.form-check {
-  margin-bottom: 10px;
-}
-
-.form-check-label {
-  font-size: 14px;
-  color: #625b55;
-}
-
-
-/* =========================
-   RESULTS
-========================= */
-
-.results-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.results-header h4 {
-  font-weight: 700;
-  margin-bottom: 5px;
-}
-
-.sort-select {
-  width: 190px;
-}
-
-
-/* =========================
-   POOJARI CARD
-========================= */
-
-.poojari-card {
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 18px;
-  overflow: hidden;
-  height: 100%;
-  transition: all 0.25s ease;
-}
-
-.poojari-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
-}
-
-.card-image {
-  height: 240px;
-  position: relative;
-  overflow: hidden;
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.poojari-card:hover .card-image img {
-  transform: scale(1.04);
-}
-
-.verified-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-
-  background: #fff;
-  color: #198754;
-
-  padding: 6px 10px;
-  border-radius: 20px;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.card-body {
-  padding: 20px;
-}
-
-.poojari-name {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 4px;
-  color: #29231f;
-}
-
-.location {
-  font-size: 13px;
-  color: #777;
-  margin-bottom: 0;
-}
-
-.location i {
-  color: #d97706;
-}
-
-.rating {
-  background: #fff7e6;
-  color: #b45309;
-
-  padding: 5px 8px;
-  border-radius: 7px;
-
-  font-size: 13px;
-  font-weight: 700;
-  height: fit-content;
-}
-
-.rating i {
-  margin-right: 3px;
-}
-
-.experience {
-  margin-top: 15px;
-  color: #5f5751;
-  font-size: 13px;
-}
-
-.experience i {
-  color: #d97706;
-  margin-right: 5px;
-}
-
-.specializations {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 15px;
-}
-
-.specializations span {
-  background: #f7f3ef;
-  color: #655c54;
-  padding: 5px 9px;
-  border-radius: 6px;
-  font-size: 11px;
-}
-
-.card-footer-custom {
-  border-top: 1px solid #eee;
-  margin-top: 18px;
-  padding-top: 16px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card-footer-custom small {
-  display: block;
-  font-size: 10px;
-  color: #888;
-}
-
-.card-footer-custom strong {
-  font-size: 18px;
-  color: #29231f;
-}
-
-.card-footer-custom .btn {
-  font-size: 12px;
-  padding: 7px 12px;
-}
-
-
-/* =========================
-   PAGINATION
-========================= */
-
-.pagination .page-link {
-  color: #d97706;
-  border-color: #eee;
-}
-
-.pagination .active .page-link {
-  background: #d97706;
-  border-color: #d97706;
-  color: #fff;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 991.98px) {
-
-  .poojari-hero {
-    padding: 45px 0 70px;
-  }
-
-  .hero-image {
-    margin-top: 30px;
-    height: 280px;
-  }
-
-  .search-section {
-    margin-top: -35px;
-  }
-
-  .filter-card {
-    position: static;
-  }
-
-}
-
-
-@media (max-width: 767.98px) {
-
-  .poojari-hero {
-    padding: 35px 0 60px;
-  }
-
-  .hero-title {
-    font-size: 38px;
-  }
-
-  .hero-description {
-    font-size: 15px;
-  }
-
-  .hero-image {
-    height: 240px;
-  }
-
-  .search-card {
-    padding: 18px;
-  }
-
-  .poojari-list-section {
-    padding: 40px 0;
-  }
-
-  .results-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .sort-select {
-    width: 100%;
-  }
-
-  .card-image {
-    height: 260px;
-  }
-
-  .card-footer-custom {
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .card-footer-custom .d-flex {
-    flex-wrap: wrap;
-  }
-
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 991.98px) {
-
-  .bajanthri-hero {
-    padding: 55px 0;
-  }
-
-  .hero-content {
-    margin: auto;
-
-    text-align: center;
-  }
-
-  .hero-eyebrow,
-  .hero-features {
-    justify-content: center;
-  }
-
-  .hero-content p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .section-header {
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    gap: 18px;
-  }
-
-  .sort-wrapper {
-    width: 100%;
-  }
-
-  .sort-wrapper .form-select {
-    flex: 1;
-  }
-
-  .filter-card {
-    position: static;
-  }
-
-  .trust-section h2 {
-    margin-bottom: 20px;
-  }
-}
-
-
-@media (max-width: 767.98px) {
-
-  .search-card {
-    flex-direction: column;
-
-    align-items: stretch;
-  }
-
-  .search-field {
-    border-right: 0;
-
-    border-bottom: 1px solid var(--border);
-
-    padding: 10px 5px;
-  }
-
-  .search-field:last-of-type {
-    border-bottom: 0;
-  }
-
-  .search-button {
-    width: 100%;
-  }
-
-  .results-bar {
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    gap: 10px;
-  }
-
-  .location-label {
-    align-self: flex-start;
-  }
-}
-
-
-@media (max-width: 575.98px) {
-
-  .bajanthri-hero {
-    padding: 42px 0;
-  }
-
-  .hero-content h1 {
-    font-size: 38px;
-  }
-
-  .hero-content p {
-    font-size: 14px;
-  }
-
-  .hero-features {
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 10px;
-  }
-
-  .search-section {
-    margin-top: -20px;
-  }
-
-  .bajanthri-section,
-  .how-section,
-  .trust-section {
-    padding: 50px 0;
-  }
-
-  .section-header h2,
-  .section-heading h2 {
-    font-size: 27px;
-  }
-
-  .profile-image {
-    height: 260px;
-  }
-
-  .profile-footer {
-    align-items: flex-start;
-
-    flex-direction: column;
-
-    gap: 13px;
-  }
-
-  .actions {
-    width: 100%;
-  }
-
-  .view-button,
-  .book-button {
-    flex: 1;
-  }
-
-  .trust-section h2 {
-    font-size: 28px;
+  .main-section {
+    .hero-content {
+      h1 {
+        font-size: 38px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+    }
+
+    .hero-features {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
   }
 }
