@@ -1,93 +1,84 @@
 <section>
-  <!-- =========================================
-       SEARCH BOX
-  ========================================== -->
-  <div class="hero-search-wrapper">
-    <div class="container px-3 px-lg-5">
-      <div class="hero-search">
+  <div class="hero-search">
 
-        <!-- Language -->
-        <div class="search-field">
-          <div class="search-icon">
-            <i class="bi bi-translate"></i>
-          </div>
-
-          <div class="search-field-content">
-            <!-- <label for="service-select">Select Service</label> -->
-            <select id="service-select" class="form-select">
-              <!-- <option value="" disabled selected>Select Service</option> -->
-              @for (language of languages; track language.value) {
-              <option [value]="language.value">
-                {{ language.label }}
-              </option>
-              }
-            </select>
-          </div>
-        </div>
-
-        <!-- Service -->
-        <div class="search-field">
-          <div class="search-icon">
-            <i class="bi bi-fire"></i>
-          </div>
-
-          <div class="search-field-content">
-            <!-- <label for="service-select">Select Service</label> -->
-            <select id="service-select" class="form-select">
-              <!-- <option value="" disabled selected>Select Service</option> -->
-              @for (ceremony of ceremonies; track ceremony.value) {
-              <option [value]="ceremony.value">
-                {{ ceremony.label }}
-              </option>
-              }
-            </select>
-          </div>
-        </div>
-
-        <!-- Location -->
-        <div class="search-field">
-          <div class="search-icon">
-            <i class="bi bi-geo-alt"></i>
-          </div>
-
-          <div class="search-field-content">
-            <!-- <label for="location-select">Select Location</label> -->
-            <select id="location-select" class="form-select">
-              <!-- <option value="" disabled selected>Select Location</option> -->
-              @for (group of locationGroups; track group.groupName) {
-              <optgroup [label]="group.groupName">
-                @for (item of group.locations; track item) {
-                <option [value]="item">
-                  {{ item }}
-                </option>
-                }
-              </optgroup>
-              }
-            </select>
-          </div>
-        </div>
-
-        <!-- Date -->
-        <div class="search-field">
-          <div class="search-icon">
-            <i class="bi bi-calendar3"></i>
-          </div>
-
-          <div class="search-field-content">
-            <!-- <label for="date-input">Date</label> -->
-            <input type="date" class="form-control" id="date-input">
-          </div>
-        </div>
-
-        <!-- Search -->
-        <button type="button" class="search-button">
-          <!-- <i class="bi bi-search me-2"></i> -->
-          <span>Search</span>
-        </button>
-
+    <!-- Language -->
+    <div class="search-field">
+      <div class="search-icon">
+        <i class="bi bi-translate"></i>
       </div>
 
+      <div class="search-field-content">
+        <!-- <label for="service-select">Select Service</label> -->
+        <select id="service-select" class="form-select">
+          <!-- <option value="" disabled selected>Select Service</option> -->
+          @for (language of languages; track language.value) {
+          <option [value]="language.value">
+            {{ language.label }}
+          </option>
+          }
+        </select>
+      </div>
     </div>
+
+    <!-- Service -->
+    <div class="search-field">
+      <div class="search-icon">
+        <i class="bi bi-fire"></i>
+      </div>
+
+      <div class="search-field-content">
+        <!-- <label for="service-select">Select Service</label> -->
+        <select id="service-select" class="form-select">
+          <!-- <option value="" disabled selected>Select Service</option> -->
+          @for (ceremony of ceremonies; track ceremony.value) {
+          <option [value]="ceremony.value">
+            {{ ceremony.label }}
+          </option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="search-field">
+      <div class="search-icon">
+        <i class="bi bi-geo-alt"></i>
+      </div>
+
+      <div class="search-field-content">
+        <!-- <label for="location-select">Select Location</label> -->
+        <select id="location-select" class="form-select">
+          <!-- <option value="" disabled selected>Select Location</option> -->
+          @for (group of locationGroups; track group.groupName) {
+          <optgroup [label]="group.groupName">
+            @for (item of group.locations; track item) {
+            <option [value]="item">
+              {{ item }}
+            </option>
+            }
+          </optgroup>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Date -->
+    <div class="search-field">
+      <div class="search-icon">
+        <i class="bi bi-calendar3"></i>
+      </div>
+
+      <div class="search-field-content">
+        <!-- <label for="date-input">Date</label> -->
+        <input type="date" class="form-control" id="date-input">
+      </div>
+    </div>
+
+    <!-- Search -->
+    <button type="button" class="search-button">
+      <!-- <i class="bi bi-search me-2"></i> -->
+      <span>Search</span>
+    </button>
 
   </div>
 </section>

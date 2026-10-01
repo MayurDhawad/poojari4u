@@ -1,251 +1,237 @@
-// /* Deep maroon background with subtle dotted grid pattern */
-// .hero-mandala-bg {
-//   background-color: #580016;
-//   background-image: 
-//     radial-gradient(#d97706 0.75px, transparent 0.75px), 
-//     radial-gradient(#d97706 0.75px, #580016 0.75px);
-//   background-size: 24px 24px;
-//   background-position: 0 0, 12px 12px;
-// }
+/* Deep maroon background with subtle dotted grid pattern */
+.hero-mandala-bg {
+  background-color: #580016;
+  background-image: 
+    radial-gradient(#d97706 0.75px, transparent 0.75px), 
+    radial-gradient(#d97706 0.75px, #580016 0.75px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
 
-// /* Rounded pill badge styling */
-// .badge-pill-gold {
-//   background-color: rgba(217, 119, 6, 0.15);
-//   border: 1px solid rgba(245, 158, 11, 0.4);
-//   color: #fde68a;
-//   letter-spacing: 1px;
-// }
+/* Rounded pill badge styling */
+.badge-pill-gold {
+  background-color: rgba(217, 119, 6, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fde68a;
+  letter-spacing: 1px;
+}
 
-// /* Custom Maroon Button */
-// .btn-maroon {
-//   background-color: #580016;
-//   color: #fef3c7;
-//   border: none;
-//   transition: all 0.2s ease-in-out;
-// }
+/* Custom Maroon Button */
+.btn-maroon {
+  background-color: #580016;
+  color: #fef3c7;
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
 
-// .btn-maroon:hover {
-//   background-color: #3a000e;
-//   color: #ffffff;
-// }
+.btn-maroon:hover {
+  background-color: #3a000e;
+  color: #ffffff;
+}
 
-// /* Text and Field styling */
-// .text-gold-light {
-//   color: #fef9c3;
-// }
+/* Text and Field styling */
+.text-gold-light {
+  color: #fef9c3;
+}
 
-// .text-gold-subtle {
-//   color: #fde047;
-// }
+.text-gold-subtle {
+  color: #fde047;
+}
 
-// .text-maroon {
-//   color: #580016;
-// }
+.text-maroon {
+  color: #580016;
+}
 
-// .form-field-bg {
-//   background-color: #f8fafc;
-//   border: 1px solid #cbd5e1;
-// }
+.form-field-bg {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+}
 
-// .form-field-bg:focus {
-//   background-color: #ffffff;
-//   border-color: #d97706;
-//   box-shadow: 0 0 0 0.25rem rgba(217, 119, 6, 0.25);
-// }
-// /* Soft yellow/cream banner background matching the image */
-// .search-status-banner {
-//   background-color: #fef9c3; /* Light cream/yellow hue */
-//   border-color: #fde047 !important; /* Soft saffron/gold border */
-// }
+.form-field-bg:focus {
+  background-color: #ffffff;
+  border-color: #d97706;
+  box-shadow: 0 0 0 0.25rem rgba(217, 119, 6, 0.25);
+}
+/* Soft yellow/cream banner background matching the image */
+.search-status-banner {
+  background-color: #fef9c3; /* Light cream/yellow hue */
+  border-color: #fde047 !important; /* Soft saffron/gold border */
+}
 
-// /* Diya icon container with saffron gradient */
-// .icon-circle {
-//   width: 40px;
-//   height: 40px;
-//   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-//   font-size: 1.25rem;
-// }
+/* Diya icon container with saffron gradient */
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  font-size: 1.25rem;
+}
 
-// /* Text styles */
-// .banner-title {
-//   color: #3a000e; /* Deep maroon/dark reddish brown */
-//   font-size: 0.95rem;
-// }
+/* Text styles */
+.banner-title {
+  color: #3a000e; /* Deep maroon/dark reddish brown */
+  font-size: 0.95rem;
+}
 
-// .ceremony-link {
-//   color: #b45309; /* Warm amber/saffron link color */
-//   font-weight: 700;
-//   text-underline-offset: 3px;
-//   text-decoration-color: #d97706 !important;
-// }
+.ceremony-link {
+  color: #b45309; /* Warm amber/saffron link color */
+  font-weight: 700;
+  text-underline-offset: 3px;
+  text-decoration-color: #d97706 !important;
+}
 
-// .banner-subtitle {
-//   color: #71717a !important;
-//   font-size: 0.825rem;
-// }
+.banner-subtitle {
+  color: #71717a !important;
+  font-size: 0.825rem;
+}
 
-// /* Right side white status badge */
-// .badge-pill-counter {
-//   color: #580016; /* Deep maroon text */
-//   font-size: 0.825rem;
-//   border-color: #fde047 !important;
-// }
+/* Right side white status badge */
+.badge-pill-counter {
+  color: #580016; /* Deep maroon text */
+  font-size: 0.825rem;
+  border-color: #fde047 !important;
+}
 
-// /* Card Container Outline */
-// .card {
-//   border: 1px solid #e2e8f0 !important;
-// }
+/* Card Container Outline */
+.card {
+  border: 1px solid #e2e8f0 !important;
+}
 
-// /* Label styling */
-// .filter-label, .sort-label {
-//   color: #475569;
-//   letter-spacing: 0.5px;
-// }
+/* Label styling */
+.filter-label, .sort-label {
+  color: #475569;
+  letter-spacing: 0.5px;
+}
 
-// /* Base Select styling */
-// .custom-filter-select {
-//   width: auto;
-//   min-width: 160px;
-//   background-color: #f8fafc;
-//   border: 1px solid #cbd5e1;
-//   color: #334155;
-//   font-weight: 500;
-//   padding-top: 0.4rem;
-//   padding-bottom: 0.4rem;
-// }
+/* Base Select styling */
+.custom-filter-select {
+  width: auto;
+  min-width: 160px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-weight: 500;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
 
-// .custom-filter-select:focus {
-//   background-color: #ffffff;
-//   border-color: #d97706;
-//   box-shadow: 0 0 0 0.2rem rgba(217, 119, 6, 0.15);
-// }
+.custom-filter-select:focus {
+  background-color: #ffffff;
+  border-color: #d97706;
+  box-shadow: 0 0 0 0.2rem rgba(217, 119, 6, 0.15);
+}
 
-// /* Active Highlighted Select Border (Matching 'All Specializations' in image) */
-// .active-accent-border {
-//   border: 2px solid #d97706 !important;
-//   background-color: #ffffff;
-// }
+/* Active Highlighted Select Border (Matching 'All Specializations' in image) */
+.active-accent-border {
+  border: 2px solid #d97706 !important;
+  background-color: #ffffff;
+}
 
-// /* Gold Certified Checkbox Container Tag */
-// .gold-badge-checkbox {
-//   background-color: #fefce8;
-//   border-color: #fde047 !important;
-//   user-select: none;
-//   transition: background-color 0.2s ease;
-// }
+/* Gold Certified Checkbox Container Tag */
+.gold-badge-checkbox {
+  background-color: #fefce8;
+  border-color: #fde047 !important;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
 
-// .gold-badge-checkbox:hover {
-//   background-color: #fef9c3;
-// }
+.gold-badge-checkbox:hover {
+  background-color: #fef9c3;
+}
 
-// /* Checkbox Color Customization */
-// .gold-badge-checkbox .form-check-input:checked {
-//   background-color: #d97706;
-//   border-color: #d97706;
-// }
+/* Checkbox Color Customization */
+.gold-badge-checkbox .form-check-input:checked {
+  background-color: #d97706;
+  border-color: #d97706;
+}
 
-// .cursor-pointer {
-//   cursor: pointer;
-// }
-// .form-select {
-//   font-size: 0.80rem !important;
-// }
+.cursor-pointer {
+  cursor: pointer;
+}
+.form-select {
+  font-size: 0.80rem !important;
+}
 
-// /* Card Container */
-// .poojari-card {
-//   border-color: #e2e8f0 !important;
-//   transition: transform 0.2s ease, box-shadow 0.2s ease;
-// }
+/* Card Container */
+.poojari-card {
+  border-color: #e2e8f0 !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-// .poojari-card:hover {
-//   transform: translateY(-2px);
-//   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
-// }
+.poojari-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+}
 
-// /* Header Banner */
-// .card-header-banner {
-//   background-color: #fefce8;
-//   border-bottom: 1px solid #fef08a;
-// }
+/* Header Banner */
+.card-header-banner {
+  background-color: #fefce8;
+  border-bottom: 1px solid #fef08a;
+}
 
-// .text-maroon {
-//   color: #713f12;
-// }
+.text-maroon {
+  color: #713f12;
+}
 
-// .gold-certified-badge {
-//   background-color: #d97706;
-//   color: #ffffff;
-//   font-size: 0.65rem;
-//   font-weight: 700;
-//   letter-spacing: 0.5px;
-// }
+.gold-certified-badge {
+  background-color: #d97706;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
 
-// /* Avatar Image */
-// .profile-avatar {
-//   width: 64px;
-//   height: 64px;
-//   border: 2px solid #ffffff;
-// }
+/* Avatar Image */
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border: 2px solid #ffffff;
+}
 
-// /* Name and Font */
-// .poojari-name {
-//   color: #1e293b;
-//   font-size: 1.1rem;
-// }
+/* Name and Font */
+.poojari-name {
+  color: #1e293b;
+  font-size: 1.1rem;
+}
 
-// /* Language Badges */
-// .language-badge {
-//   background-color: #f1f5f9;
-//   color: #475569;
-//   font-size: 0.75rem;
-//   border: 1px solid #e2e8f0;
-// }
+/* Language Badges */
+.language-badge {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  border: 1px solid #e2e8f0;
+}
 
-// /* Footer & Buttons */
-// .extra-small {
-//   font-size: 0.65rem;
-//   letter-spacing: 0.5px;
-// }
+/* Footer & Buttons */
+.extra-small {
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+}
 
-// .price-text {
-//   color: #111827;
-// }
+.price-text {
+  color: #111827;
+}
 
-// .btn-gold {
-//   background-color: #d97706;
-//   border-color: #d97706;
-// }
+.btn-gold {
+  background-color: #d97706;
+  border-color: #d97706;
+}
 
-// .btn-gold:hover {
-//   background-color: #b45309;
-//   border-color: #b45309;
-// }
+.btn-gold:hover {
+  background-color: #b45309;
+  border-color: #b45309;
+}
 
-// /* Truncate text to 3 lines */
-// .line-clamp-3 {
-//   display: -webkit-box;
-//   -webkit-line-clamp: 3;
-//   -webkit-box-orient: vertical;
-//   overflow: hidden;
-// }
-
-
-.poojari-page {
-  background: #faf9f7;
-  min-height: 100vh;
+/* Truncate text to 3 lines */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* =========================
    HERO
 ========================= */
-
-.poojari-hero {
-  background: linear-gradient(
-    135deg,
-    #fff8ed 0%,
-    #fff 100%
-  );
-}
 
 .hero-eyebrow {
   font-size: 13px;
@@ -284,45 +270,6 @@
 }
 
 
-// /* =========================
-//    SEARCH
-// ========================= */
-
-// .search-section {
-//   margin-top: -35px;
-//   position: relative;
-//   z-index: 5;
-// }
-
-// .search-card {
-//   background: #fff;
-//   padding: 25px;
-//   border-radius: 18px;
-//   border: 1px solid #eee;
-// }
-
-// .form-label {
-//   font-size: 13px;
-//   font-weight: 600;
-//   color: #504941;
-// }
-
-// .input-group-text {
-//   background: #fff;
-//   border-right: 0;
-//   color: #d97706;
-// }
-
-// .input-group .form-select,
-// .input-group .form-control {
-//   border-left: 0;
-// }
-
-// .search-btn {
-//   min-height: 44px;
-//   font-weight: 600;
-// }
-
 :host {
   display: block;
 
@@ -339,29 +286,6 @@
 /* =========================
    HERO
 ========================= */
-
-.bajanthri-hero {
-  position: relative;
-  overflow: hidden;
-
-  padding: 70px 0;
-
-  background:
-    radial-gradient(
-      circle at 80% 30%,
-      rgba(245, 158, 11, 0.18),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #fff9f0 0%,
-      #fff3df 100%
-    );
-}
-
-.hero-content {
-  max-width: 700px;
-}
 
 .hero-eyebrow {
   display: inline-flex;
@@ -494,6 +418,91 @@
 
   color: var(--muted);
   font-size: 10px;
+}
+
+.slider-container {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  width: 600px;
+  height: 380px;
+}
+
+/* Base style for all slides (Oval/Pill shape) */
+.slide-item {
+  width: 220px;
+  height: 320px;
+  border-radius: 120px; /* Oval shape */
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0.5s;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Active Center Slide */
+.slide-item.active {
+  width: 250px;
+  height: 360px;
+  transform: translateX(0) scale(1.05);
+  z-index: 3;
+  opacity: 1;
+  border: 3px solid #e2bc68; /* Golden border highlight */
+}
+
+/* Previous (Left) Side Slide */
+.slide-item.prev {
+  transform: translateX(-140px) scale(0.82);
+  z-index: 2;
+  opacity: 0.9;
+}
+
+/* Next (Right) Side Slide */
+.slide-item.next {
+  transform: translateX(140px) scale(0.82);
+  z-index: 2;
+  opacity: 0.9;
+}
+
+/* Hidden Slides */
+.slide-item.hidden {
+  transform: translateX(0) scale(0.5);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (min-width: 1200px) {
+    .container{
+        max-width: 1200px;
+    }
+}
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 576px) {
+  .slider-wrapper {
+    width: 100%;
+  }
+
+  .slide-item {
+    width: 160px;
+    height: 240px;
+    border-radius: 90px;
+  }
+
+  .slide-item.active {
+    width: 180px;
+    height: 270px;
+  }
+
+  .slide-item.prev {
+    transform: translateX(-80px) scale(0.85);
+  }
+
+  .slide-item.next {
+    transform: translateX(80px) scale(0.85);
+  }
 }
 
 /* =========================

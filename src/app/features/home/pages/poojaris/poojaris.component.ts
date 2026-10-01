@@ -1,15 +1,18 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core'; // 1. Added OnDestroy here
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Poojari } from '../../../../models/poojari.model';
 import { MatDialog } from '@angular/material/dialog';
 import { PoojariProfileCardComponent } from './profile-card/poojari-profile-card.component';
 import { Router } from '@angular/router';
+import { SearchBox } from '../../../shared/search-box';
+
 export interface SearchCriteria {
   ceremony: string;
   location: string;
   date: string;
 }
+
 export interface FilterOptions {
   language: string;
   specialization: string;
@@ -17,13 +20,20 @@ export interface FilterOptions {
   goldCertifiedOnly: boolean;
   sortBy: string;
 }
+
+interface Slide {
+  id: number;
+  name: string;
+  image: string;
+}
+
 @Component({
   selector: 'app-poojaris',
   templateUrl: './poojaris.component.html',
   styleUrls: ['./poojaris.component.scss'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, SearchBox]
 })
-export class PoojarisComponent implements OnInit {
+export class PoojarisComponent implements OnInit, OnDestroy {
 
   @Output() search = new EventEmitter<SearchCriteria>();
   @Output() filterChange = new EventEmitter<FilterOptions>();
@@ -40,7 +50,12 @@ export class PoojarisComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.startAutoPlay();
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoPlay();
   }
 
   searchText = '';
@@ -48,7 +63,7 @@ export class PoojarisComponent implements OnInit {
   selectedLocation = 'All';
   sortBy = 'popular';
 
-    specialties = [
+  specialties = [
     'All',
     'Wedding',
     'Puja & Homam',
@@ -147,62 +162,14 @@ export class PoojarisComponent implements OnInit {
     }
   ];
 
-   get filteredBajanthris(): Poojari[] {
-
+  get filteredBajanthris(): Poojari[] {
     let result = this.poojarisList.filter(item => {
-
-      const search = this.searchText
-        .trim()
-        .toLowerCase();
-
-      // const matchesSearch =
-      //   !search ||
-      //   item.name.toLowerCase().includes(search) ||
-      //   item.location.toLowerCase().includes(search) ||
-      //   item.specialty.toLowerCase().includes(search) ||
-      //   item.instruments.some(
-      //     instrument =>
-      //       instrument.toLowerCase().includes(search)
-      //   );
-
-      // const matchesSpecialty =
-      //   this.selectedSpecialty === 'All' ||
-      //   item.specialty === this.selectedSpecialty;
-
-      // const matchesLocation =
-      //   this.selectedLocation === 'All' ||
-      //   item.location === this.selectedLocation;
-
-      // return (
-      //   matchesSearch &&
-      //   matchesSpecialty &&
-      //   matchesLocation
-      // );
+      const search = this.searchText.trim().toLowerCase();
     });
 
     if (this.sortBy === 'rating') {
-      result = [...result].sort(
-        (a, b) => b.rating - a.rating
-      );
+      result = [...result].sort((a, b) => b.rating - a.rating);
     }
-
-    // if (this.sortBy === 'price-low') {
-    //   result = [...result].sort(
-    //     (a, b) => a.price - b.price
-    //   );
-    // }
-
-    // if (this.sortBy === 'price-high') {
-    //   result = [...result].sort(
-    //     (a, b) => b.price - a.price
-    //   );
-    // }
-
-    // if (this.sortBy === 'experience') {
-    //   result = [...result].sort(
-    //     (a, b) => b.experience - a.experience
-    //   );
-    // }
 
     return result;
   }
@@ -233,30 +200,76 @@ export class PoojarisComponent implements OnInit {
     this.filterChange.emit({ ...this.filters });
   }
 
-onProfileClick(poojari: Poojari): void {
+  onProfileClick(poojari: Poojari): void {
+    console.log('Opening profile:', poojari);
 
-  console.log('Opening profile:', poojari);
-
-  const dialogRef = this.dialog.open(
-    PoojariProfileCardComponent,
-    {
+    const dialogRef = this.dialog.open(PoojariProfileCardComponent, {
       width: '600px',
       maxWidth: '95vw',
       maxHeight: '90vh',
       data: poojari
-    }
-  );
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-
-    if (result) {
-      console.log('Reservation:', result);
-    }
-
-  });
-}
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Reservation:', result);
+      }
+    });
+  }
 
   onReserveClick(): void {
     this.router.navigate(['/my-bookings']);
+  }
+
+  slides: Slide[] = [
+    { id: 1, name: 'Acharya Prem', image: 'poojaris/poojari-1.png' },
+    { id: 2, name: 'Pt. Ram Naresh', image: 'poojaris/poojari-2.jfif' },
+    { id: 3, name: 'Saanvi Sharma', image: 'poojaris/poojari-3.png' }
+  ];
+
+  activeIndex = 0;
+  private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+
+  getSlideClass(index: number): string {
+    const total = this.slides.length;
+    const diff = (index - this.activeIndex + total) % total;
+
+    if (diff === 0) return 'active';
+    if (diff === 1 || diff === -(total - 1)) return 'next';
+    if (diff === total - 1 || diff === -1) return 'prev';
+
+    return 'hidden';
+  }
+
+  setActive(index: number): void {
+    this.activeIndex = index;
+    this.resetAutoPlay();
+  }
+
+  next(): void {
+    this.activeIndex = (this.activeIndex + 1) % this.slides.length;
+  }
+
+  prev(): void {
+    this.activeIndex = (this.activeIndex - 1 + this.slides.length) % this.slides.length;
+  }
+
+  private startAutoPlay(): void {
+    this.stopAutoPlay();
+    this.autoPlayInterval = setInterval(() => {
+      this.next();
+    }, 2000);
+  }
+
+  private stopAutoPlay(): void {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+      this.autoPlayInterval = null;
+    }
+  }
+
+  private resetAutoPlay(): void {
+    this.stopAutoPlay();
+    this.startAutoPlay();
   }
 }
