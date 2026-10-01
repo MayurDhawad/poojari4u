@@ -135,7 +135,37 @@ export class BajanthriComponent implements OnInit, OnDestroy{
       audioSample: 'Tyagaraja Sankeertanam',
       basePrice: 16500,
       badge: 'Verified'
-    }
+    },
+    {
+      id: 5,
+      name: 'Royal Shehnai Ensemble',
+      maestro: 'Ustad Pandit R. K. Sharma',
+      category: 'shehnai',
+      rating: 4.8,
+      reviewsCount: 98,
+      experienceYears: 22,
+      teamSize: 6,
+      location: 'Varanasi',
+      instruments: ['2x Master Shehnai', '2x Dholak / Tabla', '1x Harmonium', '1x Brass Manjira'],
+      audioSample: 'Mangala Dhwani Raga',
+      basePrice: 18500,
+      badge: 'Verified'
+    },
+    {
+      id: 6,
+      name: 'Thrissur Panchavadyam & Chanda Melam',
+      maestro: 'Asan K. V. Panicker',
+      category: 'kerala-melam',
+      rating: 5.0,
+      reviewsCount: 86,
+      experienceYears: 15,
+      teamSize: 8,
+      location: 'Kochi',
+      instruments: ['4x Chanda Drums', '2x Elathalam Cymbals', '1x Kombu Horn', '1x Timila'],
+      audioSample: 'Utsava Chanda Melam',
+      basePrice: 24000,
+      badge: 'Express Booking'
+    },
   ];
 
   setTab(tabCategory: string): void {
