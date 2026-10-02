@@ -2,17 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SearchBox } from '../../search-box/search-box';
 import { CommonModule } from '@angular/common';
 
-export interface HeroFeature {
-  iconClass: string;
-  label: string;
-}
-
-export interface HeroSlide {
-  id: number;
-  image: string;
-  name: string;
-}
-
 export interface HeroData {
   eyebrowIcon?: string;
   eyebrowText?: string;
@@ -22,7 +11,15 @@ export interface HeroData {
   features?: HeroFeature[];
   slides?: HeroSlide[];
 }
-
+export interface HeroFeature {
+  iconClass: string;
+  label: string;
+}
+export interface HeroSlide {
+  id: number;
+  image: string;
+  name: string;
+}
 @Component({
   selector: 'app-hero-section',
    standalone: true,
@@ -30,14 +27,9 @@ export interface HeroData {
   styleUrls: ['./hero-section.component.scss'],
   imports: [CommonModule, SearchBox]
 })
-export class HeroSectionComponent implements OnInit {
 
+export class HeroSectionComponent implements OnInit {
   // Input configuration properties with fallback defaults
-  @Input() eyebrowIcon: string = '';
-  @Input() eyebrowText: string = '';
-  @Input() titleLine1: string = '';
-  @Input() titleHighlight: string = '';
-  @Input() description: string = '';
   @Input() heroData: HeroData[] = [];
   @Input() features: HeroFeature[] = [];
   @Input() slides: HeroSlide[] = [];
@@ -48,7 +40,6 @@ export class HeroSectionComponent implements OnInit {
     this.startAutoPlay();
   }
 
-  // Active slide index management
   activeIndex: number = 0;
   private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
 
@@ -66,7 +57,6 @@ export class HeroSectionComponent implements OnInit {
     
     return 'hidden';
   }
-
 
   next(): void {
     this.activeIndex = (this.activeIndex + 1) % this.slides.length;
@@ -88,10 +78,5 @@ export class HeroSectionComponent implements OnInit {
       clearInterval(this.autoPlayInterval);
       this.autoPlayInterval = null;
     }
-  }
-
-  private resetAutoPlay(): void {
-    this.stopAutoPlay();
-    this.startAutoPlay();
   }
 }

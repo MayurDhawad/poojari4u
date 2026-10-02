@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
+import { PoojariProfileCardComponent } from '../../poojaris/profile-card/poojari-profile-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-info-card',
@@ -9,6 +12,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   imports: [CommonModule],
 })
 export class InfoCardComponent {
+
+  constructor(
+    private router: Router,
+    private dialogRef: MatDialogRef<PoojariProfileCardComponent>
+  ) {}
 
 // Inputs matching the detailed layout
   @Input() troupeCategory: string = 'NADASWARAM';
@@ -41,11 +49,12 @@ export class InfoCardComponent {
   isPlayingAudio: boolean = false;
 
   closeModal(): void {
-    this.onClose.emit();
+    this.dialogRef.close();
   }
 
   proceedToBooking(): void {
-    this.onProceed.emit();
+    this.router.navigate(['/my-bookings'])
+    this.dialogRef.close('true');
   }
 
   toggleAudio(): void {

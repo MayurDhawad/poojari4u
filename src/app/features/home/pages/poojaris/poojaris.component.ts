@@ -72,9 +72,7 @@ export class PoojarisComponent implements OnInit {
     private router: Router,
   ) {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
 
   searchText = '';
@@ -221,15 +219,16 @@ export class PoojarisComponent implements OnInit {
     console.log('Opening profile:', poojari);
 
     const dialogRef = this.dialog.open(PoojariProfileCardComponent, {
-      width: '600px',
-      maxWidth: '95vw',
-      maxHeight: '90vh',
+      maxWidth: '40vw',
+      maxHeight: '80vh',
       data: poojari,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Reservation:', result);
+        this.router.navigate(['/my-bookings']);
+        dialogRef.close();
       }
     });
   }

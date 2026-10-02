@@ -97,9 +97,20 @@
                   <span class="fw-bold fs-5 text-maroon">₹{{ troupe.basePrice | number }}</span>
                   <span class="text-muted extra-small"> / event</span>
                 </div>
-                <button class="btn btn-warning fw-semibold text-dark px-3"
+                <!-- <button class="btn btn-warning fw-semibold text-dark px-3"
                   (click)="onProfileClick(troupe)">Details</button>
-                <button class="btn btn-warning fw-semibold text-dark px-3">Book Troupe</button>
+                <button class="btn btn-warning fw-semibold text-dark px-3">Book Troupe</button> -->
+                <div class="d-flex align-items-center gap-2">
+                  <button type="button" class="btn btn-outline-secondary btn-sm rounded-3 px-3 fw-semibold py-1.5"
+                    (click)="onProfileClick(troupe)">
+                    Profile
+                  </button>
+
+                  <button type="button" class="btn btn-warning btn-sm rounded-3 px-3 fw-bold text-white py-1.5"
+                    (click)="onReserveClick()">
+                    Book Troupe
+                  </button>
+                </div>
               </div>
             </div>
           </div>

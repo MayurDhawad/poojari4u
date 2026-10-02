@@ -273,90 +273,7 @@
     transform: translateX(80px) scale(0.85);
   }
 }
-
-/* =========================
-   SEARCH
-========================= */
-
-.search-section {
-  position: relative;
-  z-index: 5;
-
-  margin-top: -35px;
-}
-
-.search-card {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 14px;
-  box-shadow:
-    0 14px 40px rgba(70, 45, 20, 0.12);
-}
-
-.search-field {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 7px 18px;
-  border-right: 1px solid var(--border);
-}
-
-.field-icon {
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--orange-light);
-  color: var(--primary);
-  border-radius: 11px;
-}
-
-.field-content {
-  flex: 1;
-}
-
-.field-content label {
-  display: block;
-  color: #746456;
-  font-size: 11px;
-  font-weight: 700;
-  margin-bottom: 3px;
-}
-
-.field-content input,
-.field-content select {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
-  color: var(--text);
-  font-size: 14px;
-}
-
-.field-content input::placeholder {
-  color: #a4978b;
-}
-
-.search-button {
-  flex-shrink: 0;
-  border: 0;
-  background: var(--primary);
-  color: #fff;
-  padding: 13px 25px;
-  border-radius: 12px;
-  font-weight: 700;
-}
-
-.search-button:hover {
-  background: var(--primary-dark);
-}
-
+  
 /* =========================
    MAIN
 ========================= */
@@ -1468,4 +1385,20 @@ $gold-light: #fff9e6;
   .extra-small {
     font-size: 0.68rem;
   }
+}
+
+/* Footer Button */
+.btn-gold-proceed {
+  background-color: #c2410c;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-gold-proceed:hover {
+  background-color: #9a3412;
+}
+
+.extra-small {
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
 }

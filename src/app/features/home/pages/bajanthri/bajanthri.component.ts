@@ -204,17 +204,19 @@ export class BajanthriComponent implements OnInit {
     const dialogRef = this.dialog.open(InfoCardComponent, {
       maxWidth: '40vw',
       maxHeight: '80vh',
-      // data: troupe
+      data: troupe
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Reservation:', result);
+        this.router.navigate(['/my-bookings']);
+        dialogRef.close();
       }
     });
   }
-
-  onReserveClick(): void {
-    this.router.navigate(['/my-bookings']);
-  }
+ 
+   onReserveClick(): void {
+     this.router.navigate(['/my-bookings']);
+   }
 }

@@ -1,24 +1,30 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef
-} from '@angular/material/dialog';
-
+import {MAT_DIALOG_DATA,MatDialogModule,MatDialogRef} from '@angular/material/dialog';
 import { Poojari } from '../../../../../models/poojari.model';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-poojari-profile-card',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatDialogModule
-  ],
   templateUrl: './poojari-profile-card.component.html',
-  styleUrls: ['./poojari-profile-card.component.scss']
+  styleUrls: ['./poojari-profile-card.component.scss'],
+  imports: [CommonModule,MatDialogModule],
 })
-export class PoojariProfileCardComponent {
+
+export class PoojariProfileCardComponent implements OnInit {
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public poojari: Poojari,
+    private router: Router,
+    private dialogRef: MatDialogRef<PoojariProfileCardComponent>
+  ) {
+    this.calculateTotal();
+  }
+
+  ngOnInit(): void {
+
+  }
 
   defaultVidhiSteps = [
     'Ganapati Pooja & Punyahavachanam',
@@ -43,14 +49,7 @@ export class PoojariProfileCardComponent {
   selectedAddons: string[] = [];
   totalPrice = 0;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-    public poojari: Poojari,
 
-    private dialogRef: MatDialogRef<PoojariProfileCardComponent>
-  ) {
-    this.calculateTotal();
-  }
 
   toggleAddon(addonId: string): void {
 
@@ -87,12 +86,11 @@ export class PoojariProfileCardComponent {
   }
 
   onProceed(): void {
-
+    this.router.navigate(['/my-bookings'])
     this.dialogRef.close({
       poojari: this.poojari,
       selectedAddons: this.selectedAddons,
       totalPrice: this.totalPrice
     });
-
   }
 }
