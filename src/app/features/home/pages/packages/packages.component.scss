@@ -1,22 +1,30 @@
-.packages-page {
-  min-height: 100vh;
-  background: #faf9f7;
+:host {
+  display: block;
+  --primary: #d97706;
+  --primary-dark: #b45309;
+  --orange-light: #fff1df;
+  --cream: #fffaf3;
+  --border: #eadfce;
+  --text: #34251b;
+  --muted: #76685c;
+  --green: #198754;
 }
-
 
 /* =========================
    HERO
 ========================= */
-
 .packages-hero {
-  padding: 65px 0 75px;
-
+   height: 85vh;
   background:
+    radial-gradient(
+      circle at 80% 30%,
+      rgba(245, 158, 11, 0.18),
+      transparent 35%
+    ),
     linear-gradient(
       135deg,
-      #fff8ed 0%,
-      #fff 60%,
-      #fff5e7 100%
+      #fff9f0 0%,
+      #fff3df 100%
     );
 }
 

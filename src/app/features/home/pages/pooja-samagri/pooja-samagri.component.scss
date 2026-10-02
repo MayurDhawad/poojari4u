@@ -11,14 +11,12 @@
   --green: #198754;
 }
 
-
 /* =========================
    HERO
 ========================= */
 
-.samagri-hero {
-  position: relative;
-  overflow: hidden;
+.samagri-hero {    
+  height: 85vh;
   background:
     radial-gradient(
       circle at 80% 30%,
@@ -30,8 +28,6 @@
       #fff9f0 0%,
       #fff3df 100%
     );
-
-  padding: 70px 0;
 }
 
 .hero-content {
@@ -110,6 +106,185 @@
 
   box-shadow:
     0 25px 60px rgba(100, 60, 20, 0.18);
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  margin-bottom: 15px;
+}
+
+.hero-eyebrow i {
+  font-size: 19px;
+}
+
+.hero-content h1 {
+  color: var(--text);
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.08;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+.hero-content h1 span {
+  color: var(--primary);
+}
+
+.hero-content p {
+  max-width: 620px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+
+  margin-bottom: 28px;
+}
+
+.hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.hero-features div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  color: #57483b;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.hero-features i {
+  color: var(--green);
+  font-size: 17px;
+}
+
+
+/* Hero image */
+
+.hero-image {
+  position: relative;
+  padding-left: 35px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 380px;
+
+  object-fit: cover;
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 25px 60px rgba(100, 60, 20, 0.18);
+}
+
+.hero-floating-card {
+  position: absolute;
+
+  left: 5px;
+  bottom: 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 16px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 10px 30px rgba(70, 45, 20, 0.16);
+}
+
+.floating-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--orange-light);
+  color: var(--primary);
+
+  border-radius: 10px;
+}
+
+.hero-floating-card strong {
+  display: block;
+
+  color: var(--text);
+  font-size: 13px;
+}
+
+.hero-floating-card span {
+  display: block;
+
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.slider-container {
+  width: 100%;
+  height: 420px;
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  width: 600px;
+  height: 380px;
+}
+
+/* Base style for all slides (Oval/Pill shape) */
+.slide-item {
+  width: 210px;
+  height: 300px;
+  border-radius: 120px; /* Oval shape */
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, z-index 0.5s;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Active Center Slide */
+.slide-item.active {
+  width: 225px;
+  height: 333px;
+  transform: translateX(0) scale(1.05);
+  z-index: 3;
+  opacity: 1;
+  border: 3px solid #e2bc68; /* Golden border highlight */
+}
+
+/* Previous (Left) Side Slide */
+.slide-item.prev {
+  transform: translateX(-170px) scale(0.75);
+  z-index: 2;
+  opacity: 0.9;
+}
+
+/* Next (Right) Side Slide */
+.slide-item.next {
+  transform: translateX(170px) scale(0.75);
+  z-index: 2;
+  opacity: 0.9;
+}
+
+/* Hidden Slides */
+.slide-item.hidden {
+  transform: translateX(0) scale(0.5);
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
 

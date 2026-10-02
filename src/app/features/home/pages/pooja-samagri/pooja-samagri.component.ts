@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HeroData, HeroFeature, HeroSlide, HeroSectionComponent } from '../../../shared/hero-section/hero-section/hero-section.component';
 
 interface SamagriItem {
   id: number;
@@ -16,14 +17,42 @@ interface SamagriItem {
   badge?: string;
 }
 
+interface Slide {
+  id: number;
+  name: string;
+  image: string;
+}
+
 @Component({
   selector: 'app-pooja-samagri',
   standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './pooja-samagri.component.html',
-  styleUrl: './pooja-samagri.component.scss'
+  styleUrl: './pooja-samagri.component.scss',
+  imports: [CommonModule, FormsModule, HeroSectionComponent],
 })
 export class PoojaSamagriComponent {
+
+  heroData: HeroData[] = [
+    {
+      eyebrowIcon: 'bi-flower1',
+      eyebrowText: 'PURE & TRADITIONAL PUJA ESSENTIALS',
+      titleLine1: 'Pooja Samagri',
+      titleHighlight: 'Delivered to Your Door',
+      description: 'Everything you need for your puja, homam and sacred ceremonies, carefully selected and delivered fresh to your doorstep.'
+    }
+  ];
+
+  features: HeroFeature[] = [
+    { iconClass: 'bi-patch-check-fill', label: 'Verified Quality' },
+    { iconClass: 'bi-box-seam-fill', label: 'Secure Packaging' },
+    { iconClass: 'bi-truck', label: 'Doorstep Delivery' }
+  ];
+
+  slides: HeroSlide[] = [
+    { id: 1, name: 'Acharya Prem', image: 'pooja-samagri/samagri-havan.jpg' },
+    { id: 2, name: 'Saanvi Sharma', image: 'pooja-samagri/samagri-camphor.jpg' },
+    { id: 3, name: 'Pt. Ram Naresh', image: 'pooja-samagri/samagri-kumkum.jpg' },
+  ];
 
   searchText = '';
   selectedCategory = 'All';
@@ -31,20 +60,20 @@ export class PoojaSamagriComponent {
 
   categories = [
     'All',
-    'Puja Kits',
+    'Pooja Kits',
     'Samagri',
     'Diyas & Lamps',
     'Incense',
     'Flowers & Leaves',
-    'Puja Accessories'
+    'Other Pooja Accessories'
   ];
 
   items: SamagriItem[] = [
     {
       id: 1,
-      name: 'Satyanarayan Puja Kit',
-      category: 'Puja Kits',
-      description: 'Complete samagri kit for Satyanarayan Swamy Puja.',
+      name: 'Satyanarayan Pooja Kit',
+      category: 'Pooja Kits',
+      description: 'Complete samagri kit for Satyanarayan Swamy Pooja.',
       price: 499,
       oldPrice: 599,
       unit: '1 Complete Kit',
@@ -55,8 +84,8 @@ export class PoojaSamagriComponent {
     },
     {
       id: 2,
-      name: 'Ganesh Puja Kit',
-      category: 'Puja Kits',
+      name: 'Ganesh Pooja Kit',
+      category: 'Pooja Kits',
       description: 'Essential items required for Ganesh Puja.',
       price: 349,
       oldPrice: 425,
@@ -93,7 +122,7 @@ export class PoojaSamagriComponent {
       id: 5,
       name: 'Brass Diya Set',
       category: 'Diyas & Lamps',
-      description: 'Traditional brass diyas suitable for daily puja.',
+      description: 'Traditional brass diyas suitable for daily pooja.',
       price: 399,
       oldPrice: 499,
       unit: 'Set of 2',
@@ -117,7 +146,7 @@ export class PoojaSamagriComponent {
       id: 7,
       name: 'Premium Incense Sticks',
       category: 'Incense',
-      description: 'Fragrant incense sticks for puja and meditation.',
+      description: 'Fragrant incense sticks for pooja and meditation.',
       price: 129,
       oldPrice: 159,
       unit: 'Pack of 5',
@@ -128,9 +157,9 @@ export class PoojaSamagriComponent {
     },
     {
       id: 8,
-      name: 'Puja Thali Set',
-      category: 'Puja Accessories',
-      description: 'Elegant traditional thali set for puja ceremonies.',
+      name: 'Pooja Thali Set',
+      category: 'Pooja Accessories',
+      description: 'Elegant traditional thali set for pooja ceremonies.',
       price: 699,
       oldPrice: 799,
       unit: '1 Complete Set',
@@ -151,6 +180,7 @@ export class PoojaSamagriComponent {
       reviews: 53
     }
   ];
+
 
   get filteredItems(): SamagriItem[] {
     let result = this.items.filter(item => {
@@ -191,5 +221,58 @@ export class PoojaSamagriComponent {
 
   addToCart(item: SamagriItem): void {
     console.log('Added to cart:', item);
+  }
+
+  /*---- Slider ----*/
+  // slides: Slide[] = [
+  //   { id: 1, name: 'Acharya Prem', image: 'pooja-samagri/samagri-havan.jpg' },
+  //   { id: 2, name: 'Saanvi Sharma', image: 'pooja-samagri/samagri-camphor.jpg' },
+  //   { id: 3, name: 'Pt. Ram Naresh', image: 'pooja-samagri/samagri-kumkum.jpg' },
+  // ];
+
+  activeIndex = 0;
+  private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+
+  getSlideClass(index: number): string {
+    const total = this.slides.length;
+    const diff = (index - this.activeIndex + total) % total;
+
+    if (diff === 0) return 'active';
+    if (diff === 1 || diff === -(total - 1)) return 'next';
+    if (diff === total - 1 || diff === -1) return 'prev';
+
+    return 'hidden';
+  }
+
+  setActive(index: number): void {
+    this.activeIndex = index;
+    this.resetAutoPlay();
+  }
+
+  next(): void {
+    this.activeIndex = (this.activeIndex + 1) % this.slides.length;
+  }
+
+  prev(): void {
+    this.activeIndex = (this.activeIndex - 1 + this.slides.length) % this.slides.length;
+  }
+
+  private startAutoPlay(): void {
+    this.stopAutoPlay();
+    this.autoPlayInterval = setInterval(() => {
+      this.next();
+    }, 2000);
+  }
+
+  private stopAutoPlay(): void {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+      this.autoPlayInterval = null;
+    }
+  }
+
+  private resetAutoPlay(): void {
+    this.stopAutoPlay();
+    this.startAutoPlay();
   }
 }

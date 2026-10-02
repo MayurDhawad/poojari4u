@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-
+import { HeroData, HeroFeature, HeroSectionComponent, HeroSlide } from '../../../shared/hero-section/hero-section/hero-section.component';
 interface PackageItem {
   name: string;
   icon: string;
 }
-
 interface PoojaPackage {
   id: number;
   name: string;
@@ -20,15 +19,42 @@ interface PoojaPackage {
   category: string;
   items: PackageItem[];
 }
+interface Slide {
+  id: number;
+  name: string;
+  image: string;
+}
 
 @Component({
   selector: 'app-packages',
   standalone: true,
-  imports: [CommonModule, RouterLink],
   templateUrl: './packages.component.html',
-  styleUrl: './packages.component.scss'
+  styleUrl: './packages.component.scss',
+  imports: [CommonModule, RouterLink, HeroSectionComponent],
 })
 export class PackagesComponent {
+
+  heroData: HeroData[] = [
+    {
+      eyebrowIcon: 'bi-flower1',
+      eyebrowText: 'PUJA PACKAGES',
+      titleLine1: 'Everything You Need for Your',
+      titleHighlight: 'Special Puja',
+      description: 'Choose from thoughtfully designed puja packages that include experienced Poojaris, essential rituals and Samagri.'
+    }
+  ];
+  
+  features: HeroFeature[] = [
+    { iconClass: '', label: '' },
+    { iconClass: '', label: '' },
+    { iconClass: '', label: '' }
+  ];
+  
+  slides: HeroSlide[] = [
+    { id: 1, name: 'Pt. Ram Naresh', image: 'package/package-griha-pravesh.jpg' },
+    { id: 2, name: 'Saanvi Sharma', image: 'package/package-vastu.jpg' },
+    { id: 3, name: 'Acharya Prem', image: 'package/package-wedding.jpg' },
+  ];
 
   selectedCategory = 'All';
 
@@ -275,5 +301,4 @@ export class PackagesComponent {
   selectCategory(category: string): void {
     this.selectedCategory = category;
   }
-
 }

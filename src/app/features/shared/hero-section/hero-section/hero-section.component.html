@@ -1,0 +1,66 @@
+
+<section class="main-section hero-section container-fluid px-3 px-lg-5">
+  <div class="row align-items-center">
+    
+    <!-- Hero Text Content -->
+    <div class="col-lg-6">
+      <div class="hero-content">
+    
+        <div class="hero-eyebrow">
+          <i [class]="'bi ' + heroData[0].eyebrowIcon"></i>
+          {{ heroData[0].eyebrowText }}
+        </div>
+    
+        <h1>
+          {{ heroData[0].titleLine1 }}
+          <br />
+          <span>{{ heroData[0].titleHighlight }}</span>
+        </h1>
+    
+        <p>{{ heroData[0].description }}</p>
+    
+        <div class="hero-features">
+          @for (feature of features; track feature.label) {
+            <div>
+              <i [class]="'bi ' + feature.iconClass"></i>
+              {{ feature.label }}
+            </div>
+          }
+        </div>
+    
+      </div>
+    </div>
+    
+    <!-- Hero Slider -->
+    <div class="col-lg-6 d-none d-lg-block">
+      <div class="slider-container d-flex justify-content-center align-items-center position-relative my-1">
+        <div class="slider-wrapper position-relative d-flex justify-content-center align-items-center">
+    
+          @for (slide of slides; track slide.id; let i = $index) {
+            <div 
+              class="slide-item position-absolute overflow-hidden"
+              [ngClass]="getSlideClass(i)" 
+              (click)="setActive(i)"
+            >
+              <img [src]="slide.image" [alt]="slide.name" class="w-100 h-100 object-fit-cover" />
+            </div>
+          }
+
+        </div>
+    
+        <!-- Optional Navigation Controls -->
+        <button class="btn btn-dark position-absolute start-0 translate-middle-y top-50 z-3 ms-3 rounded-circle" (click)="prev()">‹</button>
+        <button class="btn btn-dark position-absolute end-0 translate-middle-y top-50 z-3 me-3 rounded-circle" (click)="next()">›</button> 
+       
+      </div>
+    </div>
+
+    <!-- Search Box -->
+    <div class="col-12">
+      <div class="w-75 w-lg-50">
+        <app-search-box></app-search-box>
+      </div>
+    </div>
+
+  </div>
+</section>

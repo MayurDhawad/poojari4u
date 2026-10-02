@@ -1,65 +1,10 @@
 
-<!-- =========================
-     HERO
-========================= -->
-<section class="main-section container-fluid px-3 px-lg-5">
-  <div class="row align-items-center">
-    <div class="col-lg-6">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <i class="bi bi-music-note-beamed"></i>
-          TRADITIONAL MUSIC FOR AUSPICIOUS OCCASIONS
-        </div>
-
-        <h1> Book Verified<br />
-          <span>Bajanthri Groups</span>
-        </h1>
-
-        <p>
-          Bring tradition and auspicious music to your special
-          moments with experienced Bajanthri groups for weddings,
-          pujas, homams and ceremonies.
-        </p>
-
-        <div class="hero-features">
-          <div>
-            <i class="bi bi-patch-check-fill"></i>Verified Artists
-          </div>
-          <div>
-            <i class="bi bi-music-note-list"></i>Traditional Instruments
-          </div>
-          <div>
-            <i class="bi bi-calendar-check"></i>Easy Booking
-          </div>
-        </div>
-      </div>
-    </div>
-
- <div class="col-lg-6 d-none d-lg-block">
-      <div class="slider-container d-flex justify-content-center align-items-center position-relative my-1">
-        <div class="slider-wrapper position-relative d-flex justify-content-center align-items-center">
-
-          <div *ngFor="let slide of slides; let i = index" class="slide-item position-absolute overflow-hidden"
-            [ngClass]="getSlideClass(i)" (click)="setActive(i)">
-            <img [src]="slide.image" [alt]="slide.name" class="w-100 h-100 object-fit-cover" />
-          </div>
-
-        </div>
-
-        <!-- Optional Navigation Buttons -->
-        <!-- <button class="btn btn-dark position-absolute start-0 translate-middle-y top-50 z-3 ms-3 rounded-circle" (click)="prev()">‹</button>
-            <button class="btn btn-dark position-absolute end-0 translate-middle-y top-50 z-3 me-3 rounded-circle" (click)="next()">›</button> -->
-      </div>
-    </div>
-    <!-- =========================
-        Search Box
-    ========================= -->
-    <div class="w-75">
-      <app-search-box></app-search-box>
-    </div>
-  </div>
-</section>
-
+<!-- ================= HERO =================== -->
+<app-hero-section
+  [heroData]="heroData"
+  [features]="features"
+  [slides]="slides">
+</app-hero-section>
 <!-- =========================
      MAIN
 ========================= -->

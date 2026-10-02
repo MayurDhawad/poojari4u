@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { SearchBox } from '../../../shared/search-box';
 import { InfoCardComponent } from './info-card/info-card.component';
+import { HeroData, HeroFeature, HeroSectionComponent, HeroSlide } from '../../../shared/hero-section/hero-section/hero-section.component';
 
 export interface BajanthriTroupe {
   id: number;
@@ -47,30 +47,44 @@ interface Slide {
   standalone: true,
   templateUrl: './bajanthri.component.html',
   styleUrl: './bajanthri.component.scss',
-  imports: [CommonModule, FormsModule, SearchBox],
+  imports: [CommonModule, FormsModule, HeroSectionComponent],
 })
-
-export class BajanthriComponent implements OnInit, OnDestroy{
-
+export class BajanthriComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {}
 
-  ngOnInit(): void {
-    this.startAutoPlay();
-  }
+  ngOnInit(): void {}
 
-  ngOnDestroy(): void {
-    this.stopAutoPlay();
-  }
+  heroData: HeroData[] = [
+    {
+      eyebrowIcon: 'bi-music-note-beamed',
+      eyebrowText: 'TRADITIONAL MUSIC FOR AUSPICIOUS OCCASIONS',
+      titleLine1: 'Book Verified',
+      titleHighlight: 'Bajanthri Groups',
+      description:'Bring tradition and auspicious music to your special moments with experienced Bajanthri groups for weddings, pujas, homams and ceremonies.',
+    },
+  ];
+
+  features: HeroFeature[] = [
+    { iconClass: 'bi-patch-check-fill', label: 'Verified Artists ' },
+    { iconClass: 'bi-music-note-list', label: 'Traditional Instruments ' },
+    { iconClass: 'bi-calendar-check', label: 'Easy Booking ' },
+  ];
+
+  slides: HeroSlide[] = [
+    { id: 1, name: 'Pt. Ram Naresh', image: 'bajanthris/bajanthri-1.jfif' },
+    { id: 2, name: 'Saanvi Sharma', image: 'bajanthris/bajanthri-2.jfif' },
+    { id: 3, name: 'Acharya Prem', image: 'bajanthris/bajanthri-3.jfif' },
+  ];
 
   categories = [
     { name: 'All Instruments', icon: '✨', active: true },
     { name: 'Nadaswaram & Thavil', icon: '🎷', active: false },
     { name: 'Royal Shehnai & Dholak', icon: '🎺', active: false },
     { name: 'Panchavadyam & Chanda', icon: '🥁', active: false },
-    { name: 'Classical Saxophone Band', icon: '🎷', active: false }
+    { name: 'Classical Saxophone Band', icon: '🎷', active: false },
   ];
 
   activeTab: string = 'all';
@@ -89,7 +103,7 @@ export class BajanthriComponent implements OnInit, OnDestroy{
       instruments: ['2x Nadaswaram', '2x Thavil Percussion', '1x Sruti Box'],
       audioSample: 'Kalyana Melam Raga',
       basePrice: 15000,
-      badge: 'Top Rated'
+      badge: 'Top Rated',
     },
     {
       id: 2,
@@ -104,7 +118,7 @@ export class BajanthriComponent implements OnInit, OnDestroy{
       instruments: ['2x Master Shehnai', '2x Dholak / Tabla', '1x Harmonium', '1x Brass Manjira'],
       audioSample: 'Mangala Dhwani Raga',
       basePrice: 18500,
-      badge: 'Verified'
+      badge: 'Verified',
     },
     {
       id: 3,
@@ -119,7 +133,7 @@ export class BajanthriComponent implements OnInit, OnDestroy{
       instruments: ['4x Chanda Drums', '2x Elathalam Cymbals', '1x Kombu Horn', '1x Timila'],
       audioSample: 'Utsava Chanda Melam',
       basePrice: 24000,
-      badge: 'Express Booking'
+      badge: 'Express Booking',
     },
     {
       id: 4,
@@ -131,10 +145,15 @@ export class BajanthriComponent implements OnInit, OnDestroy{
       experienceYears: 12,
       teamSize: 5,
       location: 'Bengaluru',
-      instruments: ['2x Classical Saxophone', '1x Thavil Percussion', '1x Keyboard', '1x Pad Percussion'],
+      instruments: [
+        '2x Classical Saxophone',
+        '1x Thavil Percussion',
+        '1x Keyboard',
+        '1x Pad Percussion',
+      ],
       audioSample: 'Tyagaraja Sankeertanam',
       basePrice: 16500,
-      badge: 'Verified'
+      badge: 'Verified',
     },
     {
       id: 5,
@@ -149,7 +168,7 @@ export class BajanthriComponent implements OnInit, OnDestroy{
       instruments: ['2x Master Shehnai', '2x Dholak / Tabla', '1x Harmonium', '1x Brass Manjira'],
       audioSample: 'Mangala Dhwani Raga',
       basePrice: 18500,
-      badge: 'Verified'
+      badge: 'Verified',
     },
     {
       id: 6,
@@ -164,7 +183,7 @@ export class BajanthriComponent implements OnInit, OnDestroy{
       instruments: ['4x Chanda Drums', '2x Elathalam Cymbals', '1x Kombu Horn', '1x Timila'],
       audioSample: 'Utsava Chanda Melam',
       basePrice: 24000,
-      badge: 'Express Booking'
+      badge: 'Express Booking',
     },
   ];
 
@@ -176,7 +195,7 @@ export class BajanthriComponent implements OnInit, OnDestroy{
     if (this.activeTab === 'all') {
       return this.troupes;
     }
-    return this.troupes.filter(troupe => troupe.category === this.activeTab);
+    return this.troupes.filter((troupe) => troupe.category === this.activeTab);
   }
 
   onProfileClick(troupe: BajanthriTroupe): void {
@@ -188,7 +207,7 @@ export class BajanthriComponent implements OnInit, OnDestroy{
       // data: troupe
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Reservation:', result);
       }
@@ -197,57 +216,5 @@ export class BajanthriComponent implements OnInit, OnDestroy{
 
   onReserveClick(): void {
     this.router.navigate(['/my-bookings']);
-  }
-   /*---- Slider ----*/
-  slides: Slide[] = [
-    { id: 1, name: 'Acharya Prem', image: 'bajanthris/bajanthri-1.jfif' },
-    { id: 2, name: 'Pt. Ram Naresh', image: 'bajanthris/bajanthri-2.jfif' },
-    { id: 3, name: 'Saanvi Sharma', image: 'bajanthris/bajanthri-3.jfif' }
-  ];
-
-  activeIndex = 0;
-  private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
-
-  getSlideClass(index: number): string {
-    const total = this.slides.length;
-    const diff = (index - this.activeIndex + total) % total;
-
-    if (diff === 0) return 'active';
-    if (diff === 1 || diff === -(total - 1)) return 'next';
-    if (diff === total - 1 || diff === -1) return 'prev';
-
-    return 'hidden';
-  }
-
-  setActive(index: number): void {
-    this.activeIndex = index;
-    this.resetAutoPlay();
-  }
-
-  next(): void {
-    this.activeIndex = (this.activeIndex + 1) % this.slides.length;
-  }
-
-  prev(): void {
-    this.activeIndex = (this.activeIndex - 1 + this.slides.length) % this.slides.length;
-  }
-
-  private startAutoPlay(): void {
-    this.stopAutoPlay();
-    this.autoPlayInterval = setInterval(() => {
-      this.next();
-    }, 2000);
-  }
-
-  private stopAutoPlay(): void {
-    if (this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
-      this.autoPlayInterval = null;
-    }
-  }
-
-  private resetAutoPlay(): void {
-    this.stopAutoPlay();
-    this.startAutoPlay();
   }
 }

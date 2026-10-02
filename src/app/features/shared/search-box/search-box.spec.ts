@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SearchBox } from './search-box';
+import { SearchBox } from '../search-box';
 
 describe('SearchBox', () => {
   let component: SearchBox;
