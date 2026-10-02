@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Poojari } from '../../../../models/poojari.model';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { SearchBox } from '../../../shared/search-box';
+import { InfoCardComponent } from './info-card/info-card.component';
 
 export interface BajanthriTroupe {
   id: number;
@@ -179,21 +179,20 @@ export class BajanthriComponent implements OnInit, OnDestroy{
     return this.troupes.filter(troupe => troupe.category === this.activeTab);
   }
 
-  onProfileClick(poojari: Poojari): void {
-    console.log('Opening profile:', poojari);
+  onProfileClick(troupe: BajanthriTroupe): void {
+    console.log('Opening profile:', troupe);
 
-    // const dialogRef = this.dialog.open(PoojariProfileCardComponent, {
-    //   width: '600px',
-    //   maxWidth: '95vw',
-    //   maxHeight: '90vh',
-    //   data: poojari
-    // });
+    const dialogRef = this.dialog.open(InfoCardComponent, {
+      maxWidth: '40vw',
+      maxHeight: '80vh',
+      // data: troupe
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     console.log('Reservation:', result);
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log('Reservation:', result);
+      }
+    });
   }
 
   onReserveClick(): void {

@@ -18,9 +18,16 @@
 
 .main-section {
   height: 85vh;
-  background:
-    radial-gradient(circle at 80% 30%, rgba(245, 158, 11, 0.18), transparent 35%),
-    linear-gradient(135deg, #fff9f0, #fff3df);
+  background-image:
+    linear-gradient(
+      rgba(255, 243, 223, 0.58) 0%,
+      rgba(255, 243, 223, 0.75) 45%,
+      rgba(255, 243, 223, 0.58) 100%
+    ),
+    url('/poojaris/poojari-hero-1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   .hero-eyebrow {
     display: inline-flex;
