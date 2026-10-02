@@ -8,128 +8,116 @@
 <!-- =========================
      MAIN
 ========================= -->
-<div class="container my-4">
-  <!-- Nav Tabs -->
-  <ul class="nav nav-pills custom-bajanthri-tabs mb-4 flex-nowrap overflow-auto pb-2" id="bajanthriTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link" 
-        [class.active]="activeTab === 'all'" 
-        (click)="setTab('all')" 
-        type="button">
-        ✨ All Instruments
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link" 
-        [class.active]="activeTab === 'nadaswaram'" 
-        (click)="setTab('nadaswaram')" 
-        type="button">
-        🪈 Nadaswaram & Thavil
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link" 
-        [class.active]="activeTab === 'shehnai'" 
-        (click)="setTab('shehnai')" 
-        type="button">
-        🎺 Royal Shehnai & Dholak
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link" 
-        [class.active]="activeTab === 'kerala-melam'" 
-        (click)="setTab('kerala-melam')" 
-        type="button">
-        🥁 Panchavadyam & Chanda
-      </button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button 
-        class="nav-link" 
-        [class.active]="activeTab === 'saxophone'" 
-        (click)="setTab('saxophone')" 
-        type="button">
-        🎷 Classical Saxophone Band
-      </button>
-    </li>
-  </ul>
-
-  <!-- Tab Content / Grid -->
-  <div class="row g-4">
-    @for (troupe of filteredTroupes; track troupe.id) {
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card h-100 troupe-card shadow-sm border-0">
-          <div class="card-body d-flex flex-column">
-            <!-- Badge & Title -->
-            <div class="d-flex justify-content-between align-items-start mb-2">
-              <span class="badge category-pill text-uppercase">{{ troupe.category }}</span>
-              @if (troupe.badge) {
+  <section class="container-fluid px-3 px-lg-5">
+    <div class="mt-5">
+      <!-- Nav Tabs -->
+      <ul class="nav nav-pills custom-bajanthri-tabs mb-4 flex-nowrap overflow-auto pb-2" id="bajanthriTab"
+        role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" [class.active]="activeTab === 'all'" (click)="setTab('all')" type="button">
+            ✨ All Instruments
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" [class.active]="activeTab === 'nadaswaram'" (click)="setTab('nadaswaram')"
+            type="button">
+            🪈 Nadaswaram & Thavil
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" [class.active]="activeTab === 'shehnai'" (click)="setTab('shehnai')" type="button">
+            🎺 Royal Shehnai & Dholak
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" [class.active]="activeTab === 'kerala-melam'" (click)="setTab('kerala-melam')"
+            type="button">
+            🥁 Panchavadyam & Chanda
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" [class.active]="activeTab === 'saxophone'" (click)="setTab('saxophone')" type="button">
+            🎷 Classical Saxophone Band
+          </button>
+        </li>
+      </ul>
+  
+      <!-- Tab Content / Grid -->
+      <div class="row g-4">
+        @for (troupe of filteredTroupes; track troupe.id) {
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 troupe-card shadow-sm border-0">
+            <div class="card-body d-flex flex-column">
+              <!-- Badge & Title -->
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <span class="badge category-pill text-uppercase">{{ troupe.category }}</span>
+                @if (troupe.badge) {
                 <span class="badge bg-dark text-gold">{{ troupe.badge }}</span>
-              }
-            </div>
-
-            <h5 class="card-title fw-bold mb-0">{{ troupe.name }}</h5>
-            <p class="text-muted small mb-3">{{ troupe.maestro }}</p>
-
-            <!-- Stats Bar -->
-            <div class="row text-center bg-light rounded py-2 mx-0 mb-3 small">
-              <div class="col border-end">
-                <div class="text-muted">Rating</div>
-                <div class="fw-bold text-warning">★ {{ troupe.rating }} <span class="text-secondary fw-normal">({{ troupe.reviewsCount }})</span></div>
+                }
               </div>
-              <div class="col border-end">
-                <div class="text-muted">Experience</div>
-                <div class="fw-bold">{{ troupe.experienceYears }} Yrs</div>
+  
+              <h5 class="card-title fw-bold mb-0">{{ troupe.name }}</h5>
+              <p class="text-muted small mb-3">{{ troupe.maestro }}</p>
+  
+              <!-- Stats Bar -->
+              <div class="row text-center bg-light rounded py-2 mx-0 mb-3 small">
+                <div class="col border-end">
+                  <div class="text-muted">Rating</div>
+                  <div class="fw-bold text-warning">★ {{ troupe.rating }} <span class="text-secondary fw-normal">({{
+                      troupe.reviewsCount }})</span></div>
+                </div>
+                <div class="col border-end">
+                  <div class="text-muted">Experience</div>
+                  <div class="fw-bold">{{ troupe.experienceYears }} Yrs</div>
+                </div>
+                <div class="col">
+                  <div class="text-muted">Size</div>
+                  <div class="fw-bold">{{ troupe.teamSize }} Artists</div>
+                </div>
               </div>
-              <div class="col">
-                <div class="text-muted">Size</div>
-                <div class="fw-bold">{{ troupe.teamSize }} Artists</div>
+  
+              <!-- Location & Instruments -->
+              <p class="small text-muted mb-2">
+                📍 Based in <strong>{{ troupe.location }}</strong> (Travels available)
+              </p>
+              <p class="small text-secondary mb-3">
+                🎵 {{ troupe.instruments.join(', ') }}
+              </p>
+  
+              <!-- Audio Sample -->
+              <div class="audio-sample-box p-2 bg-light rounded mb-3 d-flex justify-content-between align-items-center">
+                <span class="small text-truncate">▶ Audio Sample: <em>{{ troupe.audioSample }}</em></span>
+                <button class="btn btn-sm btn-outline-warning text-dark py-0 px-2 fs-7">Listen</button>
               </div>
-            </div>
-
-            <!-- Location & Instruments -->
-            <p class="small text-muted mb-2">
-              📍 Based in <strong>{{ troupe.location }}</strong> (Travels available)
-            </p>
-            <p class="small text-secondary mb-3">
-              🎵 {{ troupe.instruments.join(', ') }}
-            </p>
-
-            <!-- Audio Sample -->
-            <div class="audio-sample-box p-2 bg-light rounded mb-3 d-flex justify-content-between align-items-center">
-              <span class="small text-truncate">▶ Audio Sample: <em>{{ troupe.audioSample }}</em></span>
-              <button class="btn btn-sm btn-outline-warning text-dark py-0 px-2 fs-7">Listen</button>
-            </div>
-
-            <!-- Footer Price & Action -->
-            <div class="mt-auto d-flex justify-content-between align-items-center pt-2 border-top">
-              <div>
-                <span class="text-muted extra-small d-block">BASE PRICE</span>
-                <span class="fw-bold fs-5 text-maroon">₹{{ troupe.basePrice | number }}</span>
-                <span class="text-muted extra-small"> / event</span>
+  
+              <!-- Footer Price & Action -->
+              <div class="mt-auto d-flex justify-content-between align-items-center pt-2 border-top">
+                <div>
+                  <span class="text-muted extra-small d-block">BASE PRICE</span>
+                  <span class="fw-bold fs-5 text-maroon">₹{{ troupe.basePrice | number }}</span>
+                  <span class="text-muted extra-small"> / event</span>
+                </div>
+                <button class="btn btn-warning fw-semibold text-dark px-3"
+                  (click)="onProfileClick(troupe)">Details</button>
+                <button class="btn btn-warning fw-semibold text-dark px-3">Book Troupe</button>
               </div>
-              <button class="btn btn-warning fw-semibold text-dark px-3" (click)="onProfileClick(troupe)">Details</button>
-              <button class="btn btn-warning fw-semibold text-dark px-3">Book Troupe</button>
             </div>
           </div>
         </div>
+        } @empty {
+        <div class="col-12 text-center py-5">
+          <p class="text-muted fs-5">No troupes found for this category.</p>
+        </div>
+        }
       </div>
-    } @empty {
-      <div class="col-12 text-center py-5">
-        <p class="text-muted fs-5">No troupes found for this category.</p>
-      </div>
-    }
-  </div>
-</div>
+    </div>
+  </section>
+
 <!-- =========================
      HOW IT WORKS
 ========================= -->
-<section class="how-section">
-  <div class="container">
+<section class="container-fluid px-3 px-lg-5">
+  <div class="how-section">
     <div class="text-center section-heading">
       <span class="section-eyebrow">
         SIMPLE BOOKING
@@ -202,8 +190,8 @@
 <!-- =========================
      TRUST
 ========================= -->
-<section class="trust-section">
-  <div class="container">
+<section class="container-fluid px-3 px-lg-5">
+  <div class="trust-section">
     <div class="row align-items-center">
       <div class="col-lg-7">
         <span class="section-eyebrow">

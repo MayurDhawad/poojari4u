@@ -5,115 +5,38 @@
   [slides]="slides">
 </app-hero-section>
 
-<!-- Main -->
-<section class="samagri-section">
-  <div class="container">
-
-    <!-- Category -->
+<!================= Main =================>
+<section class="container-fluid px-3 px-lg-5">
+  <div class="samagri-section">
     <div class="category-header">
-
       <div>
         <span class="section-eyebrow">
           SHOP PUJA ESSENTIALS
         </span>
-
-        <h2>
-          Browse Pooja Samagri
-        </h2>
+        <h2>Browse Pooja Samagri</h2>
       </div>
 
       <div class="sort-wrapper">
-
         <label>Sort by</label>
-
-        <select
-          class="form-select"
-          [(ngModel)]="sortBy"
-        >
+        <select class="form-select" [(ngModel)]="sortBy">
           <option value="popular">Popular</option>
           <option value="rating">Top Rated</option>
           <option value="price-low">Price: Low to High</option>
           <option value="price-high">Price: High to Low</option>
         </select>
-
       </div>
-
     </div>
-
 
     <!-- Category Pills -->
     <div class="category-pills">
-
-      <button
-        *ngFor="let category of categories"
-        class="category-pill"
+      <button *ngFor="let category of categories" class="category-pill"
         [class.active]="selectedCategory === category"
         (click)="selectCategory(category)"
-      >
-        {{ category }}
+      >{{ category }}
       </button>
-
     </div>
 
-
     <div class="row">
-
-      <!-- Sidebar -->
-      <!-- <div class="col-lg-3 mb-4">
-
-        <div class="filter-card">
-
-          <div class="filter-heading">
-            <h5>
-              <i class="bi bi-funnel"></i>
-              Shop By
-            </h5>
-
-            <button
-              class="clear-filter"
-              (click)="selectCategory('All')"
-            >
-              Clear
-            </button>
-          </div>
-
-          <div class="filter-list">
-
-            <button
-              *ngFor="let category of categories"
-              [class.active]="selectedCategory === category"
-              (click)="selectCategory(category)"
-            >
-              <span>
-                {{ category }}
-              </span>
-
-              <i class="bi bi-chevron-right"></i>
-            </button>
-
-          </div>
-
-
-          <div class="delivery-box">
-
-            <i class="bi bi-truck"></i>
-
-            <div>
-              <strong>Fast Delivery</strong>
-
-              <span>
-                Get your puja essentials delivered safely.
-              </span>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div> -->
-
-
-      <!-- Products -->
       <div class="col-lg-12">
         <div class="products-topbar">
           <div>
@@ -126,14 +49,14 @@
             {{ selectedCategory }}
           </div>
         </div>
-
+    
         <div class="row g-4" *ngIf="filteredItems.length > 0">
-
+    
           <div class="col-md-6 col-xl-4" *ngFor="let item of filteredItems">
             <div class="product-card">
               <!-- Image -->
               <div class="product-image">
-                <img [src]="item.image" [alt]="item.name"/>
+                <img [src]="item.image" [alt]="item.name" />
                 <span *ngIf="item.badge" class="product-badge">
                   {{ item.badge }}
                 </span>
@@ -143,7 +66,7 @@
               </div>
               <!-- Content -->
               <div class="product-content">
-
+    
                 <div class="product-category">{{ item.category }}</div>
                 <h3>{{ item.name }}</h3>
                 <p>{{ item.description }}</p>
@@ -156,11 +79,11 @@
                     ({{ item.reviews }})
                   </span>
                 </div>
-
+    
                 <div class="product-unit">
                   {{ item.unit }}
                 </div>
-
+    
                 <div class="product-bottom">
                   <div class="price">
                     <strong>
@@ -170,18 +93,18 @@
                       ₹{{ item.oldPrice }}
                     </del>
                   </div>
-
+    
                   <button class="add-button" (click)="addToCart(item)">
                     <i class="bi bi-cart-plus"></i>Add
                   </button>
-
+    
                 </div>
               </div>
             </div>
           </div>
         </div>
         <!-- Empty State -->
-        <div class="empty-state"*ngIf="filteredItems.length === 0">
+        <div class="empty-state" *ngIf="filteredItems.length === 0">
           <div class="empty-icon">
             <i class="bi bi-search"></i>
           </div>

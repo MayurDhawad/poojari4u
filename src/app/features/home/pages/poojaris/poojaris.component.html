@@ -1,55 +1,47 @@
 <!-- ================= HERO =================== -->
-<app-hero-section
-  [heroData]="heroData"
-  [features]="features"
-  [slides]="slides">
+<app-hero-section [heroData]="heroData" [features]="features" [slides]="slides">
 </app-hero-section>
 
-<!-- =========================
-     MAIN
-========================= -->
-<section>
-  <div class='container'>
-    <div class="search-status-banner rounded-4 p-3 p-sm-3 border shadow-sm my-3">
-      <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
-         
-        <div class="d-flex align-items-center gap-3">
-          <div class="icon-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 shadow-sm">
-            🪔
-          </div>
+<!-- ================= MAIN ==================== -->
+<section class='container-fluid px-3 px-lg-5'>
+  <div class="search-status-banner rounded-4 p-3 p-sm-3 border shadow-sm my-3">
+    <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
 
-          <div>
-            <h6 class="mb-0 fw-bold banner-title d-flex flex-wrap align-items-center gap-1">
-              <span>Showing Available Poojaris for</span>
-              <span class="ceremony-link text-decoration-underline ms-1">{{ ceremonyName }}</span>
-            </h6>
-            <p class="mb-0 banner-subtitle text-muted small">
-              Location: {{ location }} | Date: {{ date }}
-            </p>
-          </div>
+      <div class="d-flex align-items-center gap-3">
+        <div
+          class="icon-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0 shadow-sm">
+          🪔
         </div>
 
-       
-        <div class="badge-pill-counter bg-white px-3 py-2 rounded-pill fw-bold border shadow-sm text-nowrap">
-          {{ totalAvailable }} Verified Purohits Available
+        <div>
+          <h6 class="mb-0 fw-bold banner-title d-flex flex-wrap align-items-center gap-1">
+            <span>Showing Available Poojaris for</span>
+            <span class="ceremony-link text-decoration-underline ms-1">{{ ceremonyName }}</span>
+          </h6>
+          <p class="mb-0 banner-subtitle text-muted small">
+            Location: {{ location }} | Date: {{ date }}
+          </p>
         </div>
-
       </div>
+
+
+      <div class="badge-pill-counter bg-white px-3 py-2 rounded-pill fw-bold border shadow-sm text-nowrap">
+        {{ totalAvailable }} Verified Purohits Available
+      </div>
+
     </div>
   </div>
 </section>
 
-<section>
-  <div class="container card border-0 rounded-4 shadow-sm p-3 my-3 bg-white">
+<section class='container-fluid px-3 px-lg-5'>
+  <div class="card border-0 rounded-4 shadow-sm p-3 my-3 bg-white">
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
       <div class="d-flex flex-wrap align-items-center gap-2">
         <span class="fw-bold text-uppercase small filter-label d-flex align-items-center me-1">
           <i class="bi bi-funnel-fill text-warning me-1 fs-6"></i> FILTERS:
         </span>
-        
-        <select 
-          class="form-select custom-filter-select rounded-3 small"
-          [(ngModel)]="filters.language" 
+
+        <select class="form-select custom-filter-select rounded-3 small" [(ngModel)]="filters.language"
           (change)="onFilterUpdate()">
           <option value="all">All Languages</option>
           <option value="telugu">Telugu</option>
@@ -58,11 +50,9 @@
           <option value="kannada">Kannada</option>
           <option value="sanskrit">Sanskrit</option>
         </select>
-        
-        <select 
-          class="form-select custom-filter-select active-accent-border rounded-3 small"
-          [(ngModel)]="filters.specialization" 
-          (change)="onFilterUpdate()">
+
+        <select class="form-select custom-filter-select active-accent-border rounded-3 small"
+          [(ngModel)]="filters.specialization" (change)="onFilterUpdate()">
           <option value="all">All Specializations</option>
           <option value="vedic">Vedic Rituals</option>
           <option value="smarta">Smarta Sampradaya</option>
@@ -70,21 +60,16 @@
           <option value="astrology">Jyotish & Muhurtham</option>
         </select>
 
-        <select 
-          class="form-select custom-filter-select rounded-3 small"
-          [(ngModel)]="filters.experience" 
+        <select class="form-select custom-filter-select rounded-3 small" [(ngModel)]="filters.experience"
           (change)="onFilterUpdate()">
           <option value="all">All Experience Levels</option>
           <option value="5+">5+ Years</option>
           <option value="10+">10+ Years</option>
           <option value="15+">15+ Years</option>
         </select>
-        
+
         <label class="gold-badge-checkbox rounded-3 px-3 py-1.5 d-flex align-items-center gap-2 cursor-pointer border">
-          <input 
-            type="checkbox" 
-            class="form-check-input mt-0"
-            [(ngModel)]="filters.goldCertifiedOnly" 
+          <input type="checkbox" class="form-check-input mt-0" [(ngModel)]="filters.goldCertifiedOnly"
             (change)="onFilterUpdate()">
           <span class="small fw-semibold text-dark">Gold Certified Only</span>
         </label>
@@ -95,9 +80,7 @@
           <i class="bi bi-filter-left text-warning me-1 fs-5"></i> SORT BY:
         </span>
 
-        <select 
-          class="form-select custom-filter-select rounded-3 small"
-          [(ngModel)]="filters.sortBy" 
+        <select class="form-select custom-filter-select rounded-3 small" [(ngModel)]="filters.sortBy"
           (change)="onFilterUpdate()">
           <option value="rating_high">Highest Rating</option>
           <option value="exp_high">Most Experienced</option>
@@ -109,88 +92,86 @@
   </div>
 </section>
 
-<section>
-  <div class="container mb-5">
-    <div class="row g-4">
-      <div class="col-12 col-md-6 col-lg-4" *ngFor="let poojari of poojarisList">
-        <div class="card poojari-card h-100 rounded-4 border shadow-sm overflow-hidden d-flex flex-column">
+<section class='container-fluid px-3 px-lg-5 mb-5'>
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let poojari of poojarisList">
+      <div class="card poojari-card h-100 rounded-4 border shadow-sm overflow-hidden d-flex flex-column">
 
-          
-          <div class="card-header-banner px-3 py-2 d-flex align-items-center justify-content-between">
-            <span class="small fw-bold text-maroon d-flex align-items-center gap-1 text-truncate">
-              🎓 {{ poojari.tagline }}
-            </span>
-            <span *ngIf="poojari.isGoldCertified" class="gold-certified-badge badge text-uppercase rounded-2 px-2 py-1">
-              GOLD CERTIFIED
-            </span>
-          </div>
 
-          
-          <div class="card-body p-3 flex-grow-1">
+        <div class="card-header-banner px-3 py-2 d-flex align-items-center justify-content-between">
+          <span class="small fw-bold text-maroon d-flex align-items-center gap-1 text-truncate">
+            🎓 {{ poojari.tagline }}
+          </span>
+          <span *ngIf="poojari.isGoldCertified" class="gold-certified-badge badge text-uppercase rounded-2 px-2 py-1">
+            GOLD CERTIFIED
+          </span>
+        </div>
 
-            
-            <div class="d-flex align-items-start gap-3 mb-3">
-              
-              <img [src]="poojari.avatarUrl" [alt]="poojari.name"
-                class="profile-avatar rounded-circle object-fit-cover flex-shrink-0 shadow-sm" />
 
-              <div>
-                <h5 class="fw-bold font-serif poojari-name mb-1">{{ poojari.name }}</h5>
+        <div class="card-body p-3 flex-grow-1">
 
-                
-                <div class="text-muted small mb-1 d-flex align-items-center gap-1">
-                  <i class="bi bi-briefcase-fill text-warning"></i>
-                  <span>{{ poojari.experienceYears }}+ Years Experience</span>
-                </div>
 
-                
-                <div class="d-flex align-items-center gap-1 small">
-                  <span
-                    class="badge bg-success-subtle text-success fw-bold px-1.5 py-0.5 rounded d-flex align-items-center gap-1">
-                    ⭐ {{ poojari.rating }}
-                  </span>
-                  <span class="text-muted">({{ poojari.reviewCount }} reviews)</span>
-                </div>
+          <div class="d-flex align-items-start gap-3 mb-3">
+
+            <img [src]="poojari.avatarUrl" [alt]="poojari.name"
+              class="profile-avatar rounded-circle object-fit-cover flex-shrink-0 shadow-sm" />
+
+            <div>
+              <h5 class="fw-bold font-serif poojari-name mb-1">{{ poojari.name }}</h5>
+
+
+              <div class="text-muted small mb-1 d-flex align-items-center gap-1">
+                <i class="bi bi-briefcase-fill text-warning"></i>
+                <span>{{ poojari.experienceYears }}+ Years Experience</span>
+              </div>
+
+
+              <div class="d-flex align-items-center gap-1 small">
+                <span
+                  class="badge bg-success-subtle text-success fw-bold px-1.5 py-0.5 rounded d-flex align-items-center gap-1">
+                  ⭐ {{ poojari.rating }}
+                </span>
+                <span class="text-muted">({{ poojari.reviewCount }} reviews)</span>
               </div>
             </div>
-
-            
-            <div class="mb-3 d-flex align-items-center flex-wrap gap-1.5">
-              <span class="small text-muted fw-semibold me-1">Languages:</span>
-              <span *ngFor="let lang of poojari.languages" class="badge language-badge fw-normal rounded-2">
-                {{ lang }}
-              </span>
-            </div>
-
-            
-            <p class="card-text text-secondary small line-clamp-3 mb-0">
-              {{ poojari.description }}
-            </p>
-
           </div>
 
-          
-          <div
-            class="card-footer bg-light-subtle border-top p-3 d-flex align-items-center justify-content-between mt-auto">
 
-            
-            <div>
-              <div class="text-uppercase text-muted extra-small fw-bold tracking-wider">CEREMONY FEE</div>
-              <div class="fw-bold fs-5 price-text">₹ {{ poojari.ceremonyFee | number:'1.0-0' }}</div>
-            </div>
+          <div class="mb-3 d-flex align-items-center flex-wrap gap-1.5">
+            <span class="small text-muted fw-semibold me-1">Languages:</span>
+            <span *ngFor="let lang of poojari.languages" class="badge language-badge fw-normal rounded-2">
+              {{ lang }}
+            </span>
+          </div>
 
-           
-            <div class="d-flex align-items-center gap-2">
-              <button type="button" class="btn btn-outline-secondary btn-sm rounded-3 px-3 fw-semibold py-1.5"
-                (click)="onProfileClick(poojari)">
-                Profile
-              </button>
 
-              <button type="button" class="btn btn-gold btn-sm rounded-3 px-3 fw-bold text-white py-1.5"
-                (click)="onReserveClick()">
-                Reserve Slot
-              </button>
-            </div>
+          <p class="card-text text-secondary small line-clamp-3 mb-0">
+            {{ poojari.description }}
+          </p>
+
+        </div>
+
+
+        <div
+          class="card-footer bg-light-subtle border-top p-3 d-flex align-items-center justify-content-between mt-auto">
+
+
+          <div>
+            <div class="text-uppercase text-muted extra-small fw-bold tracking-wider">CEREMONY FEE</div>
+            <div class="fw-bold fs-5 price-text">₹ {{ poojari.ceremonyFee | number:'1.0-0' }}</div>
+          </div>
+
+
+          <div class="d-flex align-items-center gap-2">
+            <button type="button" class="btn btn-outline-secondary btn-sm rounded-3 px-3 fw-semibold py-1.5"
+              (click)="onProfileClick(poojari)">
+              Profile
+            </button>
+
+            <button type="button" class="btn btn-gold btn-sm rounded-3 px-3 fw-bold text-white py-1.5"
+              (click)="onReserveClick()">
+              Reserve Slot
+            </button>
           </div>
         </div>
       </div>
