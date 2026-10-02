@@ -89,7 +89,7 @@ export class PoojarisComponent implements OnInit, OnDestroy {
       tagline: 'Rig Veda Pathashala Alumnus',
       isGoldCertified: true,
       avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
-      experienceYears: 18,
+      experienceYears: 20,
       rating: 4.9,
       reviewCount: 142,
       languages: ['Telugu', 'Sanskrit', 'Hindi'],
