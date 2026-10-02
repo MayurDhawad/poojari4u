@@ -16,8 +16,17 @@
    HERO
 ========================= */
 .main-section {
-  background: radial-gradient(circle at 80% 30%, rgba(245, 158, 11, .18), transparent 35%), linear-gradient(135deg, #fff9f0, #fff3df);
   height: 85vh;
+  background-image:
+    linear-gradient(
+      rgba(255, 243, 223, 0.58) 0%,
+      rgba(255, 243, 223, 0.75) 45%,
+      rgba(255, 243, 223, 0.58) 100%
+    ),
+    url('/bajanthris/bajanthri-hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .hero-eyebrow {
   font-size: 13px;
