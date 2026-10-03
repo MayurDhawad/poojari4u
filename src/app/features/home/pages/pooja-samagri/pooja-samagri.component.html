@@ -6,6 +6,24 @@
   [slides]="slides">
 </app-hero-section>
 
+<!--  -->
+<section class="services-section border-bottom">
+  <div class="services-container">
+    @for (category of categoriesData; track category.id) {
+      <a class="service-card"[href]="'/' + category.id">
+        <div class="service-icon">
+          <i [class]="'bi ' + category.icon"></i>
+        </div>
+
+        <div class="service-content">
+          <h3>{{ category.title }}</h3>
+          <p>{{ category.description }}</p>
+        </div>
+      </a>
+    }
+  </div>
+</section>
+
 <!-- ================= Main ================= -->
 <section class="container-fluid px-3 px-lg-5">
   <div class="samagri-section">

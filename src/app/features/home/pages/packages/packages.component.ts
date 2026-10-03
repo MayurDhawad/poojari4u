@@ -292,6 +292,32 @@ export class PackagesComponent {
 
   ];
 
+  categoriesData = [
+    {
+      id: 'attractivePackages',
+      title: 'Attractive Packages',
+      description: 'Carefully curated packages for every special occasion.',
+      icon: 'bi-gift',
+    },
+    {
+      id: 'affordablePrices',
+      title: 'Affordable Prices',
+      description: 'Quality services and value-packed options at fair prices.',
+      icon: 'bi-tags',
+    },
+    {
+      id: 'experiencedTeam',
+      title: 'Experienced Team',
+      description: 'Skilled professionals dedicated to making every ceremony seamless.',
+      icon: 'bi-people',
+    },
+    // {
+    //   id: 'packages',
+    //   title: 'Packages',
+    //   description: 'Curated packages for weddings, griha pravesh & more',
+    //   icon: '🎁',
+    // },
+  ];
 
   get filteredPackages(): PoojaPackage[] {
 
@@ -303,7 +329,6 @@ export class PackagesComponent {
       pkg => pkg.category === this.selectedCategory
     );
   }
-
 
   selectCategory(category: string): void {
     this.selectedCategory = category;

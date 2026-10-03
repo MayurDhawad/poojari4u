@@ -188,6 +188,32 @@ export class PoojaSamagriComponent {
     }
   ]);
 
+  categoriesData = [
+    {
+      id: 'allPoojaKits',
+      title: 'All Pooja Kits',
+      description: 'Complete puja kits and individual items',
+      icon: 'bi-basket2',
+    },
+    {
+      id: 'individualItems',
+      title: 'Individual Items',
+      description: 'Packed carefully to reach you in excellent condition',
+      icon: 'bi-box-seam',
+    },
+    {
+      id: 'doorStepDelivery',
+      title: 'Door Step Delivery',
+      description: 'Convenient delivery directly to your doorstep.',
+      icon: 'bi-truck',
+    },
+    // {
+    //   id: 'packages',
+    //   title: 'Packages',
+    //   description: 'Curated packages for weddings, griha pravesh & more',
+    //   icon: '🎁',
+    // },
+  ];
 
   // Computed signal for instant filtering
   filteredItems = computed(() => {

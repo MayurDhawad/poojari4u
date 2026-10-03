@@ -8,6 +8,12 @@ export const routes: Routes = [
         .then(m => m.Home),
   },
   {
+    path: 'dashboardA',
+    loadComponent: () =>
+      import('./dashboard/dashboard.component')
+        .then(m => m.DashboardComponent)
+  },
+  {
     path: 'poojaris',
     loadComponent: () =>
       import('./features/home/pages/poojaris/poojaris.component')

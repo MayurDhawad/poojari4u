@@ -1,0 +1,209 @@
+<div class="dashboard-wrapper py-4 py-md-5">
+  <div class="container-fluid px-3 px-lg-5">
+
+    <!-- Top Welcome Banner -->
+    <div class="welcome-banner p-4 p-md-5 rounded-4 mb-4 text-white shadow-sm d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div>
+        <span class="badge rounded-pill bg-white text-dark px-3 py-2 mb-2 fw-semibold">
+          <i class="bi bi-flower1 me-1 text-primary"></i> Spiritual Dashboard
+        </span>
+        <h1 class="h2 fw-bold mb-1">Namaste, {{ userName() }} 🙏</h1>
+        <p class="mb-0 text-white-50">Manage your upcoming poojas, track bookings, and explore samagri orders.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-light fw-bold rounded-pill px-4 py-2">
+          <i class="bi bi-plus-circle me-1"></i> Book New Pooja
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Stats Grid -->
+    <div class="row g-3 g-md-4 mb-4">
+      <div class="col-6 col-lg-3">
+        <div class="stat-card card border-0 shadow-sm rounded-4 h-100 p-3 p-md-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <span class="stat-icon bg-primary-subtle text-primary rounded-circle">
+              <i class="bi bi-calendar-check fs-4"></i>
+            </span>
+            <span class="badge bg-light text-muted fw-normal">Total</span>
+          </div>
+          <h3 class="fw-bold mb-1">{{ totalBookings() }}</h3>
+          <p class="text-muted small mb-0">Total Ceremonies</p>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="stat-card card border-0 shadow-sm rounded-4 h-100 p-3 p-md-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <span class="stat-icon bg-warning-subtle text-warning-emphasis rounded-circle">
+              <i class="bi bi-clock-history fs-4"></i>
+            </span>
+            <span class="badge bg-warning-subtle text-warning fw-semibold">Upcoming</span>
+          </div>
+          <h3 class="fw-bold mb-1">{{ upcomingPoojas() }}</h3>
+          <p class="text-muted small mb-0">Scheduled Poojas</p>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="stat-card card border-0 shadow-sm rounded-4 h-100 p-3 p-md-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <span class="stat-icon bg-info-subtle text-info-emphasis rounded-circle">
+              <i class="bi bi-box-seam fs-4"></i>
+            </span>
+            <span class="badge bg-light text-muted fw-normal">Active</span>
+          </div>
+          <h3 class="fw-bold mb-1">{{ activeRequests() }}</h3>
+          <p class="text-muted small mb-0">Samagri Deliveries</p>
+        </div>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <div class="stat-card card border-0 shadow-sm rounded-4 h-100 p-3 p-md-4">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <span class="stat-icon bg-success-subtle text-success rounded-circle">
+              <i class="bi bi-award fs-4"></i>
+            </span>
+            <span class="badge bg-success-subtle text-success fw-semibold">Points</span>
+          </div>
+          <h3 class="fw-bold mb-1">{{ rewardPoints() }}</h3>
+          <p class="text-muted small mb-0">Punya / Reward Points</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="row g-4">
+      
+      <!-- Recent Bookings Section -->
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm rounded-4 h-100">
+          <div class="card-header bg-transparent border-0 p-4 pb-0 d-flex justify-content-between align-items-center">
+            <div>
+              <h5 class="fw-bold mb-0">Recent Ceremonies & Bookings</h5>
+              <p class="text-muted small mb-0">Track and manage your ceremony status</p>
+            </div>
+            <button class="btn btn-link text-decoration-none fw-semibold p-0">View All →</button>
+          </div>
+
+          <div class="card-body p-4">
+            @if (recentBookings().length > 0) {
+              <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col" class="border-0">Booking ID</th>
+                      <th scope="col" class="border-0">Service</th>
+                      <th scope="col" class="border-0">Poojari</th>
+                      <th scope="col" class="border-0">Date & Time</th>
+                      <th scope="col" class="border-0">Status</th>
+                      <th scope="col" class="border-0 text-end">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (booking of recentBookings(); track booking.id) {
+                      <tr>
+                        <td class="fw-bold text-secondary">{{ booking.id }}</td>
+                        <td>
+                          <div class="fw-semibold text-dark">{{ booking.serviceName }}</div>
+                          <small class="text-muted"><i class="bi bi-geo-alt"></i> {{ booking.location }}</small>
+                        </td>
+                        <td>{{ booking.poojariName }}</td>
+                        <td>
+                          <div>{{ booking.date }}</div>
+                          <small class="text-muted">{{ booking.time }}</small>
+                        </td>
+                        <td>
+                          <span class="badge border rounded-pill px-3 py-1 fw-medium {{ getStatusBadgeClass(booking.status) }}">
+                            {{ booking.status }}
+                          </span>
+                        </td>
+                        <td class="text-end fw-bold">₹{{ booking.amount }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            } @else {
+              <div class="text-center py-5">
+                <i class="bi bi-calendar-x fs-1 text-muted"></i>
+                <h6 class="mt-2 text-muted">No recent bookings found</h6>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Section -->
+      <div class="col-lg-4">
+        
+        <!-- Profile Overview Card -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4">
+          <div class="card-body p-4 text-center">
+            <div class="avatar-wrapper mb-3 position-relative d-inline-block">
+              <div class="avatar-circle bg-warning-subtle text-warning-emphasis fs-2 fw-bold d-flex align-items-center justify-content-center rounded-circle mx-auto">
+                {{ userName().charAt(0) }}
+              </div>
+              <span class="position-absolute bottom-0 end-0 p-1 bg-success border border-light rounded-circle"></span>
+            </div>
+            <h5 class="fw-bold mb-1">{{ userName() }}</h5>
+            <p class="text-muted small mb-3">{{ userEmail() }}</p>
+            <div class="d-flex justify-content-center gap-2">
+              <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                <i class="bi bi-person me-1"></i> Edit Profile
+              </button>
+              <button class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                <i class="bi bi-telephone me-1"></i> Support
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions & Services -->
+        <div class="card border-0 shadow-sm rounded-4">
+          <div class="card-header bg-transparent border-0 p-4 pb-0">
+            <h5 class="fw-bold mb-0">Quick Services</h5>
+          </div>
+          <div class="card-body p-4">
+            <div class="d-grid gap-2">
+              <a href="#" class="quick-action-item d-flex align-items-center p-3 rounded-3 text-decoration-none text-dark">
+                <div class="quick-action-icon bg-danger-subtle text-danger rounded-3 p-2 me-3">
+                  <i class="bi bi-person-badge fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-semibold">Book Poojari</div>
+                  <small class="text-muted">Verified Vedic priests</small>
+                </div>
+                <i class="bi bi-chevron-right ms-auto text-muted"></i>
+              </a>
+
+              <a href="#" class="quick-action-item d-flex align-items-center p-3 rounded-3 text-decoration-none text-dark">
+                <div class="quick-action-icon bg-warning-subtle text-warning-emphasis rounded-3 p-2 me-3">
+                  <i class="bi bi-music-note-beamed fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-semibold">Book Bajanthri</div>
+                  <small class="text-muted">Traditional musical teams</small>
+                </div>
+                <i class="bi bi-chevron-right ms-auto text-muted"></i>
+              </a>
+
+              <a href="#" class="quick-action-item d-flex align-items-center p-3 rounded-3 text-decoration-none text-dark">
+                <div class="quick-action-icon bg-primary-subtle text-primary rounded-3 p-2 me-3">
+                  <i class="bi bi-box-seam fs-5"></i>
+                </div>
+                <div>
+                  <div class="fw-semibold">Order Pooja Samagri</div>
+                  <small class="text-muted">Kits & itemized samagri</small>
+                </div>
+                <i class="bi bi-chevron-right ms-auto text-muted"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,67 @@
+// Theme Variables
+$primary-color: #d97706;
+$primary-dark: #b45309;
+$primary-light: #fef3c7;
+
+.dashboard-wrapper {
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+// Welcome Banner Custom Styling
+.welcome-banner {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%);
+  box-shadow: 0 10px 20px rgba(217, 119, 6, 0.15);
+}
+
+// Stat Icons
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Avatar Circle
+.avatar-circle {
+  width: 72px;
+  height: 72px;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+// Quick Action Items Hover Effect
+.quick-action-item {
+  border: 1px solid #f1f5f9;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #f8fafc;
+    border-color: #e2e8f0;
+    transform: translateX(4px);
+  }
+
+  .quick-action-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Table styling
+.table {
+  th {
+    font-size: 0.825rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+  }
+
+  td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
