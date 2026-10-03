@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { SearchBox } from '../../search-box/search-box';
+import { Component,Input,OnInit,OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { SearchBox, showSection } from '../../search-box/search-box';
 export interface HeroData {
   eyebrowIcon?: string;
   eyebrowText?: string;
@@ -22,34 +21,40 @@ export interface HeroSlide {
 }
 @Component({
   selector: 'app-hero-section',
-   standalone: true,
+  standalone: true,
   templateUrl: './hero-section.component.html',
   styleUrls: ['./hero-section.component.scss'],
-  imports: [CommonModule, SearchBox]
+  imports: [CommonModule,SearchBox],
 })
 
-export class HeroSectionComponent implements OnInit {
-  // Input configuration properties with fallback defaults
-  @Input() heroData: HeroData[] = [];
+export class HeroSectionComponent implements OnInit, OnDestroy {
+
+  @Input() heroData: HeroData = {};
+  @Input() showSection: showSection = {};
   @Input() features: HeroFeature[] = [];
   @Input() slides: HeroSlide[] = [];
 
-  constructor() { }
+  activeIndex = 0;
+  private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.startAutoPlay();
   }
 
-  activeIndex: number = 0;
-  private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+  ngOnDestroy(): void {
+    this.stopAutoPlay();
+  }
 
   setActive(index: number): void {
+    if (!this.slides.length) {
+      return;
+    }
+
     this.activeIndex = index;
+    this.stopAutoPlay();
   }
 
   getSlideClass(index: number): string {
-    if (!this.slides || this.slides.length === 0) return 'hidden';
-    
     const total = this.slides.length;
     if (index === this.activeIndex) return 'active';
     if (index === (this.activeIndex - 1 + total) % total) return 'prev';
@@ -74,7 +79,7 @@ export class HeroSectionComponent implements OnInit {
   }
 
   private stopAutoPlay(): void {
-    if (this.autoPlayInterval) {
+    if (this.autoPlayInterval !== null) {
       clearInterval(this.autoPlayInterval);
       this.autoPlayInterval = null;
     }

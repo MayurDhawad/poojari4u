@@ -2,9 +2,11 @@
 <!-- ================= HERO =================== -->
 <app-hero-section
   [heroData]="heroData"
+  [showSection]="showSection"
   [features]="features"
   [slides]="slides">
 </app-hero-section>
+
 <!-- =========================
      MAIN
 ========================= -->
@@ -106,7 +108,7 @@
                     Profile
                   </button>
 
-                  <button type="button" class="btn btn-warning btn-sm rounded-3 px-3 fw-bold text-white py-1.5"
+                  <button type="button" class="btn btn-gold-proceed btn-sm rounded-3 px-3 fw-bold text-white py-1.5"
                     (click)="onReserveClick()">
                     Book Troupe
                   </button>

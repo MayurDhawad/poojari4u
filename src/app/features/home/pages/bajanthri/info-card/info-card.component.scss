@@ -113,6 +113,35 @@
   color: #000000;
 }
 
+/* Apply to the scrollable container (e.g., .modal-body or .modal-content) */
+.custom-scroll {
+  scrollbar-width: thin; /* Options: auto | thin | none */
+  scrollbar-color: #800020 #fdf6e2; /* [thumb color] [track color] */
+}
+
+/* 1. Scrollbar Width */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* 2. Scrollbar Track (Background) */
+.custom-scroll::-webkit-scrollbar-track {
+  background: #fcf8ee;
+  border-radius: 0 12px 12px 0; /* Matches the modal's rounded right corner */
+}
+
+/* 3. Scrollbar Thumb (Draggable handle) */
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #800020; /* Dark maroon theme color */
+  border-radius: 4px;
+  border: 2px solid #fcf8ee; /* Padding illusion around thumb */
+}
+
+/* 4. Hover State */
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #5b0017;
+}
+
 /* Font Size Helpers */
 .fs-7 { font-size: 0.875rem; }
 .fs-8 { font-size: 0.75rem; }

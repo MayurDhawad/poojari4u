@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HeroData, HeroFeature, HeroSectionComponent, HeroSlide } from '../../../shared/hero-section/hero-section/hero-section.component';
+import { showSection } from '../../../shared/search-box/search-box';
 interface PackageItem {
   name: string;
   icon: string;
@@ -34,15 +35,21 @@ interface Slide {
 })
 export class PackagesComponent {
 
-  heroData: HeroData[] = [
-    {
-      eyebrowIcon: 'bi-flower1',
-      eyebrowText: 'PUJA PACKAGES',
-      titleLine1: 'Everything You Need for Your',
-      titleHighlight: 'Special Puja',
-      description: 'Choose from thoughtfully designed puja packages that include experienced Poojaris, essential rituals and Samagri.'
-    }
-  ];
+  heroData: HeroData = {
+    eyebrowIcon: 'bi-flower1',
+    eyebrowText: 'PUJA PACKAGES',
+    titleLine1: 'Everything You Need for Your',
+    titleHighlight: 'Special Puja',
+    description: 'Choose from thoughtfully designed puja packages that include experienced Poojaris, essential rituals and Samagri.'
+  };
+
+  showSection: showSection = {
+    displaySearchBox: false,
+    showLanguage: true,
+    showCeremony: true,
+    showLocation: true,
+    showDate: true
+  };
   
   features: HeroFeature[] = [
     { iconClass: '', label: '' },

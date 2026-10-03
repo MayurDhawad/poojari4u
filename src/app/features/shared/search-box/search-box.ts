@@ -1,150 +1,78 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-
+export interface showSection {
+  displaySearchBox?: boolean;
+  showLanguage?: boolean; 
+  showCeremony?: boolean; 
+  showLocation?: boolean; 
+  showDate?: boolean 
+}
 @Component({
-  imports: [
-    FormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSelectModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatNativeDateModule
-  ],
   selector: 'app-search-box',
-  styleUrl: './search-box.scss',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule
+  ],
   templateUrl: './search-box.html',
+  styleUrls: ['./search-box.scss']
 })
-export class SearchBox {
 
-  selectedService = '';
-  location = '';
-  date: Date | null = null;
+export class SearchBox  implements OnInit {
+
+  // Fields to display
+  @Input() showSection: showSection = {};
+
+  // Button
+  @Input() searchLabel = 'Search';
+  @Input() showSearchIcon = true;
+
+  // Search event
+  @Output() search = new EventEmitter<showSection>();
+
+  ngOnInit(): void {}
+
+  selectedLanguage = '';
+  selectedCeremony = '';
+  selectedLocation = '';
+  selectedDate = '';
 
   languages = [
-    {
-      value: '',
-      label: 'Select Language'
-    },
-    {
-      value: 'telugu',
-      label: 'Telugu'
-    },
-    {
-      value: 'sanskrit',
-      label: 'Sanskrit'
-    },
-    {
-      value: 'hindi',
-      label: 'Hindi'
-    },
-    {
-      value: 'tamil',
-      label: 'Tamil'
-    },
-    {
-      value: 'malayalam',
-      label: ' Malayalam'
-    },
-    {
-      value: 'kannada',
-      label: 'Kannada'
-    },
-  ]
+    { value: 'english', label: 'English' },
+    { value: 'kannada', label: 'Kannada' },
+    { value: 'telugu', label: 'Telugu' },
+    { value: 'hindi', label: 'Hindi' },
+    { value: 'marathi', label: 'Marathi' }
+  ];
 
   ceremonies = [
-    {
-      value: '',
-      label: 'Select Service'
-    },
-    {
-      value: 'ganapathi-pooja',
-      label: 'Ganapathi Pooja'
-    },
-    {
-      value: 'gruhapravesham',
-      label: 'Gruhapravesham'
-    },
-    {
-      value: 'homam-havan',
-      label: 'Homam / Havan'
-    },
-    {
-      value: 'satyanarayana-swamy-pooja',
-      label: 'Satyanarayana Swamy Pooja'
-    },
-    {
-      value: 'lakshmi-pooja',
-      label: 'Lakshmi Pooja'
-    },
-    {
-      value: 'wedding-rituals',
-      label: 'Wedding Rituals'
-    },
-    {
-      value: 'namakarana',
-      label: 'Namakarana'
-    },
-    {
-      value: 'vratham',
-      label: 'Vratham'
-    },
-    {
-      value: 'pitru-karma',
-      label: 'Pitru Karma'
-    },
-    {
-      value: 'temple-pooja-services',
-      label: 'Temple Pooja Services'
-    },
-    {
-      value: 'birthday-ayushya-pooja',
-      label: 'Birthday / Ayushya Pooja'
-    },
-    {
-      value: 'business-opening-pooja',
-      label: 'Business Opening Pooja'
-    }
+    { value: 'ganapathi-pooja', label: 'Ganapathi Pooja' },
+    { value: 'gruhapravesham', label: 'Gruha Pravesham' },
+    { value: 'satyanarayana-pooja', label: 'Satyanarayana Pooja' },
+    { value: 'wedding', label: 'Wedding' },
+    { value: 'homam', label: 'Homam' }
   ];
 
   locationGroups = [
     {
-      groupName: 'Hyderabad',
-      locations: [
-        'Select Location',
-        'Kondapur',
-        'Gachibowli',
-        'Madhapur',
-        'Kukatpally',
-        'Miyapur',
-        'Banjara Hills',
-        'Jubilee Hills',
-        'Secunderabad'
-      ]
+      groupName: 'Karnataka',
+      locations: ['Bangalore', 'Mysore', 'Hubli']
     },
     {
-      groupName: 'Other Cities',
-      locations: [
-        'Warangal',
-        'Karimnagar',
-        'Nizamabad',
-        'Khammam'
-      ]
+      groupName: 'Maharashtra',
+      locations: ['Nagpur', 'Pune', 'Mumbai']
+    },
+    {
+      groupName: 'Telangana',
+      locations: ['Hyderabad', 'Warangal']
     }
   ];
 
-  search(): void {
-    console.log({
-      service: this.selectedService,
-      location: this.location,
-      date: this.date,
-    });
-  }
-
+  onSearch(): void {}
 }
+
+function onInit() {
+  throw new Error('Function not implemented.');
+}
+

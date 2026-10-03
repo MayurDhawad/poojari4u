@@ -1,83 +1,89 @@
-<section>
+<section class="search-section">
   <div class="hero-search">
 
-    <!-- Language -->
-    <div class="search-field">
-      <div class="search-icon">
-        <i class="bi bi-translate"></i>
-      </div>
-
-      <div class="search-field-content">
-        <!-- <label for="service-select">Select Service</label> -->
-        <select id="service-select" class="form-select">
-          <!-- <option value="" disabled selected>Select Service</option> -->
-          @for (language of languages; track language.value) {
-          <option [value]="language.value">
-            {{ language.label }}
-          </option>
-          }
-        </select>
-      </div>
-    </div>
-
-    <!-- Service -->
-    <div class="search-field">
-      <div class="search-icon">
-        <i class="bi bi-fire"></i>
-      </div>
-
-      <div class="search-field-content">
-        <!-- <label for="service-select">Select Service</label> -->
-        <select id="service-select" class="form-select">
-          <!-- <option value="" disabled selected>Select Service</option> -->
-          @for (ceremony of ceremonies; track ceremony.value) {
-          <option [value]="ceremony.value">
-            {{ ceremony.label }}
-          </option>
-          }
-        </select>
-      </div>
-    </div>
-
-    <!-- Location -->
-    <div class="search-field">
-      <div class="search-icon">
-        <i class="bi bi-geo-alt"></i>
-      </div>
-
-      <div class="search-field-content">
-        <!-- <label for="location-select">Select Location</label> -->
-        <select id="location-select" class="form-select">
-          <!-- <option value="" disabled selected>Select Location</option> -->
-          @for (group of locationGroups; track group.groupName) {
-          <optgroup [label]="group.groupName">
-            @for (item of group.locations; track item) {
-            <option [value]="item">
-              {{ item }}
+    <!-- LANGUAGE -->
+    @if (showSection?.showLanguage) {
+      <div class="search-field">
+        <div class="search-icon">
+          <i class="bi bi-translate"></i>
+        </div>
+        <div class="search-field-content">
+          <select id="language-select" class="form-select" [(ngModel)]="selectedLanguage">
+            <option value="" disabled>
+              Select Language
             </option>
+            @for (language of languages; track language.value) {
+              <option [value]="language.value">
+                {{ language.label }}
+              </option>
             }
-          </optgroup>
-          }
-        </select>
+          </select>
+        </div>
       </div>
-    </div>
+    }
 
-    <!-- Date -->
-    <div class="search-field">
-      <div class="search-icon">
-        <i class="bi bi-calendar3"></i>
+    <!-- CEREMONY -->
+    @if (showSection?.showCeremony) {
+      <div class="search-field">
+        <div class="search-icon">
+          <i class="bi bi-fire"></i>
+        </div>
+        <div class="search-field-content">
+          <select id="ceremony-select" class="form-select" [(ngModel)]="selectedCeremony">
+            <option value="" disabled>
+              Select Ceremony
+            </option>
+            @for (ceremony of ceremonies; track ceremony.value) {
+              <option [value]="ceremony.value">
+                {{ ceremony.label }}
+              </option>
+            }
+          </select>
+        </div>
       </div>
+    }
 
-      <div class="search-field-content">
-        <!-- <label for="date-input">Date</label> -->
-        <input type="date" class="form-control" id="date-input">
+    <!-- LOCATION -->
+    @if (showSection?.showLocation) {
+      <div class="search-field">
+        <div class="search-icon">
+          <i class="bi bi-geo-alt"></i>
+        </div>
+
+        <div class="search-field-content">
+          <select id="location-select" class="form-select" [(ngModel)]="selectedLocation">
+            <option value="" disabled>
+              Select Location
+            </option>
+            @for (group of locationGroups; track group.groupName) {
+              <optgroup [label]="group.groupName">
+                @for (item of group.locations; track item) {
+                  <option [value]="item">
+                    {{ item }}
+                  </option>
+                }
+              </optgroup>
+            }
+          </select>
+        </div>
       </div>
-    </div>
+    }
 
-    <!-- Search -->
-    <button type="button" class="search-button">
-      <!-- <i class="bi bi-search me-2"></i> -->
-      <span>Search</span>
+    <!-- DATE -->
+    @if (showSection?.showDate) {
+      <div class="search-field">
+        <div class="search-icon">
+          <i class="bi bi-calendar3"></i>
+        </div>
+        <div class="search-field-content">
+          <input type="date" id="date-input" class="form-control" [(ngModel)]="selectedDate" />
+        </div>
+      </div>
+    }
+
+    <!-- SEARCH -->
+    <button type="button" class="search-button" (click)="onSearch()">
+      <span>{{ searchLabel }}</span>
     </button>
 
   </div>

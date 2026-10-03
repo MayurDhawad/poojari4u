@@ -1,6 +1,7 @@
 <!-- ================= HERO =================== -->
 <app-hero-section
   [heroData]="heroData"
+  [showSection]="showSection"
   [features]="features"
   [slides]="slides">
 </app-hero-section>
@@ -35,7 +36,7 @@
 <section class="container-fluid px-3 px-lg-5">
   <div class="package-section">
     <div class="row g-4">
-      <div class="col-lg-4 col-md-6" *ngFor="let pkg of filteredPackages">
+      <div class="col-lg-3 col-md-6" *ngFor="let pkg of filteredPackages">
         <div class="package-card" [class.popular-card]="pkg.popular">
           <!-- Image -->
           <div class="package-image">

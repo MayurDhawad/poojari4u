@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HeroData, HeroFeature, HeroSlide, HeroSectionComponent } from '../../../shared/hero-section/hero-section/hero-section.component';
+import { showSection } from '../../../shared/search-box/search-box';
 
 interface SamagriItem {
   id: number;
@@ -32,15 +33,21 @@ interface Slide {
 })
 export class PoojaSamagriComponent {
 
-  heroData: HeroData[] = [
-    {
-      eyebrowIcon: 'bi-flower1',
-      eyebrowText: 'PURE & TRADITIONAL PUJA ESSENTIALS',
-      titleLine1: 'Pooja Samagri',
-      titleHighlight: 'Delivered to Your Door',
-      description: 'Everything you need for your puja, homam and sacred ceremonies, carefully selected and delivered fresh to your doorstep.'
-    }
-  ];
+  heroData: HeroData = {
+    eyebrowIcon: 'bi-flower1',
+    eyebrowText: 'PURE & TRADITIONAL PUJA ESSENTIALS',
+    titleLine1: 'Pooja Samagri',
+    titleHighlight: 'Delivered to Your Door',
+    description: 'Everything you need for your puja, homam and sacred ceremonies, carefully selected and delivered fresh to your doorstep.'
+  };
+
+  showSection: showSection = {
+    displaySearchBox: false,
+    showLanguage: true,
+    showCeremony: true,
+    showLocation: true,
+    showDate: true
+  };
 
   features: HeroFeature[] = [
     { iconClass: 'bi-patch-check-fill', label: 'Verified Quality' },
@@ -54,11 +61,11 @@ export class PoojaSamagriComponent {
     { id: 3, name: 'Pt. Ram Naresh', image: 'pooja-samagri/samagri-kumkum.jpg' },
   ];
 
-  searchText = '';
-  selectedCategory = 'All';
+  selectedCategory = signal<string>('All');
+  searchText = signal<string>('');
   sortBy = 'popular';
 
-  categories = [
+  categories = signal<string[]>([
     'All',
     'Pooja Kits',
     'Samagri',
@@ -66,9 +73,9 @@ export class PoojaSamagriComponent {
     'Incense',
     'Flowers & Leaves',
     'Other Pooja Accessories'
-  ];
+  ]);
 
-  items: SamagriItem[] = [
+  items = signal<SamagriItem[]>([
     {
       id: 1,
       name: 'Satyanarayan Pooja Kit',
@@ -179,100 +186,39 @@ export class PoojaSamagriComponent {
       rating: 4.7,
       reviews: 53
     }
-  ];
+  ]);
 
 
-  get filteredItems(): SamagriItem[] {
-    let result = this.items.filter(item => {
+  // Computed signal for instant filtering
+  filteredItems = computed(() => {
+    const cat = this.selectedCategory();
+    const query = this.searchText().toLowerCase().trim();
 
-      const matchesCategory =
-        this.selectedCategory === 'All' ||
-        item.category === this.selectedCategory;
-
-      const search = this.searchText.trim().toLowerCase();
-
-      const matchesSearch =
-        !search ||
-        item.name.toLowerCase().includes(search) ||
-        item.description.toLowerCase().includes(search) ||
-        item.category.toLowerCase().includes(search);
+    return this.items().filter(item => {
+      const matchesCategory = cat === 'All' || item.category === cat;
+      const matchesSearch = !query || 
+        item.name.toLowerCase().includes(query) || 
+        item.description.toLowerCase().includes(query);
 
       return matchesCategory && matchesSearch;
     });
+  });
 
-    if (this.sortBy === 'price-low') {
-      result = [...result].sort((a, b) => a.price - b.price);
-    }
-
-    if (this.sortBy === 'price-high') {
-      result = [...result].sort((a, b) => b.price - a.price);
-    }
-
-    if (this.sortBy === 'rating') {
-      result = [...result].sort((a, b) => b.rating - a.rating);
-    }
-
-    return result;
+  selectCategory(category: string) {
+    this.selectedCategory.set(category);
   }
 
-  selectCategory(category: string): void {
-    this.selectedCategory = category;
+  resetFilters() {
+    this.searchText.set('');
+    this.selectedCategory.set('All');
   }
 
-  addToCart(item: SamagriItem): void {
+  addToCart(item: SamagriItem) {
     console.log('Added to cart:', item);
   }
 
-  /*---- Slider ----*/
-  // slides: Slide[] = [
-  //   { id: 1, name: 'Acharya Prem', image: 'pooja-samagri/samagri-havan.jpg' },
-  //   { id: 2, name: 'Saanvi Sharma', image: 'pooja-samagri/samagri-camphor.jpg' },
-  //   { id: 3, name: 'Pt. Ram Naresh', image: 'pooja-samagri/samagri-kumkum.jpg' },
-  // ];
-
-  activeIndex = 0;
-  private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
-
-  getSlideClass(index: number): string {
-    const total = this.slides.length;
-    const diff = (index - this.activeIndex + total) % total;
-
-    if (diff === 0) return 'active';
-    if (diff === 1 || diff === -(total - 1)) return 'next';
-    if (diff === total - 1 || diff === -1) return 'prev';
-
-    return 'hidden';
+  applyFilters() {
+    // Handle sorting or custom filter trigger if needed
   }
 
-  setActive(index: number): void {
-    this.activeIndex = index;
-    this.resetAutoPlay();
-  }
-
-  next(): void {
-    this.activeIndex = (this.activeIndex + 1) % this.slides.length;
-  }
-
-  prev(): void {
-    this.activeIndex = (this.activeIndex - 1 + this.slides.length) % this.slides.length;
-  }
-
-  private startAutoPlay(): void {
-    this.stopAutoPlay();
-    this.autoPlayInterval = setInterval(() => {
-      this.next();
-    }, 2000);
-  }
-
-  private stopAutoPlay(): void {
-    if (this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
-      this.autoPlayInterval = null;
-    }
-  }
-
-  private resetAutoPlay(): void {
-    this.stopAutoPlay();
-    this.startAutoPlay();
-  }
 }

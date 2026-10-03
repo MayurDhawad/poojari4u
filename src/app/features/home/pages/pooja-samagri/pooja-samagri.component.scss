@@ -101,9 +101,7 @@
   width: 100%;
   height: 350px;
   object-fit: cover;
-
   border-radius: 28px;
-
   box-shadow:
     0 25px 60px rgba(100, 60, 20, 0.18);
 }
@@ -431,12 +429,9 @@
 
 .sort-wrapper .form-select {
   width: 190px;
-
   border-color: var(--border);
-  border-radius: 10px;
-
+  border-radius: 8px;
   font-size: 14px;
-
   box-shadow: none;
 }
 
@@ -448,11 +443,7 @@
 .category-pills {
   display: flex;
   gap: 10px;
-
   overflow-x: auto;
-
-  padding-bottom: 25px;
-
   scrollbar-width: none;
 }
 
@@ -462,20 +453,13 @@
 
 .category-pill {
   flex-shrink: 0;
-
   border: 1px solid var(--border);
-
   background: #fff;
-
   color: #655649;
-
-  padding: 10px 18px;
-
-  border-radius: 30px;
-
-  font-size: 14px;
-  font-weight: 600;
-
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
   transition: 0.2s ease;
 }
 
@@ -489,7 +473,6 @@
   border-color: var(--primary);
   color: #fff;
 }
-
 
 /* =========================
    FILTER
@@ -655,41 +638,29 @@
 
 .product-card {
   height: 100%;
-
   overflow: hidden;
-
   background: #fff;
-
   border: 1px solid var(--border);
-
-  border-radius: 18px;
-
+  border-radius: 8px;
   transition: 0.25s ease;
 }
 
 .product-card:hover {
   transform: translateY(-5px);
-
-  box-shadow:
-    0 16px 40px rgba(75, 50, 25, 0.12);
+  box-shadow: 0 16px 40px rgba(75, 50, 25, 0.12);
 }
 
 .product-image {
   position: relative;
-
-  height: 225px;
-
+  height: 200px;
   overflow: hidden;
-
   background: #f7efe5;
 }
 
 .product-image img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-
   transition: transform 0.4s ease;
 }
 
@@ -699,48 +670,58 @@
 
 .product-badge {
   position: absolute;
-  top: 13px;
-  left: 13px;
-
-  padding: 6px 10px;
-
-  background: var(--primary);
-  color: #fff;
-
+  top: 10px;
+  left: 10px;
+  padding: 2px 6px;
+  border: 1px solid var(--primary);
+  background: var(--orange-light);
+  color: var(--primary);
   border-radius: 20px;
-
-  font-size: 10px;
-  font-weight: 800;
-
+  font-size: 8px;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
 .wishlist {
   position: absolute;
-
-  top: 12px;
-  right: 12px;
-
-  width: 36px;
-  height: 36px;
-
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: 0;
-
   background: rgba(255, 255, 255, 0.94);
-
   color: #735e4d;
-
   border-radius: 50%;
-
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .wishlist:hover {
   color: #dc3545;
+}
+
+.add-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--primary);
+  background: var(--orange-light);
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.add-button:hover {
+  background: var(--primary);
+  color: #fff;
 }
 
 
@@ -749,52 +730,41 @@
 ========================= */
 
 .product-content {
-  padding: 18px;
+  padding: 8px;
 }
 
 .product-category {
   color: var(--primary);
-
   font-size: 10px;
   font-weight: 800;
-
   letter-spacing: 1px;
   text-transform: uppercase;
-
-  margin-bottom: 6px;
+  margin-bottom: 3px;
 }
 
 .product-content h3 {
   color: var(--text);
-
-  font-size: 17px;
-  font-weight: 750;
-
-  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .product-content p {
   min-height: 42px;
-
   color: var(--muted);
-
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.5;
-
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .rating {
   display: flex;
   align-items: center;
   gap: 6px;
-
-  margin-bottom: 8px;
 }
 
 .stars {
   color: #e49a18;
-
   font-size: 12px;
   font-weight: 700;
 }
@@ -837,26 +807,7 @@
   font-size: 11px;
 }
 
-.add-button {
-  border: 1px solid var(--primary);
 
-  background: var(--orange-light);
-  color: var(--primary);
-
-  padding: 8px 13px;
-
-  border-radius: 9px;
-
-  font-size: 12px;
-  font-weight: 700;
-
-  transition: 0.2s ease;
-}
-
-.add-button:hover {
-  background: var(--primary);
-  color: #fff;
-}
 
 
 /* =========================
@@ -996,6 +947,27 @@
   margin: 0;
 }
 
+.category-pills {
+  margin-bottom: 1.5rem;
+}
+
+.search-box {
+  min-width: 240px;
+}
+
+.search-box input {
+  border-radius: 8px !important;
+  border: 1px solid var(--border);
+}
+
+.search-box input:focus {
+  border-color: #d97706;
+  box-shadow: 0 0 0 0.2rem rgba(217, 119, 6, 0.15);
+}
+
+.search-box form-control {
+  font-size: 12px;
+}
 
 /* =========================
    MOBILE
@@ -1090,7 +1062,7 @@
   }
 
   .product-image {
-    height: 240px;
+    height: 200px;
   }
 
   .samagri-section {

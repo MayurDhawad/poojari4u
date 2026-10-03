@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PoojariProfileCardComponent } from './profile-card/poojari-profile-card.component';
 import { Router } from '@angular/router';
 import { HeroData, HeroFeature, HeroSectionComponent, HeroSlide } from '../../../shared/hero-section/hero-section/hero-section.component';
+import { showSection } from '../../../shared/search-box/search-box';
 
 export interface SearchCriteria {
   ceremony: string;
@@ -35,15 +36,21 @@ interface Slide {
   imports: [CommonModule, FormsModule, HeroSectionComponent],
 })
 export class PoojarisComponent implements OnInit {
-  heroData: HeroData[] = [
-    {
-      eyebrowIcon: '',
-      eyebrowText: ' 🪔 Traditional Sacred Ceremonies at Your Doorstep',
-      titleLine1: 'Book Verified',
-      titleHighlight: 'Vedic Poojaris & Purohits',
-      description: 'Perform authentic rituals, homams, and ceremonies with experienced, background-verified Vedic scholars tailored to your language and traditions.'
-    },
-  ];
+  heroData: HeroData = {
+    eyebrowIcon: '',
+    eyebrowText: ' 🪔 Traditional Sacred Ceremonies at Your Doorstep',
+    titleLine1: 'Book Verified',
+    titleHighlight: 'Vedic Poojaris & Purohits',
+    description: 'Perform authentic rituals, homams, and ceremonies with experienced, background-verified Vedic scholars tailored to your language and traditions.'
+  };
+  
+  showSection: showSection = {
+    displaySearchBox: true,
+    showLanguage: true,
+    showCeremony: true,
+    showLocation: true,
+    showDate: true
+  };
 
   features: HeroFeature[] = [
     { iconClass: 'bi-patch-check-fill', label: 'Verified Vedic Scholars' },

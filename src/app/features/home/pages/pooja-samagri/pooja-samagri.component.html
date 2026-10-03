@@ -1,11 +1,12 @@
 <!-- ================= HERO =================== -->
 <app-hero-section
   [heroData]="heroData"
+  [showSection]="showSection"
   [features]="features"
   [slides]="slides">
 </app-hero-section>
 
-<!================= Main =================>
+<!-- ================= Main ================= -->
 <section class="container-fluid px-3 px-lg-5">
   <div class="samagri-section">
     <div class="category-header">
@@ -17,8 +18,8 @@
       </div>
 
       <div class="sort-wrapper">
-        <label>Sort by</label>
-        <select class="form-select" [(ngModel)]="sortBy">
+        <label for="sortBy">Sort by</label>
+        <select id="sortBy" class="form-select" [(ngModel)]="sortBy" (change)="applyFilters()">
           <option value="popular">Popular</option>
           <option value="rating">Top Rated</option>
           <option value="price-low">Price: Low to High</option>
@@ -27,95 +28,105 @@
       </div>
     </div>
 
-    <!-- Category Pills -->
-    <div class="category-pills">
-      <button *ngFor="let category of categories" class="category-pill"
-        [class.active]="selectedCategory === category"
-        (click)="selectCategory(category)"
-      >{{ category }}
-      </button>
+    <!-- Category Pills & Search Box -->
+    <div class="category-pills d-flex align-items-center justify-content-between flex-wrap gap-2">
+      <div class="d-flex align-items-center flex-wrap gap-2">
+        @for (category of categories(); track category) {
+          <button 
+            type="button"
+            class="category-pill"
+            [class.active]="selectedCategory() === category"
+            (click)="selectCategory(category)"
+          >
+            {{ category }}
+          </button>
+        }
+      </div>
+
+      <!-- Search Box placed at the end -->
+      <div class="search-box position-relative ms-auto">
+        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+        <input 
+          type="text" 
+          class="form-control rounded-pill ps-5" 
+          placeholder="Search products..." 
+          [ngModel]="searchText()"
+          (ngModelChange)="searchText.set($event); applyFilters()"
+        />
+      </div>
     </div>
 
     <div class="row">
       <div class="col-lg-12">
         <div class="products-topbar">
           <div>
-            <strong>
-              {{ filteredItems.length }}
-            </strong>
-            products found
+            <strong>{{ filteredItems().length }}</strong> products found
           </div>
           <div class="selected-category">
-            {{ selectedCategory }}
+            {{ selectedCategory() }}
           </div>
         </div>
-    
-        <div class="row g-4" *ngIf="filteredItems.length > 0">
-    
-          <div class="col-md-6 col-xl-4" *ngFor="let item of filteredItems">
-            <div class="product-card">
-              <!-- Image -->
-              <div class="product-image">
-                <img [src]="item.image" [alt]="item.name" />
-                <span *ngIf="item.badge" class="product-badge">
-                  {{ item.badge }}
-                </span>
-                <button class="wishlist">
-                  <i class="bi bi-heart"></i>
-                </button>
-              </div>
-              <!-- Content -->
-              <div class="product-content">
-    
-                <div class="product-category">{{ item.category }}</div>
-                <h3>{{ item.name }}</h3>
-                <p>{{ item.description }}</p>
-                <div class="rating">
-                  <span class="stars">
-                    <i class="bi bi-star-fill"></i>
-                    {{ item.rating }}
-                  </span>
-                  <span class="reviews">
-                    ({{ item.reviews }})
-                  </span>
-                </div>
-    
-                <div class="product-unit">
-                  {{ item.unit }}
-                </div>
-    
-                <div class="product-bottom">
-                  <div class="price">
-                    <strong>
-                      ₹{{ item.price }}
-                    </strong>
-                    <del *ngIf="item.oldPrice">
-                      ₹{{ item.oldPrice }}
-                    </del>
+
+        @if (filteredItems().length > 0) {
+          <div class="row g-4">
+            @for (item of filteredItems(); track item.id || item.name) {
+              <div class="col-6 col-md-3 col-xl-2">
+                <div class="product-card">
+                  <!-- Image -->
+                  <div class="product-image">
+                    <img [src]="item.image" [alt]="item.name" loading="lazy" />
+                    @if (item.badge) {
+                      <span class="product-badge">{{ item.badge }}</span>
+                    }
+                    <button type="button" class="wishlist" aria-label="Add to wishlist">
+                      <i class="bi bi-heart"></i>
+                    </button>
+                    <button type="button" class="add-button" (click)="addToCart(item)">
+                      <i class="bi bi-cart-plus"></i>Add
+                    </button>
                   </div>
-    
-                  <button class="add-button" (click)="addToCart(item)">
-                    <i class="bi bi-cart-plus"></i>Add
-                  </button>
-    
+
+                  <!-- Content -->
+                  <div class="product-content">
+                    <div class="product-category">{{ item.category }}</div>
+                    <h3>{{ item.name }}</h3>
+                    <p>{{ item.description }} | {{ item.unit }}</p>
+
+                    <div class="d-flex align-items-center justify-content-between mt-auto">
+                      <div class="price">
+                        <strong>₹{{ item.price }}</strong>
+                        @if (item.oldPrice) {
+                          <del>₹{{ item.oldPrice }}</del>
+                        }
+                      </div>
+                      <div class="rating">
+                        <span class="stars">
+                          <i class="bi bi-star-fill"></i>
+                          {{ item.rating }}
+                        </span>
+                        <span class="reviews">
+                          ({{ item.reviews }})
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+            }
+          </div>
+        } @else {
+          <!-- Empty State -->
+          <div class="empty-state text-center py-5">
+            <div class="empty-icon mb-3 fs-1 text-muted">
+              <i class="bi bi-search"></i>
             </div>
+            <h3>No products found</h3>
+            <p>Try searching for another puja item or choose a different category.</p>
+            <button type="button" class="btn primary-button" (click)="resetFilters()">
+              View All Products
+            </button>
           </div>
-        </div>
-        <!-- Empty State -->
-        <div class="empty-state" *ngIf="filteredItems.length === 0">
-          <div class="empty-icon">
-            <i class="bi bi-search"></i>
-          </div>
-          <h3>No products found</h3>
-          <p>
-            Try searching for another puja item or choose a different category.
-          </p>
-          <button class="btn primary-button" (click)="searchText = ''; selectCategory('All')">
-            View All Products
-          </button>
-        </div>
+        }
       </div>
     </div>
   </div>

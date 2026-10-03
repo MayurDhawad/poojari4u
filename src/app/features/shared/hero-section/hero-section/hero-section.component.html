@@ -5,14 +5,14 @@
     <div class="col-lg-6">
       <div class="hero-content">
         <div class="hero-eyebrow">
-          <i [class]="'bi ' + heroData[0].eyebrowIcon"></i>
-          {{ heroData[0].eyebrowText }}
+          <i [class]="'bi ' + heroData?.eyebrowIcon"></i>
+          {{ heroData?.eyebrowText }}
         </div>
     
-        <h1>{{ heroData[0].titleLine1 }}<br />
-          <span>{{ heroData[0].titleHighlight }}</span>
+        <h1>{{ heroData?.titleLine1 }}<br />
+          <span>{{ heroData?.titleHighlight }}</span>
         </h1>
-        <p>{{ heroData[0].description }}</p>
+        <p>{{ heroData?.description }}</p>
   
         <div class="hero-features">
           @for (feature of features; track feature.label) {
@@ -43,8 +43,8 @@
         </div>
     
         <!-- Optional Navigation Controls -->
-        <button class="btn btn-dark position-absolute start-0 translate-middle-y top-50 z-3 ms-3 rounded-circle" (click)="prev()">‹</button>
-        <button class="btn btn-dark position-absolute end-0 translate-middle-y top-50 z-3 me-3 rounded-circle" (click)="next()">›</button> 
+        <!-- <button class="btn btn-dark position-absolute start-0 translate-middle-y top-50 z-3 ms-3 rounded-circle" (click)="prev()">‹</button>
+        <button class="btn btn-dark position-absolute end-0 translate-middle-y top-50 z-3 me-3 rounded-circle" (click)="next()">›</button>  -->
        
       </div>
     </div>
@@ -52,7 +52,9 @@
     <!-- Search Box -->
     <div class="col-12">
       <div class="w-75">
-        <app-search-box></app-search-box>
+         @if (showSection?.displaySearchBox) {
+          <app-search-box [showSection]="showSection"></app-search-box>
+         }
       </div>
     </div>
 

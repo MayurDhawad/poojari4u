@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { InfoCardComponent } from './info-card/info-card.component';
 import { HeroData, HeroFeature, HeroSectionComponent, HeroSlide } from '../../../shared/hero-section/hero-section/hero-section.component';
+import { showSection } from '../../../shared/search-box/search-box';
 
 export interface BajanthriTroupe {
   id: number;
@@ -57,15 +58,21 @@ export class BajanthriComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  heroData: HeroData[] = [
-    {
-      eyebrowIcon: 'bi-music-note-beamed',
-      eyebrowText: 'TRADITIONAL MUSIC FOR AUSPICIOUS OCCASIONS',
-      titleLine1: 'Book Verified',
-      titleHighlight: 'Bajanthri Groups',
-      description:'Bring tradition and auspicious music to your special moments with experienced Bajanthri groups for weddings, pujas, homams and ceremonies.',
-    },
-  ];
+  heroData: HeroData = {
+    eyebrowIcon: 'bi-music-note-beamed',
+    eyebrowText: 'TRADITIONAL MUSIC FOR AUSPICIOUS OCCASIONS',
+    titleLine1: 'Book Verified &',
+    titleHighlight: 'Professional Bajanthri Troups',
+    description:'Bring tradition and auspicious music to your special moments with experienced Bajanthri groups for weddings, pujas, homams and ceremonies.',
+  };
+
+  showSection: showSection = {
+    displaySearchBox: true,
+    showLanguage: false,
+    showCeremony: true,
+    showLocation: true,
+    showDate: true
+  };
 
   features: HeroFeature[] = [
     { iconClass: 'bi-patch-check-fill', label: 'Verified Artists ' },
