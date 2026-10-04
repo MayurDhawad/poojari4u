@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive} from '@angular/router';
+import { Router, RouterLink, RouterLinkActive} from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -16,6 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class Header {
 
+  constructor(private router: Router){}
+
   navItems = [
     { label: 'Home', path: '/' },
     { label: 'Poojaris', path: '/poojaris' },
@@ -24,5 +26,9 @@ export class Header {
     { label: 'Packages', path: '/packages' },
     { label: 'My Bookings', path: '/my-bookings' },
   ];
+
+  onRegistration(){
+    this.router.navigateByUrl('/register')
+  }
 
 }

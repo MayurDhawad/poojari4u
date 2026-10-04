@@ -1,0 +1,171 @@
+$primary-orange: #e65100;
+$light-orange-bg: #fff3e0;
+$border-color: #e0e0e0;
+
+.registration-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdfbf7 !important;
+}
+
+.text-orange {
+  color: $primary-orange !important;
+}
+
+.bg-light-orange {
+  background-color: $light-orange-bg !important;
+}
+
+.btn-orange {
+  background-color: $primary-orange;
+  color: #ffffff;
+  border: none;
+
+  &:hover:not(:disabled) {
+    background-color: darken($primary-orange, 8%);
+    color: #ffffff;
+  }
+
+  &:disabled {
+    background-color: #f0a882;
+    border-color: #f0a882;
+  }
+}
+
+.btn-outline-orange {
+  color: $primary-orange;
+  border-color: $primary-orange;
+
+  &:hover {
+    background-color: $primary-orange;
+    color: #ffffff;
+  }
+}
+
+.max-w-900 {
+  max-width: 900px;
+}
+
+/* Stepper Custom Styles */
+.stepper-wrapper {
+  .stepper-line {
+    height: 2px;
+    background-color: $border-color;
+  }
+
+  .step-item {
+    cursor: pointer;
+
+    .step-circle {
+      width: 44px;
+      height: 44px;
+      background-color: #ffffff;
+      border: 2px solid $border-color;
+      color: #6c757d;
+      transition: all 0.3s ease;
+    }
+
+    &.active {
+      .step-circle {
+        background-color: $primary-orange;
+        border-color: $primary-orange;
+        color: #ffffff;
+      }
+
+      .step-label {
+        color: $primary-orange !important;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+/* Step 5 Review Cards */
+.review-box {
+  background-color: #fffaf5;
+  border: 1px solid #ffe8d6;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+}
+
+/* Checkbox & Input Styling */
+.form-check-input {
+  &:checked {
+    background-color: $primary-orange;
+    border-color: $primary-orange;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(230, 81, 0, 0.15);
+  }
+}
+
+.custom-badge {
+  font-size: 0.95rem;
+
+  &.btn-light-outline {
+    background-color: #ffffff;
+    border: 1px solid $border-color;
+    color: #495057;
+
+    &:hover {
+      background-color: $light-orange-bg;
+      border-color: $primary-orange;
+      color: $primary-orange;
+    }
+  }
+}
+
+.upload-box {
+  background-color: #fcfbf9;
+  border: 2px dashed #e2e8f0;
+
+  &:hover {
+    border-color: $primary-orange;
+  }
+}
+
+.form-control, .form-select {
+  border-color: #e2e8f0;
+
+  &:focus {
+    border-color: $primary-orange;
+    box-shadow: 0 0 0 0.25rem rgba(230, 81, 0, 0.15);
+  }
+}
+
+$primary-orange: #e65100;
+$badge-bg-orange: #fff3e0;
+$badge-text-orange: #d85100;
+$light-success-bg: #e8f5e9;
+
+/* Success State Styles */
+.bg-light-success {
+  background-color: $light-success-bg !important;
+}
+
+.success-icon {
+  width: 72px;
+  height: 72px;
+}
+
+/* Registration ID Pill Badge */
+.registration-id-badge {
+  background-color: $badge-bg-orange;
+  color: $badge-text-orange;
+  font-size: 1.1rem;
+  letter-spacing: 0.3px;
+}
+
+.btn-orange {
+  background-color: $primary-orange;
+  color: #ffffff;
+  border: none;
+
+  &:hover {
+    background-color: darken($primary-orange, 6%);
+    color: #ffffff;
+  }
+}

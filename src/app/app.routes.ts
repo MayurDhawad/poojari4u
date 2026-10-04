@@ -14,6 +14,18 @@ export const routes: Routes = [
         .then(m => m.DashboardComponent)
   },
   {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/login/login.component')
+        .then(m => m.LoginComponent)
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./features/home/pages/poojaris/poojari-registration-flow/poojari-registration-flow.component')
+        .then(m => m.PoojariRegistrationFlowComponent)
+  },
+  {
     path: 'poojaris',
     loadComponent: () =>
       import('./features/home/pages/poojaris/poojaris.component')

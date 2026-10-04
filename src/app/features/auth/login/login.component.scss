@@ -1,0 +1,123 @@
+// Custom Theme Color Tokens
+$purple-primary: #d97706;
+$purple-dark: #d97706;
+$orange-accent: #d97706;
+$border-color: #e9d5ff;
+$input-border: #e5e7eb;
+$bg-gradient-start: #fbf7ff;
+$bg-gradient-end: #f3e8ff;
+
+.login-wrapper {
+  background: linear-gradient(135deg, $bg-gradient-start 0%, $bg-gradient-end 100%);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  border-radius: 20px;
+  background-color: #ffffff;
+}
+
+.btn-back {
+  top: 2rem;
+  left: 2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.brand-title {
+  color: $purple-primary;
+  font-size: 1.85rem;
+  letter-spacing: -0.5px;
+}
+
+.text-purple {
+  color: $purple-primary;
+}
+
+.text-orange {
+  color: $orange-accent;
+}
+
+// Role Option Items (Step 1)
+.role-option-card {
+  border: 1.5px solid $border-color;
+  background-color: #ffffff;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+
+  &:hover {
+    border-color: $purple-primary;
+    background-color: #faf5ff;
+  }
+
+  &.selected {
+    border-color: $purple-primary;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px $purple-primary;
+  }
+}
+
+// Custom Radio Button Styling
+.custom-radio {
+  width: 18px;
+  height: 18px;
+  border-color: #c084fc;
+  cursor: pointer;
+
+  &:checked {
+    background-color: $purple-primary;
+    border-color: $purple-primary;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(107, 33, 168, 0.15);
+  }
+}
+
+// Input Control Styling (Step 2)
+.custom-input {
+  border-color: $input-border;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #374151;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
+
+  &:focus {
+    border-color: $purple-primary;
+    box-shadow: 0 0 0 0.2rem rgba(107, 33, 168, 0.15);
+  }
+}
+
+// Primary Action Button
+.btn-purple {
+  background-color: $purple-primary;
+  border: none;
+  font-size: 0.95rem;
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover, &:focus {
+    background-color: $purple-dark;
+  }
+
+  &:active {
+    background-color: darken($purple-dark, 5%) !important;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.fs-7 {
+  font-size: 0.875rem;
+}
