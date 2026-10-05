@@ -1,10 +1,34 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormArray, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
-export interface PoojaServiceOption {
-  id: string;
+interface ServiceOption {
   name: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface DayOption {
+  name: string;
+  selected: boolean;
+}
+
+interface PaymentDetails {
+  accountName: string;
+  bankName: string;
+  accountNumber: string;
+  confirmAccountNumber: string;
+  ifsc: string;
+  upi: string;
+}
+
+interface UploadedFiles {
+  idProof?: File;
+  addressProof?: File;
+  qualification?: File;
+  additionalDocument?: File;
 }
 
 @Component({
@@ -17,161 +41,238 @@ export interface PoojaServiceOption {
 export class PoojariRegistrationFlowComponent{
  currentStep = 1;
   submitted = false;
-  otpSent = false;
-  termsAccepted = false;
+  showError = false;
+  errorMessage = '';
   submitError = false;
-
-  photoFileName = '';
-  idFileName = '';
-  trainingDetails = '';
+  otpSent = false;
   registrationId = '';
 
-  readonly steps = [
-    { id: 1, label: 'Personal Details' },
+  // Form Group for Step 1
+  personalForm!: FormGroup;
+
+  // Step 1 - Options
+  languages: string[] = ['Telugu', 'Hindi', 'Tamil', 'Kannada', 'Sanskrit', 'English', 'Marathi'];
+  selectedLanguages: string[] = [];
+
+  // Step 2 - Services
+  services: ServiceOption[] = [
+    { name: 'satyanarayana', title: 'Satyanarayana Pooja', description: 'Complete Katha & Vratam ritual', icon: '🪔' },
+    { name: 'grihapravesam', title: 'Griha Pravesham', description: 'House warming ceremonies & Vastu Shanti', icon: '🏡' },
+    { name: 'marriage', title: 'Vivah / Wedding', description: 'Full traditional wedding rituals', icon: '💍' },
+    { name: 'namakaranam', title: 'Namakaranam', description: 'Baby naming ceremony rituals', icon: '👶' },
+    { name: 'homam', title: 'Chandi / Sudarshana Homam', description: 'Havan and fire rituals for positivity', icon: '🔥' },
+    { name: 'engagement', title: 'Engagement / Nishchitartham', description: 'Rings & alliance ceremony', icon: '🌸' }
+  ];
+  selectedServices: string[] = [];
+  selectedExpertise: string[] = [];
+  otherServices = '';
+
+  // Step 3 - Location & Availability
+  states: string[] = ['Telangana', 'Andhra Pradesh', 'Karnataka', 'Maharashtra', 'Tamil Nadu'];
+  state = '';
+  city = '';
+  area = '';
+  pincode = '';
+  radius = 15;
+  days: DayOption[] = [
+    { name: 'Mon', selected: true },
+    { name: 'Tue', selected: true },
+    { name: 'Wed', selected: true },
+    { name: 'Thu', selected: true },
+    { name: 'Fri', selected: true },
+    { name: 'Sat', selected: true },
+    { name: 'Sun', selected: true }
+  ];
+  startTime = '06:00';
+  endTime = '20:00';
+  advanceBooking = '1-day';
+  maxBooking = '30';
+  sameDay = true;
+  emergency = false;
+
+  // Step 4 - Document & Payment Uploads
+  profilePreview: string | null = null;
+  files: UploadedFiles = {};
+  payment: PaymentDetails = {
+    accountName: '',
+    bankName: '',
+    accountNumber: '',
+    confirmAccountNumber: '',
+    ifsc: '',
+    upi: ''
+  };
+  declarationAccepted = false;
+  termsAccepted = false;
+
+  // Progress Bar Steps
+  steps = [
+    { id: 1, label: 'Personal' },
     { id: 2, label: 'Services' },
     { id: 3, label: 'Availability' },
     { id: 4, label: 'Verification' },
-    { id: 5, label: 'Submit' }
+    { id: 5, label: 'Review' }
   ];
 
-  readonly languages = [
-    'Telugu',
-    'Sanskrit',
-    'Hindi',
-    'English',
-    'Tamil',
-    'Kannada'
-  ];
+  constructor(private fb: FormBuilder) {}
 
-  readonly expertise = [
-    'Griha Pravesh',
-    'Satyanarayana Vratham',
-    'Ganapathi Puja',
-    'Homam / Havan',
-    'Wedding Rituals',
-    'Naming Ceremony',
-    'Other Poojas'
-  ];
+  ngOnInit(): void {
+    this.initPersonalForm();
+  }
 
-  readonly days = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday'
-  ];
-
-  readonly serviceRows = [
-    { name: 'Griha Pravesh', price: '3000' },
-    { name: 'Satyanarayana Vratham', price: '2500' },
-    { name: 'Homam / Havan', price: '3500' }
-  ];
-
-  selectedLanguages: string[] = [];
-  selectedExpertise: string[] = [];
-  selectedDays: string[] = [];
-
-  personalForm: FormGroup;
-  servicesForm: FormGroup;
-  availabilityForm: FormGroup;
-
-  constructor(private readonly fb: FormBuilder) {
+  private initPersonalForm(): void {
     this.personalForm = this.fb.group({
-      fullName: ['Mayur Dhawad', Validators.required],
-      mobile: ['9923808023', [
-        Validators.required,
-        Validators.pattern(/^[6-9]\d{9}$/)
-      ]],
-      email: ['mayur@gmail.com', Validators.email],
-      city: ['Nagpur', Validators.required],
+      fullName: ['', Validators.required],
+      mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      email: ['', [Validators.email]],
+      city: ['', Validators.required],
       areas: [''],
       experience: [0, [Validators.min(0)]]
     });
-
-    this.servicesForm = this.fb.group({
-      samagri: ['yes']
-    });
-
-    this.availabilityForm = this.fb.group({
-      from: ['06:00'],
-      until: ['20:00'],
-      maxBookings: ['2'],
-      travelOutsideCity: ['yes']
-    });
   }
 
+  // --- Step 1 Helpers ---
   isInvalid(form: FormGroup, controlName: string): boolean {
     const control = form.get(controlName);
-    return !!control && control.invalid && (control.dirty || control.touched);
+    return !!(control && control.invalid && (control.dirty || control.touched));
   }
 
   sendOtp(): void {
-    const mobile = this.personalForm.get('mobile');
-
-    if (!mobile?.value || mobile.invalid) {
-      mobile?.markAsTouched();
-      return;
+    if (this.personalForm.get('mobile')?.valid) {
+      this.otpSent = true;
+    } else {
+      this.personalForm.get('mobile')?.markAsTouched();
     }
-
-    this.otpSent = true;
   }
 
-  nextStep(step: number): void {
-    if (step === 2 && this.personalForm.invalid) {
-      this.personalForm.markAllAsTouched();
-      return;
+  toggleSelection(list: string[], item: string): void {
+    const index = list.indexOf(item);
+    if (index > -1) {
+      list.splice(index, 1);
+    } else {
+      list.push(item);
     }
+  }
 
+  // --- Step 2 Helpers ---
+  isSelected(serviceName: string): boolean {
+    return this.selectedServices.includes(serviceName);
+  }
+
+  toggleService(serviceName: string): void {
+    this.toggleSelection(this.selectedServices, serviceName);
+    this.showError = false;
+  }
+
+  // --- Step 3 Helpers ---
+  toggleDay(day: DayOption): void {
+    day.selected = !day.selected;
+    this.showError = false;
+  }
+
+  // --- Step 4 Helpers ---
+  onProfilePhotoSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => (this.profilePreview = reader.result as string);
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onFileSelected(event: Event, key: keyof UploadedFiles): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.files[key] = file;
+    }
+  }
+
+  // --- Navigation & Workflow ---
+  nextStep(step: number): void {
+    if (this.currentStep === 1) {
+      if (this.personalForm.invalid) {
+        this.personalForm.markAllAsTouched();
+        return;
+      }
+    }
     this.currentStep = step;
-    this.submitError = false;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  previousStep(): void {
+  goBack(): void {
+    this.goPrevious();
+  }
+
+  goPrevious(): void {
     if (this.currentStep > 1) {
       this.currentStep--;
-      this.submitError = false;
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
-  toggleSelection(list: string[], value: string): void {
-    const index = list.indexOf(value);
-
-    if (index >= 0) {
-      list.splice(index, 1);
-    } else {
-      list.push(value);
-    }
+  previousStep(): void {
+    this.goPrevious();
   }
 
-  onFileSelected(event: Event, type: 'photo' | 'id'): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
+  continueRegistration(): void {
+    this.showError = false;
 
-    if (!file) {
+    // Step 2 validation
+    if (this.currentStep === 2) {
+      if (this.selectedServices.length === 0 && !this.otherServices.trim()) {
+        this.showError = true;
+        return;
+      }
+      this.nextStep(3);
       return;
     }
 
-    if (type === 'photo') {
-      this.photoFileName = file.name;
-    } else {
-      this.idFileName = file.name;
+    // Step 3 validation
+    if (this.currentStep === 3) {
+      const hasSelectedDay = this.days.some((d) => d.selected);
+      if (!hasSelectedDay) {
+        this.showError = true;
+        return;
+      }
+      this.nextStep(4);
+      return;
     }
   }
 
   submitRegistration(): void {
-    if (!this.termsAccepted) {
-      this.submitError = true;
+    // Step 4 verification logic
+    if (this.currentStep === 4) {
+      if (!this.declarationAccepted) {
+        this.errorMessage = 'Please accept the declaration before proceeding.';
+        return;
+      }
+      this.errorMessage = '';
+      this.prepareReviewData();
+      this.nextStep(5);
       return;
     }
 
-    this.registrationId =
-      `P4U-P-${Math.floor(100000 + Math.random() * 900000)}`;
+    // Final submission step (Step 5)
+    if (this.currentStep === 5) {
+      if (!this.termsAccepted) {
+        this.submitError = true;
+        return;
+      }
 
-    this.submitted = true;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+      this.submitError = false;
+      this.registrationId = 'P4U-' + Math.floor(100000 + Math.random() * 900000);
+      this.submitted = true;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  private prepareReviewData(): void {
+    const titles = this.services
+      .filter((s) => this.selectedServices.includes(s.name))
+      .map((s) => s.title);
+
+    if (this.otherServices.trim()) {
+      titles.push(...this.otherServices.split(',').map((s) => s.trim()));
+    }
+    this.selectedExpertise = titles;
   }
 }
