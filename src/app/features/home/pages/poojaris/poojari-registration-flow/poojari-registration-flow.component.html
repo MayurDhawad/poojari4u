@@ -1,334 +1,443 @@
-
-  <!-- Container -->
-  <div class="container">
-    <!-- Header Banner -->
-    <div class="text-center my-4">
-      <p class="text-uppercase tracking-wide text-orange fw-semibold mb-1">JOIN THE POOJARI4U FAMILY</p>
-      <h1 class="fw-bold display-5 text-dark">Register as a Poojari</h1>
-      <p class="text-muted col-md-8 mx-auto">
-        Share your traditional knowledge and connect with families looking for trusted Poojaris for their special ceremonies.
+<div class="registration-page">
+  <!-- Page Hero -->
+  <section class="page-header">
+    <div class="container">
+      <div class="eyebrow">JOIN THE POOJARI4U FAMILY</div>
+      <h1>Register as a Poojari</h1>
+      <p>
+        Share your traditional knowledge and connect with families looking
+        for trusted Poojaris for their special ceremonies.
       </p>
     </div>
+  </section>
 
-    <!-- Stepper Navigation -->
-    <div class="stepper-wrapper my-5 d-flex justify-content-between align-items-center position-relative col-md-8 mx-auto">
-      <div class="stepper-line position-absolute top-50 start-0 w-100 translate-middle-y z-0"></div>
-      
-      <div class="step-item text-center z-1" [class.active]="currentStep >= 1" (click)="goToStep(1)">
-        <div class="step-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 fw-bold">1</div>
-        <div class="step-label small fw-semibold">Personal Details</div>
-      </div>
-      <div class="step-item text-center z-1" [class.active]="currentStep >= 2" (click)="goToStep(2)">
-        <div class="step-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 fw-bold">2</div>
-        <div class="step-label small fw-semibold">Services</div>
-      </div>
-      <div class="step-item text-center z-1" [class.active]="currentStep >= 3" (click)="goToStep(3)">
-        <div class="step-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 fw-bold">3</div>
-        <div class="step-label small fw-semibold">Availability</div>
-      </div>
-      <div class="step-item text-center z-1" [class.active]="currentStep >= 4" (click)="goToStep(4)">
-        <div class="step-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 fw-bold">4</div>
-        <div class="step-label small fw-semibold">Verification</div>
-      </div>
-      <div class="step-item text-center z-1" [class.active]="currentStep >= 5" (click)="goToStep(5)">
-        <div class="step-circle rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2 fw-bold">5</div>
-        <div class="step-label small fw-semibold">Submit</div>
+  <!-- Progress -->
+  <section class="progress-section">
+    <div class="container">
+      <div class="registration-progress">
+        @for (step of steps; track step.id) {
+          <div class="progress-step" [class.active]="currentStep >= step.id">
+            <div class="step-number">{{ step.id }}</div>
+            <div class="step-label">{{ step.label }}</div>
+          </div>
+        }
       </div>
     </div>
+  </section>
 
-    <!-- Main Registration Form -->
-    <form [formGroup]="registrationForm" (ngSubmit)="nextStep()">
-      
-      <!-- STEP 1: Personal Details -->
-      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 1">
-        <h3 class="fw-bold mb-1">Personal Details</h3>
-        <p class="text-muted mb-4">Tell us a little about yourself.</p>
+  <!-- Registration Card -->
+  <main class="registration-container container">
 
-        <div class="row g-4">
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control form-control-lg" placeholder="Enter your full name" formControlName="fullName">
-          </div>
+    <div class="registration-card">
 
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">Mobile Number <span class="text-danger">*</span></label>
-            <div class="input-group input-group-lg">
-              <input type="tel" class="form-control" placeholder="+91 XXXXX XXXXX" formControlName="mobileNumber">
-              <button class="btn btn-outline-orange px-3" type="button" (click)="sendOtp()">Send OTP</button>
+      @if (!submitted) {
+
+        <!-- STEP 1 -->
+        @if (currentStep === 1) {
+          <section class="form-step">
+            <div class="form-title">
+              <h2>Personal Details</h2>
+              <p>Tell us a little about yourself.</p>
             </div>
-          </div>
 
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">Email Address</label>
-            <input type="email" class="form-control form-control-lg" placeholder="Enter your email address" formControlName="email">
-          </div>
+            <form [formGroup]="personalForm">
+              <div class="row g-4">
 
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">City <span class="text-danger">*</span></label>
-            <input type="text" class="form-control form-control-lg" placeholder="Example: Hyderabad" formControlName="city">
-          </div>
+                <div class="col-md-6">
+                  <label class="form-label">Full Name <span>*</span></label>
+                  <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    formControlName="fullName"
+                    placeholder="Enter your full name">
+                  @if (isInvalid(personalForm, 'fullName')) {
+                    <small class="field-error">Full name is required.</small>
+                  }
+                </div>
 
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">Service Areas</label>
-            <input type="text" class="form-control form-control-lg" placeholder="Example: Gachibowli, Kondapur, Madhapur" formControlName="serviceAreas">
-          </div>
+                <div class="col-md-6">
+                  <label class="form-label">Mobile Number <span>*</span></label>
+                  <div class="mobile-row">
+                    <input
+                      type="tel"
+                      class="form-control"
+                      formControlName="mobile"
+                      placeholder="+91 XXXXX XXXXX">
+                    <button type="button" class="btn otp-btn" (click)="sendOtp()">
+                      {{ otpSent ? 'Resend OTP' : 'Send OTP' }}
+                    </button>
+                  </div>
 
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">Years of Experience</label>
-            <input type="number" class="form-control form-control-lg" placeholder="Example: 10" formControlName="yearsOfExperience">
-          </div>
+                  @if (otpSent) {
+                    <div class="verified">
+                      <i class="bi bi-check-circle-fill"></i>
+                      OTP sent. Demo verification completed.
+                    </div>
+                  }
 
-          <div class="col-12">
-            <label class="form-label fw-semibold d-block mb-3">Languages Known</label>
-            <div class="d-flex flex-wrap gap-2">
-              <button 
-                type="button" 
-                *ngFor="let lang of languagesList"
-                class="btn rounded-pill px-4 py-2 custom-badge"
-                [class.btn-orange]="isLanguageSelected(lang)"
-                [class.btn-light-outline]="!isLanguageSelected(lang)"
-                (click)="toggleLanguage(lang)">
-                {{ lang }}
+                  @if (isInvalid(personalForm, 'mobile')) {
+                    <small class="field-error">Enter a valid mobile number.</small>
+                  }
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Email Address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    formControlName="email"
+                    placeholder="Enter your email address">
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">City <span>*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="city"
+                    placeholder="Example: Hyderabad">
+                  @if (isInvalid(personalForm, 'city')) {
+                    <small class="field-error">City is required.</small>
+                  }
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label">Service Areas</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="areas"
+                    placeholder="Example: Gachibowli, Kondapur, Madhapur">
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Years of Experience</label>
+                  <input
+                    type="number"
+                    min="0"
+                    class="form-control"
+                    formControlName="experience"
+                    placeholder="Example: 10">
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Languages Known</label>
+                  <div class="options">
+                    @for (language of languages; track language) {
+                      <label class="option-chip">
+                        <input
+                          type="checkbox"
+                          [checked]="selectedLanguages.includes(language)"
+                          (change)="toggleSelection(selectedLanguages, language)">
+                        <span>{{ language }}</span>
+                      </label>
+                    }
+                  </div>
+                </div>
+
+              </div>
+            </form>
+
+            <div class="form-actions">
+              <span></span>
+              <button type="button" class="btn primary-btn" (click)="nextStep(2)">
+                Continue <i class="bi bi-arrow-right"></i>
               </button>
             </div>
-          </div>
-        </div>
+          </section>
+        }
 
-        <div class="d-flex justify-content-end mt-5">
-          <button type="submit" class="btn btn-orange btn-lg px-5 rounded-pill shadow-sm">Continue →</button>
-        </div>
-      </div>
-
-      <!-- STEP 2: Services -->
-      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 2">
-        <h3 class="fw-bold mb-1">Your Pooja Services</h3>
-        <p class="text-muted mb-4">Select the ceremonies you perform and add your starting prices.</p>
-
-        <div class="mb-4">
-          <label class="form-label fw-semibold text-muted small text-uppercase mb-3 d-block">Areas of Expertise</label>
-          <div class="d-flex flex-wrap gap-2">
-            <button 
-              type="button"
-              *ngFor="let service of availableServices"
-              class="btn rounded-pill px-4 py-2 custom-badge"
-              [class.btn-orange]="isServiceSelected(service.id)"
-              [class.btn-light-outline]="!isServiceSelected(service.id)"
-              (click)="toggleService(service)">
-              {{ service.name }}
-            </button>
-          </div>
-        </div>
-
-        <div formArrayName="selectedServices" class="d-flex flex-column gap-3 mb-4">
-          <div 
-            *ngFor="let serviceGroup of selectedServicesArray.controls; let i = index" 
-            [formGroupName]="i" 
-            class="service-item-card border rounded-3 p-3 bg-white">
-            <div class="row align-items-center g-3">
-              <div class="col-md-7">
-                <label class="fw-bold text-dark mb-2 d-block">{{ serviceGroup.get('serviceName')?.value }}</label>
-                <input type="text" class="form-control" placeholder="Service description" formControlName="description">
-              </div>
-              <div class="col-md-5">
-                <label class="fw-semibold text-muted small mb-2 d-block">Starting Price ₹</label>
-                <input type="number" class="form-control" placeholder="e.g. 3000" formControlName="startingPrice">
-              </div>
+        <!-- STEP 2 -->
+        @if (currentStep === 2) {
+          <section class="form-step">
+            <div class="form-title">
+              <h2>Your Pooja Services</h2>
+              <p>Select the ceremonies you perform and add your starting prices.</p>
             </div>
+
+            <form [formGroup]="servicesForm">
+              <div class="mb-4">
+                <label class="form-label">Areas of Expertise</label>
+                <div class="options">
+                  @for (service of expertise; track service) {
+                    <label class="option-chip">
+                      <input
+                        type="checkbox"
+                        [checked]="selectedExpertise.includes(service)"
+                        (change)="toggleSelection(selectedExpertise, service)">
+                      <span>{{ service }}</span>
+                    </label>
+                  }
+                </div>
+              </div>
+
+              @for (service of serviceRows; track service.name) {
+                <div class="service-box">
+                  <div class="row g-3 align-items-end">
+                    <div class="col-md-8">
+                      <label class="form-label">{{ service.name }}</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Service description">
+                    </div>
+                    <div class="col-md-4">
+                      <label class="form-label">Starting Price ₹</label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        [placeholder]="service.price">
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <div class="mt-4">
+                <label class="form-label d-block">Do you provide Puja Samagri?</label>
+                <div class="options">
+                  <label class="option-chip">
+                    <input type="radio" formControlName="samagri" value="yes">
+                    <span>Yes</span>
+                  </label>
+                  <label class="option-chip">
+                    <input type="radio" formControlName="samagri" value="no">
+                    <span>No</span>
+                  </label>
+                </div>
+              </div>
+            </form>
+
+            <div class="form-actions">
+              <button type="button" class="btn secondary-btn" (click)="previousStep()">
+                <i class="bi bi-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn primary-btn" (click)="nextStep(3)">
+                Continue <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </section>
+        }
+
+        <!-- STEP 3 -->
+        @if (currentStep === 3) {
+          <section class="form-step">
+            <div class="form-title">
+              <h2>Your Availability</h2>
+              <p>Tell customers when you are generally available.</p>
+            </div>
+
+            <form [formGroup]="availabilityForm">
+              <div class="mb-4">
+                <label class="form-label">Available Days</label>
+                <div class="options">
+                  @for (day of days; track day) {
+                    <label class="option-chip">
+                      <input
+                        type="checkbox"
+                        [checked]="selectedDays.includes(day)"
+                        (change)="toggleSelection(selectedDays, day)">
+                      <span>{{ day }}</span>
+                    </label>
+                  }
+                </div>
+              </div>
+
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <label class="form-label">Available From</label>
+                  <input type="time" class="form-control" formControlName="from">
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Available Until</label>
+                  <input type="time" class="form-control" formControlName="until">
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Maximum Bookings Per Day</label>
+                  <select class="form-select" formControlName="maxBookings">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5+">5+</option>
+                  </select>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label">Travel Outside City?</label>
+                  <select class="form-select" formControlName="travelOutsideCity">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="info-box">
+                <strong><i class="bi bi-lightbulb-fill"></i> Availability Tip</strong>
+                <p>
+                  Keeping your availability updated will help Poojari4U show you
+                  to customers looking for services on matching dates.
+                </p>
+              </div>
+            </form>
+
+            <div class="form-actions">
+              <button type="button" class="btn secondary-btn" (click)="previousStep()">
+                <i class="bi bi-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn primary-btn" (click)="nextStep(4)">
+                Continue <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </section>
+        }
+
+        <!-- STEP 4 -->
+        @if (currentStep === 4) {
+          <section class="form-step">
+            <div class="form-title">
+              <h2>Verification</h2>
+              <p>Upload the required information so Poojari4U can review your profile.</p>
+            </div>
+
+            <div class="upload-box">
+              <div class="upload-icon"><i class="bi bi-camera-fill"></i></div>
+              <h3>Profile Photo</h3>
+              <p>Upload a clear photo that customers can see on your profile.</p>
+              <input type="file" class="form-control form-control-fileupload" accept="image/*" (change)="onFileSelected($event, 'photo')">
+              @if (photoFileName) {
+                <small class="file-name">{{ photoFileName }}</small>
+              }
+            </div>
+
+            <div class="upload-box mt-4">
+              <div class="upload-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
+              <h3>Identity Document</h3>
+              <p>Upload an accepted identity document for verification.</p>
+              <input type="file" class="form-control form-control-fileupload" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'id')">
+              @if (idFileName) {
+                <small class="file-name">{{ idFileName }}</small>
+              }
+            </div>
+
+            <div class="mt-4">
+              <label class="form-label">Training / Veda Patashala Details</label>
+              <textarea
+                class="form-control"
+                rows="4"
+                placeholder="Enter your training, Veda Patashala, experience or other relevant details..."
+                [(ngModel)]="trainingDetails"></textarea>
+            </div>
+
+            <div class="info-box">
+              <strong><i class="bi bi-shield-lock-fill"></i> Privacy & Verification</strong>
+              <p>
+                Your verification information is collected for Poojari4U onboarding
+                and should only be accessible to authorized Poojari4U administrators.
+              </p>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn secondary-btn" (click)="previousStep()">
+                <i class="bi bi-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn primary-btn" (click)="nextStep(5)">
+                Review Registration <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+          </section>
+        }
+
+        <!-- STEP 5 -->
+        @if (currentStep === 5) {
+          <section class="form-step">
+            <div class="form-title">
+              <h2>Review & Submit</h2>
+              <p>Please check your information before submitting your registration.</p>
+            </div>
+
+            <div class="info-box review-box">
+              <strong>Personal Information</strong>
+              <p><b>Name:</b> {{ personalForm.value.fullName || '—' }}</p>
+              <p><b>Mobile:</b> {{ personalForm.value.mobile || '—' }}</p>
+              <p><b>City:</b> {{ personalForm.value.city || '—' }}</p>
+              <p><b>Experience:</b> {{ personalForm.value.experience || '0' }} years</p>
+              <p><b>Languages:</b> {{ selectedLanguages.join(', ') || '—' }}</p>
+            </div>
+
+            <div class="info-box review-box">
+              <strong>Professional Information</strong>
+              <p><b>Expertise:</b> {{ selectedExpertise.join(', ') || '—' }}</p>
+              <p>
+                Your selected services, expertise, pricing and availability
+                will be reviewed by the Poojari4U team.
+              </p>
+            </div>
+
+            <div class="terms-check form-check mt-4">
+              <input
+                id="terms"
+                class="form-check-input"
+                type="checkbox"
+                [(ngModel)]="termsAccepted">
+              <label for="terms" class="form-check-label">
+                I confirm that the information provided by me is accurate and
+                I agree to the Poojari4U terms and provider guidelines.
+              </label>
+            </div>
+
+            @if (submitError) {
+              <div class="submit-error mt-3">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                Please accept the terms and provider guidelines.
+              </div>
+            }
+
+            <div class="form-actions">
+              <button type="button" class="btn secondary-btn" (click)="previousStep()">
+                <i class="bi bi-arrow-left"></i> Back
+              </button>
+              <button type="button" class="btn primary-btn" (click)="submitRegistration()">
+                Submit Registration
+              </button>
+            </div>
+          </section>
+        }
+
+      } @else {
+
+        <!-- SUCCESS -->
+        <section class="success-state">
+          <div class="success-icon">
+            <i class="bi bi-check-lg"></i>
           </div>
-        </div>
 
-        <div class="pt-2 mb-4 border-top">
-          <label class="form-label fw-semibold d-block mb-3">Do you provide Puja Samagri?</label>
-          <div class="d-flex gap-3">
-            <input type="radio" class="btn-check" name="providesSamagri" id="samagriYes" value="yes" formControlName="providesSamagri">
-            <label class="btn btn-outline-toggle rounded-pill px-4 py-2" for="samagriYes">Yes</label>
+          <h2>Registration Submitted!</h2>
 
-            <input type="radio" class="btn-check" name="providesSamagri" id="samagriNo" value="no" formControlName="providesSamagri">
-            <label class="btn btn-outline-toggle rounded-pill px-4 py-2" for="samagriNo">No</label>
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
-          <button type="button" class="btn btn-light rounded-pill px-4 py-2 border" (click)="prevStep()">← Back</button>
-          <button type="submit" class="btn btn-orange btn-lg px-5 rounded-pill shadow-sm">Continue →</button>
-        </div>
-      </div>
-
-      <!-- STEP 3: Availability -->
-      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 3">
-        <h2 class="fw-bold text-dark mb-1">Your Availability</h2>
-        <p class="text-muted mb-4">Tell customers when you are generally available.</p>
-
-        <div class="mb-4">
-          <label class="form-label fw-semibold d-block mb-2">Available Days</label>
-          <div class="d-flex flex-wrap gap-2">
-            <button 
-              type="button"
-              *ngFor="let day of daysOfWeek"
-              class="btn rounded-pill px-4 py-2 custom-badge"
-              [class.btn-orange]="isDaySelected(day)"
-              [class.btn-light-outline]="!isDaySelected(day)"
-              (click)="toggleDay(day)">
-              {{ day }}
-            </button>
-          </div>
-        </div>
-
-        <div class="row g-4 mb-4">
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">Available From</label>
-            <input type="time" class="form-control form-control-lg" formControlName="availableFrom">
-          </div>
-
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">Available Until</label>
-            <input type="time" class="form-control form-control-lg" formControlName="availableUntil">
-          </div>
-
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">Maximum Bookings Per Day</label>
-            <select class="form-select form-select-lg" formControlName="maxBookingsPerDay">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5+">5+</option>
-            </select>
-          </div>
-
-          <div class="col-md-6">
-            <label class="form-label fw-semibold">Travel Outside City?</label>
-            <select class="form-select form-select-lg" formControlName="travelOutsideCity">
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
-          <button type="button" class="btn btn-light rounded-pill px-4 py-2 border" (click)="prevStep()">← Back</button>
-          <button type="submit" class="btn btn-orange btn-lg px-5 rounded-pill shadow-sm">Continue →</button>
-        </div>
-      </div>
-
-      <!-- STEP 4: Verification -->
-      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 4">
-        <h2 class="fw-bold text-dark mb-1">Verification</h2>
-        <p class="text-muted mb-4">Upload the required information so Poojari4U can review your profile.</p>
-
-        <div class="upload-box rounded-4 text-center p-4 mb-4">
-          <div class="upload-icon-circle mx-auto mb-2">📷</div>
-          <h5 class="fw-bold mb-1">Profile Photo</h5>
-          <p class="text-muted small mb-3">Upload a clear photo that customers can see on your profile.</p>
-          
-          <div class="d-inline-flex align-items-center gap-2">
-            <input type="file" #profilePhotoInput class="d-none" accept="image/*" (change)="onProfilePhotoSelected($event)">
-            <button type="button" class="btn btn-light border px-4 py-2 rounded-3 shadow-sm" (click)="profilePhotoInput.click()">
-              Choose File
-            </button>
-            <span class="text-muted small">{{ profilePhotoName || 'No file chosen' }}</span>
-          </div>
-        </div>
-
-        <div class="upload-box rounded-4 text-center p-4 mb-4">
-          <div class="upload-icon-circle mx-auto mb-2">📄</div>
-          <h5 class="fw-bold mb-1">Identity Document</h5>
-          <p class="text-muted small mb-3">Upload an accepted identity document for verification.</p>
-          
-          <div class="d-inline-flex align-items-center gap-2">
-            <input type="file" #identityDocInput class="d-none" accept=".pdf,image/*" (change)="onIdentityDocSelected($event)">
-            <button type="button" class="btn btn-light border px-4 py-2 rounded-3 shadow-sm" (click)="identityDocInput.click()">
-              Choose File
-            </button>
-            <span class="text-muted small">{{ identityDocName || 'No file chosen' }}</span>
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <label class="form-label fw-semibold text-dark mb-2">Training / Veda Patashala Details</label>
-          <textarea class="form-control" rows="4" formControlName="trainingDetails"></textarea>
-        </div>
-
-        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
-          <button type="button" class="btn btn-light rounded-pill px-4 py-2 border" (click)="prevStep()">← Back</button>
-          <button type="submit" class="btn btn-orange btn-lg px-5 rounded-pill shadow-sm">Review Registration →</button>
-        </div>
-      </div>
-
-      <!-- STEP 5: Review & Submit -->
-      <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 5 && !isSubmitted">
-        <h2 class="fw-bold text-dark mb-1">Review & Submit</h2>
-        <p class="text-muted mb-4">Please check your information before submitting your registration.</p>
-
-        <!-- Personal Information Card -->
-        <div class="review-box rounded-3 p-4 mb-4">
-          <h5 class="fw-bold text-orange mb-3">Personal Information</h5>
-          <div class="row g-2 text-dark">
-            <div class="col-sm-4 text-muted">Name:</div>
-            <div class="col-sm-8 fw-medium">{{ registrationForm.get('fullName')?.value || 'N/A' }}</div>
-
-            <div class="col-sm-4 text-muted">Mobile:</div>
-            <div class="col-sm-8 fw-medium">{{ registrationForm.get('mobileNumber')?.value || 'N/A' }}</div>
-
-            <div class="col-sm-4 text-muted">City:</div>
-            <div class="col-sm-8 fw-medium">{{ registrationForm.get('city')?.value || 'N/A' }}</div>
-          </div>
-        </div>
-
-        <!-- Professional Information Card -->
-        <div class="review-box rounded-3 p-4 mb-4">
-          <h5 class="fw-bold text-orange mb-2">Professional Information</h5>
-          <p class="text-muted small mb-0">
-            Your selected services, expertise, pricing and availability will be reviewed by the Poojari4U team.
+          <p class="success-text">
+            Thank you for joining Poojari4U.
           </p>
-        </div>
 
-        <!-- Terms Confirmation Checkbox -->
-        <div class="form-check mb-5">
-          <input 
-            type="checkbox" 
-            class="form-check-input" 
-            id="termsCheckbox" 
-            formControlName="termsConfirmed"
-            [class.is-invalid]="registrationForm.get('termsConfirmed')?.touched && registrationForm.get('termsConfirmed')?.invalid">
-          <label class="form-check-label text-dark small" for="termsCheckbox">
-            I confirm that the information provided by me is accurate and I agree to the Poojari4U terms and provider guidelines.
-          </label>
-        </div>
+          <p class="success-text">
+            Our team will review your profile and contact you regarding
+            verification and activation.
+          </p>
 
-        <!-- Action Buttons -->
-        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
-          <button type="button" class="btn btn-light rounded-pill px-4 py-2 border" (click)="prevStep()">
-            ← Back
-          </button>
-          <button 
-            type="button" 
-            class="btn btn-orange btn-lg px-5 rounded-pill shadow-sm"
-            [disabled]="!registrationForm.get('termsConfirmed')?.value"
-            (click)="submitRegistration()">
-            Submit Registration
-          </button>
-        </div>
-      </div>
+          <div class="registration-id">
+            Registration ID: <span>{{ registrationId }}</span>
+          </div>
 
-      <!-- Successful Submission Card State -->
-      <div class="card border-0 shadow-sm rounded-4 p-5 text-center mx-auto max-w-900" *ngIf="isSubmitted">
-        <div class="success-icon rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 fs-1 bg-light-orange text-orange">
-          ✓
-        </div>
-        <h2 class="fw-bold text-dark mb-2">Registration Submitted!</h2>
-        <p class="text-muted col-md-8 mx-auto mb-4">
-          Thank you for registering with Poojari4U. Our team will review your details and contact you shortly.
-        </p>
-        <!-- Registration ID Badge -->
-        <div class="d-flex justify-content-center mb-4">
-          <h6 class="registration-id-badge rounded-pill fw-bold px-4 py-2 mb-0">Registration ID: {{ registrationId }}</h6>
-        </div>
-        <div>
-          <a href="#" class="btn btn-orange rounded-pill px-5 py-2">Go to Dashboard</a>
-        </div>
-      </div>
+          <div class="mt-4">
+            <a routerLink="/" class="btn primary-btn">
+              Return to Poojari4U
+            </a>
+          </div>
+        </section>
 
-    </form>
-  </div>
+      }
 
+    </div>
+  </main>
+
+</div>

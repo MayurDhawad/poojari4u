@@ -1,171 +1,605 @@
-$primary-orange: #e65100;
-$light-orange-bg: #fff3e0;
-$border-color: #e0e0e0;
+$orange: #e87512;
+$orange-dark: #c95b08;
+$cream: #fffaf2;
+$cream-light: #fff4e7;
+$brown: #3b2619;
+$text: #4b3b30;
+$muted: #7b6e63;
+$border: #eadbca;
+$white: #fff;
 
 .registration-page {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fdfbf7 !important;
+  min-height: 100vh;
+  background: $cream;
+  color: $text;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.text-orange {
-  color: $primary-orange !important;
-}
+/* Header */
+.site-header {
+  background: #fffdf9;
+  border-bottom: 1px solid $border;
 
-.bg-light-orange {
-  background-color: $light-orange-bg !important;
-}
-
-.btn-orange {
-  background-color: $primary-orange;
-  color: #ffffff;
-  border: none;
-
-  &:hover:not(:disabled) {
-    background-color: darken($primary-orange, 8%);
-    color: #ffffff;
+  .navbar {
+    min-height: 90px;
   }
 
-  &:disabled {
-    background-color: #f0a882;
-    border-color: #f0a882;
-  }
-}
-
-.btn-outline-orange {
-  color: $primary-orange;
-  border-color: $primary-orange;
-
-  &:hover {
-    background-color: $primary-orange;
-    color: #ffffff;
-  }
-}
-
-.max-w-900 {
-  max-width: 900px;
-}
-
-/* Stepper Custom Styles */
-.stepper-wrapper {
-  .stepper-line {
-    height: 2px;
-    background-color: $border-color;
+  .brand {
+    text-decoration: none;
   }
 
-  .step-item {
-    cursor: pointer;
+  .brand-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: contain;
+  }
 
-    .step-circle {
-      width: 44px;
-      height: 44px;
-      background-color: #ffffff;
-      border: 2px solid $border-color;
-      color: #6c757d;
-      transition: all 0.3s ease;
-    }
+  .brand-copy {
+    margin-left: 14px;
+  }
 
+  .brand-name {
+    color: $orange;
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .brand-name sup {
+    font-size: 9px;
+  }
+
+  .brand-tagline {
+    margin-top: 6px;
+    color: $brown;
+    font-size: 13px;
+  }
+
+  .nav-link {
+    color: #241b15;
+    font-size: 15px;
+    font-weight: 600;
+    transition: color .2s ease;
+
+    &:hover,
     &.active {
-      .step-circle {
-        background-color: $primary-orange;
-        border-color: $primary-orange;
-        color: #ffffff;
-      }
+      color: $orange;
+    }
+  }
 
-      .step-label {
-        color: $primary-orange !important;
-        font-weight: 600;
-      }
+  .account-btn {
+    border: 1px solid $border;
+    background: $white;
+    border-radius: 22px;
+    padding: 10px 17px;
+    color: $brown;
+    font-weight: 600;
+  }
+}
+
+/* Hero */
+.page-header {
+  padding: 55px 20px;
+  text-align: center;
+  background:
+    linear-gradient(rgba(255, 248, 238, .94), rgba(255, 248, 238, .94)),
+    url("https://images.unsplash.com/photo-1604608672516-f1b9e0c2d8f4?auto=format&fit=crop&w=1800&q=85")
+    center / cover;
+
+  .eyebrow {
+    margin-bottom: 10px;
+    color: $orange;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .5px;
+  }
+
+  h1 {
+    margin-bottom: 12px;
+    color: $brown;
+    font-family: Georgia, serif;
+    font-size: clamp(32px, 4vw, 42px);
+    font-weight: 700;
+  }
+
+  p {
+    max-width: 650px;
+    margin: auto;
+    color: $muted;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+}
+
+/* Progress */
+.progress-section {
+  padding-top: 35px;
+}
+
+.registration-progress {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 20px;
+    left: 7%;
+    right: 7%;
+    height: 2px;
+    background: #e4d5c4;
+    z-index: 0;
+  }
+}
+
+.progress-step {
+  position: relative;
+  z-index: 1;
+  width: 20%;
+  text-align: center;
+
+  .step-number {
+    width: 42px;
+    height: 42px;
+    margin: auto;
+    display: grid;
+    place-items: center;
+    border: 2px solid #d9c9b8;
+    border-radius: 50%;
+    background: $white;
+    color: $muted;
+    font-weight: 700;
+  }
+
+  .step-label {
+    margin-top: 8px;
+    color: $text;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &.active {
+    .step-number {
+      border-color: $orange;
+      background: $orange;
+      color: $white;
+    }
+
+    .step-label {
+      color: $orange;
     }
   }
 }
 
-/* Step 5 Review Cards */
-.review-box {
-  background-color: #fffaf5;
-  border: 1px solid #ffe8d6;
+/* Form */
+.registration-container {
+  max-width: 1090px;
+  margin: 35px auto 70px;
 }
 
-.success-icon {
-  width: 80px;
-  height: 80px;
+.registration-card {
+  padding: 38px;
+  border: 1px solid $border;
+  border-radius: 20px;
+  background: $white;
+  box-shadow: 0 8px 30px rgba(60, 40, 20, .08);
 }
 
-/* Checkbox & Input Styling */
-.form-check-input {
-  &:checked {
-    background-color: $primary-orange;
-    border-color: $primary-orange;
+.form-title {
+  margin-bottom: 30px;
+
+  h2 {
+    margin-bottom: 6px;
+    color: $brown;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
   }
+
+  p {
+    margin: 0;
+    color: $muted;
+  }
+}
+
+.form-label {
+  margin-bottom: 8px;
+  color: $brown;
+  font-size: 14px;
+  font-weight: 700;
+
+  > span {
+    color: $orange;
+  }
+}
+
+.form-control,
+.form-select {
+  min-height: 50px;
+  border-color: #ded2c6;
+  border-radius: 11px;
+  background: #fffdfb;
+  color: $text;
+  font-size: 14px;
 
   &:focus {
-    box-shadow: 0 0 0 0.25rem rgba(230, 81, 0, 0.15);
+    border-color: $orange;
+    box-shadow: 0 0 0 3px rgba($orange, .10);
+  }
+}
+.form-control-fileupload {
+  font-size: 14px !important;
+  padding: 13px 10px;
+}
+
+textarea.form-control {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.mobile-row {
+  display: flex;
+  gap: 10px;
+
+  .form-control {
+    flex: 1;
   }
 }
 
-.custom-badge {
-  font-size: 0.95rem;
+.otp-btn {
+  min-width: 115px;
+  border: 0;
+  border-radius: 11px;
+  background: $orange;
+  color: $white;
+  font-weight: 700;
 
-  &.btn-light-outline {
-    background-color: #ffffff;
-    border: 1px solid $border-color;
-    color: #495057;
-
-    &:hover {
-      background-color: $light-orange-bg;
-      border-color: $primary-orange;
-      color: $primary-orange;
-    }
+  &:hover {
+    background: $orange-dark;
+    color: $white;
   }
 }
 
+.field-error {
+  display: block;
+  margin-top: 6px;
+  color: #c0392b;
+  font-size: 12px;
+}
+
+.verified {
+  margin-top: 7px;
+  color: #168447;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Chips */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.option-chip {
+  position: relative;
+  margin: 0;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  span {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 1px solid $border;
+    border-radius: 20px;
+    background: #fffaf4;
+    color: $text;
+    font-size: 14px;
+    font-weight: 500;
+    transition: .2s ease;
+  }
+
+  &:hover span {
+    border-color: $orange;
+  }
+
+  input:checked + span {
+    border-color: $orange;
+    background: #fff0df;
+    color: $orange-dark;
+  }
+}
+
+/* Services */
+.service-box {
+  margin-bottom: 15px;
+  padding: 18px;
+  border: 1px solid $border;
+  border-radius: 14px;
+  background: #fffdfa;
+}
+
+/* Upload */
 .upload-box {
-  background-color: #fcfbf9;
-  border: 2px dashed #e2e8f0;
+  padding: 30px;
+  border: 2px dashed #dfcbb7;
+  border-radius: 15px;
+  background: #fffaf4;
+  text-align: center;
 
-  &:hover {
-    border-color: $primary-orange;
+  .upload-icon {
+    margin-bottom: 10px;
+    color: $orange;
+    font-size: 35px;
+  }
+
+  h3 {
+    color: $brown;
+    font-family: Georgia, serif;
+    font-size: 21px;
+  }
+
+  p {
+    margin-bottom: 15px;
+    color: $muted;
+    font-size: 14px;
+  }
+
+  .form-control {
+    max-width: 420px;
+    margin: auto;
+  }
+
+  .file-name {
+    display: block;
+    margin-top: 10px;
+    color: #168447;
+    font-weight: 600;
   }
 }
 
-.form-control, .form-select {
-  border-color: #e2e8f0;
+/* Info */
+.info-box {
+  margin-top: 25px;
+  padding: 18px;
+  border: 1px solid #f0d6b8;
+  border-radius: 14px;
+  background: $cream-light;
 
-  &:focus {
-    border-color: $primary-orange;
-    box-shadow: 0 0 0 0.25rem rgba(230, 81, 0, 0.15);
+  strong {
+    color: $orange-dark;
+  }
+
+  p {
+    margin: 5px 0 0;
+    color: $muted;
+    font-size: 14px;
+    line-height: 1.6;
   }
 }
 
-$primary-orange: #e65100;
-$badge-bg-orange: #fff3e0;
-$badge-text-orange: #d85100;
-$light-success-bg: #e8f5e9;
-
-/* Success State Styles */
-.bg-light-success {
-  background-color: $light-success-bg !important;
+.review-box {
+  margin-top: 0;
+  margin-bottom: 15px;
 }
 
-.success-icon {
-  width: 72px;
-  height: 72px;
+/* Actions */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid #eee2d7;
 }
 
-/* Registration ID Pill Badge */
-.registration-id-badge {
-  background-color: $badge-bg-orange;
-  color: $badge-text-orange;
-  font-size: 1.1rem;
-  letter-spacing: 0.3px;
+.primary-btn,
+.secondary-btn {
+  min-height: 48px;
+  padding: 12px 27px;
+  border: 0;
+  border-radius: 25px;
+  font-size: 15px;
+  font-weight: 700;
 }
 
-.btn-orange {
-  background-color: $primary-orange;
-  color: #ffffff;
-  border: none;
+.primary-btn {
+  background: $orange;
+  color: $white;
 
   &:hover {
-    background-color: darken($primary-orange, 6%);
-    color: #ffffff;
+    background: $orange-dark;
+    color: $white;
+  }
+}
+
+.secondary-btn {
+  background: #f4eadf;
+  color: $brown;
+
+  &:hover {
+    background: #eadbca;
+    color: $brown;
+  }
+}
+
+.terms-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  .form-check-input {
+    flex: 0 0 auto;
+    margin-top: 4px;
+
+    &:checked {
+      background-color: $orange;
+      border-color: $orange;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($orange, .12);
+      border-color: $orange;
+    }
+  }
+
+  .form-check-label {
+    color: $text;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+}
+
+.submit-error {
+  color: #c0392b;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Success */
+.success-state {
+  padding: 50px 20px;
+  text-align: center;
+
+  .success-icon {
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #e7f7ed;
+    color: #168447;
+    font-size: 42px;
+  }
+
+  h2 {
+    margin-top: 20px;
+    color: $brown;
+    font-family: Georgia, serif;
+    font-size: 32px;
+  }
+
+  .success-text {
+    max-width: 600px;
+    margin: 10px auto 0;
+    color: #76695e;
+  }
+
+  .registration-id {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background: #fff1df;
+    color: $orange-dark;
+    font-weight: 700;
+  }
+}
+
+/* Footer */
+.site-footer {
+  padding: 40px 20px;
+  background: #281b13;
+  color: $white;
+  text-align: center;
+
+  h3 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 23px;
+  }
+
+  p {
+    margin: 8px 0 0;
+    color: #c9bbb0;
+    font-size: 14px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .site-header {
+    .navbar {
+      min-height: 80px;
+    }
+
+    .brand-logo {
+      width: 62px;
+      height: 62px;
+    }
+
+    .brand-name {
+      font-size: 27px;
+    }
+
+    .brand-tagline {
+      display: none;
+    }
+
+    .navbar-collapse {
+      padding: 15px 0;
+    }
+  }
+
+  .registration-card {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .page-header {
+    padding: 42px 18px;
+
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .registration-progress {
+    min-width: 650px;
+  }
+
+  .progress-section {
+    overflow-x: auto;
+  }
+
+  .registration-card {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+
+  .registration-container {
+    padding: 0 12px;
+  }
+
+  .mobile-row {
+    flex-direction: column;
+  }
+
+  .otp-btn {
+    min-height: 48px;
+  }
+
+  .form-actions {
+    .btn {
+      flex: 1;
+    }
+  }
+
+  .upload-box {
+    padding: 22px 16px;
   }
 }

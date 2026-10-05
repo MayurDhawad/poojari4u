@@ -9,7 +9,7 @@ import { NgClass } from '@angular/common';
   selector: 'app-root',
   styleUrl: './app.scss',
   templateUrl: './app.html',
-   imports: [RouterOutlet, RouterLink, Header, FooterComponent, NgClass]
+   imports: [RouterOutlet, RouterLink, Header, FooterComponent]
 })
 export class App {
 
