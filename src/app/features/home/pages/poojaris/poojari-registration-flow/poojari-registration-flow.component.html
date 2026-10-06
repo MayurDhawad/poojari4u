@@ -531,7 +531,8 @@
             <!-- Payment Details -->
             <section class="form-section">
               <div class="section-title">
-                <i class="bi bi-credit-card"></i> Payment Details
+                <!-- <i class="bi bi-credit-card"></i> -->
+                💳 Payment Details
               </div>
               <p class="section-subtitle">These details can be used to transfer your earnings after successful bookings.</p>
               
@@ -583,7 +584,8 @@
             <!-- Declaration -->
             <section class="form-section declaration-section">
               <div class="section-title">
-                <i class="bi bi-check-circle"></i> Declaration
+                <!-- <i class="bi bi-check-circle"></i> -->
+                 ✅ Declaration
               </div>
               <div class="declaration-box">
                 <label class="declaration-label">
@@ -601,12 +603,21 @@
               }
             </section>
 
-            <div class="form-actions">
+            <!-- <div class="form-actions">
               <button type="button" class="btn previous-btn" (click)="goPrevious()">
                 <i class="bi bi-arrow-left"></i> Previous
               </button>
               <button type="button" class="btn submit-btn" (click)="submitRegistration()">
                 Submit for Verification <i class="bi bi-check-lg"></i>
+              </button>
+            </div> -->
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-previous" (click)="goPrevious()">
+                <span>←</span> Previous
+              </button>
+              <button type="button" class="btn btn-continue" (click)="submitRegistration()">
+                Submit for Verification <span>→</span>
               </button>
             </div>
           </div>
@@ -614,79 +625,173 @@
 
         <!-- STEP 5: Review & Submit -->
         @if (currentStep === 5) {
-          <section class="form-step">
-            <div class="form-title">
-              <h2>Review &amp; Submit</h2>
-              <p>Please check your information before submitting your registration.</p>
-            </div>
+          <div class="application-submitted">
 
-            <div class="info-box review-box">
-              <strong>Personal Information</strong>
-              <p><b>Name:</b> {{ personalForm.value.fullName || '—' }}</p>
-              <p><b>Mobile:</b> {{ personalForm.value.mobile || '—' }}</p>
-              <p><b>City:</b> {{ personalForm.value.city || '—' }}</p>
-              <p><b>Experience:</b> {{ personalForm.value.experience || '0' }} years</p>
-              <p><b>Languages:</b> {{ selectedLanguages.join(', ') || '—' }}</p>
-            </div>
+            <!-- Success Card -->
+            <div class="success-card">
 
-            <div class="info-box review-box">
-              <strong>Professional Information</strong>
-              <p><b>Expertise:</b> {{ selectedExpertise.join(', ') || '—' }}</p>
-              <p>Your selected services, expertise, pricing and availability will be reviewed by the Poojari4U team.</p>
-            </div>
-
-            <div class="terms-check form-check mt-4">
-              <input
-                id="terms"
-                class="form-check-input"
-                type="checkbox"
-                [(ngModel)]="termsAccepted"
-              />
-              <label for="terms" class="form-check-label">
-                I confirm that the information provided by me is accurate and I agree to the Poojari4U terms and provider guidelines.
-              </label>
-            </div>
-
-            @if (submitError) {
-              <div class="submit-error mt-3">
-                <i class="bi bi-exclamation-circle-fill"></i>
-                Please accept the terms and provider guidelines.
+              <!-- Success Icon -->
+              <div class="success-icon">
+                ✓
               </div>
-            }
 
-            <div class="form-actions">
-              <button type="button" class="btn secondary-btn" (click)="previousStep()">
-                <i class="bi bi-arrow-left"></i> Back
-              </button>
-              <button type="button" class="btn primary-btn" (click)="submitRegistration()">
-                Submit Registration
-              </button>
+              <!-- Heading -->
+              <h1>Application Submitted Successfully!</h1>
+
+              <p class="main-text">
+                Thank you for registering with
+                <strong>Poojari4u</strong>.
+                Your application has been received successfully.
+                Our team will review your profile and verification
+                documents before activating your Poojari profile.
+              </p>
+
+              <!-- Status -->
+              <div class="status">
+                ⏳ Under Verification
+              </div>
+
+              <!-- Application ID -->
+              <div class="application-box">
+                <div class="label">
+                  Your Application ID
+                </div>
+
+                <div class="application-id">
+                  {{ applicationId }}
+                </div>
+              </div>
+
+              <!-- Review Process -->
+              <h2 class="review-title">
+                What happens next?
+              </h2>
+
+              <div class="review-steps">
+
+                <!-- Step 1 -->
+                <div class="review-step">
+                  <div class="icon">
+                    📋
+                  </div>
+
+                  <h3>
+                    Application Review
+                  </h3>
+
+                  <p>
+                    Our team will review your submitted details.
+                  </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="review-step">
+                  <div class="icon">
+                    🔍
+                  </div>
+
+                  <h3>
+                    Verification
+                  </h3>
+
+                  <p>
+                    Your documents and profile will be verified.
+                  </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="review-step">
+                  <div class="icon">
+                    ✅
+                  </div>
+
+                  <h3>
+                    Profile Activation
+                  </h3>
+
+                  <p>
+                    Once approved, your Poojari profile will become active.
+                  </p>
+                </div>
+
+              </div>
+
+              <!-- Information -->
+              <div class="info-box">
+
+                <h3>
+                  Please Note
+                </h3>
+
+                <ul>
+                  <li>
+                    Keep your Application ID for future reference.
+                  </li>
+
+                  <li>
+                    Our team may contact you if additional information
+                    or documents are required.
+                  </li>
+
+                  <li>
+                    Your profile will be visible to customers only after
+                    successful verification and activation.
+                  </li>
+
+                  <li>
+                    You can update your services and availability after
+                    your profile is activated.
+                  </li>
+                </ul>
+
+              </div>
+
+              <!-- Buttons -->
+              <div class="buttons">
+
+                <button
+                  type="button"
+                  class="btn primary"
+                  (click)="goToHome()">
+                  Go to Poojari4u Home
+                </button>
+
+                <button
+                  type="button"
+                  class="btn secondary"
+                  (click)="goToLogin()">
+                  Login
+                </button>
+
+              </div>
+
             </div>
-          </section>
+
+          </div>
         }
 
-      } @else {
+        } @else {
 
-        <!-- SUCCESS STATE -->
-        <section class="success-state">
-          <div class="success-icon">
-            <i class="bi bi-check-lg"></i>
-          </div>
+          <!-- SUCCESS STATE -->
+          <section class="success-state">
+            <div class="success-icon">
+              <i class="bi bi-check-lg"></i>
+            </div>
 
-          <h2>Registration Submitted!</h2>
-          <p class="success-text">Thank you for joining Poojari4U.</p>
-          <p class="success-text">Our team will review your profile and contact you regarding verification and activation.</p>
+            <h2>Registration Submitted!</h2>
+            <p class="success-text">Thank you for joining Poojari4U.</p>
+            <p class="success-text">Our team will review your profile and contact you regarding verification and activation.</p>
 
-          <div class="registration-id">
-            Registration ID: <span>{{ registrationId }}</span>
-          </div>
+            <div class="registration-id">
+              Registration ID: <span>{{ registrationId }}</span>
+            </div>
 
-          <div class="mt-4">
-            <a routerLink="/" class="btn primary-btn">Return to Poojari4U</a>
-          </div>
-        </section>
+            <div class="mt-4">
+              <a routerLink="/" class="btn primary-btn">Return to Poojari4U</a>
+            </div>
+          </section>
 
-      }
+        }
     </div>
   </main>
 </div>

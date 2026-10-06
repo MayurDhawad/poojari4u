@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 interface ServiceOption {
   name: string;
@@ -46,6 +46,8 @@ export class PoojariRegistrationFlowComponent{
   submitError = false;
   otpSent = false;
   registrationId = '';
+  applicationId = '';
+  applicationStatus = 'UNDER_VERIFICATION';
 
   // Form Group for Step 1
   personalForm!: FormGroup;
@@ -75,13 +77,13 @@ export class PoojariRegistrationFlowComponent{
   pincode = '';
   radius = 15;
   days: DayOption[] = [
-    { name: 'Mon', selected: true },
-    { name: 'Tue', selected: true },
-    { name: 'Wed', selected: true },
-    { name: 'Thu', selected: true },
-    { name: 'Fri', selected: true },
-    { name: 'Sat', selected: true },
-    { name: 'Sun', selected: true }
+    { name: 'Monday', selected: false },
+    { name: 'Tuesday', selected: false },
+    { name: 'Wednesday', selected: false },
+    { name: 'Thursday', selected: false },
+    { name: 'Friday', selected: false },
+    { name: 'Saturday', selected: false },
+    { name: 'Sunday', selected: false }
   ];
   startTime = '06:00';
   endTime = '20:00';
@@ -113,7 +115,10 @@ export class PoojariRegistrationFlowComponent{
     { id: 5, label: 'Review' }
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initPersonalForm();
@@ -253,17 +258,36 @@ export class PoojariRegistrationFlowComponent{
 
     // Final submission step (Step 5)
     if (this.currentStep === 5) {
+
+      let submitError1 = '';
+
       if (!this.termsAccepted) {
-        this.submitError = true;
+        submitError1 = 'Please accept the terms and conditions.';
         return;
       }
 
-      this.submitError = false;
-      this.registrationId = 'P4U-' + Math.floor(100000 + Math.random() * 900000);
-      this.submitted = true;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+
+        this.applicationId = this.generateApplicationId();
+
+        localStorage.setItem(
+          'poojariApplicationId',
+          this.applicationId
+        );
+
+        localStorage.setItem(
+          'poojariApplicationStatus',
+          'UNDER_VERIFICATION'
+        );
+
+        localStorage.setItem(
+          'poojariRegistrationComplete',
+          'true'
+        );
+
+        this.currentStep = 5;
+      }
     }
-  }
 
   private prepareReviewData(): void {
     const titles = this.services
@@ -274,5 +298,30 @@ export class PoojariRegistrationFlowComponent{
       titles.push(...this.otherServices.split(',').map((s) => s.trim()));
     }
     this.selectedExpertise = titles;
+  }
+
+  private generateApplicationId(): string {
+    const characters =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+    let randomPart = '';
+
+    for (let i = 0; i < 6; i++) {
+      randomPart += characters.charAt(
+        Math.floor(
+          Math.random() * characters.length
+        )
+      );
+    }
+
+    return `POJ-${randomPart}`;
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/']);
+  }
+
+  goToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }
