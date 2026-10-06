@@ -1,0 +1,524 @@
+<div class="payment-page">
+
+  <!-- ================= MAIN ================= -->
+  <main class="payment-main">
+
+    <div class="container">
+
+      <!-- ================================================= -->
+      <!-- PAYMENT SECTION -->
+      <!-- ================================================= -->
+
+      <section
+        class="payment-layout"
+        *ngIf="!paymentCompleted">
+
+        <!-- LEFT -->
+        <div class="payment-content">
+
+          <div class="payment-card">
+
+            <h2 class="section-title">
+              <i class="bi bi-shield-check"></i>
+              <span>Select Payment Method</span>
+            </h2>
+
+            <!-- Payment Methods -->
+            <div class="payment-methods">
+
+              <!-- UPI -->
+              <label
+                class="payment-option"
+                [class.selected]="paymentMethod === 'UPI'"
+                (click)="selectPaymentMethod('UPI')">
+
+                <div class="payment-option-left">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="UPI"
+                    [(ngModel)]="paymentMethod">
+
+                  <div>
+                    <div class="payment-title">
+                      UPI / QR Code
+                    </div>
+
+                    <div class="payment-description">
+                      Google Pay, PhonePe, Paytm, BHIM
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="payment-icons">
+                  <i class="bi bi-google"></i>
+                  <i class="bi bi-qr-code"></i>
+                </div>
+
+              </label>
+
+
+              <!-- CARD -->
+              <label
+                class="payment-option"
+                [class.selected]="paymentMethod === 'CARD'"
+                (click)="selectPaymentMethod('CARD')">
+
+                <div class="payment-option-left">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="CARD"
+                    [(ngModel)]="paymentMethod">
+
+                  <div>
+                    <div class="payment-title">
+                      Credit / Debit Cards
+                    </div>
+
+                    <div class="payment-description">
+                      Visa, Mastercard, RuPay, Maestro
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="payment-icons">
+                  <i class="bi bi-credit-card"></i>
+                </div>
+
+              </label>
+
+
+              <!-- NET BANKING -->
+              <label
+                class="payment-option"
+                [class.selected]="paymentMethod === 'NETBANKING'"
+                (click)="selectPaymentMethod('NETBANKING')">
+
+                <div class="payment-option-left">
+
+                  <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="NETBANKING"
+                    [(ngModel)]="paymentMethod">
+
+                  <div>
+                    <div class="payment-title">
+                      Net Banking
+                    </div>
+
+                    <div class="payment-description">
+                      All major Indian banks supported
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="payment-icons">
+                  <i class="bi bi-bank"></i>
+                </div>
+
+              </label>
+
+            </div>
+
+
+            <!-- ================= PAYMENT INPUT ================= -->
+
+            <div class="payment-input-panel">
+
+              <!-- UPI -->
+              <div *ngIf="paymentMethod === 'UPI'">
+
+                <label class="form-label-custom">
+                  Enter UPI ID / VPA
+                </label>
+
+                <div class="upi-input-group">
+
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    [(ngModel)]="upiId"
+                    placeholder="e.g. 9876543210@paytm">
+
+                  <button
+                    type="button"
+                    class="verify-btn"
+                    (click)="verifyUpi()">
+                    Verify
+                  </button>
+
+                </div>
+
+                <div
+                  class="upi-status"
+                  [class.success]="upiVerified"
+                  [class.error]="upiError">
+
+                  <ng-container *ngIf="!upiVerified && !upiError">
+                    or scan QR code from your mobile banking app
+                  </ng-container>
+
+                  <ng-container *ngIf="upiVerified">
+                    ✓ UPI ID Verified Successfully
+                  </ng-container>
+
+                  <ng-container *ngIf="upiError">
+                    ✗ Please enter a valid UPI ID (e.g. name@upi)
+                  </ng-container>
+
+                </div>
+
+              </div>
+
+
+              <!-- CARD -->
+              <div *ngIf="paymentMethod === 'CARD'">
+
+                <div class="mb-3">
+
+                  <label class="form-label-custom">
+                    Card Number
+                  </label>
+
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    placeholder="4532 •••• •••• 8921">
+
+                </div>
+
+                <div class="row g-3">
+
+                  <div class="col-6">
+
+                    <label class="form-label-custom">
+                      Expiry (MM/YY)
+                    </label>
+
+                    <input
+                      type="text"
+                      class="form-control custom-input"
+                      placeholder="08/28">
+
+                  </div>
+
+                  <div class="col-6">
+
+                    <label class="form-label-custom">
+                      CVV
+                    </label>
+
+                    <input
+                      type="password"
+                      maxlength="4"
+                      class="form-control custom-input"
+                      placeholder="•••">
+
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <!-- NET BANKING -->
+              <div *ngIf="paymentMethod === 'NETBANKING'">
+
+                <label class="form-label-custom">
+                  Select Your Bank
+                </label>
+
+                <select class="form-select custom-input">
+
+                  <option>
+                    State Bank of India (SBI)
+                  </option>
+
+                  <option>
+                    HDFC Bank
+                  </option>
+
+                  <option>
+                    ICICI Bank
+                  </option>
+
+                  <option>
+                    Axis Bank
+                  </option>
+
+                  <option>
+                    Kotak Mahindra Bank
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= ORDER SUMMARY ================= -->
+
+        <aside class="summary-wrapper">
+
+          <div class="order-summary">
+
+            <div class="summary-title">
+
+              <span>
+                Order Summary
+              </span>
+
+              <i class="bi bi-cart3"></i>
+
+            </div>
+
+
+            <div class="summary-details">
+
+              <div class="summary-row">
+                <span>Service:</span>
+                <strong>{{ booking.service }}</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>Event Date:</span>
+                <strong>{{ booking.eventDate }}</strong>
+              </div>
+
+              <div class="summary-row">
+                <span>Base Fee:</span>
+                <span>₹{{ booking.baseFee | number }}</span>
+              </div>
+
+              <div class="summary-row">
+                <span>Taxes & Service Charge:</span>
+                <span>₹{{ booking.taxes | number }}</span>
+              </div>
+
+              <div class="summary-total">
+
+                <span>Total Amount:</span>
+
+                <strong>
+                  ₹{{ booking.total | number }}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="pay-button"
+              [disabled]="isProcessing"
+              (click)="processPayment()">
+
+              <i
+                class="bi"
+                [class.bi-lock-fill]="!isProcessing"
+                [class.bi-arrow-repeat]="isProcessing"
+                [class.spin]="isProcessing">
+              </i>
+
+              <span>
+                {{ isProcessing
+                  ? 'Processing Payment...'
+                  : 'Pay ₹15,800 & Confirm'
+                }}
+              </span>
+
+            </button>
+
+          </div>
+
+        </aside>
+
+      </section>
+
+
+      <!-- ================================================= -->
+      <!-- CONFIRMATION SECTION -->
+      <!-- ================================================= -->
+
+      <section
+        class="confirmation-section"
+        *ngIf="paymentCompleted">
+
+        <!-- SUCCESS BANNER -->
+        <div class="success-banner">
+
+          <div class="success-icon">
+            <i class="bi bi-check-lg"></i>
+          </div>
+
+          <div class="success-label">
+            Payment Successful
+          </div>
+
+          <h1>
+            Booking Confirmed!
+          </h1>
+
+          <p>
+            A confirmation message and receipt have been sent
+            to your registered WhatsApp number and email.
+          </p>
+
+        </div>
+
+
+        <!-- RECEIPT -->
+        <div class="receipt-card">
+
+          <!-- Receipt Header -->
+          <div class="receipt-header">
+
+            <div>
+
+              <div class="receipt-label">
+                Booking Reference
+              </div>
+
+              <div class="booking-id">
+                #{{ bookingId }}
+              </div>
+
+            </div>
+
+            <div class="payment-status-wrapper">
+
+              <div class="receipt-label">
+                Payment Status
+              </div>
+
+              <span class="payment-status">
+                <i class="bi bi-check-circle-fill"></i>
+                PAID
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Details -->
+          <div class="row g-4">
+
+            <!-- Customer -->
+            <div class="col-md-6">
+
+              <div class="detail-box">
+
+                <h3>
+                  <i class="bi bi-person-fill"></i>
+                  Customer & Venue Info
+                </h3>
+
+                <p>
+                  <span>Name:</span>
+                  <strong>{{ booking.customerName }}</strong>
+                </p>
+
+                <p>
+                  <span>Phone:</span>
+                  <strong>{{ booking.phone }}</strong>
+                </p>
+
+                <p>
+                  <span>Venue Address:</span>
+                  <strong>{{ booking.address }}</strong>
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- Event -->
+            <div class="col-md-6">
+
+              <div class="detail-box">
+
+                <h3>
+                  <i class="bi bi-calendar-check-fill"></i>
+                  Event Specifications
+                </h3>
+
+                <p>
+                  <span>Troupe:</span>
+                  <strong>{{ booking.troupe }}</strong>
+                </p>
+
+                <p>
+                  <span>Event Date:</span>
+                  <strong>
+                    {{ booking.eventDate }}
+                    ({{ booking.eventTime }})
+                  </strong>
+                </p>
+
+                <p>
+                  <span>Transaction ID:</span>
+                  <strong>{{ transactionId }}</strong>
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ACTIONS -->
+          <div class="receipt-actions">
+
+            <button
+              type="button"
+              class="print-button"
+              (click)="printReceipt()">
+
+              <i class="bi bi-printer"></i>
+
+              <span>
+                Download / Print Receipt
+              </span>
+
+            </button>
+
+
+            <button
+              type="button"
+              class="home-button"
+              (click)="returnHome()">
+
+              <i class="bi bi-house"></i>
+
+              <span>
+                Return to Home
+              </span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+</div>

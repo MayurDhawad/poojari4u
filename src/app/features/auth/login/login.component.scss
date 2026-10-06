@@ -14,7 +14,7 @@ $bg-gradient-end: #f3e8ff;
 
 .login-card {
   width: 100%;
-  max-width: 440px;
+  width: 440px;
   border-radius: 20px;
   background-color: #ffffff;
 }
@@ -94,7 +94,7 @@ $bg-gradient-end: #f3e8ff;
 
   &:focus {
     border-color: $purple-primary;
-    box-shadow: 0 0 0 0.2rem rgba(107, 33, 168, 0.15);
+    box-shadow: 0 0 0 0.2rem rgba(14, 9, 19, 0.15);
   }
 }
 
@@ -103,6 +103,7 @@ $bg-gradient-end: #f3e8ff;
   background-color: $purple-primary;
   border: none;
   font-size: 0.95rem;
+  padding: 10px 0px;
   transition: background-color 0.2s ease-in-out;
 
   &:hover, &:focus {

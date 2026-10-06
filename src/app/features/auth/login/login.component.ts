@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 export type UserRole = 'poojari' | 'bajanthri' | 'admin';
@@ -35,7 +36,8 @@ export class LoginComponent  {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private dialogRef: MatDialogRef<LoginComponent>
   ) {
     this.loginForm = this.fb.group({
       identifier: ['', [Validators.required]],
@@ -82,5 +84,6 @@ export class LoginComponent  {
 
   onRegisterClick(): void {
     this.router.navigateByUrl('/register')
+    this.dialogRef.close(true);
   }
 }

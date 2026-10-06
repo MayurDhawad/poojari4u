@@ -1,0 +1,1049 @@
+// ============================================================
+// POOJARI4U PAYMENT PAGE
+// Angular 22 + Bootstrap 5
+// ============================================================
+
+$maroon-950: #2d0505;
+$maroon-900: #4a0b0b;
+$maroon-800: #6b1111;
+
+$saffron-600: #d97706;
+$saffron-700: #b45309;
+
+$gold-400: #fbbf24;
+$gold-500: #f59e0b;
+
+$amber-50: #fffbeb;
+$amber-100: #fef3c7;
+$amber-200: #fde68a;
+$amber-300: #fcd34d;
+
+$green-50: #f0fdf4;
+$green-100: #dcfce7;
+$green-300: #86efac;
+$green-500: #22c55e;
+$green-600: #16a34a;
+$green-700: #15803d;
+$green-800: #166534;
+
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+
+// ============================================================
+// PAGE
+// ============================================================
+
+.payment-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  background: rgba(255, 251, 235, 0.3);
+
+  color: $gray-800;
+
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+// ============================================================
+// HEADER
+// ============================================================
+
+.payment-header {
+  background: $maroon-900;
+  color: #fff;
+
+  border-bottom: 1px solid rgba($gold-500, 0.3);
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.header-inner {
+  min-height: 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+// ============================================================
+// BRAND
+// ============================================================
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+
+  padding: 2px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      $saffron-600,
+      $gold-400
+    );
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.brand-icon-inner {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  background: $maroon-950;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+}
+
+.brand-name {
+  color: #fff;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.brand-name span {
+  color: $gold-400;
+}
+
+.brand-tagline {
+  margin-top: 4px;
+
+  color: #fde68a;
+
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+
+// ============================================================
+// STEP INDICATOR
+// ============================================================
+
+.step-indicator {
+  gap: 10px;
+
+  color: #fde68a;
+
+  font-size: 12px;
+
+  span {
+    color: rgba(253, 230, 138, 0.45);
+
+    transition: 0.25s ease;
+
+    &.active,
+    &.completed {
+      color: $gold-400;
+      font-weight: 700;
+    }
+  }
+
+  i {
+    color: #fbbf24;
+    font-size: 10px;
+  }
+}
+
+
+// ============================================================
+// MAIN
+// ============================================================
+
+.payment-main {
+  flex: 1;
+
+  padding: 32px 0;
+}
+
+.payment-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 2fr)
+    minmax(280px, 1fr);
+
+  gap: 32px;
+
+  align-items: start;
+}
+
+
+// ============================================================
+// PAYMENT CARD
+// ============================================================
+
+.payment-card {
+  background: #fff;
+
+  border: 1px solid $amber-200;
+
+  border-radius: 18px;
+
+  padding: 24px;
+
+  box-shadow:
+    0 5px 18px rgba(67, 20, 7, 0.08);
+}
+
+.section-title {
+  margin: 0 0 18px;
+
+  padding-bottom: 13px;
+
+  border-bottom: 1px solid $amber-100;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  color: $maroon-950;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 21px;
+  font-weight: 700;
+
+  i {
+    color: $saffron-600;
+    font-size: 18px;
+  }
+}
+
+
+// ============================================================
+// PAYMENT OPTIONS
+// ============================================================
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.payment-option {
+  min-height: 72px;
+
+  padding: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  cursor: pointer;
+
+  border: 1px solid $amber-200;
+  border-radius: 12px;
+
+  background: #fff;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: $saffron-600;
+  }
+
+  &.selected {
+    border: 2px solid $saffron-600;
+
+    background: rgba(255, 251, 235, 0.75);
+
+    box-shadow:
+      0 2px 8px rgba(217, 119, 6, 0.08);
+  }
+}
+
+.payment-option-left {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  input[type="radio"] {
+    width: 16px;
+    height: 16px;
+
+    accent-color: $saffron-600;
+  }
+}
+
+.payment-title {
+  color: $gray-900;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.payment-description {
+  margin-top: 3px;
+
+  color: $gray-500;
+
+  font-size: 12px;
+}
+
+.payment-icons {
+  display: flex;
+
+  gap: 9px;
+
+  color: #4b5563;
+
+  font-size: 21px;
+
+  flex-shrink: 0;
+}
+
+
+// ============================================================
+// INPUT PANEL
+// ============================================================
+
+.payment-input-panel {
+  margin-top: 18px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid $amber-100;
+}
+
+.form-label-custom {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: $gray-700;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.custom-input {
+  min-height: 42px;
+
+  border: 1px solid $amber-300;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+
+  box-shadow: none;
+
+  &:focus {
+    border-color: $saffron-600;
+
+    box-shadow:
+      0 0 0 0.15rem rgba(217, 119, 6, 0.1);
+  }
+}
+
+
+// ============================================================
+// UPI
+// ============================================================
+
+.upi-input-group {
+  display: flex;
+
+  gap: 8px;
+}
+
+.verify-btn {
+  padding: 0 18px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: $maroon-900;
+
+  color: $gold-400;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  transition: 0.2s ease;
+
+  &:hover {
+    background: $maroon-950;
+  }
+}
+
+.upi-status {
+  margin-top: 7px;
+
+  color: $gray-500;
+
+  font-size: 11px;
+
+  &.success {
+    color: $green-600;
+    font-weight: 700;
+  }
+
+  &.error {
+    color: #ef4444;
+    font-weight: 700;
+  }
+}
+
+
+// ============================================================
+// ORDER SUMMARY
+// ============================================================
+
+.order-summary {
+  padding: 24px;
+
+  border: 1px solid rgba($gold-500, 0.3);
+
+  border-radius: 18px;
+
+  background: $maroon-950;
+
+  color: #fff;
+
+  box-shadow:
+    0 10px 25px rgba(45, 5, 5, 0.22);
+}
+
+.summary-title {
+  padding-bottom: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-bottom: 1px solid rgba($gold-500, 0.3);
+
+  color: $gold-400;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  i {
+    color: #fcd34d;
+
+    font-size: 14px;
+  }
+}
+
+.summary-details {
+  margin-top: 18px;
+}
+
+.summary-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 12px;
+
+  color: rgba(254, 243, 199, 0.9);
+
+  font-size: 12px;
+
+  span:last-child,
+  strong {
+    color: #fff;
+
+    text-align: right;
+  }
+
+  strong {
+    max-width: 160px;
+  }
+}
+
+.summary-total {
+  margin-top: 14px;
+
+  padding-top: 13px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  border-top: 1px solid rgba($gold-500, 0.3);
+
+  color: $gold-400;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 16px;
+
+  strong {
+    font-size: 23px;
+  }
+}
+
+
+// ============================================================
+// PAY BUTTON
+// ============================================================
+
+.pay-button {
+  width: 100%;
+
+  margin-top: 22px;
+
+  min-height: 52px;
+
+  border: 0;
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      90deg,
+      $saffron-600,
+      $gold-500
+    );
+
+  color: $maroon-950;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  box-shadow:
+    0 5px 12px rgba(245, 158, 11, 0.25);
+
+  transition: 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background:
+      linear-gradient(
+        90deg,
+        $saffron-700,
+        $gold-500
+      );
+
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.75;
+
+    cursor: not-allowed;
+  }
+}
+
+.spin {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+// ============================================================
+// CONFIRMATION
+// ============================================================
+
+.confirmation-section {
+  display: flex;
+  flex-direction: column;
+
+  gap: 30px;
+}
+
+
+// ============================================================
+// SUCCESS BANNER
+// ============================================================
+
+.success-banner {
+  padding: 28px 20px;
+
+  text-align: center;
+
+  border: 2px solid rgba($green-500, 0.3);
+
+  border-radius: 18px;
+
+  background: $green-50;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+.success-icon {
+  width: 64px;
+  height: 64px;
+
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: $green-500;
+
+  color: #fff;
+
+  font-size: 31px;
+
+  box-shadow:
+    0 5px 12px rgba(34, 197, 94, 0.25);
+}
+
+.success-label {
+  color: $green-700;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.success-banner h1 {
+  margin: 8px 0;
+
+  color: $maroon-950;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.success-banner p {
+  max-width: 520px;
+
+  margin: 0 auto;
+
+  color: $gray-600;
+
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+
+// ============================================================
+// RECEIPT
+// ============================================================
+
+.receipt-card {
+  padding: 28px;
+
+  border: 1px solid $amber-200;
+
+  border-radius: 18px;
+
+  background: #fff;
+
+  box-shadow:
+    0 10px 25px rgba(67, 20, 7, 0.1);
+}
+
+.receipt-header {
+  padding-bottom: 16px;
+
+  margin-bottom: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  border-bottom: 1px solid $amber-200;
+}
+
+.receipt-label {
+  color: $gray-500;
+
+  font-size: 11px;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+.booking-id {
+  margin-top: 3px;
+
+  color: $maroon-950;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.payment-status-wrapper {
+  text-align: right;
+}
+
+.payment-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 5px;
+
+  padding: 5px 12px;
+
+  border: 1px solid $green-300;
+
+  border-radius: 50px;
+
+  background: $green-100;
+
+  color: $green-800;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+// ============================================================
+// DETAIL BOX
+// ============================================================
+
+.detail-box {
+  height: 100%;
+
+  padding: 16px;
+
+  border: 1px solid $amber-100;
+
+  border-radius: 12px;
+
+  background: rgba(255, 251, 235, 0.4);
+}
+
+.detail-box h3 {
+  margin: 0 0 12px;
+
+  padding-bottom: 7px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  border-bottom: 1px solid rgba($amber-200, 0.7);
+
+  color: $maroon-900;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  i {
+    color: $saffron-600;
+  }
+}
+
+.detail-box p {
+  margin-bottom: 8px;
+
+  color: $gray-800;
+
+  font-size: 12px;
+
+  line-height: 1.6;
+
+  span {
+    color: $gray-500;
+  }
+
+  strong {
+    margin-left: 4px;
+  }
+}
+
+
+// ============================================================
+// RECEIPT ACTIONS
+// ============================================================
+
+.receipt-actions {
+  padding-top: 18px;
+
+  display: flex;
+
+  gap: 15px;
+}
+
+.print-button,
+.home-button {
+  flex: 1;
+
+  min-height: 48px;
+
+  border-radius: 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.print-button {
+  border: 0;
+
+  background: $maroon-900;
+
+  color: $gold-400;
+
+  &:hover {
+    background: $maroon-950;
+  }
+}
+
+.home-button {
+  border: 1px solid $amber-300;
+
+  background: #fff;
+
+  color: $gray-800;
+
+  &:hover {
+    background: $amber-50;
+  }
+}
+
+
+// ============================================================
+// FOOTER
+// ============================================================
+
+.payment-footer {
+  padding: 16px;
+
+  border-top: 1px solid rgba($gold-500, 0.2);
+
+  background: $maroon-950;
+
+  color: rgba(254, 243, 199, 0.6);
+
+  text-align: center;
+
+  font-size: 11px;
+
+  p {
+    margin: 0;
+  }
+}
+
+
+// ============================================================
+// TABLET
+// ============================================================
+
+@media (max-width: 991.98px) {
+
+  .payment-layout {
+    grid-template-columns: 1fr;
+
+  }
+
+  .summary-wrapper {
+    width: 100%;
+  }
+
+  .order-summary {
+    max-width: 100%;
+  }
+
+}
+
+
+// ============================================================
+// MOBILE
+// ============================================================
+
+@media (max-width: 575.98px) {
+
+  .payment-main {
+    padding: 20px 0;
+  }
+
+  .payment-card,
+  .order-summary,
+  .receipt-card {
+    padding: 18px;
+  }
+
+  .header-inner {
+    min-height: 70px;
+  }
+
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-name {
+    font-size: 22px;
+  }
+
+  .brand-tagline {
+    font-size: 7px;
+  }
+
+  .payment-option {
+    padding: 12px;
+  }
+
+  .payment-icons {
+    display: none;
+  }
+
+  .upi-input-group {
+    flex-direction: column;
+  }
+
+  .verify-btn {
+    min-height: 42px;
+  }
+
+  .summary-row {
+    gap: 10px;
+  }
+
+  .summary-row strong {
+    max-width: 130px;
+  }
+
+  .success-banner h1 {
+    font-size: 27px;
+  }
+
+  .receipt-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+  .payment-status-wrapper {
+    text-align: left;
+  }
+
+  .receipt-actions {
+    flex-direction: column;
+  }
+
+  .print-button,
+  .home-button {
+    width: 100%;
+  }
+
+}
+
+
+// ============================================================
+// PRINT
+// ============================================================
+
+@media print {
+
+  .payment-header,
+  .payment-footer,
+  .receipt-actions {
+    display: none !important;
+  }
+
+  .payment-main {
+    padding: 0;
+  }
+
+  .confirmation-section {
+    display: block;
+  }
+
+  .success-banner {
+    box-shadow: none;
+  }
+
+  .receipt-card {
+    border: 0;
+    box-shadow: none;
+  }
+
+}

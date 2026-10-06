@@ -20,6 +20,12 @@ export const routes: Routes = [
         .then(m => m.LoginComponent)
   },
   {
+    path: 'payment',
+    loadComponent: () =>
+      import('./features/shared/payment-page/payment-page.component')
+        .then(m => m.PaymentPageComponent)
+  },
+  {
     path: 'register',
     loadComponent: () =>
       import('./features/home/pages/poojaris/poojari-registration-flow/poojari-registration-flow.component')

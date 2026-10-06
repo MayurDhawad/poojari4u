@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive} from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { PoojariProfileCardComponent } from '../../pages/poojaris/profile-card/poojari-profile-card.component';
+import { LoginComponent } from '../../../auth/login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +19,10 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class Header {
 
-  constructor(private router: Router){}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router
+  ){}
 
   navItems = [
     { label: 'Home', path: '/' },
@@ -28,7 +34,18 @@ export class Header {
   ];
 
   onRegistration(){
-    this.router.navigateByUrl('/login')
+    // this.router.navigateByUrl('/login')
+    const dialogRef = this.dialog.open(LoginComponent, {
+      maxWidth: '40vw',
+      maxHeight: '80vh',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Reservation:', result);
+        this.router.navigate(['/register']);
+        dialogRef.close();
+      }
+    });
   }
 
 }
