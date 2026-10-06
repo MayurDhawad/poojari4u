@@ -28,7 +28,7 @@ export class Header {
   ];
 
   onRegistration(){
-    this.router.navigateByUrl('/register')
+    this.router.navigateByUrl('/login')
   }
 
 }

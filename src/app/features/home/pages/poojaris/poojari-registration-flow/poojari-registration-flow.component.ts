@@ -58,12 +58,19 @@ export class PoojariRegistrationFlowComponent{
 
   // Step 2 - Services
   services: ServiceOption[] = [
-    { name: 'satyanarayana', title: 'Satyanarayana Pooja', description: 'Complete Katha & Vratam ritual', icon: '🪔' },
-    { name: 'grihapravesam', title: 'Griha Pravesham', description: 'House warming ceremonies & Vastu Shanti', icon: '🏡' },
-    { name: 'marriage', title: 'Vivah / Wedding', description: 'Full traditional wedding rituals', icon: '💍' },
-    { name: 'namakaranam', title: 'Namakaranam', description: 'Baby naming ceremony rituals', icon: '👶' },
-    { name: 'homam', title: 'Chandi / Sudarshana Homam', description: 'Havan and fire rituals for positivity', icon: '🔥' },
-    { name: 'engagement', title: 'Engagement / Nishchitartham', description: 'Rings & alliance ceremony', icon: '🌸' }
+    { name: 'Ganapathi Pooja', title: 'Ganapathi Pooja', description: 'Ganapathi pooja and related rituals.', icon: '🪔' },
+    { name: 'Gruhapravesham', title: 'Gruhapravesham', description: 'Housewarming pooja and related ceremonies.', icon: '🏠' },
+    { name: 'Business Opening Pooja', title: 'Business Opening Pooja', description: 'Pooja for opening a shop, office, showroom, restaurant, business or commercial establishment.', icon: '🏪' },
+    { name: 'Homam / Havan', title: 'Homam / Havan', description: 'Different types of homams and havans.', icon: '🔥' },
+    { name: 'Satyanarayana Swamy Pooja', title: 'Satyanarayana Swamy Pooja', description: 'Satyanarayana Swamy vratam and pooja.', icon: '🙏' },
+    { name: 'Lakshmi Pooja', title: 'Lakshmi Pooja', description: 'Lakshmi pooja and related rituals.', icon: '🌺' },
+    { name: 'Wedding Rituals', title: 'Wedding Rituals', description: 'Hindu wedding ceremonies and rituals.', icon: '💍' },
+    { name: 'Namakarana', title: 'Namakarana', description: 'Traditional naming ceremony.', icon: '👶' },
+    { name: 'Vratham', title: 'Vratham', description: 'Various traditional vrathams and rituals.', icon: '📿' },
+    { name: 'Pitru Karma', title: 'Pitru Karma', description: 'Ancestral rituals and related ceremonies.', icon: '🕉️' },
+    { name: 'Temple Pooja', title: 'Temple Pooja', description: 'Temple-related poojas and religious rituals.', icon: '🛕' },
+    { name: 'Ayushya Pooja', title: 'Ayushya Pooja', description: 'Birthday and longevity-related poojas.', icon: '🎂' },
+    { name: 'Other Poojas', title: 'Other Poojas', description: 'Other religious services you provide.', icon: '📿' }
   ];
   selectedServices: string[] = [];
   selectedExpertise: string[] = [];

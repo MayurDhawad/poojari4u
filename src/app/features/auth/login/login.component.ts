@@ -81,6 +81,6 @@ export class LoginComponent  {
   }
 
   onRegisterClick(): void {
-    console.log(`Redirecting to registration for ${this.selectedRole}`);
+    this.router.navigateByUrl('/register')
   }
 }
