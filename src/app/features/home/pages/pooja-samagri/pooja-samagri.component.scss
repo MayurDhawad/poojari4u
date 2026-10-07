@@ -378,6 +378,19 @@
 /* =========================
    MAIN
 ========================= */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 16px;
+}
+
+.product-card-wrapper {
+  min-width: 0;
+}
+
+.product-card {
+  height: 100%;
+}
 
 .samagri-section {
   padding: 70px 0;
@@ -652,7 +665,7 @@
 
 .product-image {
   position: relative;
-  height: 200px;
+  height: 150px;
   overflow: hidden;
   background: #f7efe5;
 }
@@ -735,7 +748,7 @@
 
 .product-category {
   color: var(--primary);
-  font-size: 10px;
+  font-size: 8px;
   font-weight: 800;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -744,7 +757,7 @@
 
 .product-content h3 {
   color: var(--text);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
   margin-bottom: 4px;
 }
@@ -752,9 +765,52 @@
 .product-content p {
   min-height: 42px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.5;
   margin-bottom: 2px;
+}
+
+.cart-control {
+  display: flex;
+  justify-content: center;
+}
+
+.add-button {
+  background: #fff;
+  border: 1px solid #ff8a00;
+  color: #ff8a00;
+  border-radius: 5px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  background: #ff0066;
+  color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  height: 38px;
+}
+
+.quantity-control button {
+  width: 32px;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.quantity-control span {
+  min-width: 28px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .rating {

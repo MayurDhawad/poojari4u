@@ -16,6 +16,7 @@ interface SamagriItem {
   rating: number;
   reviews: number;
   badge?: string;
+  quantity?: number;
 }
 
 interface Slide {
@@ -87,7 +88,8 @@ export class PoojaSamagriComponent {
       image: 'pooja-samagri/samagri-satyanarayan.jpg',
       rating: 4.8,
       reviews: 126,
-      badge: 'Popular'
+      badge: 'Popular',
+      quantity: 0
     },
     {
       id: 2,
@@ -239,12 +241,32 @@ export class PoojaSamagriComponent {
     this.selectedCategory.set('All');
   }
 
-  addToCart(item: SamagriItem) {
-    console.log('Added to cart:', item);
-  }
+  // addToCart(item: SamagriItem) {
+  //   console.log('Added to cart:', item);
+  // }
 
   applyFilters() {
     // Handle sorting or custom filter trigger if needed
+  }
+
+  addToCart(item: any) {
+    item.quantity = 1;
+  }
+
+  increaseQuantity(item: any) {
+    item.quantity = (item.quantity || 0) + 1;
+
+    // Update cart if needed
+    // ...
+  }
+
+  decreaseQuantity(item: any) {
+    if (item.quantity > 1) {
+      item.quantity--;
+
+    } else {
+      item.quantity = 0;
+    }
   }
 
 }

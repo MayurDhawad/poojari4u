@@ -86,9 +86,9 @@
         </div>
 
         @if (filteredItems().length > 0) {
-          <div class="row g-4">
+          <div class="product-grid">
             @for (item of filteredItems(); track item.id || item.name) {
-              <div class="col-6 col-md-3 col-xl-2">
+              <div class="product-card-wrapper">
                 <div class="product-card">
                   <!-- Image -->
                   <div class="product-image">
@@ -99,9 +99,21 @@
                     <button type="button" class="wishlist" aria-label="Add to wishlist">
                       <i class="bi bi-heart"></i>
                     </button>
-                    <button type="button" class="add-button" (click)="addToCart(item)">
-                      <i class="bi bi-cart-plus"></i>Add
-                    </button>
+                      @if(item.quantity == 0){
+                        <button type="button" class="add-button" (click)="addToCart(item)">
+                          <i class="bi bi-cart-plus"></i>Add
+                        </button>
+                      }@else{
+                        <div class="quantity-control" *ngIf="item.quantity && item.quantity > 0">
+                          <button type="button" (click)="decreaseQuantity(item)">
+                            −
+                          </button>
+                          <span>{{ item.quantity }}</span>
+                          <button type="button" (click)="increaseQuantity(item)">
+                            +
+                          </button>
+                        </div> 
+                      }
                   </div>
 
                   <!-- Content -->
@@ -117,7 +129,7 @@
                           <del>₹{{ item.oldPrice }}</del>
                         }
                       </div>
-                      <div class="rating">
+                      <!-- <div class="rating">
                         <span class="stars">
                           <i class="bi bi-star-fill"></i>
                           {{ item.rating }}
@@ -125,7 +137,7 @@
                         <span class="reviews">
                           ({{ item.reviews }})
                         </span>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
