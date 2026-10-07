@@ -1,8 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 type PaymentMethod = 'UPI' | 'CARD' | 'NETBANKING';
+
+interface WizardStep {
+  number: number;
+  label: string;
+  state: 'done' | 'active' | 'todo';
+}
+ 
 
 @Component({
   selector: 'app-payment-page',
@@ -12,6 +20,8 @@ type PaymentMethod = 'UPI' | 'CARD' | 'NETBANKING';
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
 })
 export class PaymentPageComponent {
+
+  constructor(private router: Router){}
 
   paymentMethod: PaymentMethod = 'UPI';
 
@@ -68,8 +78,10 @@ export class PaymentPageComponent {
       this.transactionId =
         'TXN-' + Math.floor(100000000 + Math.random() * 900000000);
 
-      this.isProcessing = false;
-      this.paymentCompleted = true;
+      // this.isProcessing = false;
+      // this.paymentCompleted = true;
+
+      this.router.navigateByUrl('/confirmation')
 
       window.scrollTo({
         top: 0,

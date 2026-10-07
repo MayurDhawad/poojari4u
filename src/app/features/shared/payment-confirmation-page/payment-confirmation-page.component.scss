@@ -1,0 +1,531 @@
+$primary-green: #005a43;
+$dark-green: #004f3d;
+$gold: #f3c847;
+$orange: #f39100;
+$maroon: #74001f;
+$text-dark: #071f31;
+$text-muted: #7790ad;
+$border-color: #e8edf2;
+$page-bg: #f1f5f9;
+
+.booking-page {
+  min-height: 100vh;
+  background: $page-bg;
+  color: $text-dark;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =========================================
+   PROGRESS BAR
+========================================= */
+
+.booking-progress {
+  height: 51px;
+  background: #fff;
+  border-top: 2px solid #f5a000;
+  border-bottom: 1px solid #dfe5eb;
+}
+
+.progress-wrapper {
+  height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.progress-step {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+
+  .step-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .step-label {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  &.completed {
+    color: #008f70;
+
+    .step-icon {
+      background: #d5f7e9;
+      color: #008c6d;
+    }
+  }
+
+  &.active {
+    color: #c85c00;
+
+    .step-icon {
+      background: #f5a000;
+      color: #171717;
+    }
+  }
+}
+
+.progress-line {
+  width: 65px;
+  height: 2px;
+}
+
+.completed-line {
+  background: #00a979;
+}
+
+.active-line {
+  background: #f5a000;
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.booking-container {
+  max-width: 700px;
+  padding-top: 24px;
+  padding-bottom: 50px;
+}
+
+
+/* =========================================
+   CONFIRMATION HERO
+========================================= */
+
+.confirmation-hero {
+  min-height: 300px;
+  padding: 32px 25px;
+  border-radius: 24px;
+  background:
+    linear-gradient(
+      145deg,
+      #006049 0%,
+      #00523f 48%,
+      #004b3a 100%
+    );
+
+  border: 1px solid #008c6e;
+  box-shadow: 0 10px 20px rgba(0, 53, 42, 0.16);
+
+  color: #fff;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.celebration-icon {
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  border: 2px solid #1bd3a2;
+
+  font-size: 29px;
+  margin-bottom: 16px;
+
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.confirmation-badge {
+  padding: 4px 14px;
+
+  border-radius: 20px;
+  border: 1px solid #00a879;
+
+  background: rgba(0, 168, 121, 0.35);
+
+  color: #a7f7dd;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+
+  margin-bottom: 8px;
+}
+
+.confirmation-hero h1 {
+  margin: 0;
+
+  color: #fff4bd;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.confirmation-description {
+  margin: 5px 0 17px;
+
+  color: #d8fff4;
+
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.booking-id {
+  min-width: 240px;
+
+  padding: 9px 16px;
+
+  border: 1px solid #168f72;
+  border-radius: 13px;
+
+  color: #ffe56c;
+
+  font-family: monospace;
+  font-size: 11px;
+
+  span {
+    color: #ffe56c;
+    margin-right: 6px;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+
+/* =========================================
+   TICKET
+========================================= */
+
+.ticket-card {
+  margin-top: 24px;
+
+  padding: 24px 24px 23px;
+
+  background: #fff;
+
+  border: 1px solid #f0cf5c;
+  border-radius: 17px;
+
+  box-shadow: 0 5px 12px rgba(24, 43, 59, 0.08);
+}
+
+.ticket-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 12px;
+  border-bottom: 1px solid $border-color;
+}
+
+.ticket-title {
+  color: #7188a4;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.payment-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 4px 10px;
+
+  color: #00876a;
+  background: #f1fff9;
+
+  border: 1px solid #8ee7ca;
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #009875;
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.ticket-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 45px;
+  row-gap: 18px;
+
+  padding-top: 21px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.detail-label {
+  color: #7e93aa;
+  font-size: 11px;
+}
+
+.detail-value {
+  color: #071d32;
+
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.amount {
+  color: #87001f;
+  font-family: inherit;
+}
+
+
+/* =========================================
+   PRIEST CONTACT
+========================================= */
+
+.priest-contact {
+  min-height: 66px;
+
+  margin-top: 22px;
+  padding: 12px 13px 12px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #fffbed;
+
+  border: 1px solid #f5d77a;
+  border-radius: 13px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-title {
+  color: #101d2b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.contact-phone {
+  color: #54708d;
+  font-size: 11px;
+
+  small {
+    font-size: 10px;
+  }
+}
+
+.call-btn {
+  padding: 7px 13px;
+
+  color: #fff;
+  background: #df7900;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  &:hover {
+    background: #c96700;
+    color: #fff;
+  }
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.ticket-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+.ticket-actions .btn {
+  min-height: 38px;
+
+  border-radius: 12px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.calendar-btn {
+  color: #12223a;
+  background: #fff;
+  border: 1px solid #c8d4e0;
+
+  &:hover {
+    background: #f6f8fa;
+    border-color: #aebdcb;
+  }
+}
+
+.invoice-btn {
+  color: #fff;
+  background: $maroon;
+  border: 1px solid $maroon;
+
+  &:hover {
+    color: #fff;
+    background: #5e0019;
+    border-color: #5e0019;
+  }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 767.98px) {
+
+  .booking-progress {
+    height: auto;
+  }
+
+  .progress-wrapper {
+    min-height: 55px;
+    padding: 8px 5px;
+    gap: 7px;
+  }
+
+  .progress-line {
+    width: 20px;
+  }
+
+  .progress-step {
+    gap: 5px;
+
+    .step-label {
+      font-size: 9px;
+    }
+
+    .step-icon {
+      width: 21px;
+      height: 21px;
+      font-size: 10px;
+    }
+  }
+
+  .booking-container {
+    padding: 15px 12px 35px;
+  }
+
+  .confirmation-hero {
+    min-height: 270px;
+    padding: 25px 15px;
+    border-radius: 20px;
+  }
+
+  .confirmation-hero h1 {
+    font-size: 25px;
+  }
+
+  .confirmation-description {
+    max-width: 330px;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .ticket-card {
+    margin-top: 15px;
+    padding: 19px 14px;
+    border-radius: 15px;
+  }
+
+  .ticket-header {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .ticket-details {
+    grid-template-columns: 1fr;
+    row-gap: 15px;
+  }
+
+  .priest-contact {
+    padding: 12px;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .call-btn {
+    flex-shrink: 0;
+  }
+
+  .ticket-actions {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 420px) {
+
+  .step-label {
+    max-width: 72px;
+    white-space: normal !important;
+    line-height: 1.1;
+  }
+
+  .progress-line {
+    width: 12px;
+  }
+
+  .confirmation-hero h1 {
+    font-size: 22px;
+  }
+
+  .booking-id {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .priest-contact {
+    flex-direction: column;
+  }
+
+  .call-btn {
+    width: 100%;
+  }
+}

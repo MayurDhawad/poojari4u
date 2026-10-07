@@ -39,11 +39,16 @@ export class Header {
       maxWidth: '40vw',
       maxHeight: '80vh',
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('Reservation:', result);
-        this.router.navigate(['/register']);
-        dialogRef.close();
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        console.log('result:', res);
+        if(res == 'home'){
+          this.router.navigate(['/home']);
+        }else{
+          this.router.navigate(['/register']);
+        }
+        
+        
       }
     });
   }

@@ -61,7 +61,8 @@ export class LoginComponent  {
 
   goBackToHome(): void {
     this.loginForm.reset();
-    this.router.navigateByUrl('')
+    this.router.navigateByUrl('/home')
+    this.dialogRef.close('home');
   }
 
   goBackToRoleSelection(): void {
@@ -84,6 +85,6 @@ export class LoginComponent  {
 
   onRegisterClick(): void {
     this.router.navigateByUrl('/register')
-    this.dialogRef.close(true);
+    this.dialogRef.close('register');
   }
 }

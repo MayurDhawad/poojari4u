@@ -1,0 +1,207 @@
+<div class="booking-page">
+
+  <!-- Progress Header -->
+  <header class="booking-progress">
+    <div class="container">
+      <div class="progress-wrapper">
+
+        <!-- Step 1 -->
+        <div class="progress-step completed">
+          <span class="step-icon">
+            <i class="bi bi-check-lg"></i>
+          </span>
+
+          <span class="step-label">
+            1. Select Ceremony
+          </span>
+        </div>
+
+        <div class="progress-line completed-line"></div>
+
+        <!-- Step 2 -->
+        <div class="progress-step completed">
+          <span class="step-icon">
+            <i class="bi bi-check-lg"></i>
+          </span>
+
+          <span class="step-label">
+            2. Choose Poojari & Muhurtham
+          </span>
+        </div>
+
+        <div class="progress-line active-line"></div>
+
+        <!-- Step 3 -->
+        <div class="progress-step active">
+          <span class="step-icon">
+            3
+          </span>
+
+          <span class="step-label">
+            Payment & Confirm
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+
+  <main class="container booking-container">
+
+    <!-- Confirmation Hero -->
+    <section class="confirmation-hero">
+
+      <div class="celebration-icon">
+        🎉
+      </div>
+
+      <div class="confirmation-badge">
+        BOOKING CONFIRMED
+      </div>
+
+      <h1>
+        May Lord Rama &amp; Sita Bless You!
+      </h1>
+
+      <p class="confirmation-description">
+        Your ritual has been locked with {{ booking.priest }}.
+        A booking summary has<br class="desktop-only">
+        been sent to your phone and email.
+      </p>
+
+      <div class="booking-id">
+        <span>Booking ID:</span>
+        <strong>{{ booking.id }}</strong>
+      </div>
+
+    </section>
+
+
+    <!-- Ceremony Ticket -->
+    <section class="ticket-card">
+
+      <!-- Ticket Header -->
+      <div class="ticket-header">
+
+        <span class="ticket-title">
+          CEREMONY TICKET
+        </span>
+
+        <span class="payment-status">
+          <span class="status-dot"></span>
+          Confirmed &amp; Paid
+        </span>
+
+      </div>
+
+
+      <!-- Ticket Details -->
+      <div class="ticket-details">
+
+        <div class="detail-item">
+          <span class="detail-label">
+            Ceremony
+          </span>
+
+          <span class="detail-value">
+            {{ booking.ceremony }}
+          </span>
+        </div>
+
+
+        <div class="detail-item">
+          <span class="detail-label">
+            Date &amp; Time
+          </span>
+
+          <span class="detail-value">
+            {{ booking.date }}, {{ booking.time }}
+          </span>
+        </div>
+
+
+        <div class="detail-item">
+          <span class="detail-label">
+            Assigned Priest
+          </span>
+
+          <span class="detail-value">
+            {{ booking.priest }}
+          </span>
+        </div>
+
+
+        <div class="detail-item">
+          <span class="detail-label">
+            Amount Paid
+          </span>
+
+          <span class="detail-value amount">
+            {{ booking.amount }}
+          </span>
+        </div>
+
+      </div>
+
+
+      <!-- Priest Contact -->
+      <div class="priest-contact">
+
+        <div class="contact-info">
+          <span class="contact-title">
+            Direct Priest Contact
+          </span>
+
+          <span class="contact-phone">
+            {{ booking.phone }}
+            <small>
+              ({{ booking.availability }})
+            </small>
+          </span>
+        </div>
+
+        <button
+          type="button"
+          class="btn call-btn"
+          (click)="callPriest()">
+
+          <i class="bi bi-telephone-fill me-1"></i>
+          Call Priest
+
+        </button>
+
+      </div>
+
+
+      <!-- Actions -->
+      <div class="ticket-actions">
+
+        <button
+          type="button"
+          class="btn calendar-btn"
+          (click)="addToCalendar()">
+
+          <i class="bi bi-calendar-event me-2"></i>
+          Add to Google Calendar
+
+        </button>
+
+
+        <button
+          type="button"
+          class="btn invoice-btn"
+          (click)="downloadInvoice()">
+
+          <i class="bi bi-download me-2"></i>
+          Download Invoice
+
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
