@@ -56,12 +56,41 @@ body {
   overflow: visible;
 }
 /* Sticky Position Logic for Fixed Right Sidebar */
+/* Right Sidebar: Sticky and Scrollable Order Summary */
 .sticky-summary {
-  position: sticky;
-  top: 1.5rem;
+  position: fixed;
+  top: 1rem; // Distance from the top of the viewport
   z-index: 10;
-  height: fit-content;
+  margin-top: 155px;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
   align-self: flex-start;
+
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #d97706 #fdf8e9;
+}
+
+/* Chrome, Edge, and Safari scrollbar */
+.sticky-summary::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sticky-summary::-webkit-scrollbar-track {
+  background: #fdf8e9;
+  border-radius: 10px;
+}
+
+.sticky-summary::-webkit-scrollbar-thumb {
+  background-color: #d97706;
+  border-radius: 10px;
+}
+
+.sticky-summary::-webkit-scrollbar-thumb:hover {
+  background-color: #92400e;
 }
 
 /* Banner Card Styles */
@@ -237,3 +266,4 @@ body {
 .line-height-15{
   line-height: 15px;
 }
+
