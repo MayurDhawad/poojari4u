@@ -1,4 +1,4 @@
-import { Component,Input,OnInit,OnDestroy } from '@angular/core';
+import { Component,Input,OnInit,OnDestroy, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchBox, showSection } from '../../search-box/search-box';
 export interface HeroData {
@@ -35,46 +35,56 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
   @Input() slides: HeroSlide[] = [];
 
   activeIndex = 0;
+
   private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
 
   ngOnInit(): void {
     this.startAutoPlay();
   }
 
-  ngOnDestroy(): void {
-    this.stopAutoPlay();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['slides']) {
+      this.activeIndex = 0;
+      this.startAutoPlay();
+    }
   }
 
-  setActive(index: number): void {
-    if (!this.slides.length) {
-      return;
-    }
-
-    this.activeIndex = index;
+  ngOnDestroy(): void {
     this.stopAutoPlay();
   }
 
   getSlideClass(index: number): string {
     const total = this.slides.length;
+
+    if (total === 0) return 'hidden';
     if (index === this.activeIndex) return 'active';
     if (index === (this.activeIndex - 1 + total) % total) return 'prev';
     if (index === (this.activeIndex + 1) % total) return 'next';
-    
+
     return 'hidden';
   }
 
   next(): void {
-    this.activeIndex = (this.activeIndex + 1) % this.slides.length;
-  }
+  if (this.slides.length < 2) return;
 
-  prev(): void {
-    this.activeIndex = (this.activeIndex - 1 + this.slides.length) % this.slides.length;
+  this.activeIndex = (this.activeIndex + 1) % this.slides.length;
+}
+
+  setActive(index: number): void {
+    if (index < 0 || index >= this.slides.length) return;
+    this.activeIndex = index;
   }
 
   private startAutoPlay(): void {
     this.stopAutoPlay();
+
+    if (this.slides.length < 2) {
+      return;
+    }
+
     this.autoPlayInterval = setInterval(() => {
-      this.next();
+      this.activeIndex =
+        (this.activeIndex + 1) % this.slides.length;
     }, 2000);
   }
 

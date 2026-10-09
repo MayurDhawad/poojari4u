@@ -44,11 +44,11 @@ export class Header {
         console.log('result:', res);
         if(res == 'poojari'){
           this.router.navigate(['/poojari-registration']);
-        }else{
+        }else if(res == 'bajanthri'){
           this.router.navigate(['/bajanthri-registration']);
+        }else{
+          this.router.navigate(['/']);
         }
-        
-        
       }
     });
   }
