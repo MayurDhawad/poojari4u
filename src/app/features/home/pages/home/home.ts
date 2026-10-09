@@ -9,7 +9,6 @@ import { WhyPoojari4uComponent } from '../../components/why-poojari4u/why-poojar
   selector: 'app-home',
   imports: [
     HomeSection,
-    ServiceCategories,
     PopularPoojas,
     BookingProcessComponent,
     WhyPoojari4uComponent
