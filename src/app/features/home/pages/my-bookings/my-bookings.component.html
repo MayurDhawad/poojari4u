@@ -62,20 +62,6 @@
               <label class="form-label fw-semibold text-secondary">Phone Number (WhatsApp) *</label>
               <input type="text" class="form-control form-control-lg custom-input" value="+91 98490 12345">
             </div>
-            <div class="col-md-6">
-              <label class="form-label fw-semibold text-secondary">City</label>
-              <select class="form-select form-select-lg custom-input">
-                <option>Nagpur</option>
-                <option>Hyderabad</option>
-                <option>Chennai</option>
-                <option>Delhi</option>
-                <option>Bangalore</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label class="form-label fw-semibold text-secondary">Pincode *</label>
-              <input type="number" class="form-control form-control-lg custom-input" value="+91 98490 12345">
-            </div>
             <div class="col-12">
               <label class="form-label fw-semibold text-secondary">Email Address *</label>
               <input type="email" class="form-control form-control-lg custom-input" value="kalyan.ram@example.com">
@@ -96,15 +82,40 @@
 
         <div class="row g-3">
           <div class="col-md-6">
-            <label class="form-label fw-semibold text-secondary">Date of Ceremony</label>
-            <input type="date" class="form-control form-control-lg custom-input">
-          </div>
+              <label class="form-label fw-semibold text-secondary">Type of ceremony box</label>
+              <select class="form-select form-select-lg custom-input">
+                <option>Yajur Veda Ghanapati</option>
+                <option>Rig Veda Pathashala Alumnus</option>
+                <option>Sama Veda & Smartapath Specialist</option>
+                <option>Agama Shastra & Mahanyasa Expert</option>
+                <option>Jyotish Ratna & Muhurtham Expert</option>
+                <option>Gurukul Trained Vedic Scholar</option>
+              </select>
+            </div>
           <div class="col-md-6">
             <label class="form-label fw-semibold text-secondary">Time Slot</label>
             <select class="form-select form-select-lg custom-input">
               <option>Morning (06:00 AM - 09:00 AM)</option>
             </select>
           </div>
+          <div class="col-md-4">
+            <label class="form-label fw-semibold text-secondary">Date of Ceremony</label>
+            <input type="date" class="form-control form-control-lg custom-input">
+          </div>
+          <div class="col-md-4">
+              <label class="form-label fw-semibold text-secondary">City</label>
+              <select class="form-select form-select-lg custom-input">
+                <option>Nagpur</option>
+                <option>Hyderabad</option>
+                <option>Chennai</option>
+                <option>Delhi</option>
+                <option>Bangalore</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label fw-semibold text-secondary">Pincode *</label>
+              <input type="number" class="form-control form-control-lg custom-input" value="+91 98490 12345">
+            </div>
           <div class="col-12">
             <label class="form-label fw-semibold text-secondary">Venue Address</label>
             <textarea class="form-control custom-input" rows="3" placeholder="Enter complete address"></textarea>
@@ -113,8 +124,8 @@
       </div>
 
       <!-- Section 3: Add Live Bajanthri / Nadaswaram Troupe -->
-      @if(type == 'poojaris'){
-        <div class="card border-0 shadow-sm rounded-4 p-4 card-cream-bg">
+      
+      <div class="card border-0 shadow-sm rounded-4 p-4 card-cream-bg">
           <div class="d-flex justify-content-between align-items-center mb-1">
             <div class="d-flex align-items-center gap-2">
               <span class="step-num rounded-circle d-inline-flex align-items-center justify-content-center fw-bold">3</span>
@@ -204,20 +215,13 @@
             </div>
 
           </div>
-        </div>
-      }
+      </div>
 
       <!-- Section 4: Add Sacred Pooja Samagri Kit -->
       <div class="card border-0 shadow-sm rounded-4 p-4 card-cream-bg">
         <div class="d-flex justify-content-between align-items-center mb-1">
           <div class="d-flex align-items-center gap-2">
-            <span class="step-num rounded-circle d-inline-flex align-items-center justify-content-center fw-bold">
-              @if(type == 'poojaris'){
-                  4
-                }@else{
-                  3
-                }
-            </span>
+            <span class="step-num rounded-circle d-inline-flex align-items-center justify-content-center fw-bold">4</span>
             <h5 class="mb-0 fw-bold section-title">Add Sacred Pooja Samagri Kit</h5>
           </div>
           <span class="badge bg-amber-subtle text-amber-emphasis px-3 py-2 rounded-pill fs-7 fw-semibold">
