@@ -8,7 +8,7 @@ export const routes: Routes = [
         .then(m => m.Home),
   },
   {
-    path: 'dashboardA',
+    path: 'dashboard',
     loadComponent: () =>
       import('./dashboard/dashboard.component')
         .then(m => m.DashboardComponent)
@@ -32,10 +32,16 @@ export const routes: Routes = [
         .then(m => m.PaymentConfirmationPageComponent)
   },
   {
-    path: 'register',
+    path: 'poojari-registration',
     loadComponent: () =>
       import('./features/home/pages/poojaris/poojari-registration-flow/poojari-registration-flow.component')
         .then(m => m.PoojariRegistrationFlowComponent)
+  },
+  {
+    path: 'bajanthri-registration',
+    loadComponent: () =>
+      import('./features/home/pages/bajanthri/bajanthri-registration-flow/bajanthri-registration-flow.component')
+        .then(m => m.BajanthriRegistrationFlowComponent)
   },
   {
     path: 'poojaris',

@@ -1,7 +1,6 @@
+<!-- 
 
-  <!-- Container -->
   <div class="container">
-    <!-- Header Banner -->
     <div class="text-center my-4">
       <p class="text-uppercase tracking-wide text-orange fw-semibold mb-1">JOIN THE POOJARI4U FAMILY</p>
       <h1 class="fw-bold display-5 text-dark">Register as a Poojari</h1>
@@ -10,7 +9,7 @@
       </p>
     </div>
 
-    <!-- Stepper Navigation -->
+    
     <div class="stepper-wrapper my-5 d-flex justify-content-between align-items-center position-relative col-md-8 mx-auto">
       <div class="stepper-line position-absolute top-50 start-0 w-100 translate-middle-y z-0"></div>
       
@@ -36,10 +35,10 @@
       </div>
     </div>
 
-    <!-- Main Registration Form -->
+    
     <form [formGroup]="registrationForm" (ngSubmit)="nextStep()">
       
-      <!-- STEP 1: Personal Details -->
+      
       <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 1">
         <h3 class="fw-bold mb-1">Personal Details</h3>
         <p class="text-muted mb-4">Tell us a little about yourself.</p>
@@ -99,7 +98,7 @@
         </div>
       </div>
 
-      <!-- STEP 2: Services -->
+    
       <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 2">
         <h3 class="fw-bold mb-1">Your Pooja Services</h3>
         <p class="text-muted mb-4">Select the ceremonies you perform and add your starting prices.</p>
@@ -154,7 +153,7 @@
         </div>
       </div>
 
-      <!-- STEP 3: Availability -->
+      
       <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 3">
         <h2 class="fw-bold text-dark mb-1">Your Availability</h2>
         <p class="text-muted mb-4">Tell customers when you are generally available.</p>
@@ -211,7 +210,7 @@
         </div>
       </div>
 
-      <!-- STEP 4: Verification -->
+    
       <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 4">
         <h2 class="fw-bold text-dark mb-1">Verification</h2>
         <p class="text-muted mb-4">Upload the required information so Poojari4U can review your profile.</p>
@@ -255,12 +254,12 @@
         </div>
       </div>
 
-      <!-- STEP 5: Review & Submit -->
+     
       <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 mx-auto max-w-900" *ngIf="currentStep === 5 && !isSubmitted">
         <h2 class="fw-bold text-dark mb-1">Review & Submit</h2>
         <p class="text-muted mb-4">Please check your information before submitting your registration.</p>
 
-        <!-- Personal Information Card -->
+       
         <div class="review-box rounded-3 p-4 mb-4">
           <h5 class="fw-bold text-orange mb-3">Personal Information</h5>
           <div class="row g-2 text-dark">
@@ -275,7 +274,7 @@
           </div>
         </div>
 
-        <!-- Professional Information Card -->
+       
         <div class="review-box rounded-3 p-4 mb-4">
           <h5 class="fw-bold text-orange mb-2">Professional Information</h5>
           <p class="text-muted small mb-0">
@@ -283,7 +282,7 @@
           </p>
         </div>
 
-        <!-- Terms Confirmation Checkbox -->
+      
         <div class="form-check mb-5">
           <input 
             type="checkbox" 
@@ -296,7 +295,7 @@
           </label>
         </div>
 
-        <!-- Action Buttons -->
+
         <div class="d-flex justify-content-between align-items-center pt-3 border-top">
           <button type="button" class="btn btn-light rounded-pill px-4 py-2 border" (click)="prevStep()">
             ← Back
@@ -311,7 +310,7 @@
         </div>
       </div>
 
-      <!-- Successful Submission Card State -->
+   
       <div class="card border-0 shadow-sm rounded-4 p-5 text-center mx-auto max-w-900" *ngIf="isSubmitted">
         <div class="success-icon rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 fs-1 bg-light-orange text-orange">
           ✓
@@ -320,7 +319,7 @@
         <p class="text-muted col-md-8 mx-auto mb-4">
           Thank you for registering with Poojari4U. Our team will review your details and contact you shortly.
         </p>
-        <!-- Registration ID Badge -->
+       
         <div class="d-flex justify-content-center mb-4">
           <h6 class="registration-id-badge rounded-pill fw-bold px-4 py-2 mb-0">Registration ID: {{ registrationId }}</h6>
         </div>
@@ -331,4 +330,130 @@
 
     </form>
   </div>
+ -->
 
+
+ <div class="onboarding-shell">
+  <main *ngIf="showSuccess" class="container-xl page-content">
+    <section class="hero text-center">
+      <div class="eyebrow">
+        <!-- <i-lucide [img]="icons.Award"></i-lucide>  -->
+        Join South India's Traditional Musical Ensemble Network</div>
+      <h1>Register Your Bajanthri Team &amp; Receive <span>Regular Event Orders</span></h1>
+      <p>Perform for authentic Gruhapravesham, Weddings, Temple Festivals, and Satyanarayana Vrathams with date flexibility and payouts directly to your bank account.</p>
+      <div class="mobile-trust row g-2 d-lg-none">
+        <div class="col-6 col-sm-3"><span>⚡ Direct Orders</span></div><div class="col-6 col-sm-3"><span>₹ Weekly Payouts</span></div>
+        <div class="col-6 col-sm-3"><span>▦ Flexible Dates</span></div><div class="col-6 col-sm-3"><span>✓ Zero Fees</span></div>
+      </div>
+    </section>
+
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-8">
+        <section class="panel wizard-panel">
+          <div class="progress-area">
+            <div class="d-flex justify-content-between progress-label"><span>Step {{step}} of 4: {{stepTitle[step]}}</span><span>{{progress}}% Completed</span></div>
+            <div class="progress custom-progress"><div class="progress-bar" [style.width.%]="progress"></div></div>
+            <div class="row g-2 step-tabs">
+              <div class="col-3" *ngFor="let label of ['Contact','Ensembles','Coverage','KYC Bank']; let i=index">
+                <button type="button" [class.active]="step === i+1" [class.complete]="step > i+1" (click)="goToStep(i+1)">{{i+1}}. {{label}}</button>
+              </div>
+            </div>
+          </div>
+
+          <form (submit)="$event.preventDefault(); next()" novalidate>
+            <section *ngIf="step===1" class="step-content">
+              <div class="section-heading">
+                <!-- <i-lucide [img]="icons.Users"></i-lucide> -->
+                <div><h2>Team &amp; Lead Artist Contact Details</h2><p>Enter your official band name and team leader details for booking dispatches.</p></div></div>
+              <div class="row g-3">
+                <div class="col-12"><label class="form-label">Team / Band Name <b>*</b></label><input class="form-control" [(ngModel)]="teamName" name="teamName" placeholder="e.g. Sri Venkateswara Bajanthri Troupe" required></div>
+                <div class="col-md-6"><label class="form-label">Team Leader Full Name <b>*</b></label><input class="form-control" [(ngModel)]="leaderName" name="leaderName" placeholder="e.g. K. Srinivasulu" required></div>
+                <div class="col-md-6"><label class="form-label">Primary Phone / WhatsApp <b>*</b></label><div class="input-group"><input class="form-control" [(ngModel)]="phone" name="phone" type="tel" placeholder="+91 98765 43210"><button type="button" class="btn btn-outline-gold" *ngIf="!phoneVerified && !otpSent" (click)="sendOtp()">Send OTP</button></div>
+                  <div class="input-group mt-2" *ngIf="otpSent"><input class="form-control" [(ngModel)]="otp" name="otp" placeholder="Enter demo OTP (1234)" maxlength="4"><button class="btn btn-success" type="button" (click)="verifyOtp()">Verify</button></div>
+                  <small [class.text-success]="phoneVerified">{{phoneVerified ? '✓ WhatsApp Number Verified Successfully' : 'WhatsApp booking alerts will be sent to this number.'}}</small></div>
+                <div class="col-md-6"><label class="form-label">Secondary Contact Number</label><input class="form-control" [(ngModel)]="secondaryPhone" name="secondaryPhone" placeholder="+91 87654 32109"></div>
+                <div class="col-md-6"><label class="form-label">Years of Performance Experience</label><select class="form-select" [(ngModel)]="experience" name="experience"><option>1-3 Years</option><option>3-5 Years</option><option>5-10 Years</option><option>10+ Years</option></select></div>
+                <div class="col-12"><label class="form-label">Preferred Languages Spoken</label><div class="option-grid four"><label class="check-option" *ngFor="let lang of ['Telugu','Kannada','Tamil','Hindi']"><input type="checkbox" [checked]="languages.includes(lang)" (change)="toggle(languages,lang)"> {{lang}}</label></div></div>
+              </div>
+            </section>
+
+            <section *ngIf="step===2" class="step-content">
+              <div class="section-heading">
+                <!-- <i-lucide [img]="icons.Drum"></i-lucide> -->
+                <div><h2>Ensembles, Instruments &amp; Traditional Dress Code</h2><p>Configure your team composition so customers know your exact musical setup.</p></div></div>
+              <label class="form-label">Standard Performing Team Member Count <b>*</b></label>
+              <div class="option-grid four mb-4"><button type="button" class="choice-card" *ngFor="let n of [2,3,4,5]" [class.selected]="teamCount===n" (click)="teamCount=n"><strong>{{n===5?'5+':n}} Members</strong><small>{{n===2?'Nadaswaram + Thavil':n===3?'2 Pipe + 1 Drum':n===4?'Full Bajanthri Set':'Grand Procession'}}</small></button></div>
+              <label class="form-label">Primary Instruments Played in your Troupe</label>
+              <div class="option-grid three mb-4"><label class="check-option" *ngFor="let inst of ['Nadaswaram','Thavil','Talam','Shehnai','Dolu','Flute']"><input type="checkbox" [checked]="instruments.includes(inst)" (change)="toggle(instruments,inst)"> {{inst==='Nadaswaram'?'Nadaswaram / Pipe':inst==='Thavil'?'Thavil / Drum':inst==='Talam'?'Talam / Cymbals':inst==='Flute'?'Traditional Flute':inst}}</label></div>
+              <label class="form-label">Team Uniform / Traditional Dress Code</label><select class="form-select mb-4" [(ngModel)]="attire" name="attire"><option>Traditional Pancha / Dhoti with Shawl</option><option>Matching Kurta Pajama Set</option><option>Custom Matching Uniform</option></select>
+              <label class="form-label">Sample Performance Audio / Video Upload (Optional)</label><label class="upload-zone">
+                <!-- <i-lucide [img]="icons.UploadCloud"></i-lucide> -->
+                <strong>Click to upload sample file</strong><span>MP3/MP4 · Max size 25MB</span><input type="file" accept="audio/*,video/*" (change)="onFile($event,'sample')"></label><small *ngIf="sampleFileName" class="text-success">{{sampleFileName}}</small>
+            </section>
+
+            <section *ngIf="step===3" class="step-content">
+              <div class="section-heading">
+                <!-- <i-lucide [img]="icons.MapPin"></i-lucide> -->
+                <div><h2>Pricing Rates, Ritual Types &amp; Service Coverage</h2><p>Set your base pricing and select local hubs where you are ready to perform.</p></div></div>
+              <div class="row g-3 mb-4"><div class="col-md-4"><label class="form-label">Per 2 Hours Rate (₹) <b>*</b></label><input type="number" min="0" class="form-control" [(ngModel)]="rate2Hr" name="rate2Hr"></div><div class="col-md-4"><label class="form-label">Half Day Event Rate (₹)</label><input type="number" min="0" class="form-control" [(ngModel)]="rateHalfDay" name="rateHalfDay"></div><div class="col-md-4"><label class="form-label">Full Day Wedding Rate (₹)</label><input type="number" min="0" class="form-control" [(ngModel)]="rateFullDay" name="rateFullDay"></div></div>
+              <label class="form-label">Select Ceremonies You Perform For</label><div class="option-grid three mb-4"><label class="check-option" *ngFor="let item of ['Gruhapravesham','Weddings','Satyanarayana Vratham','Temple Festival','Upanayanam','Processions']"><input type="checkbox" [checked]="ceremonies.includes(item)" (change)="toggle(ceremonies,item)"> {{item==='Weddings'?'Weddings / Engagement':item==='Processions'?'Shobha Yatra':item}}</label></div>
+              <label class="form-label">Primary Operating City <b>*</b></label><select class="form-select mb-4" [(ngModel)]="city" name="city" (ngModelChange)="changeCity()"><option *ngFor="let c of ['Hyderabad','Bengaluru','Chennai','Vijayawada','Visakhapatnam','Tirupati']">{{c}}</option></select>
+              <label class="form-label">Local Suburb Hubs Served</label><div class="tag-list mb-4"><button type="button" *ngFor="let suburb of suburbsByCity[city]" [class.selected]="selectedSuburbs.includes(suburb)" (click)="toggleSuburb(suburb)">{{suburb}}</button></div>
+              <div class="row g-3"><div class="col-md-6"><label class="form-label">Own Vehicle Transport Available?</label><select class="form-select" [(ngModel)]="vehicle" name="vehicle"><option value="Yes">Yes (Auto / Van / Bike Available)</option><option value="No">No (Requires Cab Allowance)</option></select></div><div class="col-md-6"><label class="form-label">Maximum Travel Distance Radius</label><select class="form-select" [(ngModel)]="radius" name="radius"><option>25 KM</option><option>50 KM</option><option>100 KM</option></select></div></div>
+            </section>
+
+            <section *ngIf="step===4" class="step-content">
+              <div class="section-heading">
+                <!-- <i-lucide [img]="icons.ShieldCheck"></i-lucide> -->
+                <div><h2>KYC Identity Verification &amp; Payout Bank Details</h2><p>Provide government ID proof and bank payout details.</p></div></div>
+              <label class="form-label">Team Lead Aadhaar / Govt ID Card Upload <b>*</b></label><label class="upload-zone mb-4">
+                <!-- <i-lucide [img]="icons.IdCard"></i-lucide> -->
+                <strong>Click to upload Aadhaar / Voter ID</strong><span>JPG, PNG, PDF · Max 10MB</span><input type="file" accept="image/*,.pdf" (change)="onFile($event,'kyc')"></label><small *ngIf="kycFileName" class="text-success d-block mb-3">{{kycFileName}}</small>
+              <div class="row g-3"><div class="col-md-6"><label class="form-label">Account Holder Name <b>*</b></label><input class="form-control" [(ngModel)]="accountHolder" name="accountHolder" placeholder="Exact name as in passbook"></div><div class="col-md-6"><label class="form-label">Bank Account Number <b>*</b></label><input class="form-control" type="password" [(ngModel)]="accountNumber" name="accountNumber" placeholder="Enter account number"></div><div class="col-md-6"><label class="form-label">IFSC Code <b>*</b></label><input class="form-control text-uppercase" [(ngModel)]="ifsc" name="ifsc" placeholder="e.g. SBIN0001234"></div><div class="col-md-6"><label class="form-label">GPay / PhonePe UPI ID</label><input class="form-control" [(ngModel)]="upi" name="upi" placeholder="e.g. 9876543210@ybl"></div></div>
+              <label class="agreement mt-4"><input type="checkbox" [(ngModel)]="termsAccepted" name="termsAccepted"><span>I agree to the <strong>Poojari4U Artist Partner Code of Conduct</strong>. Our troupe guarantees punctuality, traditional dress, respectful decorum, and authentic musical performance.</span></label>
+              <p class="privacy-note">Demo interface only. Connect a secure backend before collecting or storing identity and banking information.</p>
+            </section>
+
+            <div class="wizard-footer">
+                <button type="button" class="btn btn-previous" *ngIf="step>1" (click)="previous()">Previous Step</button><span class="flex-grow-1"></span><button type="submit" class="btn btn-next">{{step===4?'Submit Registration & KYC':step===1?'Next: Ensembles & Instruments':step===2?'Next: Pricing & Coverage':'Next: KYC & Bank Details'}} 
+                <!-- <i-lucide [img]="icons.ArrowRight"></i-lucide> -->
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
+
+      <aside class="col-lg-4 sidebar">
+        <section class="panel earnings-card"><div class="side-title">
+          <!-- <i-lucide [img]="icons.Calculator"></i-lucide> -->
+           Live Earnings Estimator</div><div class="income-box"><div class="d-flex justify-content-between"><span>Events / Week Commitment:</span><strong>{{eventsPerWeek}} Events</strong></div><input class="form-range" type="range" min="1" max="12" [(ngModel)]="eventsPerWeek" aria-label="Events per week"><div class="income-total"><small>Estimated Monthly Troupe Income</small><strong>₹{{monthlyIncome.toLocaleString('en-IN')}} / mo</strong><small>*Based on ₹{{formattedRate}} base rate for 2-hour rituals</small></div></div><p class="benefit">✓ Direct Bank Payouts Every Tuesday</p><p class="benefit">✓ Keep 100% of customer tips</p></section>
+        <section class="panel preview-card"><div class="preview-heading"><span>Live Profile Card Preview</span><em>Drafting</em></div><div class="profile-preview"><div class="profile-top"><span class="profile-icon">
+          <!-- <i-lucide [img]="icons.Music"></i-lucide> -->
+        </span><div><strong>{{teamName || 'Sri Venkateswara Troupe'}}</strong><small>Lead: {{leaderName || 'K. Srinivasulu'}}</small></div></div><div class="preview-row"><span>City Hub:</span><strong>{{city}}</strong></div><div class="preview-row"><span>Team Size:</span><strong class="gold-text">{{teamCount===5?'5+':teamCount}} Members</strong></div><div class="preview-row"><span>Instruments:</span><strong class="instrument-label">{{selectedInstrumentsLabel}}</strong></div><div class="preview-row"><span>Base Rate:</span><strong class="green-text">₹{{formattedRate}} / 2 Hrs</strong></div></div></section>
+      </aside>
+    </div>
+  </main>
+
+
+  <div class="toast-message" *ngIf="toast" [class.error]="toastType==='error'" [class.success]="toastType==='success'">{{toast}}</div>
+  <div class="d-flex justify-content-center mt-5" *ngIf="!showSuccess">
+    <div class="success-dialog panel text-center">
+      <div class="success-icon">✓</div>
+      <span class="success-kicker">Registration Submitted</span>
+      <h2>Welcome to Poojari4U Partner Network!</h2>
+      <p>Your application reference ID is <strong>{{referenceId}}</strong></p>
+      <div class="timeline text-start">
+        <h3>Next Onboarding Steps</h3>
+        <p><b>1. KYC &amp; Document Verification</b><small>Our artist relations team verifies your submitted
+            documents.</small></p>
+        <p><b>2. Telephonic Onboarding &amp; Audio Review</b>
+          <small>A brief call with your City Coordinator.</small>
+        </p>
+        <p><b>3. Partner App Activation &amp; Direct Orders</b>
+          <small>Receive event orders through WhatsApp and the Partner App.</small>
+        </p>
+      </div>
+      <button class="btn btn-next w-100" (click)="reset()">Back to Onboarding Home</button>
+    </div>
+  </div>
+</div>

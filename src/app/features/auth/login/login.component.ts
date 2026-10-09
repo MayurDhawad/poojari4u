@@ -27,6 +27,7 @@ export class LoginComponent  {
 
   selectedRole: UserRole = 'poojari';
   loginForm: FormGroup;
+  payload: any;
 
   roles: RoleOption[] = [
     { id: 'poojari', number: 1, label: 'Poojari', icon: '🪔' },
@@ -57,6 +58,7 @@ export class LoginComponent  {
 
   goToLogin(): void {
     this.currentStep = 2;
+
   }
 
   goBackToHome(): void {
@@ -72,11 +74,11 @@ export class LoginComponent  {
 
   onLoginSubmit(): void {
     if (this.loginForm.valid) {
-      const payload = {
+      this.payload = {
         role: this.selectedRole,
         ...this.loginForm.value
       };
-      console.log('Logging in with payload:', payload);
+      console.log('Logging in with payload:', this.payload);
       // Perform API call or navigation here
     } else {
       this.loginForm.markAllAsTouched();
@@ -84,7 +86,13 @@ export class LoginComponent  {
   }
 
   onRegisterClick(): void {
-    this.router.navigateByUrl('/register')
-    this.dialogRef.close('register');
+    if(this.selectedRole == 'poojari'){
+      this.dialogRef.close('poojari');
+    }else if(this.selectedRole == 'bajanthri'){
+      this.dialogRef.close('bajanthri');
+    }else{
+      this.router.navigateByUrl('/')
+      this.dialogRef.close('/');
+    }
   }
 }

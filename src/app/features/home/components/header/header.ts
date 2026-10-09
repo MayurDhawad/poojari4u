@@ -26,11 +26,11 @@ export class Header {
 
   navItems = [
     { label: 'Home', path: '/' },
+    { label: 'About Us', path: '/about-us' },
     { label: 'Poojaris', path: '/poojaris' },
     { label: 'Bajanthri', path: '/bajanthri' },
     { label: 'Pooja Samagri', path: '/pooja-samagri' },
     { label: 'Packages', path: '/packages' },
-    { label: 'My Bookings', path: '/my-bookings' },
   ];
 
   onRegistration(){
@@ -42,10 +42,10 @@ export class Header {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         console.log('result:', res);
-        if(res == 'home'){
-          this.router.navigate(['/home']);
+        if(res == 'poojari'){
+          this.router.navigate(['/poojari-registration']);
         }else{
-          this.router.navigate(['/register']);
+          this.router.navigate(['/bajanthri-registration']);
         }
         
         

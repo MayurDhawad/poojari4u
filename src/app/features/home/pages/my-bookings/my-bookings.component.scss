@@ -50,11 +50,18 @@ body {
   background-color: #fdf8e9; /* Light soft cream */
 }
 
+.container,
+.row,
+.col-lg-4 {
+  overflow: visible;
+}
 /* Sticky Position Logic for Fixed Right Sidebar */
 .sticky-summary {
   position: sticky;
   top: 1.5rem;
   z-index: 10;
+  height: fit-content;
+  align-self: flex-start;
 }
 
 /* Banner Card Styles */

@@ -1,171 +1,1258 @@
-$primary-orange: #e65100;
-$light-orange-bg: #fff3e0;
-$border-color: #e0e0e0;
+// $primary-orange: #e65100;
+// $light-orange-bg: #fff3e0;
+// $border-color: #e0e0e0;
 
-.registration-page {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fdfbf7 !important;
+// .registration-page {
+//   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+//   background-color: #fdfbf7 !important;
+// }
+
+// .text-orange {
+//   color: $primary-orange !important;
+// }
+
+// .bg-light-orange {
+//   background-color: $light-orange-bg !important;
+// }
+
+// .btn-orange {
+//   background-color: $primary-orange;
+//   color: #ffffff;
+//   border: none;
+
+//   &:hover:not(:disabled) {
+//     background-color: darken($primary-orange, 8%);
+//     color: #ffffff;
+//   }
+
+//   &:disabled {
+//     background-color: #f0a882;
+//     border-color: #f0a882;
+//   }
+// }
+
+// .btn-outline-orange {
+//   color: $primary-orange;
+//   border-color: $primary-orange;
+
+//   &:hover {
+//     background-color: $primary-orange;
+//     color: #ffffff;
+//   }
+// }
+
+// .max-w-900 {
+//   max-width: 900px;
+// }
+
+// /* Stepper Custom Styles */
+// .stepper-wrapper {
+//   .stepper-line {
+//     height: 2px;
+//     background-color: $border-color;
+//   }
+
+//   .step-item {
+//     cursor: pointer;
+
+//     .step-circle {
+//       width: 44px;
+//       height: 44px;
+//       background-color: #ffffff;
+//       border: 2px solid $border-color;
+//       color: #6c757d;
+//       transition: all 0.3s ease;
+//     }
+
+//     &.active {
+//       .step-circle {
+//         background-color: $primary-orange;
+//         border-color: $primary-orange;
+//         color: #ffffff;
+//       }
+
+//       .step-label {
+//         color: $primary-orange !important;
+//         font-weight: 600;
+//       }
+//     }
+//   }
+// }
+
+// /* Step 5 Review Cards */
+// .review-box {
+//   background-color: #fffaf5;
+//   border: 1px solid #ffe8d6;
+// }
+
+// .success-icon {
+//   width: 80px;
+//   height: 80px;
+// }
+
+// /* Checkbox & Input Styling */
+// .form-check-input {
+//   &:checked {
+//     background-color: $primary-orange;
+//     border-color: $primary-orange;
+//   }
+
+//   &:focus {
+//     box-shadow: 0 0 0 0.25rem rgba(230, 81, 0, 0.15);
+//   }
+// }
+
+// .custom-badge {
+//   font-size: 0.95rem;
+
+//   &.btn-light-outline {
+//     background-color: #ffffff;
+//     border: 1px solid $border-color;
+//     color: #495057;
+
+//     &:hover {
+//       background-color: $light-orange-bg;
+//       border-color: $primary-orange;
+//       color: $primary-orange;
+//     }
+//   }
+// }
+
+// .upload-box {
+//   background-color: #fcfbf9;
+//   border: 2px dashed #e2e8f0;
+
+//   &:hover {
+//     border-color: $primary-orange;
+//   }
+// }
+
+// .form-control, .form-select {
+//   border-color: #e2e8f0;
+
+//   &:focus {
+//     border-color: $primary-orange;
+//     box-shadow: 0 0 0 0.25rem rgba(230, 81, 0, 0.15);
+//   }
+// }
+
+// $primary-orange: #e65100;
+// $badge-bg-orange: #fff3e0;
+// $badge-text-orange: #d85100;
+// $light-success-bg: #e8f5e9;
+
+// /* Success State Styles */
+// .bg-light-success {
+//   background-color: $light-success-bg !important;
+// }
+
+// .success-icon {
+//   width: 72px;
+//   height: 72px;
+// }
+
+// /* Registration ID Pill Badge */
+// .registration-id-badge {
+//   background-color: $badge-bg-orange;
+//   color: $badge-text-orange;
+//   font-size: 1.1rem;
+//   letter-spacing: 0.3px;
+// }
+
+// .btn-orange {
+//   background-color: $primary-orange;
+//   color: #ffffff;
+//   border: none;
+
+//   &:hover {
+//     background-color: darken($primary-orange, 6%);
+//     color: #ffffff;
+//   }
+// }
+
+
+
+
+
+// =====================================================
+// Theme Variables
+// =====================================================
+
+$bg: #fffdf8;
+$panel: #ffffff;
+$border: #e5e7eb;
+$gold: #f59e0b;
+$saffron: #ea580c;
+$muted: #64748b;
+
+$text-primary: #1e293b;
+$text-secondary: #475569;
+$text-light: #94a3b8;
+
+$input-bg: #ffffff;
+$soft-gold: #fffbeb;
+$soft-green: #ecfdf5;
+$soft-blue: #f8fafc;
+
+// =====================================================
+// Base Styles
+// =====================================================
+
+:host {
+  display: block;
 }
 
-.text-orange {
-  color: $primary-orange !important;
+.onboarding-shell {
+  min-height: 100vh;
+  color: $text-primary;
+  background: $bg;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
 }
 
-.bg-light-orange {
-  background-color: $light-orange-bg !important;
+// =====================================================
+// Header
+// =====================================================
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid $border;
+  box-shadow: 0 3px 15px rgba(15, 23, 42, 0.04);
 }
 
-.btn-orange {
-  background-color: $primary-orange;
-  color: #ffffff;
-  border: none;
+.header-inner {
+  display: flex;
+  min-height: 78px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
 
-  &:hover:not(:disabled) {
-    background-color: darken($primary-orange, 8%);
-    color: #ffffff;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+
+  strong {
+    display: block;
+    color: #92400e;
+    font: 900 17px 'Cinzel', serif;
+    letter-spacing: 1.4px;
   }
 
-  &:disabled {
-    background-color: #f0a882;
-    border-color: #f0a882;
+  small {
+    display: block;
+    margin-top: 3px;
+    color: #b45309;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
   }
 }
 
-.btn-outline-orange {
-  color: $primary-orange;
-  border-color: $primary-orange;
+.brand-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  color: $gold;
+  border: 1px solid #fcd34d;
+  border-radius: 15px;
+  background: $soft-gold;
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.10);
+
+  i-lucide {
+    width: 23px;
+    height: 23px;
+  }
+}
+
+.trust-strip {
+  gap: 10px;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border: 1px solid $border;
+    border-radius: 11px;
+    color: $text-secondary;
+    background: #ffffff;
+    white-space: nowrap;
+    font-size: 11px;
+  }
+
+  i-lucide {
+    width: 15px;
+    height: 15px;
+    color: $gold;
+  }
+}
+
+.help-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid #fcd34d;
+  border-radius: 11px;
+  color: #92400e;
+  background: $soft-gold;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 11px;
+
+  i-lucide {
+    width: 14px;
+    height: 14px;
+  }
 
   &:hover {
-    background-color: $primary-orange;
-    color: #ffffff;
+    background: #fef3c7;
   }
 }
 
-.max-w-900 {
-  max-width: 900px;
+// =====================================================
+// Page Content and Hero
+// =====================================================
+
+.page-content {
+  padding-top: 36px;
+  padding-bottom: 50px;
 }
 
-/* Stepper Custom Styles */
-.stepper-wrapper {
-  .stepper-line {
-    height: 2px;
-    background-color: $border-color;
+.hero {
+  max-width: 800px;
+  margin: 0 auto 36px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border: 1px solid #fcd34d;
+  border-radius: 30px;
+  color: #92400e;
+  background: $soft-gold;
+  font-size: 11px;
+  font-weight: 700;
+
+  i-lucide {
+    width: 15px;
+    height: 15px;
   }
+}
 
-  .step-item {
-    cursor: pointer;
+.hero h1 {
+  margin: 18px auto 12px;
+  color: #1e293b;
+  font: 800 clamp(27px, 3.4vw, 40px) / 1.25 'Cinzel', serif;
+  letter-spacing: -0.5px;
 
-    .step-circle {
-      width: 44px;
-      height: 44px;
-      background-color: #ffffff;
-      border: 2px solid $border-color;
-      color: #6c757d;
-      transition: all 0.3s ease;
+  span {
+    color: #d97706;
+    background: linear-gradient(90deg, #d97706, #f59e0b, #b45309);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.hero p {
+  max-width: 720px;
+  margin: auto;
+  color: $muted;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.mobile-trust {
+  margin-top: 20px;
+
+  span {
+    display: block;
+    padding: 10px 4px;
+    border: 1px solid $border;
+    border-radius: 10px;
+    color: $text-secondary;
+    background: #ffffff;
+    font-size: 11px;
+  }
+}
+
+// =====================================================
+// Panels and Cards
+// =====================================================
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  padding: 26px;
+  border: 1px solid $border;
+  border-radius: 23px;
+  background: $panel;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+.wizard-panel {
+  padding: clamp(18px, 2.4vw, 30px);
+}
+
+// =====================================================
+// Progress Bar
+// =====================================================
+
+.progress-area {
+  margin-bottom: 28px;
+}
+
+.progress-label {
+  margin-bottom: 12px;
+  color: #b45309;
+  font-size: 11px;
+  font-weight: 800;
+
+  span:last-child {
+    color: $muted;
+  }
+}
+
+.custom-progress {
+  height: 8px;
+  padding: 2px;
+  margin-bottom: 14px;
+  border: 1px solid $border;
+  border-radius: 30px;
+  background: #f1f5f9;
+
+  .progress-bar {
+    border-radius: 30px;
+    background: linear-gradient(110deg, $gold, $saffron);
+    transition: width 0.3s ease;
+  }
+}
+
+.step-tabs {
+  button {
+    width: 100%;
+    padding: 10px 3px;
+    border: 1px solid $border;
+    border-radius: 10px;
+    color: #64748b;
+    background: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #fcd34d;
+      background: $soft-gold;
     }
 
     &.active {
-      .step-circle {
-        background-color: $primary-orange;
-        border-color: $primary-orange;
-        color: #ffffff;
-      }
+      color: #92400e;
+      border-color: $gold;
+      background: #fffbeb;
+    }
 
-      .step-label {
-        color: $primary-orange !important;
-        font-weight: 600;
-      }
+    &.complete {
+      color: #047857;
+      border-color: #6ee7b7;
+      background: $soft-green;
     }
   }
 }
 
-/* Step 5 Review Cards */
-.review-box {
-  background-color: #fffaf5;
-  border: 1px solid #ffe8d6;
+// =====================================================
+// Step Content and Section Headings
+// =====================================================
+
+.step-content {
+  min-height: 330px;
+
+  small {
+    display: inline-block;
+    margin-top: 7px;
+    color: $muted;
+    font-size: 10px;
+  }
 }
 
-.success-icon {
-  width: 80px;
-  height: 80px;
+.section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 15px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid $border;
+
+  > i-lucide {
+    width: 23px;
+    height: 23px;
+    flex: 0 0 auto;
+    color: $gold;
+  }
+
+  h2 {
+    margin: 0 0 6px;
+    color: #1e293b;
+    font: 700 17px 'Cinzel', serif;
+  }
+
+  p {
+    margin: 0;
+    color: $muted;
+    font-size: 11px;
+    line-height: 1.6;
+  }
 }
 
-/* Checkbox & Input Styling */
-.form-check-input {
-  &:checked {
-    background-color: $primary-orange;
-    border-color: $primary-orange;
+// =====================================================
+// Forms and Inputs
+// =====================================================
+
+.form-label {
+  display: block;
+  margin-bottom: 7px;
+  color: $text-secondary;
+  font-size: 11px;
+  font-weight: 700;
+
+  b {
+    color: $saffron;
+  }
+}
+
+.form-control,
+.form-select {
+  min-height: 42px;
+  border: 1px solid #dbe2ea;
+  border-radius: 10px;
+  color: $text-primary;
+  background-color: $input-bg;
+  font-size: 12px;
+
+  &:hover {
+    border-color: #cbd5e1;
   }
 
   &:focus {
-    box-shadow: 0 0 0 0.25rem rgba(230, 81, 0, 0.15);
+    color: $text-primary;
+    border-color: $gold;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.14);
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #94a3b8;
+    opacity: 1;
   }
 }
 
-.custom-badge {
-  font-size: 0.95rem;
+.form-select option {
+  color: $text-primary;
+  background: #ffffff;
+}
 
-  &.btn-light-outline {
-    background-color: #ffffff;
-    border: 1px solid $border-color;
-    color: #495057;
+.input-group {
+  .form-control {
+    min-width: 0;
+  }
+}
+
+.btn-outline-gold {
+  border: 1px solid #fcd34d;
+  border-radius: 10px;
+  color: #92400e;
+  background: $soft-gold;
+  font-size: 11px;
+  font-weight: 800;
+
+  &:hover {
+    color: #78350f;
+    border-color: $gold;
+    background: #fef3c7;
+  }
+}
+
+// =====================================================
+// Option Grids and Choices
+// =====================================================
+
+.option-grid {
+  display: grid;
+  gap: 9px;
+
+  &.four {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  &.three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.check-option {
+  display: flex;
+  min-height: 41px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid $border;
+  border-radius: 10px;
+  color: $text-secondary;
+  background: #ffffff;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #fcd34d;
+    background: #fffbeb;
+  }
+
+  input {
+    flex: 0 0 auto;
+    accent-color: $gold;
+  }
+}
+
+.choice-card {
+  padding: 13px 5px;
+  border: 1px solid $border;
+  border-radius: 11px;
+  color: $text-secondary;
+  background: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  strong,
+  small {
+    display: block;
+    margin: 0;
+  }
+
+  strong {
+    font-size: 11px;
+  }
+
+  small {
+    margin-top: 6px;
+    color: $muted;
+    font-size: 9px;
+  }
+
+  &:hover {
+    border-color: #fcd34d;
+    background: $soft-gold;
+  }
+
+  &.selected {
+    color: #92400e;
+    border-color: $gold;
+    background: #fffbeb;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.08);
+  }
+}
+
+// =====================================================
+// Upload Zone
+// =====================================================
+
+.upload-zone {
+  display: flex;
+  min-height: 130px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px;
+  border: 2px dashed #d6d3d1;
+  border-radius: 16px;
+  color: #b45309;
+  background: #fffdf8;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: $gold;
+    background: $soft-gold;
+  }
+
+  i-lucide {
+    width: 29px;
+    height: 29px;
+  }
+
+  strong {
+    font-size: 12px;
+  }
+
+  span {
+    color: $muted;
+    font-size: 10px;
+  }
+
+  input {
+    max-width: 220px;
+    color: $muted;
+    font-size: 10px;
+  }
+}
+
+// =====================================================
+// Tags and Agreements
+// =====================================================
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  button {
+    padding: 8px 11px;
+    border: 1px solid $border;
+    border-radius: 9px;
+    color: $text-secondary;
+    background: #ffffff;
+    font-size: 11px;
+    transition: all 0.2s ease;
 
     &:hover {
-      background-color: $light-orange-bg;
-      border-color: $primary-orange;
-      color: $primary-orange;
+      border-color: #fcd34d;
+      background: $soft-gold;
+    }
+
+    &.selected {
+      color: #92400e;
+      border-color: $gold;
+      background: #fffbeb;
     }
   }
 }
 
-.upload-box {
-  background-color: #fcfbf9;
-  border: 2px dashed #e2e8f0;
+.agreement {
+  display: flex;
+  gap: 11px;
+  padding: 14px;
+  border: 1px solid $border;
+  border-radius: 13px;
+  color: $text-secondary;
+  background: #ffffff;
+  font-size: 11px;
+  line-height: 1.7;
+  cursor: pointer;
+
+  input {
+    accent-color: $gold;
+  }
+
+  strong {
+    color: #b45309;
+  }
+}
+
+.privacy-note {
+  margin: 14px 0 0;
+  color: #92400e;
+  font-size: 10px;
+}
+
+// =====================================================
+// Wizard Footer and Navigation Buttons
+// =====================================================
+
+.wizard-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 20px;
+  margin-top: 28px;
+  border-top: 1px solid $border;
+}
+
+.btn-previous,
+.btn-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 17px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 900;
+  transition: all 0.2s ease;
+}
+
+.btn-previous {
+  border: 1px solid #dbe2ea;
+  color: $text-secondary;
+  background: #ffffff;
 
   &:hover {
-    border-color: $primary-orange;
+    border-color: #cbd5e1;
+    background: #f8fafc;
   }
 }
 
-.form-control, .form-select {
-  border-color: #e2e8f0;
+.btn-next {
+  border: 0;
+  color: #ffffff;
+  background: linear-gradient(110deg, $saffron, $gold);
+  box-shadow: 0 7px 20px rgba(245, 158, 11, 0.16);
 
-  &:focus {
-    border-color: $primary-orange;
-    box-shadow: 0 0 0 0.25rem rgba(230, 81, 0, 0.15);
+  &:hover {
+    color: #ffffff;
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+  }
+
+  i-lucide {
+    width: 15px;
+    height: 15px;
   }
 }
 
-$primary-orange: #e65100;
-$badge-bg-orange: #fff3e0;
-$badge-text-orange: #d85100;
-$light-success-bg: #e8f5e9;
+// =====================================================
+// Sidebar
+// =====================================================
 
-/* Success State Styles */
-.bg-light-success {
-  background-color: $light-success-bg !important;
+.sidebar {
+  display: grid;
+  gap: 22px;
+}
+
+.earnings-card {
+  border-color: #fcd34d;
+  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.07);
+}
+
+.side-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 20px;
+  color: #92400e;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  i-lucide {
+    width: 17px;
+    height: 17px;
+    color: $gold;
+  }
+}
+
+// =====================================================
+// Income Calculator
+// =====================================================
+
+.income-box {
+  padding: 15px;
+  border: 1px solid $border;
+  border-radius: 15px;
+  background: #fffdf8;
+
+  .d-flex {
+    color: $muted;
+    font-size: 10px;
+
+    strong {
+      color: #b45309;
+    }
+  }
+}
+
+.form-range {
+  margin: 15px 0 10px;
+  accent-color: $gold;
+}
+
+.income-total {
+  padding-top: 14px;
+  border-top: 1px solid $border;
+
+  small {
+    display: block;
+    color: $muted;
+    font-size: 9px;
+  }
+
+  strong {
+    display: block;
+    margin: 7px 0;
+    color: #047857;
+    font: 800 25px 'Cinzel', serif;
+  }
+}
+
+.benefit {
+  margin: 13px 0 0;
+  color: $text-secondary;
+  font-size: 11px;
+
+  &:first-letter {
+    color: #059669;
+  }
+}
+
+// =====================================================
+// Profile Preview
+// =====================================================
+
+.preview-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid $border;
+  color: $muted;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+
+  em {
+    padding: 4px 8px;
+    border: 1px solid #fcd34d;
+    border-radius: 20px;
+    color: #92400e;
+    background: $soft-gold;
+    font-size: 9px;
+    font-style: normal;
+    letter-spacing: 0;
+  }
+}
+
+.profile-preview {
+  padding: 14px;
+  border: 1px solid $border;
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.profile-top {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding-bottom: 14px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid $border;
+
+  strong {
+    display: block;
+    max-width: 210px;
+    overflow: hidden;
+    color: #1e293b;
+    font: 700 12px 'Cinzel', serif;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  small {
+    display: block;
+    margin-top: 4px;
+    color: $muted;
+    font-size: 10px;
+  }
+}
+
+.profile-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 11px;
+  color: #78350f;
+  background: linear-gradient(135deg, #fde68a, #fbbf24);
+
+  i-lucide {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+.preview-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  font-size: 10px;
+
+  span {
+    color: $muted;
+  }
+
+  strong {
+    max-width: 62%;
+    color: $text-primary;
+    text-align: right;
+  }
+
+  .gold-text {
+    color: #b45309;
+  }
+
+  .green-text {
+    color: #047857;
+  }
+}
+
+.instrument-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// =====================================================
+// Footer
+// =====================================================
+
+.site-footer {
+  padding: 22px 15px;
+  border-top: 1px solid $border;
+  color: $muted;
+  background: #ffffff;
+  text-align: center;
+  font-size: 10px;
+}
+
+// =====================================================
+// Toast Messages
+// =====================================================
+
+.toast-message {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 80;
+  max-width: calc(100vw - 44px);
+  padding: 13px 17px;
+  border-radius: 11px;
+  color: #78350f;
+  background: #fde68a;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.18);
+  font-size: 12px;
+  font-weight: 800;
+
+  &.error {
+    color: #ffffff;
+    background: #e11d48;
+  }
+
+  &.success {
+    color: #065f46;
+    background: #a7f3d0;
+  }
+}
+
+// =====================================================
+// Success Modal
+// =====================================================
+
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  overflow-y: auto;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.48);
+  backdrop-filter: blur(10px);
+}
+
+.success-dialog {
+  width: min(100%, 520px);
+  padding: 30px;
+  border-color: #fcd34d;
+  background: #ffffff;
+  box-shadow: 0 25px 80px rgba(15, 23, 42, 0.20);
+
+  h2 {
+    margin: 15px 0 8px;
+    color: #1e293b;
+    font: 700 22px 'Cinzel', serif;
+  }
+
+  p {
+    color: $muted;
+    font-size: 11px;
+
+    strong {
+      color: #b45309;
+    }
+  }
 }
 
 .success-icon {
-  width: 72px;
-  height: 72px;
+  display: grid;
+  width: 60px;
+  height: 60px;
+  place-items: center;
+  margin: 0 auto 18px;
+  border: 1px solid #a7f3d0;
+  border-radius: 18px;
+  color: #047857;
+  background: $soft-green;
+  font-size: 34px;
 }
 
-/* Registration ID Pill Badge */
-.registration-id-badge {
-  background-color: $badge-bg-orange;
-  color: $badge-text-orange;
-  font-size: 1.1rem;
-  letter-spacing: 0.3px;
+.success-kicker {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  color: #92400e;
+  background: $soft-gold;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
 }
 
-.btn-orange {
-  background-color: $primary-orange;
-  color: #ffffff;
-  border: none;
+.timeline {
+  padding: 16px;
+  margin: 20px 0;
+  border: 1px solid $border;
+  border-radius: 14px;
+  background: #f8fafc;
 
-  &:hover {
-    background-color: darken($primary-orange, 6%);
-    color: #ffffff;
+  h3 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid $border;
+    color: $text-secondary;
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 12px 0 0;
+  }
+
+  b,
+  small {
+    display: block;
+  }
+
+  b {
+    color: $text-primary;
+  }
+
+  small {
+    margin-top: 4px;
+    color: $muted;
+    font-size: 10px;
+  }
+}
+
+// =====================================================
+// Responsive Styles
+// =====================================================
+
+@media (max-width: 767.98px) {
+  .header-inner {
+    min-height: 70px;
+    gap: 10px;
+  }
+
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand {
+    strong {
+      font-size: 14px;
+    }
+
+    small {
+      max-width: 145px;
+      font-size: 8px;
+      letter-spacing: 0.6px;
+    }
+  }
+
+  .help-link {
+    padding: 9px;
+
+    span {
+      display: none;
+    }
+  }
+
+  .page-content {
+    padding-top: 25px;
+  }
+
+  .hero {
+    margin-bottom: 25px;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+  }
+
+  .panel {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .option-grid {
+    &.four,
+    &.three {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .step-tabs button {
+    min-height: 40px;
+    font-size: 9px;
+  }
+
+  .wizard-footer {
+    .btn-next {
+      max-width: 75%;
+    }
+  }
+
+  .income-total strong {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 390px) {
+  .option-grid.three {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 25px;
+  }
+
+  .section-heading h2 {
+    font-size: 15px;
+  }
+
+  .wizard-footer {
+    .btn-next {
+      padding: 11px;
+      font-size: 10px;
+    }
   }
 }
