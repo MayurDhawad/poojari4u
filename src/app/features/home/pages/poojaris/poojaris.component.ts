@@ -241,6 +241,10 @@ export class PoojarisComponent implements OnInit {
   }
 
   onReserveClick(): void {
-    this.router.navigate(['/my-bookings']);
+    this.router.navigate(['/my-bookings'], {
+      queryParams: {
+        type: 'poojaris'
+      }
+     });
   }
 }
