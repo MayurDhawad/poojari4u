@@ -14,7 +14,7 @@ export class MyBookingsComponent implements OnInit{
   @Output() onChangePoojari = new EventEmitter<void>();
   @Output() onProceed = new EventEmitter<void>();
 
-  type: string | null = null;
+  type: string | null = '';
 
   constructor(
     public dialog : MatDialog,

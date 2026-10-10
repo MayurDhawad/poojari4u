@@ -123,9 +123,71 @@
         </div>
       </div>
 
-      <!-- Section 3: Add Live Bajanthri / Nadaswaram Troupe -->
-      
-      <div class="card border-0 shadow-sm rounded-4 p-4 card-cream-bg">
+      @if(type == 'poojaris'){
+        <!-- Section 4: Add Sacred Pooja Samagri Kit -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 card-cream-bg">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <div class="d-flex align-items-center gap-2">
+              <span class="step-num rounded-circle d-inline-flex align-items-center justify-content-center fw-bold">4</span>
+              <h5 class="mb-0 fw-bold section-title">Add Sacred Pooja Samagri Kit</h5>
+            </div>
+            <span class="badge bg-amber-subtle text-amber-emphasis px-3 py-2 rounded-pill fs-7 fw-semibold">
+              📦 Free Doorstep Delivery
+            </span>
+          </div>
+          <p class="text-muted fs-7 ms-4 ps-2 mb-3">Pre-packaged pure ritual items delivered straight to your doorstep before
+            the ceremony.</p>
+        
+          <div class="row g-3">
+            <!-- Option 3.1: Self Arrange -->
+            <div class="col-md-4">
+              <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
+                <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" />
+                <div class="option-title fw-bold text-dark mt-1">I will arrange Samagri</div>
+                <p class="text-muted fs-9 mt-2 flex-grow-1">Customer independently procures all ingredients & items.</p>
+                <div class="fw-bold text-dark fs-6 mt-3">₹ 0</div>
+              </label>
+            </div>
+        
+            <!-- Option 3.2: Essential Kit -->
+            <div class="col-md-4">
+              <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
+                <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" />
+                <div class="option-title fw-bold text-dark mt-1">Essential Samagri Kit</div>
+                <ul class="list-unstyled fs-9 text-muted mt-2 mb-0 flex-grow-1 custom-bullet-list">
+                  <li>• Turmeric, Kumkum & Chandanam</li>
+                  <li>• Havya Samagri & Dry Havan Wood</li>
+                  <li>• Peetam cloth & Camphor / Bhasma</li>
+                </ul>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                  <span class="fw-bold text-dark fs-6">₹ 1,800</span>
+                  <span class="badge bg-emerald-subtle text-emerald-emphasis rounded-1 px-2 py-1 fs-8">Standard</span>
+                </div>
+              </label>
+            </div>
+        
+            <!-- Option 3.3: Premium Organic Kit (Selected State) -->
+            <div class="col-md-4">
+              <label
+                class="option-card card h-100 p-3 rounded-3 border border-2 border-warning active-card cursor-pointer position-relative">
+                <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" checked />
+                <div class="option-title fw-bold text-dark mt-1">Premium Organic Kit</div>
+                <ul class="list-unstyled fs-9 text-muted mt-2 mb-0 flex-grow-1 custom-bullet-list">
+                  <li>• Essential kit + Pure Desi Cow Ghee (1kg)</li>
+                  <li>• Brass Kalash, Coconuts & Fresh Flowers</li>
+                  <li>• Navadhanyam & Organic Fruits Basket</li>
+                </ul>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                  <span class="fw-bold text-dark fs-6">₹ 3,200</span>
+                  <span class="badge bg-amber-subtle text-amber-emphasis rounded-1 px-2 py-1 fs-8">All-Inclusive</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Add Live Bajanthri / Nadaswaram Troupe -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 card-cream-bg">
           <div class="d-flex justify-content-between align-items-center mb-1">
             <div class="d-flex align-items-center gap-2">
               <span class="step-num rounded-circle d-inline-flex align-items-center justify-content-center fw-bold">3</span>
@@ -135,88 +197,188 @@
               Highly Recommended
             </span>
           </div>
-          <p class="text-muted fs-7 ms-4 ps-2 mb-3">Auspicious traditional South Indian live wind and percussion musical accompaniment.</p>
-
+          <p class="text-muted fs-7 ms-4 ps-2 mb-3">Auspicious traditional South Indian live wind and percussion musical
+            accompaniment.</p>
+        
           <div class="row g-3">
             <!-- Option 4.1: No Music Team (Selected State) -->
-            <!-- <div class="col-md-4">
+            <div class="col-md-4">
               <label class="option-card card h-100 p-3 rounded-3 border border-2 border-warning active-card cursor-pointer position-relative">
                 <input type="radio" name="musicTroupe" class="form-check-input position-absolute top-0 end-0 m-3" checked />
                 <div class="option-title fw-bold text-dark mt-1">No Music Team</div>
                 <p class="text-muted fs-9 mt-2 flex-grow-1">Proceed without live musical accompaniment.</p>
                 <div class="fw-bold text-dark fs-6 mt-3">₹ 0</div>
               </label>
-            </div> -->
-
+            </div>
+        
             <!-- Option 4.2: 4-Piece Nadaswaram Team -->
             <div class="col-md-4">
               <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
                 <input type="radio" name="musicTroupe" class="form-check-input position-absolute top-0 end-0 m-3" />
                 <div class="option-title fw-bold text-dark mt-1">4-Piece Nadaswaram Team</div>
-                
+        
                 <!-- Image Banner & Tag -->
                 <div class="troupe-img-box rounded-2 mt-2 mb-2 d-flex align-items-end p-2 position-relative">
-                  <span class="badge bg-dark-maroon text-white fs-10 position-absolute bottom-0 start-50 translate-middle-x mb-2">
+                  <span
+                    class="badge bg-dark-maroon text-white fs-10 position-absolute bottom-0 start-50 translate-middle-x mb-2">
                     2 Nadaswaram, 2 Thavil
                   </span>
                 </div>
-                
+        
                 <p class="text-muted fs-9 flex-grow-1">Standard 2.5-hour live traditional recital during key Muhurtham time.</p>
-                
+        
                 <div class="d-flex justify-content-between align-items-center mt-3">
                   <span class="fw-bold text-dark fs-6">₹ 5,500</span>
                   <span class="badge bg-amber-subtle text-amber-emphasis rounded-1 px-2 py-1 fs-8">Classic</span>
                 </div>
               </label>
             </div>
-
+        
             <!-- Option 4.3: 6-Piece Royal Bajanthri -->
             <div class="col-md-4">
               <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
                 <input type="radio" name="musicTroupe" class="form-check-input position-absolute top-0 end-0 m-3" />
                 <div class="option-title fw-bold text-dark mt-1">6-Piece Royal Bajanthri</div>
-                
+        
                 <!-- Image Banner & Tag -->
                 <div class="troupe-img-box rounded-2 mt-2 mb-2 d-flex align-items-end p-2 position-relative">
-                  <span class="badge bg-dark-maroon text-white fs-10 position-absolute bottom-0 start-50 translate-middle-x mb-2 text-nowrap">
+                  <span
+                    class="badge bg-dark-maroon text-white fs-10 position-absolute bottom-0 start-50 translate-middle-x mb-2 text-nowrap">
                     2 Nadaswaram, 2 Thavil, Sruti Box & Talam
                   </span>
                 </div>
-                
+        
                 <p class="text-muted fs-9 flex-grow-1">Extended 4-hour performance in traditional festive silk attire.</p>
-                
+        
                 <div class="d-flex justify-content-between align-items-center mt-3">
                   <span class="fw-bold text-dark fs-6">₹ 8,500</span>
                   <span class="badge bg-golden-subtle text-golden-emphasis rounded-1 px-2 py-1 fs-8">Royal Vibe</span>
                 </div>
               </label>
             </div>
-
+        
             <!-- Option 4.3: 8-Piece Royal Bajanthri -->
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
                 <input type="radio" name="musicTroupe" class="form-check-input position-absolute top-0 end-0 m-3" />
                 <div class="option-title fw-bold text-dark mt-1">8-Piece Royal Bajanthri</div>
-                
-                <!-- Image Banner & Tag -->
+        
                 <div class="troupe-img-box rounded-2 mt-2 mb-2 d-flex align-items-end p-2 position-relative">
-                  <span class="badge bg-dark-maroon text-white fs-10 position-absolute bottom-0 start-50 translate-middle-x mb-2 text-nowrap">
+                  <span
+                    class="badge bg-dark-maroon text-white fs-10 position-absolute bottom-0 start-50 translate-middle-x mb-2 text-nowrap">
                     3 Nadaswaram, 3 Thavil, Sruti Box & Talam
                   </span>
                 </div>
-                
+        
                 <p class="text-muted fs-9 flex-grow-1">Extended 6-hour performance in traditional festive silk attire.</p>
-                
+        
                 <div class="d-flex justify-content-between align-items-center mt-3">
                   <span class="fw-bold text-dark fs-6">₹ 10,500</span>
                   <span class="badge bg-golden-subtle text-golden-emphasis rounded-1 px-2 py-1 fs-8">Royal Vibe</span>
                 </div>
               </label>
-            </div>
-
+            </div> -->
+        
           </div>
+        </div>
+      }@else {
+      <!-- Section 3: Add Live Bajanthri / Nadaswaram Troupe -->
+      <div class="card border-0 shadow-sm rounded-4 p-4 card-cream-bg">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <div class="d-flex align-items-center gap-2">
+            <span class="step-num rounded-circle d-inline-flex align-items-center justify-content-center fw-bold">3</span>
+            <h5 class="mb-0 fw-bold section-title">🎷 Add Live Bajanthri / Nadaswaram Troupe</h5>
+          </div>
+          <span class="badge bg-amber-subtle text-amber-emphasis px-3 py-2 rounded-pill fs-7 fw-semibold">
+            Highly Recommended
+          </span>
+        </div>
+        <p class="text-muted fs-7 ms-4 ps-2 mb-3">Auspicious traditional South Indian live wind and percussion musical
+          accompaniment.</p>
+      
+        <div class="row g-3">
+          <!-- Option 4.1: No Music Team (Selected State) -->
+          <!-- <div class="col-md-4">
+                      <label class="option-card card h-100 p-3 rounded-3 border border-2 border-warning active-card cursor-pointer position-relative">
+                        <input type="radio" name="musicTroupe" class="form-check-input position-absolute top-0 end-0 m-3" checked />
+                        <div class="option-title fw-bold text-dark mt-1">No Music Team</div>
+                        <p class="text-muted fs-9 mt-2 flex-grow-1">Proceed without live musical accompaniment.</p>
+                        <div class="fw-bold text-dark fs-6 mt-3">₹ 0</div>
+                      </label>
+                    </div> -->
+      
+          <!-- Option 4.2: 4-Piece Nadaswaram Team -->
+          <div class="col-md-4">
+            <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
+              <input type="radio" name="musicTroupe" class="form-check-input position-absolute top-0 end-0 m-3" />
+              <div class="option-title fw-bold text-dark mt-1">4-Piece Nadaswaram Team</div>
+      
+              <!-- Image Banner & Tag -->
+              <div class="troupe-img-box rounded-2 mt-2 mb-2 d-flex align-items-end p-2 position-relative">
+                <span
+                  class="badge bg-dark-maroon text-white fs-10 position-absolute bottom-0 start-50 translate-middle-x mb-2">
+                  2 Nadaswaram, 2 Thavil
+                </span>
+              </div>
+      
+              <p class="text-muted fs-9 flex-grow-1">Standard 2.5-hour live traditional recital during key Muhurtham time.</p>
+      
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="fw-bold text-dark fs-6">₹ 5,500</span>
+                <span class="badge bg-amber-subtle text-amber-emphasis rounded-1 px-2 py-1 fs-8">Classic</span>
+              </div>
+            </label>
+          </div>
+      
+          <!-- Option 4.3: 6-Piece Royal Bajanthri -->
+          <div class="col-md-4">
+            <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
+              <input type="radio" name="musicTroupe" class="form-check-input position-absolute top-0 end-0 m-3" />
+              <div class="option-title fw-bold text-dark mt-1">6-Piece Royal Bajanthri</div>
+      
+              <!-- Image Banner & Tag -->
+              <div class="troupe-img-box rounded-2 mt-2 mb-2 d-flex align-items-end p-2 position-relative">
+                <span
+                  class="badge bg-dark-maroon text-white fs-10 position-absolute bottom-0 start-50 translate-middle-x mb-2 text-nowrap">
+                  2 Nadaswaram, 2 Thavil, Sruti Box & Talam
+                </span>
+              </div>
+      
+              <p class="text-muted fs-9 flex-grow-1">Extended 4-hour performance in traditional festive silk attire.</p>
+      
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="fw-bold text-dark fs-6">₹ 8,500</span>
+                <span class="badge bg-golden-subtle text-golden-emphasis rounded-1 px-2 py-1 fs-8">Royal Vibe</span>
+              </div>
+            </label>
+          </div>
+      
+          <!-- Option 4.3: 8-Piece Royal Bajanthri -->
+          <div class="col-md-4">
+            <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
+              <input type="radio" name="musicTroupe" class="form-check-input position-absolute top-0 end-0 m-3" />
+              <div class="option-title fw-bold text-dark mt-1">8-Piece Royal Bajanthri</div>
+      
+              <!-- Image Banner & Tag -->
+              <div class="troupe-img-box rounded-2 mt-2 mb-2 d-flex align-items-end p-2 position-relative">
+                <span
+                  class="badge bg-dark-maroon text-white fs-10 position-absolute bottom-0 start-50 translate-middle-x mb-2 text-nowrap">
+                  3 Nadaswaram, 3 Thavil, Sruti Box & Talam
+                </span>
+              </div>
+      
+              <p class="text-muted fs-9 flex-grow-1">Extended 6-hour performance in traditional festive silk attire.</p>
+      
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="fw-bold text-dark fs-6">₹ 10,500</span>
+                <span class="badge bg-golden-subtle text-golden-emphasis rounded-1 px-2 py-1 fs-8">Royal Vibe</span>
+              </div>
+            </label>
+          </div>
+      
+        </div>
       </div>
-
+      
       <!-- Section 4: Add Sacred Pooja Samagri Kit -->
       <div class="card border-0 shadow-sm rounded-4 p-4 card-cream-bg">
         <div class="d-flex justify-content-between align-items-center mb-1">
@@ -228,8 +390,9 @@
             📦 Free Doorstep Delivery
           </span>
         </div>
-        <p class="text-muted fs-7 ms-4 ps-2 mb-3">Pre-packaged pure ritual items delivered straight to your doorstep before the ceremony.</p>
-
+        <p class="text-muted fs-7 ms-4 ps-2 mb-3">Pre-packaged pure ritual items delivered straight to your doorstep before
+          the ceremony.</p>
+      
         <div class="row g-3">
           <!-- Option 3.1: Self Arrange -->
           <div class="col-md-4">
@@ -240,7 +403,7 @@
               <div class="fw-bold text-dark fs-6 mt-3">₹ 0</div>
             </label>
           </div>
-
+      
           <!-- Option 3.2: Essential Kit -->
           <div class="col-md-4">
             <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
@@ -257,10 +420,11 @@
               </div>
             </label>
           </div>
-
+      
           <!-- Option 3.3: Premium Organic Kit (Selected State) -->
           <div class="col-md-4">
-            <label class="option-card card h-100 p-3 rounded-3 border border-2 border-warning active-card cursor-pointer position-relative">
+            <label
+              class="option-card card h-100 p-3 rounded-3 border border-2 border-warning active-card cursor-pointer position-relative">
               <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" checked />
               <div class="option-title fw-bold text-dark mt-1">Premium Organic Kit</div>
               <ul class="list-unstyled fs-9 text-muted mt-2 mb-0 flex-grow-1 custom-bullet-list">
@@ -276,6 +440,7 @@
           </div>
         </div>
       </div>
+      }
       
       <!-- Buttons-->
        <div class="d-flex justify-content-between align-items-center py-4 px-2">
