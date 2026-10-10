@@ -3,9 +3,10 @@ import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HeroData, HeroFeature, HeroSlide, HeroSectionComponent } from '../../../shared/hero-section/hero-section/hero-section.component';
 import { showSection } from '../../../shared/search-box/search-box';
+import { PoojaSamagriService } from '../../../../services/pooja-samagri.service';
 
 interface SamagriItem {
-  id: number;
+  id?: number;
   name: string;
   category: string;
   description: string;
@@ -33,6 +34,8 @@ interface Slide {
   imports: [CommonModule, FormsModule, HeroSectionComponent],
 })
 export class PoojaSamagriComponent {
+
+  constructor(private samagriService: PoojaSamagriService,){}
 
   heroData: HeroData = {
     eyebrowIcon: 'bi-flower1',
@@ -102,7 +105,8 @@ export class PoojaSamagriComponent {
       image: 'pooja-samagri/samagri-ganesh.jpg',
       rating: 4.7,
       reviews: 98,
-      badge: 'Bestseller'
+      badge: 'Bestseller',
+      quantity: 0
     },
     {
       id: 3,
@@ -114,7 +118,8 @@ export class PoojaSamagriComponent {
       image: 'pooja-samagri/samagri-havan.jpg',
       rating: 4.8,
       reviews: 84,
-      badge: 'Natural'
+      badge: 'Natural',
+      quantity: 0
     },
     {
       id: 4,
@@ -125,7 +130,8 @@ export class PoojaSamagriComponent {
       unit: '1 Puja Pack',
       image: 'pooja-samagri/samagri-flowers.jpg',
       rating: 4.6,
-      reviews: 72
+      reviews: 72,
+      quantity: 0
     },
     {
       id: 5,
@@ -138,7 +144,8 @@ export class PoojaSamagriComponent {
       image: 'pooja-samagri/samagri-diya.jpg',
       rating: 4.9,
       reviews: 145,
-      badge: 'Popular'
+      badge: 'Popular',
+      quantity: 0
     },
     {
       id: 6,
@@ -149,7 +156,8 @@ export class PoojaSamagriComponent {
       unit: '100 gm',
       image: 'pooja-samagri/samagri-camphor.jpg',
       rating: 4.7,
-      reviews: 64
+      reviews: 64,
+      quantity: 0
     },
     {
       id: 7,
@@ -162,7 +170,8 @@ export class PoojaSamagriComponent {
       image: 'pooja-samagri/samagri-incense.jpg',
       rating: 4.6,
       reviews: 91,
-      badge: 'Value Pack'
+      badge: 'Value Pack',
+      quantity: 0
     },
     {
       id: 8,
@@ -175,7 +184,8 @@ export class PoojaSamagriComponent {
       image: 'pooja-samagri/samagri-thali.jpg',
       rating: 4.9,
       reviews: 118,
-      badge: 'Premium'
+      badge: 'Premium',
+      quantity: 0
     },
     {
       id: 9,
@@ -186,8 +196,49 @@ export class PoojaSamagriComponent {
       unit: '1 Set',
       image: 'pooja-samagri/samagri-kumkum.jpg',
       rating: 4.7,
-      reviews: 53
-    }
+      reviews: 53,
+      quantity: 0
+    },
+    {
+      id: 10,
+      name: 'Brass Diya Set',
+      category: 'Diyas & Lamps',
+      description: 'Traditional brass diyas suitable for daily pooja.',
+      price: 399,
+      oldPrice: 499,
+      unit: 'Set of 2',
+      image: 'pooja-samagri/samagri-diya.jpg',
+      rating: 4.9,
+      reviews: 145,
+      badge: 'Popular',
+      quantity: 0
+    },
+    {
+      id: 11,
+      name: 'Camphor Tablets',
+      category: 'Samagri',
+      description: 'Pure camphor tablets for aarti and daily worship.',
+      price: 99,
+      unit: '100 gm',
+      image: 'pooja-samagri/samagri-camphor.jpg',
+      rating: 4.7,
+      reviews: 64,
+      quantity: 0
+    },
+    {
+      id: 12,
+      name: 'Premium Incense Sticks',
+      category: 'Incense',
+      description: 'Fragrant incense sticks for pooja and meditation.',
+      price: 129,
+      oldPrice: 159,
+      unit: 'Pack of 5',
+      image: 'pooja-samagri/samagri-incense.jpg',
+      rating: 4.6,
+      reviews: 91,
+      badge: 'Value Pack',
+      quantity: 0
+    },
   ]);
 
   categoriesData = [
@@ -241,15 +292,12 @@ export class PoojaSamagriComponent {
     this.selectedCategory.set('All');
   }
 
-  // addToCart(item: SamagriItem) {
-  //   console.log('Added to cart:', item);
-  // }
-
   applyFilters() {
     // Handle sorting or custom filter trigger if needed
   }
 
-  addToCart(item: any) {
+  addItem(item: any): void { 
+    this.samagriService.addItem(item); 
     item.quantity = 1;
   }
 

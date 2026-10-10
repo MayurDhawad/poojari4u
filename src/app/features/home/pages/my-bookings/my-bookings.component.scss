@@ -29,6 +29,13 @@
   font-size: 0.70rem;
 }
 
+.btn-group-sm > .btn, .btn-sm {
+    --bs-btn-padding-y: 0.10rem !important;
+    --bs-btn-padding-x: 0.4rem !important;
+    --bs-btn-font-size: 0.875rem;
+    --bs-btn-border-radius: var(--bs-border-radius-sm);
+}
+
 /* Right Side Pill */
 .selected-pill {
   background-color: #f7e6a1; /* Slightly darker yellow-gold pill */

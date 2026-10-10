@@ -725,7 +725,7 @@
   border: 1px solid var(--primary);
   background: var(--orange-light);
   color: var(--primary);
-  padding: 4px 8px;
+  padding: 2px 6px;
   border-radius: 5px;
   font-size: 10px;
   font-weight: 500;
@@ -775,42 +775,40 @@
   justify-content: center;
 }
 
-.add-button {
-  background: #fff;
-  border: 1px solid #ff8a00;
-  color: #ff8a00;
-  border-radius: 5px;
-  padding: 8px 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
+
 
 .quantity-control {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
   display: flex;
   align-items: center;
-  background: #ff0066;
-  color: #fff;
-  border-radius: 6px;
-  overflow: hidden;
-  height: 38px;
+  justify-content: space-between;
+  gap: 0px;
+  min-width: 60px;
+  border: 1px solid #e87512;
+  border-radius: 5px;
+  background: var(--orange-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: quantityAppear 0.2s ease-out;
 }
 
 .quantity-control button {
-  width: 32px;
-  height: 100%;
+  min-width: 20px;
   border: 0;
   background: transparent;
-  color: #fff;
-  font-size: 22px;
+  color: #e87512;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .quantity-control span {
-  min-width: 28px;
+  min-width: 20px;
   text-align: center;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: 600;
+  color: #e87512;
 }
 
 .rating {
@@ -1120,10 +1118,6 @@
   .product-image {
     height: 150px;
   }
-  .add-button {
-    padding: 0px 4px;
-    font-size: 8px;
-  }
 
   .product-badge[_ngcontent-ng-c3395596374] {
     padding: 0px 2px;
@@ -1219,4 +1213,9 @@
   .services-container {
     grid-template-columns: 1fr;
   }
+}
+
+.product-image {
+  position: relative;
+  overflow: hidden;
 }

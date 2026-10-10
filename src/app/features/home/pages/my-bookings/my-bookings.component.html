@@ -139,50 +139,43 @@
             the ceremony.</p>
         
           <div class="row g-3">
-            <!-- Option 3.1: Self Arrange -->
+           @for (kit of samagriKits; track kit.id) { 
             <div class="col-md-4">
-              <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
-                <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" />
-                <div class="option-title fw-bold text-dark mt-1">I will arrange Samagri</div>
-                <p class="text-muted fs-9 mt-2 flex-grow-1">Customer independently procures all ingredients & items.</p>
-                <div class="fw-bold text-dark fs-6 mt-3">₹ 0</div>
-              </label>
-            </div>
-        
-            <!-- Option 3.2: Essential Kit -->
-            <div class="col-md-4">
-              <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
-                <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" />
-                <div class="option-title fw-bold text-dark mt-1">Essential Samagri Kit</div>
+              <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative"
+                [class.border-2]="selectedSamagriKit === kit.id" [class.border-warning]="selectedSamagriKit === kit.id"
+                [class.active-card]="selectedSamagriKit === kit.id">
+                <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" [value]="kit.id"
+                  [checked]="selectedSamagriKit === kit.id" (change)="selectedSamagriKit = kit.id" />
+                <div class="option-title fw-bold text-dark mt-1">
+                  {{ kit.name }}
+                </div> @if (kit.description)
+                {
+                <p class="text-muted fs-9 mt-2 flex-grow-1"> {{ kit.description }} </p>
+                }
+                @if (kit.items.length > 0) {
                 <ul class="list-unstyled fs-9 text-muted mt-2 mb-0 flex-grow-1 custom-bullet-list">
-                  <li>• Turmeric, Kumkum & Chandanam</li>
-                  <li>• Havya Samagri & Dry Havan Wood</li>
-                  <li>• Peetam cloth & Camphor / Bhasma</li>
+                  @for (item of kit.items; track item) {
+                  <li>• {{ item.name }}</li>
+                  }
                 </ul>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                  <span class="fw-bold text-dark fs-6">₹ 1,800</span>
-                  <span class="badge bg-emerald-subtle text-emerald-emphasis rounded-1 px-2 py-1 fs-8">Standard</span>
+                }
+                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                  <span class="fw-bold text-dark fs-6"> ₹ {{ kit.price | number }} </span>
+                  @if (kit.badge) {
+                  <span class="badge rounded-1 px-2 py-1 fs-10"
+                    [ngClass]="kit.id === 'premium' ? 'bg-amber-subtle text-amber-emphasis' : 'bg-emerald-subtle text-emerald-emphasis'">
+                    {{ kit.badge }}
+                  </span> }
+                  @if (kit.id !== 'self') {
+                  <button type="button" class="btn btn-sm btn-outline-warning" aria-label="Add items"
+                    (click)="addItems(kit.id); $event.preventDefault(); $event.stopPropagation()">
+                    <i class="bi bi-plus-lg"></i>
+                  </button>
+                  }
                 </div>
               </label>
             </div>
-        
-            <!-- Option 3.3: Premium Organic Kit (Selected State) -->
-            <div class="col-md-4">
-              <label
-                class="option-card card h-100 p-3 rounded-3 border border-2 border-warning active-card cursor-pointer position-relative">
-                <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" checked />
-                <div class="option-title fw-bold text-dark mt-1">Premium Organic Kit</div>
-                <ul class="list-unstyled fs-9 text-muted mt-2 mb-0 flex-grow-1 custom-bullet-list">
-                  <li>• Essential kit + Pure Desi Cow Ghee (1kg)</li>
-                  <li>• Brass Kalash, Coconuts & Fresh Flowers</li>
-                  <li>• Navadhanyam & Organic Fruits Basket</li>
-                </ul>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                  <span class="fw-bold text-dark fs-6">₹ 3,200</span>
-                  <span class="badge bg-amber-subtle text-amber-emphasis rounded-1 px-2 py-1 fs-8">All-Inclusive</span>
-                </div>
-              </label>
-            </div>
+            }
           </div>
         </div>
 
@@ -395,49 +388,43 @@
       
         <div class="row g-3">
           <!-- Option 3.1: Self Arrange -->
+          @for (kit of samagriKits; track kit.id) {
           <div class="col-md-4">
-            <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
-              <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" />
-              <div class="option-title fw-bold text-dark mt-1">I will arrange Samagri</div>
-              <p class="text-muted fs-9 mt-2 flex-grow-1">Customer independently procures all ingredients & items.</p>
-              <div class="fw-bold text-dark fs-6 mt-3">₹ 0</div>
-            </label>
-          </div>
-      
-          <!-- Option 3.2: Essential Kit -->
-          <div class="col-md-4">
-            <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative">
-              <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" />
-              <div class="option-title fw-bold text-dark mt-1">Essential Samagri Kit</div>
+            <label class="option-card card h-100 p-3 rounded-3 border cursor-pointer position-relative"
+              [class.border-2]="selectedSamagriKit === kit.id" [class.border-warning]="selectedSamagriKit === kit.id"
+              [class.active-card]="selectedSamagriKit === kit.id">
+              <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" [value]="kit.id"
+                [checked]="selectedSamagriKit === kit.id" (change)="selectedSamagriKit = kit.id" />
+              <div class="option-title fw-bold text-dark mt-1">
+                {{ kit.name }}
+              </div> @if (kit.description)
+              {
+              <p class="text-muted fs-9 mt-2 flex-grow-1"> {{ kit.description }} </p>
+              }
+              @if (kit.items.length > 0) {
               <ul class="list-unstyled fs-9 text-muted mt-2 mb-0 flex-grow-1 custom-bullet-list">
-                <li>• Turmeric, Kumkum & Chandanam</li>
-                <li>• Havya Samagri & Dry Havan Wood</li>
-                <li>• Peetam cloth & Camphor / Bhasma</li>
+                @for (item of kit.items; track item) {
+                <li>• {{ item.name }}</li>
+                }
               </ul>
-              <div class="d-flex justify-content-between align-items-center mt-3">
-                <span class="fw-bold text-dark fs-6">₹ 1,800</span>
-                <span class="badge bg-emerald-subtle text-emerald-emphasis rounded-1 px-2 py-1 fs-8">Standard</span>
+              }
+              <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                <span class="fw-bold text-dark fs-6"> ₹ {{ kit.price | number }} </span>
+                @if (kit.badge) {
+                <span class="badge rounded-1 px-2 py-1 fs-10"
+                  [ngClass]="kit.id === 'premium' ? 'bg-amber-subtle text-amber-emphasis' : 'bg-emerald-subtle text-emerald-emphasis'">
+                  {{ kit.badge }}
+                </span> }
+                @if (kit.id !== 'self') {
+                <button type="button" class="btn btn-sm btn-outline-warning" aria-label="Add items"
+                  (click)="addItems(kit.id); $event.preventDefault(); $event.stopPropagation()">
+                  <i class="bi bi-plus-lg"></i>
+                </button>
+                }
               </div>
             </label>
           </div>
-      
-          <!-- Option 3.3: Premium Organic Kit (Selected State) -->
-          <div class="col-md-4">
-            <label
-              class="option-card card h-100 p-3 rounded-3 border border-2 border-warning active-card cursor-pointer position-relative">
-              <input type="radio" name="samagriKit" class="form-check-input position-absolute top-0 end-0 m-3" checked />
-              <div class="option-title fw-bold text-dark mt-1">Premium Organic Kit</div>
-              <ul class="list-unstyled fs-9 text-muted mt-2 mb-0 flex-grow-1 custom-bullet-list">
-                <li>• Essential kit + Pure Desi Cow Ghee (1kg)</li>
-                <li>• Brass Kalash, Coconuts & Fresh Flowers</li>
-                <li>• Navadhanyam & Organic Fruits Basket</li>
-              </ul>
-              <div class="d-flex justify-content-between align-items-center mt-3">
-                <span class="fw-bold text-dark fs-6">₹ 3,200</span>
-                <span class="badge bg-amber-subtle text-amber-emphasis rounded-1 px-2 py-1 fs-8">All-Inclusive</span>
-              </div>
-            </label>
-          </div>
+          }
         </div>
       </div>
       }

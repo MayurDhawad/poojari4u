@@ -99,20 +99,29 @@
                     <button type="button" class="wishlist" aria-label="Add to wishlist">
                       <i class="bi bi-heart"></i>
                     </button>
-                      @if(item.quantity == 0){
-                        <button type="button" class="add-button" (click)="addToCart(item)">
-                          <i class="bi bi-cart-plus"></i>Add
+                      @if (item.quantity == 0) {
+                        <button type="button" class="add-button" (click)="addItem(item)">
+                          <i class="bi bi-cart-plus"></i>
+                          Add
                         </button>
-                      }@else{
-                        <div class="quantity-control" *ngIf="item.quantity && item.quantity > 0">
-                          <button type="button" (click)="decreaseQuantity(item)">
-                            −
+                      } @else {
+                        <div class="quantity-control">
+                          <button
+                            type="button"
+                            class="quantity-btn decrease-btn"
+                            (click)="decreaseQuantity(item)">
+                            <i class="bi bi-dash bi-dash-lg"></i>
                           </button>
-                          <span>{{ item.quantity }}</span>
-                          <button type="button" (click)="increaseQuantity(item)">
-                            +
+
+                          <span class="quantity-value">{{ item.quantity }}</span>
+
+                          <button
+                            type="button"
+                            class="quantity-btn increase-btn"
+                            (click)="increaseQuantity(item)">
+                            <i class="bi bi-plus bi-plus-lg"></i>
                           </button>
-                        </div> 
+                        </div>
                       }
                   </div>
 
