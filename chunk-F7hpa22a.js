@@ -1,1 +1,0 @@
-import"./chunk-D_Q5-2jr.js";import"./chunk-Tufe0V2B.js";import{t as A}from"./main-BP77LZEV.js";export{A as LoginComponent};
