@@ -1,0 +1,304 @@
+<div class="tracking-page">
+
+  <!-- Hero -->
+  <section class="tracking-hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-eyebrow">
+          POOJARI4U APPLICATION SERVICES
+        </span>
+
+        <h1>Track Your Application</h1>
+
+        <p>
+          Stay updated on your registration. Enter your tracking details
+          to check your application status and next steps.
+        </p>
+
+        <div class="hero-features">
+          <span><i class="bi bi-shield-check"></i> Secure Lookup</span>
+          <span><i class="bi bi-clock-history"></i> Status Updates</span>
+          <span><i class="bi bi-headset"></i> Support Available</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container tracking-container">
+
+    <!-- Search Form -->
+    <section class="search-card">
+      <div class="section-heading">
+        <div class="heading-icon">
+          <i class="bi bi-search"></i>
+        </div>
+
+        <div>
+          <h2>Find Your Application</h2>
+          <p>Enter the details used during registration.</p>
+        </div>
+      </div>
+
+      <form
+        #trackingForm="ngForm"
+        (ngSubmit)="trackApplication()"
+        novalidate
+      >
+        <div class="row g-3">
+
+          <div class="col-md-6">
+            <label for="trackingId" class="form-label">
+              Application Tracking ID <span>*</span>
+            </label>
+
+            <div class="input-wrapper">
+              <i class="bi bi-upc-scan"></i>
+
+              <input
+                id="trackingId"
+                name="trackingId"
+                type="text"
+                class="form-control"
+                placeholder="Example: P4U-2026-001"
+                [(ngModel)]="trackingId"
+                required
+                autocomplete="off"
+              />
+            </div>
+
+            <small class="field-hint">
+              Find this ID in your application confirmation.
+            </small>
+          </div>
+
+          <div class="col-md-6">
+            <label for="mobile" class="form-label">
+              Registered Mobile Number <span>*</span>
+            </label>
+
+            <div class="input-wrapper">
+              <i class="bi bi-phone"></i>
+
+              <input
+                id="mobile"
+                name="mobile"
+                type="tel"
+                class="form-control"
+                placeholder="Enter 10-digit mobile number"
+                [(ngModel)]="mobile"
+                maxlength="10"
+                inputmode="numeric"
+                autocomplete="tel"
+                required
+              />
+            </div>
+
+            <small class="field-hint">
+              Use the mobile number provided during registration.
+            </small>
+          </div>
+
+          <div class="col-12">
+            <button
+              type="submit"
+              class="btn track-btn"
+              [disabled]="trackingForm.invalid"
+            >
+              Track Application
+              <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+
+        </div>
+      </form>
+
+      @if (errorMessage()) {
+        <div class="alert alert-danger mt-3 mb-0" role="alert">
+          <i class="bi bi-exclamation-circle me-2"></i>
+          {{ errorMessage() }}
+        </div>
+      }
+    </section>
+
+    <!-- Application Result -->
+    @if (application(); as app) {
+      <section class="result-section">
+
+        <!-- Result Heading -->
+        <div class="result-heading">
+          <div>
+            <span class="result-eyebrow">APPLICATION OVERVIEW</span>
+            <h2>Your Application Details</h2>
+            <p>Here is the latest information available for your application.</p>
+          </div>
+
+          <span
+            class="status-badge"
+            [ngClass]="getStatusClass(app.status)"
+          >
+            <span class="status-dot"></span>
+            {{ app.status }}
+          </span>
+        </div>
+
+        <!-- Basic Information -->
+        <div class="details-card">
+          <div class="card-heading">
+            <i class="bi bi-person-vcard"></i>
+            <h3>Applicant Information</h3>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-sm-6 col-lg-4">
+              <div class="detail-label">Applicant Name</div>
+              <div class="detail-value">{{ app.name }}</div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="detail-label">Tracking ID</div>
+              <div class="detail-value tracking-code">
+                {{ app.trackingId }}
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="detail-label">Application Type</div>
+              <div class="detail-value">{{ app.applicationType }}</div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="detail-label">Registered Mobile</div>
+              <div class="detail-value">{{ app.mobile }}</div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="detail-label">Email Address</div>
+              <div class="detail-value">{{ app.email }}</div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="detail-label">Submitted On</div>
+              <div class="detail-value">{{ app.submittedDate }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Timeline -->
+        <div class="details-card timeline-card">
+          <div class="card-heading">
+            <i class="bi bi-signpost-split"></i>
+            <h3>Application Progress</h3>
+          </div>
+
+          @if (app.status === 'Rejected') {
+            <div class="rejected-message">
+              <div class="rejected-icon">
+                <i class="bi bi-x-circle"></i>
+              </div>
+
+              <div>
+                <h4>Application Rejected</h4>
+                <p>{{ app.remarks }}</p>
+                <small>Last updated: {{ app.lastUpdated }}</small>
+              </div>
+            </div>
+          } @else {
+            <div class="timeline">
+              @for (step of timeline(); track step.title) {
+                <div
+                  class="timeline-item"
+                  [class.completed]="step.completed"
+                  [class.current]="step.current"
+                >
+                  <div class="timeline-marker">
+                    @if (step.completed) {
+                      <i class="bi bi-check-lg"></i>
+                    } @else {
+                      <span></span>
+                    }
+                  </div>
+
+                  <div class="timeline-content">
+                    <div class="timeline-title-row">
+                      <h4>{{ step.title }}</h4>
+
+                      @if (step.completed) {
+                        <span class="step-label">Completed</span>
+                      } @else if (step.current) {
+                        <span class="step-label current-label">
+                          In Progress
+                        </span>
+                      } @else {
+                        <span class="step-label pending-label">
+                          Pending
+                        </span>
+                      }
+                    </div>
+
+                    <p>{{ step.description }}</p>
+
+                    @if (step.date) {
+                      <small>{{ step.date }}</small>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Latest Update -->
+        <div class="update-card">
+          <div class="update-icon">
+            <i class="bi bi-info-circle"></i>
+          </div>
+
+          <div>
+            <h3>Latest Update</h3>
+            <p>{{ app.remarks }}</p>
+            <small>Last updated on {{ app.lastUpdated }}</small>
+          </div>
+        </div>
+
+        <!-- Search Again -->
+        <div class="result-actions">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            (click)="resetSearch()"
+          >
+            <i class="bi bi-arrow-left me-2"></i>
+            Track Another Application
+          </button>
+        </div>
+
+      </section>
+    } @else if (searched() && !errorMessage()) {
+      <div class="empty-result">
+        <i class="bi bi-file-earmark-text"></i>
+        <h3>No Application Details</h3>
+        <p>Enter your tracking information to view your application.</p>
+      </div>
+    }
+
+    <!-- Help Section -->
+    <section class="help-card">
+      <div class="help-icon">
+        <i class="bi bi-headset"></i>
+      </div>
+
+      <div>
+        <h3>Need Help With Your Application?</h3>
+        <p>
+          If you have trouble tracking your application, contact the
+          Poojari4U support team for assistance.
+        </p>
+      </div>
+
+      <a routerLink="/contact-us" class="btn help-btn">
+        Contact Support
+      </a>
+    </section>
+
+  </main>
+</div>

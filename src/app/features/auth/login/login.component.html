@@ -1,5 +1,5 @@
 <!-- <div class="login-wrapper d-flex align-items-center justify-content-center min-vh-100 p-3">-->
-  <div class="card login-card border-0 shadow-sm p-4 p-md-5 position-relative">
+  <div class="card login-card border-0 shadow-sm p-4 p-md-4 position-relative">
   
     <!-- STEP 1: ROLE SELECTION -->
     <ng-container *ngIf="currentStep === 1">
@@ -112,7 +112,12 @@
           Click here to Register
         </a>
       </div>
+      <div class="text-center text-muted fs-7">
+        Track your application here
+        <a role="button" class="text-purple fw-bold text-decoration-none ms-1 cursor-pointer" (click)="onApplicationStatusClick()">
+          Application status
+        </a>
+      </div>
     </ng-container>
 
   </div>
-<!-- </div> -->

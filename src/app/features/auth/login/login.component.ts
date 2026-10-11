@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ApplicationTrackingComponent } from '../../shared/application-tracking/application-tracking.component';
 
 export type UserRole = 'poojari' | 'bajanthri' | 'admin';
 
@@ -11,6 +12,33 @@ interface RoleOption {
   label: string;
   number: number;
   icon: string;
+}
+
+type ApplicationStatus =
+  | 'Submitted'
+  | 'Under Review'
+  | 'Verification'
+  | 'Approved'
+  | 'Rejected';
+
+interface ApplicationStep {
+  title: string;
+  description: string;
+  date?: string;
+  completed: boolean;
+  current: boolean;
+}
+
+interface ApplicationRecord {
+  trackingId: string;
+  name: string;
+  mobile: string;
+  email: string;
+  applicationType: string;
+  submittedDate: string;
+  status: ApplicationStatus;
+  lastUpdated: string;
+  remarks: string;
 }
 
 @Component({
@@ -38,7 +66,8 @@ export class LoginComponent  {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private dialogRef: MatDialogRef<LoginComponent>
+    private dialogRef: MatDialogRef<LoginComponent>,
+    public dialog: MatDialog
   ) {
     this.loginForm = this.fb.group({
       identifier: ['', [Validators.required]],
@@ -95,4 +124,18 @@ export class LoginComponent  {
       this.dialogRef.close('/');
     }
   }
+
+  onApplicationStatusClick(){
+    const dialogRef = this.dialog.open(ApplicationTrackingComponent, {
+      maxWidth: '60vw',
+      maxHeight: '90vh',
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        console.log('result:', res);
+        
+      }
+    });
+  }
+  
 }
