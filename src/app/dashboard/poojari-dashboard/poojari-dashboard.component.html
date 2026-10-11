@@ -1,0 +1,358 @@
+
+<div class="dashboard-page">
+
+  <!-- Header -->
+  <header class="dashboard-header">
+    <a routerLink="/poojari/dashboard" class="brand-logo">
+      <span class="brand-icon">🪔</span>
+      <span>Poojari<span class="brand-highlight">4u</span></span>
+    </a>
+
+    <div class="header-right">
+      <button
+        type="button"
+        class="notification-btn"
+        aria-label="Notifications"
+        routerLink="/poojari/notifications">
+        ♧
+        <span class="notification-dot"></span>
+      </button>
+
+      <div class="header-divider"></div>
+
+      <div class="profile-info">
+        <div class="profile-text">
+          <span class="profile-name">{{ poojariName() }}</span>
+          <span class="profile-role">Verified Poojari</span>
+        </div>
+
+        <div class="profile-avatar">
+          {{ initials() }}
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-heading">MENU</div>
+
+      <nav class="sidebar-nav">
+        @for (item of navigation; track item.route) {
+          <a
+            class="sidebar-link"
+            [routerLink]="item.route"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }">
+
+            <span class="nav-icon">{{ item.icon }}</span>
+            <span>{{ item.label }}</span>
+
+            @if (item.label === 'Bookings') {
+              <span class="nav-count">5</span>
+            }
+          </a>
+        }
+      </nav>
+
+      <div class="sidebar-help">
+        <div class="help-icon">?</div>
+        <h6>Need assistance?</h6>
+        <p>We are here to help you with your pooja services.</p>
+        <a routerLink="/support">Contact Support →</a>
+      </div>
+
+      <a routerLink="/logout" class="sidebar-logout">
+        <span>↪</span> Sign Out
+      </a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+
+      <!-- Welcome -->
+      <section class="welcome-section">
+        <div>
+          <div class="welcome-eyebrow">
+            <span class="eyebrow-line"></span>
+            POOJARI PARTNER PORTAL
+          </div>
+
+          <h1>Welcome back, {{ poojariName() }} <span>🙏</span></h1>
+
+          <p>
+            Manage your pooja services, bookings and earnings from one place.
+          </p>
+        </div>
+
+        <a routerLink="/poojari/profile" class="edit-profile-btn">
+          <span>✎</span> Edit Profile
+        </a>
+      </section>
+
+      <!-- Verification -->
+      <section class="verification-banner">
+        <div class="verification-icon">✓</div>
+
+        <div class="verification-content">
+          <h6>Your profile is verified and active!</h6>
+          <p>Your details have been verified. You are ready to receive bookings.</p>
+        </div>
+
+        <span class="verified-badge">
+          <span></span> VERIFIED
+        </span>
+      </section>
+
+      <!-- Availability -->
+      <section class="availability-panel">
+        <div class="availability-left">
+          <div class="availability-icon">◷</div>
+
+          <div>
+            <h5>Booking Availability</h5>
+            <p>{{ availabilityText() }}</p>
+          </div>
+        </div>
+
+        <div class="availability-right">
+          <span
+            class="availability-label"
+            [class.unavailable]="!isAvailable()">
+            {{ isAvailable() ? 'Available' : 'Unavailable' }}
+          </span>
+
+          <button
+            type="button"
+            class="availability-toggle"
+            role="switch"
+            [attr.aria-checked]="isAvailable()"
+            [attr.aria-label]="'Booking availability: ' + (isAvailable() ? 'available' : 'unavailable')"
+            [class.is-on]="isAvailable()"
+            (click)="toggleAvailability()">
+
+            <span class="toggle-thumb"></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Statistics -->
+      <section class="stats-section">
+        <div class="section-heading">
+          <div>
+            <h2>Overview</h2>
+            <p>Here's how your business is performing.</p>
+          </div>
+
+          <span class="period-label">September 2026</span>
+        </div>
+
+        <div class="row g-3">
+          @for (stat of stats; track stat.label) {
+            <div class="col-12 col-sm-6 col-xl-3">
+              <article class="stat-card">
+                <div class="stat-card-top">
+                  <span class="stat-label">{{ stat.label }}</span>
+                  <span class="stat-icon" [ngClass]="stat.iconClass">
+                    {{ stat.icon }}
+                  </span>
+                </div>
+
+                <div class="stat-value">{{ stat.value }}</div>
+
+                @if (stat.label === 'Rating') {
+                  <div class="stat-footer">
+                    <span class="rating-stars">★★★★★</span>
+                    <span>Excellent rating</span>
+                  </div>
+                } @else {
+                  <div class="stat-footer">
+                    <span class="stat-indicator">↗</span>
+                    <span>Performance overview</span>
+                  </div>
+                }
+              </article>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- Main Content Grid -->
+      <div class="row g-4 content-section">
+
+        <!-- Upcoming Bookings -->
+        <div class="col-12 col-xl-7">
+          <section class="content-card booking-card">
+
+            <div class="card-heading">
+              <div>
+                <h2>Upcoming Bookings</h2>
+                <p>Stay on top of your upcoming pooja appointments.</p>
+              </div>
+
+              <a routerLink="/poojari/bookings" class="view-all-link">
+                View all <span>→</span>
+              </a>
+            </div>
+
+            <div class="booking-list">
+              @for (booking of bookings; track booking.id) {
+                <article class="booking-item">
+
+                  <div class="booking-item-top">
+                    <div class="booking-title-wrap">
+                      <div class="booking-symbol">🪔</div>
+
+                      <div>
+                        <h3>{{ booking.title }}</h3>
+                        <span class="booking-reference">
+                          Booking #P4U-{{ booking.id.toString().padStart(4, '0') }}
+                        </span>
+                      </div>
+                    </div>
+
+                    <span
+                      class="booking-status"
+                      [class.pending]="booking.status === 'PENDING'">
+                      <span></span>{{ booking.status }}
+                    </span>
+                  </div>
+
+                  <div class="booking-details">
+                    <div>
+                      <span class="detail-icon">▦</span>
+                      {{ booking.date }}
+                    </div>
+
+                    <div>
+                      <span class="detail-icon">◷</span>
+                      {{ booking.time }}
+                    </div>
+
+                    <div>
+                      <span class="detail-icon">⌖</span>
+                      {{ booking.location }}
+                    </div>
+
+                    <div>
+                      <span class="detail-icon">♙</span>
+                      {{ booking.customer }}
+                    </div>
+                  </div>
+
+                  <div class="booking-actions">
+                    <a
+                      [routerLink]="['/poojari/bookings', booking.id]"
+                      class="booking-details-btn">
+                      View Details →
+                    </a>
+                  </div>
+
+                </article>
+              } @empty {
+                <div class="empty-state">
+                  <span>🪔</span>
+                  <h3>No upcoming bookings</h3>
+                  <p>New appointments will appear here.</p>
+                </div>
+              }
+            </div>
+
+            <a routerLink="/poojari/bookings" class="all-bookings-btn">
+              View All Bookings <span>→</span>
+            </a>
+          </section>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-12 col-xl-5">
+
+          <!-- Quick Actions -->
+          <section class="content-card quick-actions-card">
+            <div class="card-heading">
+              <div>
+                <h2>Quick Actions</h2>
+                <p>Get things done faster.</p>
+              </div>
+            </div>
+
+            <div class="quick-actions-list">
+              <a routerLink="/poojari/bookings" class="quick-action">
+                <span class="action-icon action-orange">▦</span>
+                <span class="action-text">
+                  <strong>Manage Bookings</strong>
+                  <small>View and manage appointments</small>
+                </span>
+                <span class="action-arrow">→</span>
+              </a>
+
+              <a routerLink="/poojari/services" class="quick-action">
+                <span class="action-icon action-purple">🪔</span>
+                <span class="action-text">
+                  <strong>Manage Services</strong>
+                  <small>Update your pooja offerings</small>
+                </span>
+                <span class="action-arrow">→</span>
+              </a>
+
+              <a routerLink="/poojari/availability" class="quick-action">
+                <span class="action-icon action-green">◷</span>
+                <span class="action-text">
+                  <strong>Set Availability</strong>
+                  <small>Manage your schedule</small>
+                </span>
+                <span class="action-arrow">→</span>
+              </a>
+
+              <a routerLink="/poojari/earnings" class="quick-action">
+                <span class="action-icon action-yellow">₹</span>
+                <span class="action-text">
+                  <strong>View Earnings</strong>
+                  <small>Track your income and payouts</small>
+                </span>
+                <span class="action-arrow">→</span>
+              </a>
+            </div>
+          </section>
+
+          <!-- My Services -->
+          <section class="content-card services-card">
+            <div class="card-heading">
+              <div>
+                <h2>My Services</h2>
+                <p>Your currently listed services.</p>
+              </div>
+
+              <a routerLink="/poojari/services" class="icon-link" aria-label="Manage services">
+                ↗
+              </a>
+            </div>
+
+            <div class="services-list">
+              @for (service of services; track service.name) {
+                <div class="service-chip">
+                  <span class="service-dot"></span>
+                  {{ service.name }}
+                </div>
+              }
+            </div>
+
+            <a routerLink="/poojari/services" class="manage-services-link">
+              + Add or manage services
+            </a>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="dashboard-footer">
+        <span>© 2026 Poojari4u. All rights reserved.</span>
+        <span>Serving with devotion 🙏</span>
+      </footer>
+
+    </main>
+  </div>
+</div>

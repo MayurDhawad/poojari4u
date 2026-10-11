@@ -14,6 +14,12 @@ export const routes: Routes = [
         .then(m => m.DashboardComponent)
   },
   {
+    path: 'poojari-dashboard',
+    loadComponent: () =>
+      import('./dashboard/poojari-dashboard/poojari-dashboard.component')
+        .then(m => m.PoojariDashboardComponent)
+  },
+  {
     path: 'login',
     loadComponent: () =>
       import('./features/auth/login/login.component')
@@ -42,6 +48,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/home/pages/bajanthri/bajanthri-registration-flow/bajanthri-registration-flow.component')
         .then(m => m.BajanthriRegistrationFlowComponent)
+  },
+  {
+    path: 'about-us',
+    loadComponent: () =>
+      import('./features/home/pages/about-us/about-us.component')
+        .then(m => m.AboutUsComponent)
   },
   {
     path: 'poojaris',
