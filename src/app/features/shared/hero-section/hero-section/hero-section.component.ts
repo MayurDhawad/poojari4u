@@ -1,4 +1,4 @@
-import { Component,Input,OnInit,OnDestroy, SimpleChanges } from '@angular/core';
+import { Component,Input,OnInit,OnDestroy, SimpleChanges, DOCUMENT, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchBox, showSection } from '../../search-box/search-box';
 export interface HeroData {
@@ -37,6 +37,11 @@ export class HeroSectionComponent implements OnInit, OnDestroy {
   activeIndex = 0;
 
   private autoPlayInterval: ReturnType<typeof setInterval> | null = null;
+
+  private document = inject(DOCUMENT);
+
+  imageUrl =
+    new URL('poojaris/poojari-hero-1.png', this.document.baseURI).href;
 
   ngOnInit(): void {
     this.startAutoPlay();
