@@ -1,9 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FooterComponent } from './features/home/components/footer/footer.component';
 import { Header } from './features/home/components/header/header';
 import { filter } from 'rxjs';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +18,7 @@ export class App {
 
   // Paths where header should be hidden
   private hiddenRoutes = ['/login'];
-main: any;
+  main: any;
 
   constructor(private router: Router) {}
 

@@ -5,6 +5,11 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+html,
+body {
+  scroll-behavior: auto !important;
+}
+
 html {
   height: 100%;
   @include mat.theme(
