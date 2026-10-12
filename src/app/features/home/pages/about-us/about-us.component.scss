@@ -76,13 +76,23 @@ $white: #ffffff;
   position: relative;
   isolation: isolate;
   padding: 85px 0 105px;
-  background:
-    radial-gradient(
-      circle at 10% 15%,
-      rgba(255, 219, 159, 0.28),
-      transparent 33%
+  // background:
+  //   radial-gradient(
+  //     circle at 10% 15%,
+  //     rgba(255, 219, 159, 0.28),
+  //     transparent 33%
+  //   ),
+  //   linear-gradient(125deg, #fffaf0 0%, #fff5e4 55%, #ffecd1 100%);
+    background-image:
+    linear-gradient(
+      rgba(255, 243, 223, 0.58) 0%,
+      rgba(255, 243, 223, 0.75) 45%,
+      rgba(255, 243, 223, 0.58) 100%
     ),
-    linear-gradient(125deg, #fffaf0 0%, #fff5e4 55%, #ffecd1 100%);
+    var(--hero-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-pattern {

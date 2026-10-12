@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, DOCUMENT, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 interface ServiceItem {
@@ -16,6 +16,10 @@ interface ServiceItem {
   imports: [CommonModule, RouterLink],
 })
 export class AboutUsComponent {
+
+  private document = inject(DOCUMENT);
+
+  imageUrl = new URL('poojaris/poojari-hero-1.png', this.document.baseURI).href;
 
    services: ServiceItem[] = [
     {
