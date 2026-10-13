@@ -109,7 +109,14 @@ export class LoginComponent  {
       };
       console.log('Logging in with payload:', this.payload);
       // Perform API call or navigation here
-      this.router.navigateByUrl('/poojari-dashboard')
+      if(this.selectedRole == 'poojari'){
+        this.dialogRef.close('poojari-login');
+      }else if(this.selectedRole == 'bajanthri'){
+        this.dialogRef.close('bajanthri-login');
+      }else{
+        this.router.navigateByUrl('/')
+        this.dialogRef.close('/');
+      }
     } else {
       this.loginForm.markAllAsTouched();
     }
@@ -117,9 +124,9 @@ export class LoginComponent  {
 
   onRegisterClick(): void {
     if(this.selectedRole == 'poojari'){
-      this.dialogRef.close('poojari');
+      this.dialogRef.close('poojari-register');
     }else if(this.selectedRole == 'bajanthri'){
-      this.dialogRef.close('bajanthri');
+      this.dialogRef.close('bajanthri-register');
     }else{
       this.router.navigateByUrl('/')
       this.dialogRef.close('/');

@@ -41,11 +41,14 @@ export class Header {
     });
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
-        console.log('result:', res);
-        if(res == 'poojari'){
+        if(res == 'poojari-register'){
           this.router.navigate(['/poojari-registration']);
-        }else if(res == 'bajanthri'){
+        }else if(res == 'bajanthri-register'){
           this.router.navigate(['/bajanthri-registration']);
+        }else if(res == 'poojari-login'){
+          this.router.navigateByUrl('/poojari-dashboard')
+        }else if(res == 'bajanthri-register'){
+          this.router.navigateByUrl('/bajanthri-dashboard')
         }else{
           this.router.navigate(['/']);
         }
