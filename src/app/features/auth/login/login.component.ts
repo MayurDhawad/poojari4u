@@ -109,7 +109,7 @@ export class LoginComponent  {
       };
       console.log('Logging in with payload:', this.payload);
       // Perform API call or navigation here
-      this.router.navigateByUrl('/poojari-dashboard1')
+      this.router.navigateByUrl('/poojari-dashboard')
     } else {
       this.loginForm.markAllAsTouched();
     }

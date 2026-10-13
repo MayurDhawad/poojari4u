@@ -1,0 +1,258 @@
+
+<div class="booking-layout">
+  <main class="booking-main">
+    <div class="page-heading">
+      <div>
+        <span class="page-eyebrow">BOOKING MANAGEMENT</span>
+        <h1>Booking Request</h1>
+        <p>Review the customer request and respond to the booking.</p>
+      </div>
+
+      <a routerLink="/poojari/dashboard" class="back-link">
+        <span>←</span> Back to Dashboard
+      </a>
+    </div>
+
+    @if (bookingStatus() === 'NEW REQUEST') {
+      <div class="booking-alert">
+        <span class="alert-icon">🔔</span>
+        <div>
+          <strong>New Booking Request</strong>
+          <p>
+            A customer has requested your service. Please review the details
+            and accept or decline the booking.
+          </p>
+        </div>
+      </div>
+    }
+
+    @if (bookingStatus() === 'BOOKING ACCEPTED') {
+      <div class="result-message accepted-message" role="status">
+        <span class="result-icon">✓</span>
+        <div>
+          <strong>Booking Accepted Successfully!</strong>
+          <p>The customer will be notified and the booking is now confirmed.</p>
+        </div>
+      </div>
+    }
+
+    @if (bookingStatus() === 'BOOKING DECLINED') {
+      <div class="result-message declined-message" role="status">
+        <span class="result-icon">!</span>
+        <div>
+          <strong>Booking Declined</strong>
+          <p>The customer will be notified that you declined this request.</p>
+        </div>
+      </div>
+    }
+
+    <section class="booking-card">
+      <div class="booking-card-header">
+        <div>
+          <span class="section-eyebrow">SERVICE DETAILS</span>
+          <h2>{{ booking.serviceName }}</h2>
+          <p class="booking-id">Booking ID: {{ booking.id }}</p>
+        </div>
+
+        <span
+          class="booking-status"
+          [class.status-new]="bookingStatus() === 'NEW REQUEST'"
+          [class.status-accepted]="bookingStatus() === 'BOOKING ACCEPTED'"
+          [class.status-declined]="bookingStatus() === 'BOOKING DECLINED'"
+        >
+          <span class="status-dot"></span>
+          {{ bookingStatus() }}
+        </span>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-box">
+          <span class="detail-label">📅 Date</span>
+          <strong>{{ booking.date }}</strong>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">⏰ Time</span>
+          <strong>{{ booking.time }}</strong>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">🏪 Business Type</span>
+          <strong>{{ booking.businessType }}</strong>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">👥 Expected Guests</span>
+          <strong>{{ booking.guests }}</strong>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">🕐 Pooja Duration</span>
+          <strong>{{ booking.duration }}</strong>
+        </div>
+
+        <div class="detail-box">
+          <span class="detail-label">🪔 Materials</span>
+          <strong>{{ booking.materials }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="information-card">
+      <div class="section-title">
+        <span class="section-icon">👤</span>
+        <div>
+          <h2>Customer Details</h2>
+          <p>Information about the person who requested the pooja</p>
+        </div>
+      </div>
+
+      <div class="customer-info">
+        <div class="customer-avatar">👤</div>
+        <div>
+          <h3>{{ booking.customerName }}</h3>
+          <p>📍 {{ booking.customerLocation }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="information-card">
+      <div class="section-title">
+        <span class="section-icon">📍</span>
+        <div>
+          <h2>Pooja Location</h2>
+          <p>Venue details for the requested service</p>
+        </div>
+      </div>
+
+      <div class="location-box">
+        <div class="location-pin">📍</div>
+        <div class="location-details">
+          <strong>Business Location</strong>
+          <p>{{ booking.fullAddress }}</p>
+          <button type="button" class="map-btn" (click)="openLocation()">
+            Open in Google Maps ↗
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="information-card">
+      <div class="section-title">
+        <span class="section-icon">🪔</span>
+        <div>
+          <h2>Pooja Materials</h2>
+          <p>Materials and preparation responsibility</p>
+        </div>
+      </div>
+
+      <p class="materials-description">
+        Customer has requested the required pooja materials.
+      </p>
+
+      <div class="responsibility-row">
+        <span>Material Responsibility</span>
+        <strong>Customer</strong>
+      </div>
+    </section>
+
+    <section class="information-card earnings-card">
+      <div class="section-title">
+        <span class="section-icon">💰</span>
+        <div>
+          <h2>Booking Earnings</h2>
+          <p>Estimated earnings breakdown for this booking</p>
+        </div>
+      </div>
+
+      <div class="earnings-row">
+        <span>Pooja Service Amount</span>
+        <strong>{{ booking.serviceAmount | currency:'INR':'symbol':'1.0-0' }}</strong>
+      </div>
+
+      <div class="earnings-row">
+        <span>Poojari4u Commission</span>
+        <strong>{{ booking.commission | currency:'INR':'symbol':'1.0-0' }}</strong>
+      </div>
+
+      <div class="earnings-row earnings-total">
+        <span>Your Earnings</span>
+        <strong>{{ booking.earnings | currency:'INR':'symbol':'1.0-0' }}</strong>
+      </div>
+    </section>
+
+    <section class="booking-actions">
+      <div class="action-copy">
+        <strong>Respond to this request</strong>
+        <p>
+          @if (bookingStatus() === 'NEW REQUEST') {
+            Confirm whether you can perform this pooja.
+          } @else {
+            You have already responded to this booking.
+          }
+        </p>
+      </div>
+
+      <div class="action-buttons">
+        <button
+          type="button"
+          class="btn-decline"
+          [disabled]="bookingStatus() !== 'NEW REQUEST'"
+          (click)="openDeclineModal()"
+        >
+          ✕ Decline Booking
+        </button>
+
+        <button
+          type="button"
+          class="btn-accept"
+          [disabled]="bookingStatus() !== 'NEW REQUEST'"
+          (click)="acceptBooking()"
+        >
+          ✓ Accept Booking
+        </button>
+      </div>
+    </section>
+  </main>
+</div>
+
+@if (showDeclineModal()) {
+  <div
+    class="modal-backdrop-custom"
+    (click)="closeDeclineModal()"
+  >
+    <section
+      class="decline-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="declineModalTitle"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="modal-warning-icon">!</div>
+
+      <h2 id="declineModalTitle">Decline Booking?</h2>
+      <p>
+        Are you sure you want to decline this booking? The customer will be
+        notified about your decision.
+      </p>
+
+      <div class="modal-buttons">
+        <button
+          type="button"
+          class="btn-cancel"
+          (click)="closeDeclineModal()"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          class="btn-confirm-decline"
+          (click)="declineBooking()"
+        >
+          Yes, Decline
+        </button>
+      </div>
+    </section>
+  </div>
+}

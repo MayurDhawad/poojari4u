@@ -17,7 +17,7 @@ export class App {
   showFooter = true;
 
   // Paths where header should be hidden
-  private hiddenRoutes = ['/login'];
+  private hiddenRoutes = ['/login', '/poojari-dashboard'];
   main: any;
 
   constructor(private router: Router) {}
