@@ -1,216 +1,198 @@
  <!-- Main Content -->
 
 <div class="dashboard-main">
-      <!-- Welcome -->
-      <section class="welcome-section">
-        <div>
-          <div class="eyebrow">POOJARI WORKSPACE</div>
-          <h1>Welcome back, {{ profile.name }} <span>🙏</span></h1>
-          <p>Here's what's happening with your pooja services today.</p>
-        </div>
+  <!-- Welcome -->
+  <section class="welcome-section">
+    <div>
+      <div class="eyebrow">POOJARI WORKSPACE</div>
+      <h1>Welcome back, {{ profile.name }} <span>🙏</span></h1>
+      <p>Here's what's happening with your pooja services today.</p>
+    </div>
 
-        <div class="welcome-date">
-          <span class="date-icon">☼</span>
-          <div>
-            <strong>Namaste!</strong>
-            <span>Your dashboard at a glance</span>
-          </div>
-        </div>
-      </section>
+    <div class="welcome-date">
+      <span class="date-icon">☼</span>
+      <div>
+        <strong>Namaste!</strong>
+        <span>Your dashboard at a glance</span>
+      </div>
+    </div>
+  </section>
 
-      <!-- Verification Banner -->
-      @if (profile.verified) {
-        <section class="verification-banner">
-          <div class="verification-icon">✓</div>
+  <!-- Verification Banner -->
+  @if (profile.verified) {
+  <section class="verification-banner">
+    <div class="verification-icon">✓</div>
 
-          <div class="verification-copy">
-            <strong>Your Poojari profile is verified</strong>
-            <p>Your profile is active and ready to receive bookings.</p>
-          </div>
+    <div class="verification-copy">
+      <strong>Your Poojari profile is verified</strong>
+      <p>Your profile is active and ready to receive bookings.</p>
+    </div>
 
-          <span class="verified-badge">VERIFIED</span>
-        </section>
-      }
+    <span class="verified-badge">VERIFIED</span>
+  </section>
+  }
 
-      <!-- Availability -->
-      <section class="availability-card">
-        <div class="availability-content">
-          <div class="availability-icon"
-               [class.unavailable-icon]="!isAvailable()">
-            {{ isAvailable() ? '✓' : 'Ⅱ' }}
-          </div>
+  <!-- Availability -->
+  <section class="availability-card">
+    <div class="availability-content">
+      <div class="availability-icon" [class.unavailable-icon]="!isAvailable()">
+        {{ isAvailable() ? '✓' : 'Ⅱ' }}
+      </div>
 
-          <div>
-            <h2>{{ isAvailable() ? 'Available for Bookings' : 'Currently Unavailable' }}</h2>
-            <p>
-              {{ isAvailable()
-                ? 'Customers can currently book your services.'
-                : 'New booking availability is switched off.' }}
-            </p>
-          </div>
-        </div>
+      <div>
+        <h2>{{ isAvailable() ? 'Available for Bookings' : 'Currently Unavailable' }}</h2>
+        <p>
+          {{ isAvailable()
+          ? 'Customers can currently book your services.'
+          : 'New booking availability is switched off.' }}
+        </p>
+      </div>
+    </div>
 
-        <div class="availability-control">
-          <span [class.status-off]="!isAvailable()">
-            {{ isAvailable() ? 'Online' : 'Offline' }}
-          </span>
+    <div class="availability-control">
+      <span [class.status-off]="!isAvailable()">
+        {{ isAvailable() ? 'Online' : 'Offline' }}
+      </span>
 
-          <button
-            type="button"
-            class="availability-toggle"
-            [class.toggle-off]="!isAvailable()"
-            [attr.aria-pressed]="isAvailable()"
-            [attr.aria-label]="isAvailable()
+      <button type="button" class="availability-toggle" [class.toggle-off]="!isAvailable()"
+        [attr.aria-pressed]="isAvailable()" [attr.aria-label]="isAvailable()
               ? 'Turn availability off'
-              : 'Turn availability on'"
-            (click)="toggleAvailability()">
-            <span></span>
-          </button>
+              : 'Turn availability on'" (click)="toggleAvailability()">
+        <span></span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Statistics -->
+  <section class="stats-grid">
+    @for (stat of stats; track stat.label) {
+    <article class="stat-card">
+      <div class="stat-card-top">
+        <div class="stat-icon" [class.rating-icon]="stat.label === 'Rating'">
+          {{ stat.icon }}
+        </div>
+
+        @if (stat.label === 'Rating') {
+        <span class="rating-stars">★★★★★</span>
+        }
+      </div>
+
+      <p class="stat-label">{{ stat.label }}</p>
+      <h2>{{ stat.value }}</h2>
+      <span class="stat-description">{{ stat.description }}</span>
+    </article>
+    }
+  </section>
+
+  <!-- Main Content Grid -->
+  <section class="dashboard-content-grid">
+
+    <!-- Bookings -->
+    <div class="content-card bookings-card">
+      <div class="card-heading">
+        <div>
+          <h2>Upcoming Bookings</h2>
+          <p>Stay on top of your scheduled poojas.</p>
+        </div>
+
+        <a routerLink="/poojari/bookings" class="view-all-link">
+          View all <span>→</span>
+        </a>
+      </div>
+
+      <div class="booking-list">
+        @for (booking of bookings; track booking.id) {
+        <article class="booking-item">
+          <div class="booking-date-icon">
+            <span>🪔</span>
+          </div>
+
+          <div class="booking-details">
+            <div class="booking-title-row">
+              <h3>{{ booking.title }}</h3>
+
+              <span class="booking-status" [class.status-pending]="booking.status === 'PENDING'"
+                [class.status-completed]="booking.status === 'COMPLETED'">
+                {{ booking.status }}
+              </span>
+            </div>
+
+            <div class="booking-meta">
+              <span>▦ {{ booking.date }}</span>
+              <span>◷ {{ booking.time }}</span>
+            </div>
+
+            <div class="booking-meta">
+              <span>⌖ {{ booking.location }}</span>
+              <span>♙ {{ booking.customer }}</span>
+            </div>
+          </div>
+        </article>
+        } @empty {
+        <div class="empty-state">
+          <span>🪔</span>
+          <h3>No upcoming bookings</h3>
+          <p>Your new bookings will appear here.</p>
+        </div>
+        }
+      </div>
+
+      <a routerLink="/poojari/bookings" class="all-bookings-link">
+        Explore all bookings <span>→</span>
+      </a>
+    </div>
+
+    <!-- Right Column -->
+    <div class="right-column">
+
+      <!-- Quick Actions -->
+      <section class="content-card quick-actions-card">
+        <div class="card-heading">
+          <div>
+            <h2>Quick Actions</h2>
+            <p>Manage your workspace.</p>
+          </div>
+        </div>
+
+        <div class="quick-actions-list">
+          @for (action of quickActions; track action.route) {
+          <a class="quick-action" [routerLink]="action.route">
+
+            <span class="quick-action-icon">{{ action.icon }}</span>
+            <span>{{ action.label }}</span>
+            <span class="action-arrow">→</span>
+          </a>
+          }
         </div>
       </section>
 
-      <!-- Statistics -->
-      <section class="stats-grid">
-        @for (stat of stats; track stat.label) {
-          <article class="stat-card">
-            <div class="stat-card-top">
-              <div class="stat-icon"
-                   [class.rating-icon]="stat.label === 'Rating'">
-                {{ stat.icon }}
-              </div>
-
-              @if (stat.label === 'Rating') {
-                <span class="rating-stars">★★★★★</span>
-              }
-            </div>
-
-            <p class="stat-label">{{ stat.label }}</p>
-            <h2>{{ stat.value }}</h2>
-            <span class="stat-description">{{ stat.description }}</span>
-          </article>
-        }
-      </section>
-
-      <!-- Main Content Grid -->
-      <section class="dashboard-content-grid">
-
-        <!-- Bookings -->
-        <div class="content-card bookings-card">
-          <div class="card-heading">
-            <div>
-              <h2>Upcoming Bookings</h2>
-              <p>Stay on top of your scheduled poojas.</p>
-            </div>
-
-            <a routerLink="/poojari/bookings" class="view-all-link">
-              View all <span>→</span>
-            </a>
+      <!-- My Services -->
+      <section class="content-card services-card">
+        <div class="card-heading">
+          <div>
+            <h2>My Services</h2>
+            <p>Your currently listed services.</p>
           </div>
 
-          <div class="booking-list">
-            @for (booking of bookings; track booking.id) {
-              <article class="booking-item">
-                <div class="booking-date-icon">
-                  <span>🪔</span>
-                </div>
-
-                <div class="booking-details">
-                  <div class="booking-title-row">
-                    <h3>{{ booking.title }}</h3>
-
-                    <span
-                      class="booking-status"
-                      [class.status-pending]="booking.status === 'PENDING'"
-                      [class.status-completed]="booking.status === 'COMPLETED'">
-                      {{ booking.status }}
-                    </span>
-                  </div>
-
-                  <div class="booking-meta">
-                    <span>▦ {{ booking.date }}</span>
-                    <span>◷ {{ booking.time }}</span>
-                  </div>
-
-                  <div class="booking-meta">
-                    <span>⌖ {{ booking.location }}</span>
-                    <span>♙ {{ booking.customer }}</span>
-                  </div>
-                </div>
-              </article>
-            } @empty {
-              <div class="empty-state">
-                <span>🪔</span>
-                <h3>No upcoming bookings</h3>
-                <p>Your new bookings will appear here.</p>
-              </div>
-            }
-          </div>
-
-          <a
-            routerLink="/poojari/bookings"
-            class="all-bookings-link">
-            Explore all bookings <span>→</span>
+          <a routerLink="/poojari/services" class="edit-link" aria-label="Edit services">
+            ✎
           </a>
         </div>
 
-        <!-- Right Column -->
-        <div class="right-column">
-
-          <!-- Quick Actions -->
-          <section class="content-card quick-actions-card">
-            <div class="card-heading">
-              <div>
-                <h2>Quick Actions</h2>
-                <p>Manage your workspace.</p>
-              </div>
-            </div>
-
-            <div class="quick-actions-list">
-              @for (action of quickActions; track action.route) {
-                <a
-                  class="quick-action"
-                  [routerLink]="action.route">
-
-                  <span class="quick-action-icon">{{ action.icon }}</span>
-                  <span>{{ action.label }}</span>
-                  <span class="action-arrow">→</span>
-                </a>
-              }
-            </div>
-          </section>
-
-          <!-- My Services -->
-          <section class="content-card services-card">
-            <div class="card-heading">
-              <div>
-                <h2>My Services</h2>
-                <p>Your currently listed services.</p>
-              </div>
-
-              <a
-                routerLink="/poojari/services"
-                class="edit-link"
-                aria-label="Edit services">
-                ✎
-              </a>
-            </div>
-
-            <div class="services-list">
-              @for (service of services; track service) {
-                <span class="service-badge">
-                  <span>✓</span> {{ service }}
-                </span>
-              }
-            </div>
-
-            <a
-              routerLink="/poojari/services"
-              class="manage-services-link">
-              Manage all services <span>→</span>
-            </a>
-          </section>
-
+        <div class="services-list">
+          @for (service of services; track service) {
+          <span class="service-badge">
+            <span>✓</span> {{ service }}
+          </span>
+          }
         </div>
+
+        <a routerLink="/poojari/services" class="manage-services-link">
+          Manage all services <span>→</span>
+        </a>
       </section>
+
+    </div>
+  </section>
 
 </div>

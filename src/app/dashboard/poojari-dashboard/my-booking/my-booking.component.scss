@@ -255,6 +255,7 @@
 
 .accepted-message {
   border: 1px solid #b7e4c7;
+  border-left: 4px solid #1e8449;
   background: #e8f8ef;
   color: #1e8449;
 
@@ -269,6 +270,7 @@
 
 .declined-message {
   border: 1px solid #f5b7b1;
+  border-left: 4px solid #c0392b;
   background: #fdecea;
   color: #c0392b;
 
@@ -714,6 +716,97 @@
   &:hover {
     background: #c0392b;
   }
+}
+
+.timeline-container {
+  // Line running down through the nodes matching Bootstrap layout spacing
+  .timeline-line {
+    left: 11px;
+    top: 24px;
+    bottom: -8px;
+    width: 2px;
+  }
+}
+
+.card {
+  background-color: #fbf9f6; // matches the warm off-white container theme in your layout screenshot
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.action{
+  min-height: 44px;
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.card {
+  background-color: #fbf9f6; // Warm neutral background matching your theme
+}
+
+.bg-review-box {
+  background-color: #fffaf5; // Soft warm cream tone for the internal message container
+  border: 1px solid #f9eedf;
+}
+
+// Custom theme button matching your branding color (Rust/Terracotta)
+.btn-primary-custom {
+  background-color: #d35400;
+  
+  &:hover {
+    background-color: #b94600;
+  }
+}
+
+// Alternate subtle badge-style button look for 'View My Bookings'
+.btn-booking-alt {
+  background-color: #fdf3e7;
+  color: #b94600;
+
+  &:hover {
+    background-color: #fae7cf;
+  }
+}
+
+.btn-light {
+  background-color: #edf0f2;
+  
+  &:hover {
+    background-color: #e2e6e9;
+  }
+}
+
+.card {
+  background-color: #fbf9f6; // Warm neutral container background matching your theme
+}
+
+.success-icon-wrapper {
+  background-color: #e2f4eb !important;
+}
+
+.badge-booking {
+  background-color: #f3efe6;
+  border: 1px solid #e8e2d5;
+}
+
+.bg-status-box {
+  background-color: #fffaf5; // Soft warm cream tone matching your status panel style
+  border: 1px solid #f9eedf !important;
+}
+
+.text-warning-custom {
+  color: #c05621; // Rich terracotta orange matching your branding status accents
+}
+
+.tracking-wider {
+  letter-spacing: 0.05em;
 }
 
 @keyframes modal-enter {

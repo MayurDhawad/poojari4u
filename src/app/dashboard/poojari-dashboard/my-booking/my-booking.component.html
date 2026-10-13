@@ -26,7 +26,7 @@
       </div>
     }
 
-    @if (bookingStatus() === 'BOOKING ACCEPTED') {
+    @if (bookingStatus() === 'NEW REQUEST') {
       <div class="result-message accepted-message" role="status">
         <span class="result-icon">✓</span>
         <div>
@@ -36,7 +36,7 @@
       </div>
     }
 
-    @if (bookingStatus() === 'BOOKING DECLINED') {
+    @if (bookingStatus() === 'NEW REQUEST') {
       <div class="result-message declined-message" role="status">
         <span class="result-icon">!</span>
         <div>
@@ -45,6 +45,49 @@
         </div>
       </div>
     }
+
+    <section>
+      <div class="container py-4">
+    
+        <!-- Success Card Container -->
+        <div class="card border-0 shadow-sm rounded-4 p-5 text-center bg-white">
+    
+          <!-- Success Green Check Icon -->
+          <div class="d-flex justify-content-center mb-3">
+            <div
+              class="success-icon-wrapper rounded-circle d-flex align-items-center justify-content-center bg-success-subtle"
+              style="width: 72px; height: 72px;">
+              <span class="fs-2 text-success fw-bold">&#10003;</span>
+            </div>
+          </div>
+    
+          <!-- Title and Description -->
+          <h3 class="fw-bold text-success mb-2">Pooja Completed Successfully</h3>
+          <p class="text-secondary mb-4 small">
+            The service has been successfully completed. Thank you for serving the customer through Poojari4u.
+          </p>
+    
+          <!-- Booking ID Badge -->
+          <div class="d-flex justify-content-center mb-4">
+            <div class="badge-booking px-3 py-2 rounded-3 text-secondary small fw-medium">
+              Booking ID: <span class="text-dark fw-semibold">{{ bookingId() }}</span>
+            </div>
+          </div>
+    
+          <!-- Booking Status Box -->
+          <div class="p-3 rounded-3 border-0 bg-status-box mx-auto" style="max-width: 500px; width: 100%;">
+            <div class="small fw-semibold text-muted text-uppercase mb-1 tracking-wider" style="font-size: 11px;">
+              Booking Status
+            </div>
+            <div class="fw-bold text-warning-custom d-flex align-items-center justify-content-center gap-1">
+              <span>&#10003;</span> SERVICE COMPLETED
+            </div>
+          </div>
+    
+        </div>
+    
+      </div>
+    </section>
 
     <section class="booking-card">
       <div class="booking-card-header">
@@ -211,6 +254,146 @@
         >
           ✓ Accept Booking
         </button>
+      </div>
+    </section>
+
+    <section>
+      <div class="container py-4">
+    
+        <!-- Booking Timeline Card -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+          <div class="d-flex align-items-center mb-4">
+            <span class="fs-4 me-2">📋</span>
+            <h5 class="fw-bold mb-0 text-dark">Booking Timeline</h5>
+          </div>
+    
+          <div class="timeline-container position-relative ps-3">
+            @for (step of steps(); track step.id; let last = $last) {
+            <div class="d-flex align-items-start position-relative pb-4">
+    
+              <!-- Vertical Connecting Line -->
+              @if (!last) {
+              <div class="timeline-line position-absolute" [class.bg-success]="step.status === 'completed'"
+                [class.bg-secondary-subtle]="step.status !== 'completed'">
+              </div>
+              }
+    
+              <!-- Timeline Indicator Node -->
+              <div
+                class="timeline-indicator rounded-circle d-flex align-items-center justify-content-center me-3 z-1 flex-shrink-0"
+                [ngClass]="{
+                         'bg-success text-white': step.status === 'completed',
+                         'border border-3 border-warning bg-white': step.status === 'current',
+                         'border border-2 border-secondary-subtle bg-white': step.status === 'upcoming'
+                       }" style="width: 24px; height: 24px;">
+                @if (step.status === 'completed') {
+                <small class="fw-bold">&#10003;</small>
+                } @else if (step.status === 'current') {
+                <div class="rounded-circle bg-warning" style="width: 8px; height: 8px;"></div>
+                }
+              </div>
+    
+              <!-- Step Content -->
+              <div>
+                <h6 class="fw-semibold mb-1" [class.text-dark]="step.status !== 'upcoming'"
+                  [class.text-muted]="step.status === 'upcoming'">
+                  {{ step.title }}
+                </h6>
+                <p class="text-muted small mb-0">{{ step.description }}</p>
+              </div>
+    
+            </div>
+            }
+          </div>
+        </div>
+    
+        <!-- Service Actions Card -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+          <div class="d-flex align-items-center mb-2">
+            <span class="fs-4 me-2">🪔</span>
+            <h5 class="fw-bold mb-0 text-dark">Service Actions</h5>
+          </div>
+          <p class="text-muted small mb-4">Update the booking status as you complete each stage.</p>
+    
+          <div class="d-flex flex-wrap gap-3">
+            <!-- Mark as Reached Button -->
+            <button class="btn px-4 py-2 rounded-3 action fw-medium d-flex align-items-center gap-2"
+              [class.btn-primary]="canMarkReached()" [class.btn-secondary]="!canMarkReached()"
+              [disabled]="!canMarkReached()" (click)="markAsReached()">
+              <span>📍</span> Mark as Reached
+            </button>
+    
+            <!-- Start Pooja Button -->
+            <button class="btn px-4 py-2 rounded-3 action fw-medium d-flex align-items-center gap-2"
+              [class.btn-warning]="canStartPooja() && currentStage() !== 6" [class.btn-secondary]="!canStartPooja()"
+              [disabled]="!canStartPooja()" (click)="startPooja()">
+              <span>🪔</span> Start Pooja
+            </button>
+    
+            <!-- Complete Pooja Button -->
+            <button class="btn px-4 py-2 rounded-3 action fw-medium d-flex align-items-center gap-2"
+              [class.btn-success]="canCompletePooja()" [class.btn-secondary]="!canCompletePooja()"
+              [disabled]="!canCompletePooja()" (click)="completePooja()">
+              <span><input type="checkbox" class="form-check-input m-0 pointer-event-none" [checked]="currentStage() > 5"
+                  disabled></span> Complete Pooja
+            </button>
+          </div>
+        </div>
+    
+      </div>
+    </section>
+
+    <section>
+      <div class="container py-4">
+    
+        <!-- Customer Review Card -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
+    
+          <!-- Card Header -->
+          <div class="d-flex align-items-center mb-3">
+            <span class="fs-4 me-2 text-warning">⭐</span>
+            <h5 class="fw-bold mb-0 text-dark">Customer Review</h5>
+          </div>
+    
+          <!-- Inner Highlight Box -->
+          <div class="p-3 rounded-3 border-0 bg-review-box">
+            <p class="text-secondary small mb-2">
+              The customer can now rate your service and provide feedback about their Poojari4u experience.
+            </p>
+            <div class="small fw-medium">
+              <span class="text-dark">Review Status:</span>
+              <span class="text-warning ms-1 fw-semibold">Waiting for customer review</span>
+            </div>
+          </div>
+    
+        </div>
+    
+        <!-- Footer Actions Card -->
+        <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
+          <div class="d-flex flex-wrap gap-3 align-items-center justify-content-center">
+    
+            <!-- Back to Dashboard Button -->
+            <button
+              class="btn btn-primary-custom px-4 py-2 rounded-3 fw-medium d-flex align-items-center gap-2 text-white border-0 shadow-sm"
+              (click)="backToDashboard()">
+              <span>🏠</span> Back to Dashboard
+            </button>
+    
+            <!-- View My Bookings Button -->
+            <button class="btn btn-booking-alt px-4 py-2 rounded-3 fw-medium d-flex align-items-center gap-2 border-0"
+              (click)="viewMyBookings()">
+              <span>📅</span> View My Bookings
+            </button>
+    
+            <!-- View Receipt Button -->
+            <button class="btn btn-light px-4 py-2 rounded-3 fw-medium d-flex align-items-center gap-2 text-dark border-0"
+              (click)="viewReceipt()">
+              <span>📄</span> View Receipt
+            </button>
+    
+          </div>
+        </div>
+    
       </div>
     </section>
   </main>

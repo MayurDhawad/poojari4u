@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, OnInit, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyBookingComponent } from './my-booking/my-booking.component';
 
@@ -28,7 +28,7 @@ type BookingStatus = 'NEW REQUEST' | 'BOOKING ACCEPTED' | 'BOOKING DECLINED';
   standalone: true,
   templateUrl: './poojari-dashboard.component.html',
   styleUrls: ['./poojari-dashboard.component.scss'],
-  imports: [CommonModule, RouterLink, MyDashboardComponent, MyBookingComponent],
+  imports: [CommonModule, RouterModule, RouterLink, MyDashboardComponent, MyBookingComponent],
 })
 export class PoojariDashboardComponent {
 
