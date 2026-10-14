@@ -135,7 +135,7 @@ export class LoginComponent  {
 
   onApplicationStatusClick(){
     const dialogRef = this.dialog.open(ApplicationTrackingComponent, {
-      maxWidth: '60vw',
+      // maxWidth: '60vw',
       maxHeight: '90vh',
     });
     dialogRef.afterClosed().subscribe((res) => {

@@ -65,7 +65,7 @@
         @for (item of navigation; track item.route) {
           <a
             class="sidebar-link"
-            [routerLink]="item.route",
+            [routerLink]="item.route || '/poojari-dashboard/my-dashboard'",
             routerLinkActive="active", 
             [routerLinkActiveOptions]="{ exact: true }"
             (click)="closeMobileMenu()">
@@ -94,8 +94,9 @@
     </aside>
 
     <main class="dashboard-main">
-      <app-my-dashboard></app-my-dashboard>
-      <app-my-booking></app-my-booking>
+      <!-- <app-my-dashboard></app-my-dashboard>
+      <app-my-booking></app-my-booking> -->
+      <router-outlet></router-outlet>
     </main>
   </div>
 </div>

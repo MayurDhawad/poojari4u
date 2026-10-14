@@ -26,12 +26,13 @@ type BookingStatus = 'NEW REQUEST' | 'BOOKING ACCEPTED' | 'BOOKING DECLINED';
   selector: 'app-my-dashboard',
   templateUrl: './my-dashboard.component.html',
   styleUrls: ['./my-dashboard.component.scss'],
-  imports: [CommonModule, RouterLink, RouterLinkActive, MyDashboardComponent],
+  imports: [CommonModule, RouterLink],
 })
 export class MyDashboardComponent {
 
   readonly isAvailable = signal(true);
-    readonly mobileMenuOpen = signal(false);
+  readonly mobileMenuOpen = signal(false);
+
     bookingStatus = signal<BookingStatus>('NEW REQUEST');
     showDeclineModal = signal(false);
   

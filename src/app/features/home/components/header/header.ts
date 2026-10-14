@@ -46,7 +46,7 @@ export class Header {
         }else if(res == 'bajanthri-register'){
           this.router.navigate(['/bajanthri-registration']);
         }else if(res == 'poojari-login'){
-          this.router.navigateByUrl('/poojari-dashboard')
+          this.router.navigateByUrl('/poojari-dashboard/my-dashboard')
         }else if(res == 'bajanthri-register'){
           this.router.navigateByUrl('/bajanthri-dashboard')
         }else{

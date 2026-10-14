@@ -17,7 +17,26 @@ export const routes: Routes = [
     path: 'poojari-dashboard',
     loadComponent: () =>
       import('./dashboard/poojari-dashboard/poojari-dashboard.component')
-        .then(m => m.PoojariDashboardComponent)
+        .then(m => m.PoojariDashboardComponent),
+        children: [
+      {
+        path: '',
+        redirectTo: 'my-dashboard',
+        pathMatch: 'full',
+      },
+      {
+        path: 'my-dashboard',
+        loadComponent: () =>
+          import('./dashboard/poojari-dashboard/my-dashboard/my-dashboard.component')
+            .then(m => m.MyDashboardComponent),
+      },
+      {
+        path: 'my-bookings',
+        loadComponent: () =>
+          import('./dashboard/poojari-dashboard/my-booking/my-booking.component')
+            .then(m => m.MyBookingComponent),
+      },
+    ],
   },
   {
     path: 'login',

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, OnInit, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
 import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
 import { MyBookingComponent } from './my-booking/my-booking.component';
 
@@ -28,12 +28,12 @@ type BookingStatus = 'NEW REQUEST' | 'BOOKING ACCEPTED' | 'BOOKING DECLINED';
   standalone: true,
   templateUrl: './poojari-dashboard.component.html',
   styleUrls: ['./poojari-dashboard.component.scss'],
-  imports: [CommonModule, RouterModule, RouterLink, MyDashboardComponent, MyBookingComponent],
+  imports: [CommonModule, RouterModule, RouterLink, RouterOutlet],
 })
 export class PoojariDashboardComponent {
 
   readonly isAvailable = signal(true);
-  readonly mobileMenuOpen = signal(false);
+  readonly mobileMenuOpen = signal(true);
 
   readonly profile = {
     name: 'Ravi Sharma',
@@ -42,8 +42,8 @@ export class PoojariDashboardComponent {
   };
 
   readonly navigation = [
-    { label: 'Dashboard', icon: '⌂', route: '/poojari/dashboard' },
-    { label: 'Bookings', icon: '▦', route: '/poojari/bookings' },
+    { label: 'Dashboard', icon: '⌂', route: '/poojari-dashboard/my-dashboard' },
+    { label: 'Bookings', icon: '▦', route: '/poojari-dashboard/my-bookings' },
     { label: 'My Services', icon: '🪔', route: '/poojari/services' },
     { label: 'Availability', icon: '◷', route: '/poojari/availability' },
     { label: 'Earnings', icon: '₹', route: '/poojari/earnings' },
@@ -148,14 +148,14 @@ export class PoojariDashboardComponent {
   ];
 
   toggleAvailability(): void {
-    this.isAvailable.update(value => !value);
+    // this.isAvailable.update(value => !value);
   }
 
   toggleMobileMenu(): void {
-    this.mobileMenuOpen.update(value => !value);
+    // this.mobileMenuOpen.update(value => !value);
   }
 
   closeMobileMenu(): void {
-    this.mobileMenuOpen.set(false);
+    this.mobileMenuOpen.set(true);
   }
 }
