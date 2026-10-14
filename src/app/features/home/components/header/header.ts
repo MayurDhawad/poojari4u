@@ -36,8 +36,8 @@ export class Header {
   onRegistration(){
     // this.router.navigateByUrl('/login')
     const dialogRef = this.dialog.open(LoginComponent, {
-      maxWidth: '40vw',
-      maxHeight: '80vh',
+      // maxWidth: '40vw',
+      // maxHeight: '80vh',
     });
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
