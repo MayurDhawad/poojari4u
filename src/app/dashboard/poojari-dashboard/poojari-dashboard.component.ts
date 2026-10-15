@@ -33,7 +33,7 @@ type BookingStatus = 'NEW REQUEST' | 'BOOKING ACCEPTED' | 'BOOKING DECLINED';
 export class PoojariDashboardComponent {
 
   readonly isAvailable = signal(true);
-  readonly mobileMenuOpen = signal(true);
+  readonly mobileMenuOpen = signal(false);
 
   readonly profile = {
     name: 'Ravi Sharma',
@@ -148,14 +148,14 @@ export class PoojariDashboardComponent {
   ];
 
   toggleAvailability(): void {
-    // this.isAvailable.update(value => !value);
+    this.isAvailable.update(value => !value);
   }
 
   toggleMobileMenu(): void {
-    // this.mobileMenuOpen.update(value => !value);
+    this.mobileMenuOpen.update(value => !value);
   }
 
   closeMobileMenu(): void {
-    this.mobileMenuOpen.set(true);
+    this.mobileMenuOpen.set(false);
   }
 }
