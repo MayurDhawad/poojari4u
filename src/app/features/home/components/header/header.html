@@ -1,38 +1,92 @@
-<header class="border-bottom">
+<header class="site-header">
   <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid px-3">
+    <div class="container-fluid header-container">
+
       <!-- Logo -->
-      <a routerLink="/" class="navbar-brand brand d-flex align-items-center">
-        <div class="brand-logo me-lg-2">
-          <img src="header/logo.png" alt="4U Logo"/>
-        </div>
+      <a
+        routerLink="/"
+        class="navbar-brand brand d-flex align-items-center"
+        (click)="closeMobileMenu()"
+      >
+        <img
+          src="header/logo.png"
+          alt="Poojari4U Logo"
+          class="brand-logo"
+        />
 
         <div class="brand-content">
-          <div class="brand-name">
-             <img src="header/logo-text.png" alt="4U Logo"/>
-          </div>
+          <img
+            src="header/logo-text.png"
+            alt="Poojari4U"
+            class="brand-name"
+          />
 
-          <div class="brand-tagline">
+          <span class="brand-tagline">
             Your Spiritual Partner.
-          </div>
+          </span>
         </div>
       </a>
 
-      <!-- Mobile toggle -->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-        aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <!-- Mobile cart and menu toggle -->
+      <div class="mobile-header-actions d-lg-none">
+
+        <button
+          type="button"
+          class="mobile-cart-btn"
+          aria-label="View cart"
+          (click)="onCartClick()"
+        >
+          <i class="bi bi-cart3"></i>
+          @if (cartCount > 0) {
+            <span class="cart-count">{{ cartCount }}</span>
+          }
+        </button>
+
+        <button
+          type="button"
+          class="mobile-menu-btn"
+          [attr.aria-expanded]="mobileMenuOpen()"
+          aria-controls="mainNavbar"
+          [attr.aria-label]="mobileMenuOpen() ? 'Close menu' : 'Open menu'"
+          (click)="toggleMobileMenu()"
+        >
+          @if (mobileMenuOpen()) {
+            <i class="bi bi-x-lg"></i>
+          } @else {
+            <span></span>
+            <span></span>
+            <span></span>
+          }
+        </button>
+
+      </div>
 
       <!-- Navigation -->
-      <div class="collapse navbar-collapse" id="mainNavbar">
+      <div
+        id="mainNavbar"
+        class="navbar-collapse"
+        [class.show]="mobileMenuOpen()"
+      >
 
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav main-nav">
+
           @for (item of navItems; track item.path) {
             <li class="nav-item nav-item-link">
-              <a class="nav-link" [routerLink]="item.path" routerLinkActive="active"[routerLinkActiveOptions]="{exact: item.path === '/'}">
+
+              <a
+                class="nav-link"
+                [routerLink]="item.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{
+                  exact: item.path === '/'
+                }"
+                (click)="closeMobileMenu()"
+              >
                 {{ item.label }}
+
+                <i class="bi bi-chevron-right mobile-chevron"></i>
               </a>
+
             </li>
 
             @if (item.label === 'Poojaris') {
@@ -44,19 +98,67 @@
                 />
               </li>
             }
-
           }
 
         </ul>
 
-        <!-- Actions -->
-        <div class="header-actions d-flex align-items-center gap-2">
+        <!-- Mobile menu footer -->
+        <div class="mobile-menu-footer d-lg-none">
 
-          <button class="book-poojari-btn" type="button" (click)="onRegistration()">
-            <span>Login/Register</span>  
+          <div class="menu-divider">
+            <span></span>
+            <i class="bi bi-om"></i>
+            <span></span>
+          </div>
+
+          <p class="menu-tagline">
+            Your Spiritual Partner.
+          </p>
+
+          <button
+            type="button"
+            class="login-btn"
+            (click)="onRegistration()"
+          >
+            <i class="bi bi-person"></i>
+            <span>Login / Register</span>
           </button>
 
-          <i class="bi bi-cart fs-5 ms-3"></i>
+          <button
+            type="button"
+            class="cart-btn"
+            (click)="onCartClick()"
+          >
+            <i class="bi bi-cart3"></i>
+            <span>View Cart ({{ cartCount }})</span>
+          </button>
+
+        </div>
+
+        <!-- Desktop actions -->
+        <div class="header-actions d-none d-lg-flex align-items-center">
+
+          <button
+            type="button"
+            class="book-poojari-btn"
+            (click)="onRegistration()"
+          >
+            <i class="bi bi-person-circle me-2"></i>
+            <span>Login/Register</span>
+          </button>
+
+          <button
+            type="button"
+            class="desktop-cart-btn"
+            aria-label="View cart"
+            (click)="onCartClick()"
+          >
+            <i class="bi bi-cart3"></i>
+
+            @if (cartCount > 0) {
+              <span class="cart-count">{{ cartCount }}</span>
+            }
+          </button>
 
         </div>
 
@@ -65,3 +167,13 @@
     </div>
   </nav>
 </header>
+
+<!-- Mobile backdrop -->
+@if (mobileMenuOpen()) {
+  <button
+    type="button"
+    class="mobile-backdrop d-lg-none"
+    aria-label="Close navigation menu"
+    (click)="closeMobileMenu()"
+  ></button>
+}

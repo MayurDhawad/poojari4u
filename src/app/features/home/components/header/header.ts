@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive} from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,6 +19,9 @@ import { LoginComponent } from '../../../auth/login/login.component';
 })
 export class Header {
 
+  mobileMenuOpen = signal(false);
+  cartCount = 0;
+
   constructor(
     public dialog: MatDialog,
     private router: Router
@@ -34,13 +37,13 @@ export class Header {
   ];
 
   onRegistration(){
-    // this.router.navigateByUrl('/login')
     const dialogRef = this.dialog.open(LoginComponent, {
       // maxWidth: '40vw',
       // maxHeight: '80vh',
     });
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
+        this.closeMobileMenu();
         if(res == 'poojari-register'){
           this.router.navigate(['/poojari-registration']);
         }else if(res == 'bajanthri-register'){
@@ -54,6 +57,19 @@ export class Header {
         }
       }
     });
+  }
+
+  onCartClick(): void {
+    this.closeMobileMenu();
+    this.router.navigate(['/cart']);
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen.update(open => !open);
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen.set(false);
   }
 
 }
