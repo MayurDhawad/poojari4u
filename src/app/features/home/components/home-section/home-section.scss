@@ -262,7 +262,7 @@
     left: 0;
     right: 0;
     height: auto;
-    padding-top: 50px;
+    padding-top: 15px;
     display: block;
   }
   .hero-copy {
@@ -278,8 +278,13 @@
     line-height: 1.1;
     letter-spacing: -0.5px;
   }
+  .hero-copy h2 {
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
   .hero-copy p {
-    font-size: 18px;
+    font-size: 13px;
     line-height: 1.5;
     max-width: 100%;
     margin-top: 15px;
@@ -291,7 +296,7 @@
   ======================================== */
   .hero-search-wrapper {
     position: absolute;
-    top: 430px;
+    top: 375px;
     bottom: auto;
     left: 0;
     right: 0;
