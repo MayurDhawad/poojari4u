@@ -42,11 +42,8 @@
           }
         </button>
 
-        <button
-          type="button"
-          class="mobile-menu-btn"
-          [attr.aria-expanded]="mobileMenuOpen()"
-          aria-controls="mainNavbar"
+        <button type="button" class="mobile-menu-btn"
+          [attr.aria-expanded]="mobileMenuOpen()" aria-controls="mainNavbar"
           [attr.aria-label]="mobileMenuOpen() ? 'Close menu' : 'Open menu'"
           (click)="toggleMobileMenu()"
         >
@@ -58,112 +55,64 @@
             <span></span>
           }
         </button>
-
       </div>
 
       <!-- Navigation -->
-      <div
-        id="mainNavbar"
-        class="navbar-collapse"
-        [class.show]="mobileMenuOpen()"
-      >
-
+      <div id="mainNavbar" class="navbar-collapse" [class.show]="mobileMenuOpen()">
         <ul class="navbar-nav main-nav">
-
           @for (item of navItems; track item.path) {
             <li class="nav-item nav-item-link">
-
-              <a
-                class="nav-link"
-                [routerLink]="item.path"
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{
-                  exact: item.path === '/'
-                }"
-                (click)="closeMobileMenu()"
-              >
+              <a class="nav-link" [routerLink]="item.path"routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.path === '/'}"(click)="closeMobileMenu()">
                 {{ item.label }}
-
                 <i class="bi bi-chevron-right mobile-chevron"></i>
               </a>
-
             </li>
-
             @if (item.label === 'Poojaris') {
               <li class="nav-item vinayaka-item">
-                <img
-                  src="header/vinayaka.png"
-                  alt="Lord Vinayaka"
-                  class="vinayaka-img"
-                />
+                <img src="header/vinayaka.png" alt="Lord Vinayaka" class="vinayaka-img"/>
               </li>
             }
           }
-
         </ul>
 
+                <!-- Desktop actions -->
+        <div class="header-actions d-none d-lg-flex align-items-center">
+          <button type="button" class="book-poojari-btn"(click)="onRegistration()">
+            <i class="bi bi-person-circle me-2"></i>
+            <span>Login/Register</span>
+          </button>
+
+          <button type="button" class="desktop-cart-btn" aria-label="View cart" (click)="onCartClick()">
+            <i class="bi bi-cart3"></i>
+            @if (cartCount > 0) {
+              <span class="cart-count">{{ cartCount }}</span>
+            }
+          </button>
+        </div>
+        
+        
         <!-- Mobile menu footer -->
         <div class="mobile-menu-footer d-lg-none">
 
+          <button type="button" class="login-btn mt-3" (click)="onRegistration()">
+            <i class="bi bi-person"></i>
+            <span>Login / Register</span>
+          </button>
+        
           <div class="menu-divider">
             <span></span>
-            <i class="bi bi-om"></i>
+            <!-- <i class="bi bi-om bg-dark"></i> -->
+            <img src="header/vinayaka.png" alt="Lord Vinayaka" class="vinayaka-img" />
             <span></span>
           </div>
 
           <p class="menu-tagline">
             Your Spiritual Partner.
           </p>
-
-          <button
-            type="button"
-            class="login-btn"
-            (click)="onRegistration()"
-          >
-            <i class="bi bi-person"></i>
-            <span>Login / Register</span>
-          </button>
-
-          <button
-            type="button"
-            class="cart-btn"
-            (click)="onCartClick()"
-          >
-            <i class="bi bi-cart3"></i>
-            <span>View Cart ({{ cartCount }})</span>
-          </button>
-
         </div>
 
-        <!-- Desktop actions -->
-        <div class="header-actions d-none d-lg-flex align-items-center">
-
-          <button
-            type="button"
-            class="book-poojari-btn"
-            (click)="onRegistration()"
-          >
-            <i class="bi bi-person-circle me-2"></i>
-            <span>Login/Register</span>
-          </button>
-
-          <button
-            type="button"
-            class="desktop-cart-btn"
-            aria-label="View cart"
-            (click)="onCartClick()"
-          >
-            <i class="bi bi-cart3"></i>
-
-            @if (cartCount > 0) {
-              <span class="cart-count">{{ cartCount }}</span>
-            }
-          </button>
-
-        </div>
 
       </div>
-
     </div>
   </nav>
 </header>

@@ -131,9 +131,10 @@
   .nav-link.active,.nav-link:hover{
     width: fit-content;
   }
-  .vinayaka-item img{
-    height: 60px;
-    width: 20%;
+  .vinayaka-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
   }
 }
 
@@ -349,48 +350,48 @@ $white: #ffffff;
 
 /* Tablet and smaller desktop */
 
-@media (min-width: 992px) and (max-width: 1199.98px) {
-  .header-container {
-    padding-inline: 16px;
-    gap: 10px;
-  }
+// @media (min-width: 992px) and (max-width: 1199.98px) {
+//   .header-container {
+//     padding-inline: 16px;
+//     gap: 10px;
+//   }
 
-  .brand {
-    gap: 6px;
-  }
+//   .brand {
+//     gap: 6px;
+//   }
 
-  // .brand-logo {
-  //   width: 48px;
-  //   height: 48px;
-  // }
+//   // .brand-logo {
+//   //   width: 48px;
+//   //   height: 48px;
+//   // }
 
-  // .brand-name {
-  //   width: 140px;
-  // }
+//   // .brand-name {
+//   //   width: 140px;
+//   // }
 
-  .brand-tagline {
-    font-size: 10px;
-  }
+//   .brand-tagline {
+//     font-size: 10px;
+//   }
 
-  .main-nav {
-    gap: 0;
-  }
+//   .main-nav {
+//     gap: 0;
+//   }
 
-  .nav-item-link .nav-link {
-    padding-inline: 8px;
-    font-size: 12px;
-  }
+//   .nav-item-link .nav-link {
+//     padding-inline: 8px;
+//     font-size: 12px;
+//   }
 
-  .vinayaka-img {
-    width: 30px;
-    height: 36px;
-  }
+//   .vinayaka-img {
+//     width: 30px;
+//     height: 36px;
+//   }
 
-  .book-poojari-btn {
-    padding-inline: 11px;
-    font-size: 12px;
-  }
-}
+//   .book-poojari-btn {
+//     padding-inline: 11px;
+//     font-size: 12px;
+//   }
+// }
 
 /* Mobile navigation */
 
@@ -506,6 +507,7 @@ $white: #ffffff;
   .nav-item-link {
     width: 100%;
     border-bottom: 1px solid #f0eae5;
+    padding: 5px 10px;
 
     .nav-link {
       width: 100%;
@@ -585,8 +587,7 @@ $white: #ffffff;
     text-align: center;
   }
 
-  .login-btn,
-  .cart-btn {
+  .login-btn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -617,17 +618,6 @@ $white: #ffffff;
     }
   }
 
-  .cart-btn {
-    border: 1px solid #d7b9a7;
-    background: $white;
-    color: $text;
-
-    &:hover {
-      border-color: $primary;
-      color: $primary;
-    }
-  }
-
   .header-actions {
     display: none !important;
   }
@@ -646,41 +636,41 @@ $white: #ffffff;
 
 /* Small phones */
 
-@media (max-width: 380px) {
-  .header-container {
-    padding-inline: 10px;
-  }
+// @media (max-width: 380px) {
+//   .header-container {
+//     padding-inline: 10px;
+//   }
 
-  .brand {
-    gap: 5px;
-    max-width: calc(100% - 88px);
-  }
+//   .brand {
+//     gap: 5px;
+//     max-width: calc(100% - 88px);
+//   }
 
-  // .brand-logo {
-  //   width: 43px;
-  //   height: 43px;
-  // }
+//   // .brand-logo {
+//   //   width: 43px;
+//   //   height: 43px;
+//   // }
 
-  // .brand-name {
-  //   width: 112px;
-  // }
+//   // .brand-name {
+//   //   width: 112px;
+//   // }
 
-  .brand-tagline {
-    font-size: 9px;
-  }
+//   .brand-tagline {
+//     font-size: 9px;
+//   }
 
-  .mobile-header-actions {
-    gap: 7px;
-  }
+//   .mobile-header-actions {
+//     gap: 7px;
+//   }
 
-  .mobile-menu-btn {
-    width: 32px;
-  }
+//   .mobile-menu-btn {
+//     width: 32px;
+//   }
 
-  .mobile-cart-btn {
-    width: 30px;
-  }
-}
+//   .mobile-cart-btn {
+//     width: 30px;
+//   }
+// }
 
 /* Respect reduced motion preferences */
 
