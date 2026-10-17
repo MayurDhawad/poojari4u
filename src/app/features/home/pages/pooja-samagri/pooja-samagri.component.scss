@@ -1208,11 +1208,24 @@
     border-right: 0;
     padding: 15px;
   }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
 }
 
-@media (max-width: 500px) {
+@media (max-width: 576px) {
   .services-container {
     grid-template-columns: 1fr;
+  }
+  .services-section {
+    margin-top: -382px;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 

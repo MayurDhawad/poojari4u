@@ -135,3 +135,15 @@ $card-shadow: rgba(70, 45, 20, 0.16);
     pointer-events: none;
   }
 }
+
+@media (max-width: 576px) {
+  .hero-section {    
+    height: 100vh;
+  }
+  .hero-features {
+    margin-bottom: 20px;
+  }
+  .hero-features {
+    display: grid;
+  }
+}
