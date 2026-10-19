@@ -55,6 +55,18 @@ export class Header {
         }else{
           this.router.navigate(['/']);
         }
+      }else{
+        if(res == 'poojari-register'){
+          this.router.navigate(['/poojari-registration']);
+        }else if(res == 'bajanthri-register'){
+          this.router.navigate(['/bajanthri-registration']);
+        }else if(res == 'poojari-login'){
+          this.router.navigateByUrl('/poojari-dashboard/my-dashboard')
+        }else if(res == 'bajanthri-login'){
+          this.router.navigateByUrl('/bajanthris-dashboard')
+        }else{
+          this.router.navigate(['/']);
+        }
       }
     });
   }
