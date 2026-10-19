@@ -50,8 +50,8 @@ export class Header {
           this.router.navigate(['/bajanthri-registration']);
         }else if(res == 'poojari-login'){
           this.router.navigateByUrl('/poojari-dashboard/my-dashboard')
-        }else if(res == 'bajanthri-register'){
-          this.router.navigateByUrl('/bajanthri-dashboard')
+        }else if(res == 'bajanthri-login'){
+          this.router.navigateByUrl('/bajanthris-dashboard')
         }else{
           this.router.navigate(['/']);
         }

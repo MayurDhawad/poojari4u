@@ -39,6 +39,12 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'bajanthris-dashboard',
+    loadComponent: () =>
+      import('./dashboard/bajanthris-dashboard/bajanthris-dashboard.component')
+        .then(m => m.BajanthrisDashboardComponent)
+  },
+  {
     path: 'login',
     loadComponent: () =>
       import('./features/auth/login/login.component')

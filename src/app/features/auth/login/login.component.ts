@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApplicationTrackingComponent } from '../../shared/application-tracking/application-tracking.component';
+import { AuthService } from '../../../core/services/auth.service';
 
 export type UserRole = 'poojari' | 'bajanthri' | 'admin';
 
@@ -56,6 +57,7 @@ export class LoginComponent  {
   selectedRole: UserRole = 'poojari';
   loginForm: FormGroup;
   payload: any;
+  loginError = '';
 
   roles: RoleOption[] = [
     { id: 'poojari', number: 1, label: 'Poojari', icon: '🪔' },
@@ -65,12 +67,14 @@ export class LoginComponent  {
 
   constructor(
     private fb: FormBuilder,
+    private _authService: AuthService,
     private router: Router,
     private dialogRef: MatDialogRef<LoginComponent>,
     public dialog: MatDialog
   ) {
     this.loginForm = this.fb.group({
-      identifier: ['', [Validators.required]],
+      identifier: ['poojari', [Validators.required]],
+      email: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
   }
@@ -102,24 +106,40 @@ export class LoginComponent  {
   }
 
   onLoginSubmit(): void {
-    if (this.loginForm.valid) {
-      this.payload = {
-        role: this.selectedRole,
-        ...this.loginForm.value
-      };
-      console.log('Logging in with payload:', this.payload);
-      // Perform API call or navigation here
-      if(this.selectedRole == 'poojari'){
-        this.dialogRef.close('poojari-login');
-      }else if(this.selectedRole == 'bajanthri'){
-        this.dialogRef.close('bajanthri-login');
-      }else{
-        this.router.navigateByUrl('/')
-        this.dialogRef.close('/');
+  if (this.loginForm.invalid) {
+    this.loginForm.markAllAsTouched();
+    return;
+  }
+
+  const payload = {
+    email: this.loginForm.value.email!,
+    password: this.loginForm.value.password!
+  };
+
+  this._authService.login(payload).subscribe({
+    next: (res) => {
+      this.selectRole = res['user'].role
+      if (res.success) {
+        if(this.selectedRole == 'poojari'){
+          this.dialogRef.close('poojari-login');
+        }else if(this.selectedRole == 'bajanthri'){
+          this.dialogRef.close('bajanthri-login');
+        }else{
+          this.router.navigateByUrl('/')
+          this.dialogRef.close('/');
+        }
       }
-    } else {
-      this.loginForm.markAllAsTouched();
+    },
+    error: (err) => {
+      console.error('Login failed:', err);
+
+      const message =
+        err.error?.message || 'Unable to log in. Please try again.';
+
+      // Bind this property to your login error message in the template.
+      this.loginError = message;
     }
+  });
   }
 
   onRegisterClick(): void {

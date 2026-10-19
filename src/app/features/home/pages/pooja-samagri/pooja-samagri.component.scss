@@ -1199,8 +1199,11 @@
   font-size: 12px;
   line-height: 1.4;
 }
+/* =========================
+   TABLET
+========================= */
 
-@media (max-width: 850px) {
+@media (max-width: 992px) {
   .services-container {
     grid-template-columns: 1fr 1fr;
   }
@@ -1212,8 +1215,12 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 16px;
+  }
 }
-}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 576px) {
   .services-container {
