@@ -1,0 +1,2 @@
+import{L as Jv,in as dc,nr as uc,pn as gE}from"./chunk-D9c48n8B.js";var r=class n{constructor(){}ngOnInit(){}static ɵfac=function(a){return new(a||n)};static ɵcmp=Jv({type:n,selectors:[[`app-bajanthris-dashboard`]],decls:2,vars:0,template:function(a,d){a&1&&(uc(0,`p`),gE(1,` bajantris-dashboard works!
+`),dc())},encapsulation:2})};export{r as BajanthrisDashboardComponent};
