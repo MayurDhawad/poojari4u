@@ -208,7 +208,7 @@
 
             <div class="form-actions">
               <button type="button" class="btn btn-previous" (click)="goBack()">
-                <span>←</span> Previous
+                <span>← </span> Previous
               </button>
               <button type="button" class="btn btn-continue" (click)="continueRegistration()">
                 Save &amp; Continue <span>→</span>
@@ -225,198 +225,170 @@
               <p class="subtitle">Tell customers where and when you are available for bookings.</p>
             </div>
 
-            <!-- Location Settings -->
-            <div class="section">
-              <div class="section-title">
-                <span>📍</span> Service Location
-              </div>
-
-              <div class="row g-3 location-grid">
-                <div class="col-12 col-md-6">
-                  <div class="input-group-custom">
-                    <label for="state">State</label>
-                    <select id="state" class="form-select" [(ngModel)]="state">
-                      <option value="">Select State</option>
-                      @for (item of states; track item) {
+            <form [formGroup]="availabilityForm">
+              <!-- Location Settings -->
+              <div class="section">
+                <div class="section-title">
+                  <span>📍</span> Service Location
+                </div>
+            
+                <div class="row g-3 location-grid">
+                  <div class="col-12 col-md-6">
+                    <div class="input-group-custom">
+                      <label for="state">State</label>
+                      <select id="state" class="form-select" formControlName="state">
+                        <option value="">Select State</option>
+                        @for (item of states; track item) {
                         <option [value]="item">{{ item }}</option>
-                      }
-                    </select>
+                        }
+                      </select>
+                    </div>
+                  </div>
+            
+                  <div class="col-12 col-md-6">
+                    <div class="input-group-custom">
+                      <label for="city">City / Town</label>
+                      <input id="city" type="text" class="form-control" formControlName="city" placeholder="Example: Hyderabad" />
+                    </div>
+                  </div>
+            
+                  <div class="col-12 col-md-6">
+                    <div class="input-group-custom">
+                      <label for="area">Area / Locality</label>
+                      <input id="area" type="text" class="form-control" formControlName="area" placeholder="Example: Kukatpally" />
+                    </div>
+                  </div>
+            
+                  <div class="col-12 col-md-6">
+                    <div class="input-group-custom">
+                      <label for="pincode">PIN Code</label>
+                      <input id="pincode" type="text" class="form-control" formControlName="pincode" maxlength="6" inputmode="numeric"
+                        placeholder="Enter PIN code" />
+                    </div>
                   </div>
                 </div>
-
-                <div class="col-12 col-md-6">
-                  <div class="input-group-custom">
-                    <label for="city">City / Town</label>
-                    <input
-                      id="city"
-                      type="text"
-                      class="form-control"
-                      [(ngModel)]="city"
-                      placeholder="Example: Hyderabad"
-                    />
+            
+                <div class="radius-box">
+                  <div class="radius-header">
+                    <div>Maximum Service Distance</div>
+                    <div class="radius-value"><span>{{ radius }}</span> KM</div>
                   </div>
-                </div>
-
-                <div class="col-12 col-md-6">
-                  <div class="input-group-custom">
-                    <label for="area">Area / Locality</label>
-                    <input
-                      id="area"
-                      type="text"
-                      class="form-control"
-                      [(ngModel)]="area"
-                      placeholder="Example: Kukatpally"
-                    />
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6">
-                  <div class="input-group-custom">
-                    <label for="pincode">PIN Code</label>
-                    <input
-                      id="pincode"
-                      type="text"
-                      class="form-control"
-                      [(ngModel)]="pincode"
-                      maxlength="6"
-                      inputmode="numeric"
-                      placeholder="Enter PIN code"
-                    />
-                  </div>
+                  <input type="range" class="form-range service-range" min="1" max="100" formControlName="radius" />
+                  <small>You can receive booking requests within this distance.</small>
                 </div>
               </div>
-
-              <div class="radius-box">
-                <div class="radius-header">
-                  <div>Maximum Service Distance</div>
-                  <div class="radius-value"><span>{{ radius }}</span> KM</div>
+            
+              <!-- Available Days -->
+              <div class="section">
+                <div class="section-title">
+                  <span>📅</span> Available Days
                 </div>
-                <input
-                  type="range"
-                  class="form-range service-range"
-                  min="1"
-                  max="100"
-                  [(ngModel)]="radius"
-                />
-                <small>You can receive booking requests within this distance.</small>
-              </div>
-            </div>
-
-            <!-- Available Days -->
-            <div class="section">
-              <div class="section-title">
-                <span>📅</span> Available Days
-              </div>
-              <p class="section-subtitle">Select the days on which you normally accept bookings.</p>
-
-              <div class="days">
-                @for (day of days; track day.name) {
-                  <button
-                    type="button"
-                    class="day"
-                    [class.selected]="day.selected"
-                    [attr.aria-pressed]="day.selected"
-                    (click)="toggleDay(day)"
-                  >
+                <p class="section-subtitle">Select the days on which you normally accept bookings.</p>
+            
+                <div class="days">
+                  @for (day of days; track day.name) {
+                  <button type="button" class="day" [class.selected]="day.selected" [attr.aria-pressed]="day.selected"
+                    (click)="toggleDay(day)">
                     {{ day.name }}
                   </button>
-                }
-              </div>
-            </div>
-
-            <!-- Working Hours -->
-            <div class="section">
-              <div class="section-title">
-                <span>🕐</span> Regular Working Hours
-              </div>
-              <div class="row g-3 time-grid">
-                <div class="col-12 col-md-6">
-                  <div class="input-group-custom">
-                    <label for="startTime">Available From</label>
-                    <input id="startTime" type="time" class="form-control" [(ngModel)]="startTime" />
-                  </div>
-                </div>
-
-                <div class="col-12 col-md-6">
-                  <div class="input-group-custom">
-                    <label for="endTime">Available Until</label>
-                    <input id="endTime" type="time" class="form-control" [(ngModel)]="endTime" />
-                  </div>
+                  }
                 </div>
               </div>
-            </div>
-
-            <!-- Booking Preferences -->
-            <div class="section">
-              <div class="section-title">
-                <span>⚙️</span> Booking Preferences
-              </div>
-              <div class="row g-3 booking-grid">
-                <div class="col-12 col-md-6">
-                  <div class="input-group-custom">
-                    <label for="advanceBooking">Minimum Advance Booking</label>
-                    <select id="advanceBooking" class="form-select" [(ngModel)]="advanceBooking">
-                      <option value="same-day">Same Day</option>
-                      <option value="1-day">1 Day Before</option>
-                      <option value="2-days">2 Days Before</option>
-                      <option value="3-days">3 Days Before</option>
-                      <option value="7-days">7 Days Before</option>
-                    </select>
-                  </div>
+            
+              <!-- Working Hours -->
+              <div class="section">
+                <div class="section-title">
+                  <span>🕐</span> Regular Working Hours
                 </div>
-
-                <div class="col-12 col-md-6">
-                  <div class="input-group-custom">
-                    <label for="maxBooking">Maximum Advance Booking</label>
-                    <select id="maxBooking" class="form-select" [(ngModel)]="maxBooking">
-                      <option value="7">Up to 7 Days</option>
-                      <option value="15">Up to 15 Days</option>
-                      <option value="30">Up to 30 Days</option>
-                      <option value="60">Up to 60 Days</option>
-                      <option value="90">Up to 90 Days</option>
-                    </select>
+                <div class="row g-3 time-grid">
+                  <div class="col-12 col-md-6">
+                    <div class="input-group-custom">
+                      <label for="startTime">Available From</label>
+                      <input id="startTime" type="time" class="form-control" formControlName="startTime" />
+                    </div>
+                  </div>
+            
+                  <div class="col-12 col-md-6">
+                    <div class="input-group-custom">
+                      <label for="endTime">Available Until</label>
+                      <input id="endTime" type="time" class="form-control" formControlName="endTime" />
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div class="toggle-row">
-                <div class="toggle-text">
-                  <h3>Accept Same-Day Bookings</h3>
-                  <p>Allow customers to request bookings for today.</p>
+            
+              <!-- Booking Preferences -->
+              <div class="section">
+                <div class="section-title">
+                  <span>⚙️</span> Booking Preferences
                 </div>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="sameDay" />
-                  <span class="slider"></span>
-                </label>
-              </div>
-
-              <div class="toggle-row">
-                <div class="toggle-text">
-                  <h3>Emergency / Urgent Pooja Requests</h3>
-                  <p>Receive urgent booking requests when you are available.</p>
+                <div class="row g-3 booking-grid">
+                  <div class="col-12 col-md-6">
+                    <div class="input-group-custom">
+                      <label for="advanceBooking">Minimum Advance Booking</label>
+                      <select id="advanceBooking" class="form-select" formControlName="advanceBooking">
+                        <option value="same-day">Same Day</option>
+                        <option value="1-day">1 Day Before</option>
+                        <option value="2-days">2 Days Before</option>
+                        <option value="3-days">3 Days Before</option>
+                        <option value="7-days">7 Days Before</option>
+                      </select>
+                    </div>
+                  </div>
+            
+                  <div class="col-12 col-md-6">
+                    <div class="input-group-custom">
+                      <label for="maxBooking">Maximum Advance Booking</label>
+                      <select id="maxBooking" class="form-select" formControlName="maxBooking">
+                        <option value="7 Days">Up to 7 Days</option>
+                        <option value="15 Days">Up to 15 Days</option>
+                        <option value="30 Days">Up to 30 Days</option>
+                        <option value="60 Days">Up to 60 Days</option>
+                        <option value="90 Days">Up to 90 Days</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                <label class="switch">
-                  <input type="checkbox" [(ngModel)]="emergency" />
-                  <span class="slider"></span>
-                </label>
+            
+                <div class="toggle-row">
+                  <div class="toggle-text">
+                    <h3>Accept Same-Day Bookings</h3>
+                    <p>Allow customers to request bookings for today.</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" formControlName="sameDay" />
+                    <span class="slider"></span>
+                  </label>
+                </div>
+            
+                <div class="toggle-row">
+                  <div class="toggle-text">
+                    <h3>Emergency / Urgent Pooja Requests</h3>
+                    <p>Receive urgent booking requests when you are available.</p>
+                  </div>
+                  <label class="switch">
+                    <input type="checkbox" formControlName="emergency" />
+                    <span class="slider"></span>
+                  </label>
+                </div>
               </div>
-            </div>
-
-            @if (showError) {
+            
+              @if (showError) {
               <div class="validation-error">
                 <span class="error-icon">!</span>
                 <span>Please select at least one available day.</span>
               </div>
-            }
-
-            <div class="form-actions">
-              <button type="button" class="btn btn-previous" (click)="goPrevious()">
-                <span>←</span> Previous
-              </button>
-              <button type="button" class="btn btn-continue" (click)="continueRegistration()">
-                Save &amp; Continue <span>→</span>
-              </button>
-            </div>
+              }
+            
+              <div class="form-actions">
+                <button type="button" class="btn btn-previous" (click)="goPrevious()">
+                  <span>←</span> Previous
+                </button>
+                <button type="button" class="btn btn-continue" (click)="continueRegistration()">
+                  Save &amp; Continue <span>→</span>
+                </button>
+              </div>
+            </form>
           </section>
         }
 
@@ -433,23 +405,26 @@
               <div class="section-title">
                 <i class="bi bi-person-circle"></i> Profile Photo
               </div>
-              <div class="profile-upload">
-                <div class="profile-preview">
-                  @if (profilePreview) {
-                    <img [src]="profilePreview" alt="Profile preview" />
-                  } @else {
-                    <i class="bi bi-person"></i>
-                  }
+
+              <form [formGroup]="documentsForm">
+                <div class="profile-upload">
+                  <div class="profile-preview">
+                    @if (profilePreview) {
+                      <img [src]="profilePreview" alt="Profile preview" />
+                    } @else {
+                      <i class="bi bi-person"></i>
+                    }
+                  </div>
+                  <div class="profile-content">
+                    <h3>Upload a clear profile photo</h3>
+                    <p>Use a recent, clear photograph. JPG or PNG recommended.</p>
+                    <label class="upload-button">
+                      <i class="bi bi-upload"></i> Choose Photo
+                      <input type="file" accept="image/jpeg,image/png" (change)="onProfilePhotoSelected($event)" />
+                    </label>
+                  </div>
                 </div>
-                <div class="profile-content">
-                  <h3>Upload a clear profile photo</h3>
-                  <p>Use a recent, clear photograph. JPG or PNG recommended.</p>
-                  <label class="upload-button">
-                    <i class="bi bi-upload"></i> Choose Photo
-                    <input type="file" accept="image/jpeg,image/png" (change)="onProfilePhotoSelected($event)" />
-                  </label>
-                </div>
-              </div>
+              </form>
             </section>
 
             <!-- Identity Documents -->
@@ -457,74 +432,76 @@
               <div class="section-title">
                 <i class="bi bi-person-vcard"></i> Identity Verification
               </div>
-              <div class="row g-3">
-                <div class="col-lg-6">
-                  <div class="document-card">
-                    <h3>Government ID Proof</h3>
-                    <p>Upload an accepted government identity document.</p>
-                    <label class="file-box">
-                      <i class="bi bi-file-earmark-text"></i>
-                      <span>Upload ID</span>
-                      <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'idProof')" />
-                      @if (files.idProof) {
-                        <small class="file-name">
-                          <i class="bi bi-check-circle-fill"></i> {{ files.idProof.name }}
-                        </small>
-                      }
-                    </label>
+              <div class="row ">
+                <form [formGroup]="documentsForm">
+                  <div class="col-lg-6">
+                    <div class="document-card">
+                      <h3>Government ID Proof</h3>
+                      <p>Upload an accepted government identity document.</p>
+                      <label class="file-box">
+                        <i class="bi bi-file-earmark-text"></i>
+                        <span>Upload ID</span>
+                        <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'idProof')" />
+                        @if (files.idProof) {
+                          <small class="file-name">
+                            <i class="bi bi-check-circle-fill"></i> {{ files.idProof.name }}
+                          </small>
+                        }
+                      </label>
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-lg-6">
-                  <div class="document-card">
-                    <h3>Address Proof</h3>
-                    <p>Upload a document showing your current address.</p>
-                    <label class="file-box">
-                      <i class="bi bi-file-earmark-text"></i>
-                      <span>Upload Address Proof</span>
-                      <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'addressProof')" />
-                      @if (files.addressProof) {
-                        <small class="file-name">
-                          <i class="bi bi-check-circle-fill"></i> {{ files.addressProof.name }}
-                        </small>
-                      }
-                    </label>
+                  <div class="col-lg-6">
+                    <div class="document-card">
+                      <h3>Address Proof</h3>
+                      <p>Upload a document showing your current address.</p>
+                      <label class="file-box">
+                        <i class="bi bi-file-earmark-text"></i>
+                        <span>Upload Address Proof</span>
+                        <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'addressProof')" />
+                        @if (files.addressProof) {
+                          <small class="file-name">
+                            <i class="bi bi-check-circle-fill"></i> {{ files.addressProof.name }}
+                          </small>
+                        }
+                      </label>
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-lg-6">
-                  <div class="document-card">
-                    <h3>Pooja / Vedic Qualification</h3>
-                    <p>Upload certificates or other relevant qualification documents, if available.</p>
-                    <label class="file-box">
-                      <i class="bi bi-file-earmark-medical"></i>
-                      <span>Upload Certificate</span>
-                      <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'qualification')" />
-                      @if (files.qualification) {
-                        <small class="file-name">
-                          <i class="bi bi-check-circle-fill"></i> {{ files.qualification.name }}
-                        </small>
-                      }
-                    </label>
+                  <div class="col-lg-6">
+                    <div class="document-card">
+                      <h3>Pooja / Vedic Qualification</h3>
+                      <p>Upload certificates or other relevant qualification documents, if available.</p>
+                      <label class="file-box">
+                        <i class="bi bi-file-earmark-medical"></i>
+                        <span>Upload Certificate</span>
+                        <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'qualification')" />
+                        @if (files.qualification) {
+                          <small class="file-name">
+                            <i class="bi bi-check-circle-fill"></i> {{ files.qualification.name }}
+                          </small>
+                        }
+                      </label>
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-lg-6">
-                  <div class="document-card">
-                    <h3>Pooja Performing Video</h3>
-                    <p>Upload any quality video performing pooja that supports your profile.</p>
-                    <label class="file-box">
-                      <i class="bi bi-paperclip"></i>
-                      <span>Upload Document</span>
-                      <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'additionalDocument')" />
-                      @if (files.additionalDocument) {
-                        <small class="file-name">
-                          <i class="bi bi-check-circle-fill"></i> {{ files.additionalDocument.name }}
-                        </small>
-                      }
-                    </label>
+                  <div class="col-lg-6">
+                    <div class="document-card">
+                      <h3>Pooja Performing Video</h3>
+                      <p>Upload any quality video performing pooja that supports your profile.</p>
+                      <label class="file-box">
+                        <i class="bi bi-paperclip"></i>
+                        <span>Upload Document</span>
+                        <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'additionalDocument')" />
+                        @if (files.additionalDocument) {
+                          <small class="file-name">
+                            <i class="bi bi-check-circle-fill"></i> {{ files.additionalDocument.name }}
+                          </small>
+                        }
+                      </label>
+                    </div>
                   </div>
-                </div>
+                </form>
               </div>
             </section>
 
@@ -537,47 +514,49 @@
               <p class="section-subtitle">These details can be used to transfer your earnings after successful bookings.</p>
               
               <div class="row g-3">
-                <div class="col-lg-6">
-                  <div class="input-group-custom">
-                    <label>Account Holder Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="payment.accountName" placeholder="Enter account holder name" />
+                <form [formGroup]="paymentForm">
+                  <div class="col-lg-6">
+                    <div class="input-group-custom">
+                      <label>Account Holder Name</label>
+                      <input type="text" class="form-control" formControlName="accountHolderName" placeholder="Enter account holder name" />
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-lg-6">
-                  <div class="input-group-custom">
-                    <label>Bank Name</label>
-                    <input type="text" class="form-control" [(ngModel)]="payment.bankName" placeholder="Enter bank name" />
+                  <div class="col-lg-6">
+                    <div class="input-group-custom">
+                      <label>Bank Name</label>
+                      <input type="text" class="form-control" formControlName="bankName" placeholder="Enter bank name" />
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-lg-6">
-                  <div class="input-group-custom">
-                    <label>Account Number</label>
-                    <input type="password" class="form-control" [(ngModel)]="payment.accountNumber" placeholder="Enter account number" />
+                  <div class="col-lg-6">
+                    <div class="input-group-custom">
+                      <label>Account Number</label>
+                      <input type="password" class="form-control" formControlName="accountNumber" placeholder="Enter account number" />
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-lg-6">
-                  <div class="input-group-custom">
-                    <label>Confirm Account Number</label>
-                    <input type="password" class="form-control" [(ngModel)]="payment.confirmAccountNumber" placeholder="Re-enter account number" />
+                  <div class="col-lg-6">
+                    <div class="input-group-custom">
+                      <label>Confirm Account Number</label>
+                      <input type="password" class="form-control" formControlName="confirmAccountNumber" placeholder="Re-enter account number" />
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-lg-6">
-                  <div class="input-group-custom">
-                    <label>IFSC Code</label>
-                    <input type="text" class="form-control text-uppercase" [(ngModel)]="payment.ifsc" maxlength="11" placeholder="Example: SBIN0000000" />
+                  <div class="col-lg-6">
+                    <div class="input-group-custom">
+                      <label>IFSC Code</label>
+                      <input type="text" class="form-control text-uppercase" formControlName="ifscCode" maxlength="11" placeholder="Example: SBIN0000000" />
+                    </div>
                   </div>
-                </div>
 
-                <div class="col-lg-6">
-                  <div class="input-group-custom">
-                    <label>UPI ID</label>
-                    <input type="text" class="form-control" [(ngModel)]="payment.upi" placeholder="example@upi" />
+                  <div class="col-lg-6">
+                    <div class="input-group-custom">
+                      <label>UPI ID</label>
+                      <input type="text" class="form-control" formControlName="upiId" placeholder="example@upi" />
+                    </div>
                   </div>
-                </div>
+                </form>
               </div>
             </section>
 

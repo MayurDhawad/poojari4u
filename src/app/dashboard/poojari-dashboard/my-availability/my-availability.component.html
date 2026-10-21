@@ -1,0 +1,157 @@
+<div class="container-fluid py-4 px-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold text-dark mb-1">Availability & Schedule</h2>
+      <p class="text-muted small mb-0">Manage your service radius, booking rules, and working hours</p>
+    </div>
+    <button class="btn btn-warning text-white px-4 fw-semibold shadow-sm" (click)="saveAvailability()">
+      <i class="bi bi-check-lg me-1"></i> Save Changes
+    </button>
+  </div>
+
+  <div class="row g-4">
+    
+    <!-- Quick Status Toggles -->
+    <div class="col-12">
+      <div class="card border-0 shadow-sm p-4">
+        <h5 class="fw-bold mb-3 text-dark">Quick Status Controls</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="p-3 border rounded-3 bg-light d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="fw-bold mb-1">Instant Poojari Bookings</h6>
+                <p class="text-muted small mb-0">Allow devotees to book you instantly for urgent rituals</p>
+              </div>
+              <div class="form-check form-switch fs-4">
+                <input class="form-check-input" type="checkbox" role="switch" [checked]="isAvailableForInstant()" (change)="isAvailableForInstant.set(!isAvailableForInstant())">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="p-3 border rounded-3 bg-light d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="fw-bold mb-1">Vacation / Leave Mode</h6>
+                <p class="text-muted small mb-0">Temporarily pause all incoming bookings while away</p>
+              </div>
+              <div class="form-check form-switch fs-4">
+                <input class="form-check-input" type="checkbox" role="switch" [checked]="vacationMode()" (change)="vacationMode.set(!vacationMode())">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Location & Radius -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm p-4 h-100">
+        <h5 class="fw-bold mb-3 text-dark border-bottom pb-2">Service Location & Radius</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label small text-muted fw-bold">State</label>
+            <input type="text" class="form-control" [(ngModel)]="serviceArea().state">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small text-muted fw-bold">City</label>
+            <input type="text" class="form-control" [(ngModel)]="serviceArea().city">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small text-muted fw-bold">Area / Locality</label>
+            <input type="text" class="form-control" [(ngModel)]="serviceArea().area">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small text-muted fw-bold">Pincode</label>
+            <input type="text" class="form-control" [(ngModel)]="serviceArea().pincode">
+          </div>
+          <div class="col-12">
+            <label class="form-label small text-muted fw-bold">Travel Radius (KM)</label>
+            <div class="input-group">
+              <input type="number" class="form-control" [(ngModel)]="serviceArea().radiusKm">
+              <span class="input-group-text bg-light text-muted">KM around locality</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Rules & Emergency -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm p-4 h-100">
+        <h5 class="fw-bold mb-3 text-dark border-bottom pb-2">Booking Rules & Constraints</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label small text-muted fw-bold">Advance Booking Window</label>
+            <select class="form-select" [(ngModel)]="bookingRules().advanceBooking">
+              <option value="same-day">Same-Day Allowed</option>
+              <option value="next-day">Next-Day Only</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label small text-muted fw-bold">Max Booking Horizon</label>
+            <select class="form-select" [(ngModel)]="bookingRules().maxBookingDays">
+              <option value="7 Days">7 Days</option>
+              <option value="14 Days">14 Days</option>
+              <option value="30 Days">30 Days</option>
+            </select>
+          </div>
+          <div class="col-12 pt-3">
+            <div class="p-3 border rounded-3 bg-light d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="fw-bold mb-1">Emergency Booking Support</h6>
+                <p class="text-muted small mb-0">Accept urgent last-minute ritual requests</p>
+              </div>
+              <div class="form-check form-switch fs-4">
+                <input class="form-check-input" type="checkbox" role="switch" [(ngModel)]="bookingRules().emergency">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weekly Time Slots -->
+    <div class="col-12">
+      <div class="card border-0 shadow-sm p-4">
+        <h5 class="fw-bold mb-4 text-dark border-bottom pb-2">Weekly Time Slots</h5>
+
+        <div class="vstack gap-3">
+          <div *ngFor="let item of weeklySchedule(); let dIndex = index" class="p-3 border rounded-3 bg-white align-items-center row g-3">
+            
+            <div class="col-md-3 d-flex align-items-center gap-3">
+              <div class="form-check form-switch fs-5 mb-0">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="item.enabled">
+              </div>
+              <span class="fw-bold text-dark fs-6" [class.text-muted]="!item.enabled">{{ item.day }}</span>
+            </div>
+
+            <div class="col-md-8">
+              <ng-container *ngIf="item.enabled; else dayOff">
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                  <div *ngFor="let slot of item.slots; let sIndex = index" class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded border">
+                    <input type="time" class="form-control form-control-sm border-0 bg-transparent py-0 px-1" [(ngModel)]="slot.start" style="width: 90px;">
+                    <span class="text-muted small">to</span>
+                    <input type="time" class="form-control form-control-sm border-0 bg-transparent py-0 px-1" [(ngModel)]="slot.end" style="width: 90px;">
+                    <button class="btn btn-sm text-danger p-0 lh-1" (click)="removeSlot(dIndex, sIndex)" title="Remove Slot">
+                      <i class="bi bi-x"></i>
+                    </button>
+                  </div>
+                  <button class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px;" (click)="addSlot(dIndex)" title="Add slot">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                </div>
+              </ng-container>
+              <ng-template #dayOff>
+                <span class="badge bg-secondary bg-opacity-10 text-secondary fw-normal">Unavailable / Day Off</span>
+              </ng-template>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -118,6 +118,7 @@ export class LoginComponent  {
 
   this._authService.login(payload).subscribe({
     next: (res) => {
+      localStorage.setItem('token', res.token)
       this.selectRole = res['user'].role
       if (res.success) {
         if(this.selectedRole == 'poojari'){

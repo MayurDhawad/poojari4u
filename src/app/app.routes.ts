@@ -36,6 +36,24 @@ export const routes: Routes = [
           import('./dashboard/poojari-dashboard/my-booking/my-booking.component')
             .then(m => m.MyBookingComponent),
       },
+      {
+        path: 'my-services',
+        loadComponent: () =>
+          import('./dashboard/poojari-dashboard/my-services/my-services.component')
+            .then(m => m.MyServicesComponent),
+      },
+      {
+        path: 'my-availability',
+        loadComponent: () =>
+          import('./dashboard/poojari-dashboard/my-availability/my-availability.component')
+            .then(m => m.MyAvailabilityComponent),
+      },
+      {
+        path: 'my-profile',
+        loadComponent: () =>
+          import('./dashboard/poojari-dashboard/my-profile/my-profile.component')
+            .then(m => m.MyProfileComponent),
+      },
     ],
   },
   {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../../../core/services/auth.service';
 
 interface ServiceOption {
   name: string;
@@ -36,10 +37,10 @@ interface UploadedFiles {
   standalone: true,
   templateUrl: './poojari-registration-flow.component.html',
   styleUrls: ['./poojari-registration-flow.component.scss'],
-  imports: [CommonModule, ReactiveFormsModule, FormsModule]
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
 })
-export class PoojariRegistrationFlowComponent{
- currentStep = 1;
+export class PoojariRegistrationFlowComponent {
+  currentStep = 1;
   submitted = false;
   showError = false;
   errorMessage = '';
@@ -51,6 +52,9 @@ export class PoojariRegistrationFlowComponent{
 
   // Form Group for Step 1
   personalForm!: FormGroup;
+  availabilityForm!: FormGroup;
+  documentsForm!: FormGroup;
+  paymentForm!: FormGroup;
 
   // Step 1 - Options
   languages: string[] = ['Telugu', 'Hindi', 'Tamil', 'Kannada', 'Sanskrit', 'English', 'Marathi'];
@@ -58,21 +62,88 @@ export class PoojariRegistrationFlowComponent{
 
   // Step 2 - Services
   services: ServiceOption[] = [
-    { name: 'Ganapathi Pooja', title: 'Ganapathi Pooja', description: 'Ganapathi pooja and related rituals.', icon: '🪔' },
-    { name: 'Gruhapravesham', title: 'Gruhapravesham', description: 'Housewarming pooja and related ceremonies.', icon: '🏠' },
-    { name: 'Business Opening Pooja', title: 'Business Opening Pooja', description: 'Pooja for opening a shop, office, showroom, restaurant, business or commercial establishment.', icon: '🏪' },
-    { name: 'Homam / Havan', title: 'Homam / Havan', description: 'Different types of homams and havans.', icon: '🔥' },
-    { name: 'Satyanarayana Swamy Pooja', title: 'Satyanarayana Swamy Pooja', description: 'Satyanarayana Swamy vratam and pooja.', icon: '🙏' },
-    { name: 'Lakshmi Pooja', title: 'Lakshmi Pooja', description: 'Lakshmi pooja and related rituals.', icon: '🌺' },
-    { name: 'Wedding Rituals', title: 'Wedding Rituals', description: 'Hindu wedding ceremonies and rituals.', icon: '💍' },
-    { name: 'Namakarana', title: 'Namakarana', description: 'Traditional naming ceremony.', icon: '👶' },
-    { name: 'Vratham', title: 'Vratham', description: 'Various traditional vrathams and rituals.', icon: '📿' },
-    { name: 'Pitru Karma', title: 'Pitru Karma', description: 'Ancestral rituals and related ceremonies.', icon: '🕉️' },
-    { name: 'Temple Pooja', title: 'Temple Pooja', description: 'Temple-related poojas and religious rituals.', icon: '🛕' },
-    { name: 'Ayushya Pooja', title: 'Ayushya Pooja', description: 'Birthday and longevity-related poojas.', icon: '🎂' },
-    { name: 'Other Poojas', title: 'Other Poojas', description: 'Other religious services you provide.', icon: '📿' }
+    {
+      name: 'Ganapathi Pooja',
+      title: 'Ganapathi Pooja',
+      description: 'Ganapathi pooja and related rituals.',
+      icon: '🪔',
+    },
+    {
+      name: 'Gruhapravesham',
+      title: 'Gruhapravesham',
+      description: 'Housewarming pooja and related ceremonies.',
+      icon: '🏠',
+    },
+    {
+      name: 'Business Opening Pooja',
+      title: 'Business Opening Pooja',
+      description:
+        'Pooja for opening a shop, office, showroom, restaurant, business or commercial establishment.',
+      icon: '🏪',
+    },
+    {
+      name: 'Homam / Havan',
+      title: 'Homam / Havan',
+      description: 'Different types of homams and havans.',
+      icon: '🔥',
+    },
+    {
+      name: 'Satyanarayana Swamy Pooja',
+      title: 'Satyanarayana Swamy Pooja',
+      description: 'Satyanarayana Swamy vratam and pooja.',
+      icon: '🙏',
+    },
+    {
+      name: 'Lakshmi Pooja',
+      title: 'Lakshmi Pooja',
+      description: 'Lakshmi pooja and related rituals.',
+      icon: '🌺',
+    },
+    {
+      name: 'Wedding Rituals',
+      title: 'Wedding Rituals',
+      description: 'Hindu wedding ceremonies and rituals.',
+      icon: '💍',
+    },
+    {
+      name: 'Namakarana',
+      title: 'Namakarana',
+      description: 'Traditional naming ceremony.',
+      icon: '👶',
+    },
+    {
+      name: 'Vratham',
+      title: 'Vratham',
+      description: 'Various traditional vrathams and rituals.',
+      icon: '📿',
+    },
+    {
+      name: 'Pitru Karma',
+      title: 'Pitru Karma',
+      description: 'Ancestral rituals and related ceremonies.',
+      icon: '🕉️',
+    },
+    {
+      name: 'Temple Pooja',
+      title: 'Temple Pooja',
+      description: 'Temple-related poojas and religious rituals.',
+      icon: '🛕',
+    },
+    {
+      name: 'Ayushya Pooja',
+      title: 'Ayushya Pooja',
+      description: 'Birthday and longevity-related poojas.',
+      icon: '🎂',
+    },
+    {
+      name: 'Other Poojas',
+      title: 'Other Poojas',
+      description: 'Other religious services you provide.',
+      icon: '📿',
+    },
   ];
   selectedServices: string[] = [];
+  selectedDays: string[] = [];
   selectedExpertise: string[] = [];
   otherServices = '';
 
@@ -90,7 +161,7 @@ export class PoojariRegistrationFlowComponent{
     { name: 'Thursday', selected: false },
     { name: 'Friday', selected: false },
     { name: 'Saturday', selected: false },
-    { name: 'Sunday', selected: false }
+    { name: 'Sunday', selected: false },
   ];
   startTime = '06:00';
   endTime = '20:00';
@@ -108,7 +179,7 @@ export class PoojariRegistrationFlowComponent{
     accountNumber: '',
     confirmAccountNumber: '',
     ifsc: '',
-    upi: ''
+    upi: '',
   };
   declarationAccepted = false;
   termsAccepted = false;
@@ -119,26 +190,71 @@ export class PoojariRegistrationFlowComponent{
     { id: 2, label: 'Services' },
     { id: 3, label: 'Availability' },
     { id: 4, label: 'Verification' },
-    { id: 5, label: 'Review' }
+    { id: 5, label: 'Review' },
   ];
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private _authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.initPersonalForm();
+    this.initAvailabilityForm();
+    this.initDocumentsForm();
+    this.initPaymentForm();
   }
 
   private initPersonalForm(): void {
     this.personalForm = this.fb.group({
-      fullName: ['', Validators.required],
-      mobile: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      email: ['', [Validators.email]],
+      fullName: ['Mayur', Validators.required],
+      mobile: ['9923238080', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      email: ['mayur@gmail.com', [Validators.email]],
+      city: ['Nagpur', Validators.required],
+      areas: ['Subhash Nagar'],
+      experience: [2, Validators.required],
+      languages: [[]],
+      services: [[]],
+      otherServices: [''],
+    });
+  }
+
+  private initAvailabilityForm(): void {
+    this.availabilityForm = this.fb.group({
+      state: ['', Validators.required],
       city: ['', Validators.required],
-      areas: [''],
-      experience: [0, [Validators.min(0)]]
+      area: ['', Validators.required],
+      pincode: ['', Validators.required],
+      radius: [50, Validators.required],
+      days: [[], Validators.required],
+      startTime: ['', Validators.required],
+      endTime: ['', Validators.required],
+      advanceBooking: ['', Validators.required],
+      maxBooking: ['', Validators.required],
+      sameDay: ['', Validators.required],
+      emergency: ['', Validators.required],
+    });
+  }
+
+  private initDocumentsForm(): void {
+    this.documentsForm = this.fb.group({
+      profilePhoto: ['', Validators.required],
+      governmentIdProof: ['', Validators.required],
+      addressProof: ['', [Validators.required]],
+      poojaVedicQualification: ['', [Validators.required]],
+      poojaPerformingVideo: ['', Validators.required],
+    });
+  }
+
+  private initPaymentForm(): void {
+    this.paymentForm = this.fb.group({
+      accountHolderName: ['', Validators.required],
+      bankName: ['', [Validators.required]],
+      accountNumber: ['', [Validators.email]],
+      confirmAccountNumber: ['', Validators.required],
+      ifscCode: ['', Validators.required],
+      upiId: ['', Validators.required]
     });
   }
 
@@ -163,6 +279,9 @@ export class PoojariRegistrationFlowComponent{
     } else {
       list.push(item);
     }
+    this.personalForm.patchValue({
+      languages: this.selectedLanguages
+    })
   }
 
   // --- Step 2 Helpers ---
@@ -172,13 +291,27 @@ export class PoojariRegistrationFlowComponent{
 
   toggleService(serviceName: string): void {
     this.toggleSelection(this.selectedServices, serviceName);
+    this.personalForm.patchValue({
+      services: this.selectedServices
+    })
     this.showError = false;
   }
 
   // --- Step 3 Helpers ---
-  toggleDay(day: DayOption): void {
+  toggleDay(day: { name: string; selected: boolean }): void {
     day.selected = !day.selected;
-    this.showError = false;
+
+    const selectedDays = this.days
+      .filter(d => d.selected)
+      .map(d => d.name);
+
+    this.availabilityForm.patchValue({
+      days: selectedDays
+    });
+
+    console.log(this.availabilityForm.value.days)
+
+    this.showError = selectedDays.length === 0;
   }
 
   // --- Step 4 Helpers ---
@@ -188,6 +321,9 @@ export class PoojariRegistrationFlowComponent{
       const reader = new FileReader();
       reader.onload = () => (this.profilePreview = reader.result as string);
       reader.readAsDataURL(file);
+      this.documentsForm.patchValue({
+        profilePhoto: file
+      })
     }
   }
 
@@ -195,6 +331,9 @@ export class PoojariRegistrationFlowComponent{
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.files[key] = file;
+      this.documentsForm.patchValue({
+        governmentIdProof: this.files[key]
+      })
     }
   }
 
@@ -240,11 +379,12 @@ export class PoojariRegistrationFlowComponent{
 
     // Step 3 validation
     if (this.currentStep === 3) {
-      const hasSelectedDay = this.days.some((d) => d.selected);
-      if (!hasSelectedDay) {
+      const selectedDays = this.availabilityForm.get('days')?.value ?? [];
+      if (selectedDays.length === 0) {
         this.showError = true;
         return;
       }
+      this.showError = false;
       this.nextStep(4);
       return;
     }
@@ -257,6 +397,66 @@ export class PoojariRegistrationFlowComponent{
         this.errorMessage = 'Please accept the declaration before proceeding.';
         return;
       }
+
+      let payload = {
+        "name": this.personalForm.value.fullName || "",
+        "email": this.personalForm.value.email || "",
+        "phone": this.personalForm.value.mobile || "",
+        "password": "SecurePass123",
+        "role": "poojari",
+        "profile": {
+          "personalDetails": {
+            "fullName": this.personalForm.value.fullName || "",
+            "mobileNumber": this.personalForm.value.mobile || "",
+            "emailAddress": this.personalForm.value.email || "",
+            "city": this.personalForm.value.city || "",
+            "serviceAreas": this.personalForm.value.areas || "",
+            "yearsofExperience": this.personalForm.value.experience || "",
+            "languages": this.personalForm.value.languages || [],
+            "services": this.personalForm.value.services || [],
+            "otherServices": this.personalForm.value.otherServices || "",
+          },
+          "availability": {
+            "state": this.availabilityForm.value.state || "",
+            "city": this.availabilityForm.value.city || "",
+            "area": this.availabilityForm.value.area || "",
+            "pincode": this.availabilityForm.value.pincode || "",
+            "radiusKm": this.availabilityForm.value.radius || "",
+            "availableDays": this.availabilityForm.value.days || [],
+            "startTime": this.availabilityForm.value.startTime || "",
+            "endTime": this.availabilityForm.value.endTime || "",
+            "advanceBooking": this.availabilityForm.value.advanceBooking || "",
+            "maxBookingDays": this.availabilityForm.value.maxBooking || "",
+            "sameDay": this.availabilityForm.value.sameDay || false,
+            "emergency": this.availabilityForm.value.emergency || false,
+          },
+          "documents":{
+            "url": this.documentsForm.value.state || "",
+            "publicId": this.documentsForm.value.state || "",
+            "originalName": this.documentsForm.value.state || "",
+            "mimeType": this.documentsForm.value.state || "",
+            "uploadedAt": this.documentsForm.value.state || "",
+          },
+          "payment": {
+            "accountName": this.paymentForm.value.accountHolderName || "",
+            "bankName": this.paymentForm.value.bankName || "",
+            "accountNumberEncrypted": this.paymentForm.value.accountNumber || "",
+            "accountNumberLast4": this.paymentForm.value.confirmAccountNumber || "",
+            "ifsc": this.paymentForm.value.ifscCode || "",
+            "upi": this.paymentForm.value.upiId || ""
+          }
+        }
+      };
+
+      this._authService.register(payload).subscribe(
+        (res: any) => {
+          console.log(res)
+        },
+        (err: Error) => {
+          console.log(err)
+        }
+      )
+
       this.errorMessage = '';
       this.prepareReviewData();
       this.nextStep(5);
@@ -265,7 +465,6 @@ export class PoojariRegistrationFlowComponent{
 
     // Final submission step (Step 5)
     if (this.currentStep === 5) {
-
       let submitError1 = '';
 
       if (!this.termsAccepted) {
@@ -273,28 +472,10 @@ export class PoojariRegistrationFlowComponent{
         return;
       }
 
-        
-
-        this.applicationId = this.generateApplicationId();
-
-        localStorage.setItem(
-          'poojariApplicationId',
-          this.applicationId
-        );
-
-        localStorage.setItem(
-          'poojariApplicationStatus',
-          'UNDER_VERIFICATION'
-        );
-
-        localStorage.setItem(
-          'poojariRegistrationComplete',
-          'true'
-        );
-
-        this.currentStep = 5;
-      }
+      this.currentStep = 5;
     }
+    
+  }
 
   private prepareReviewData(): void {
     const titles = this.services
@@ -307,22 +488,6 @@ export class PoojariRegistrationFlowComponent{
     this.selectedExpertise = titles;
   }
 
-  private generateApplicationId(): string {
-    const characters =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
-    let randomPart = '';
-
-    for (let i = 0; i < 6; i++) {
-      randomPart += characters.charAt(
-        Math.floor(
-          Math.random() * characters.length
-        )
-      );
-    }
-
-    return `POJ-${randomPart}`;
-  }
 
   goToHome(): void {
     this.router.navigate(['/']);

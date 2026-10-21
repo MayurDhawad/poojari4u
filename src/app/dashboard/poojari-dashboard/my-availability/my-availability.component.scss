@@ -1,0 +1,25 @@
+.card {
+  border-radius: 12px;
+}
+
+.form-check-input:checked {
+  background-color: #f58220;
+  border-color: #f58220;
+}
+
+.btn-warning {
+  background-color: #f58220;
+  border-color: #f58220;
+  color: #fff;
+  
+  &:hover {
+    background-color: #df7418;
+    border-color: #df7418;
+    color: #fff;
+  }
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.5);
+}

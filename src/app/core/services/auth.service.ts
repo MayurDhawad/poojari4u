@@ -28,9 +28,52 @@ export interface LoginRequest {
 }
 
 export interface RegisterRequest {
-  name: string;
-  email: string;
-  password: string;
+  name: string,
+  email: string,
+  password: string,
+  role: string,
+  profile: {
+    personalDetails: {
+      fullName: string,
+      mobileNumber: string,
+      emailAddress: string,
+      city: string,
+      serviceAreas: [],
+      yearsofExperience: number,
+      languages: [],
+      services: [],
+      otherServices: string
+    },
+    availability: {
+      state: string,
+      city: string,
+      area: string,
+      pincode: number,
+      radiusKm: number,
+      availableDays: [],
+      startTime: string,
+      endTime: string,
+      advanceBooking: [],
+      maxBookingDays: number,
+      sameDay: boolean,
+      emergency: boolean
+    },
+    documents:{
+      url: string,
+      publicId: string,
+      originalName: string,
+      mimeType: string,
+      uploadedAt: string,
+    },
+    payment: {
+      accountName: string,
+      bankName: string,
+      accountNumberEncrypted: number,
+      accountNumberLast4: number,
+      ifsc: string,
+      upi: string
+    }
+  }
 }
 
 @Injectable({

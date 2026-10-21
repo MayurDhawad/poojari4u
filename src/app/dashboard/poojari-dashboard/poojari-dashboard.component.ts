@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, OnInit, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angular/router';
-import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
-import { MyBookingComponent } from './my-booking/my-booking.component';
+import { Component, OnInit, signal } from '@angular/core';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import { PoojariDashboardService } from './poojariDashboard.service';
 
 interface DashboardStat {
   label: string;
@@ -30,7 +29,13 @@ type BookingStatus = 'NEW REQUEST' | 'BOOKING ACCEPTED' | 'BOOKING DECLINED';
   styleUrls: ['./poojari-dashboard.component.scss'],
   imports: [CommonModule, RouterModule, RouterLink, RouterOutlet],
 })
-export class PoojariDashboardComponent {
+export class PoojariDashboardComponent implements OnInit {
+
+  constructor(private _poojariService : PoojariDashboardService){}
+
+  ngOnInit(): void {
+    this.getAvalibility();
+  }
 
   readonly isAvailable = signal(true);
   readonly mobileMenuOpen = signal(false);
@@ -41,15 +46,26 @@ export class PoojariDashboardComponent {
     verified: true
   };
 
+  getAvalibility(){
+    this._poojariService.getAvalibility().subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err: Error) => {
+        console.log(err)
+      }
+    )
+  }
+
   readonly navigation = [
     { label: 'Dashboard', icon: '⌂', route: '/poojari-dashboard/my-dashboard' },
     { label: 'Bookings', icon: '▦', route: '/poojari-dashboard/my-bookings' },
-    { label: 'My Services', icon: '🪔', route: '/poojari/services' },
-    { label: 'Availability', icon: '◷', route: '/poojari/availability' },
-    { label: 'Earnings', icon: '₹', route: '/poojari/earnings' },
-    { label: 'Reviews', icon: '☆', route: '/poojari/reviews' },
-    { label: 'My Profile', icon: '♙', route: '/poojari/profile' },
-    { label: 'Settings', icon: '⚙', route: '/poojari/settings' }
+    { label: 'My Services', icon: '🪔', route: '/poojari-dashboard/my-services' },
+    { label: 'Availability', icon: '◷', route: '/poojari-dashboard/my-availability' },
+    { label: 'Earnings', icon: '₹', route: '/poojari-dashboard/my-earnings' },
+    { label: 'Reviews', icon: '☆', route: '/poojari-dashboard/my-reviews' },
+    { label: 'My Profile', icon: '♙', route: '/poojari-dashboard/my-profile' },
+    { label: 'Settings', icon: '⚙', route: '/poojari-dashboard/settings' }
   ];
 
   readonly stats: DashboardStat[] = [

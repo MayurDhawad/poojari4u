@@ -1,0 +1,21 @@
+.card {
+  border-radius: 12px;
+}
+
+.form-control:disabled {
+  background-color: #fcfcfc;
+  border-color: #f1f1f1;
+  color: #495057;
+}
+
+.btn-warning {
+  background-color: #f58220;
+  border-color: #f58220;
+  color: #fff;
+  
+  &:hover {
+    background-color: #df7418;
+    border-color: #df7418;
+    color: #fff;
+  }
+}
