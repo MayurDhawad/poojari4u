@@ -466,8 +466,8 @@
               <div class="section-title">
                 <i class="bi bi-person-vcard"></i> Identity Verification
               </div>
-              <div class="row ">
-                <form [formGroup]="documentsForm">
+              <form [formGroup]="documentsForm">
+                <div class="row ">
                   <div class="col-lg-6">
                     <div class="document-card">
                       <h3>Government ID Proof</h3>
@@ -477,14 +477,14 @@
                         <span>Upload ID</span>
                         <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'idProof')" />
                         @if (files.idProof) {
-                          <small class="file-name">
-                            <i class="bi bi-check-circle-fill"></i> {{ files.idProof.name }}
-                          </small>
+                        <small class="file-name">
+                          <i class="bi bi-check-circle-fill"></i> {{ files.idProof.name }}
+                        </small>
                         }
                       </label>
                     </div>
                   </div>
-
+              
                   <div class="col-lg-6">
                     <div class="document-card">
                       <h3>Address Proof</h3>
@@ -494,14 +494,14 @@
                         <span>Upload Address Proof</span>
                         <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'addressProof')" />
                         @if (files.addressProof) {
-                          <small class="file-name">
-                            <i class="bi bi-check-circle-fill"></i> {{ files.addressProof.name }}
-                          </small>
+                        <small class="file-name">
+                          <i class="bi bi-check-circle-fill"></i> {{ files.addressProof.name }}
+                        </small>
                         }
                       </label>
                     </div>
                   </div>
-
+              
                   <div class="col-lg-6">
                     <div class="document-card">
                       <h3>Pooja / Vedic Qualification</h3>
@@ -511,14 +511,14 @@
                         <span>Upload Certificate</span>
                         <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'qualification')" />
                         @if (files.qualification) {
-                          <small class="file-name">
-                            <i class="bi bi-check-circle-fill"></i> {{ files.qualification.name }}
-                          </small>
+                        <small class="file-name">
+                          <i class="bi bi-check-circle-fill"></i> {{ files.qualification.name }}
+                        </small>
                         }
                       </label>
                     </div>
                   </div>
-
+              
                   <div class="col-lg-6">
                     <div class="document-card">
                       <h3>Pooja Performing Video</h3>
@@ -526,17 +526,18 @@
                       <label class="file-box">
                         <i class="bi bi-paperclip"></i>
                         <span>Upload Document</span>
-                        <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'additionalDocument')" />
+                        <input type="file" accept="video/mp4,video/webm,video/quicktime"
+                          (change)="onFileSelected($event, 'additionalDocument')" />
                         @if (files.additionalDocument) {
-                          <small class="file-name">
-                            <i class="bi bi-check-circle-fill"></i> {{ files.additionalDocument.name }}
-                          </small>
+                        <small class="file-name">
+                          <i class="bi bi-check-circle-fill"></i> {{ files.additionalDocument.name }}
+                        </small>
                         }
                       </label>
                     </div>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </section>
 
             <!-- Payment Details -->
@@ -547,12 +548,15 @@
               </div>
               <p class="section-subtitle">These details can be used to transfer your earnings after successful bookings.</p>
               
-              <div class="row g-3">
-                <form [formGroup]="paymentForm">
+              <form [formGroup]="paymentForm">
+                <div class="row g-3">
                   <div class="col-lg-6">
                     <div class="input-group-custom">
                       <label>Account Holder Name</label>
                       <input type="text" class="form-control" formControlName="accountHolderName" placeholder="Enter account holder name" />
+                      @if (isInvalid(paymentForm, 'accountHolderName')) {
+                        <small class="field-error">Account holder name is required.</small>
+                      }
                     </div>
                   </div>
 
@@ -560,6 +564,9 @@
                     <div class="input-group-custom">
                       <label>Bank Name</label>
                       <input type="text" class="form-control" formControlName="bankName" placeholder="Enter bank name" />
+                      @if (isInvalid(paymentForm, 'bankName')) {
+                        <small class="field-error">Bank name is required.</small>
+                      }
                     </div>
                   </div>
 
@@ -567,6 +574,9 @@
                     <div class="input-group-custom">
                       <label>Account Number</label>
                       <input type="password" class="form-control" formControlName="accountNumber" placeholder="Enter account number" />
+                      @if (isInvalid(paymentForm, 'accountNumber')) {
+                        <small class="field-error">Account number is required.</small>
+                      }
                     </div>
                   </div>
 
@@ -574,6 +584,9 @@
                     <div class="input-group-custom">
                       <label>Confirm Account Number</label>
                       <input type="password" class="form-control" formControlName="confirmAccountNumber" placeholder="Re-enter account number" />
+                      @if (isInvalid(paymentForm, 'confirmAccountNumber')) {
+                        <small class="field-error">Confirm account number is required.</small>
+                      }
                     </div>
                   </div>
 
@@ -581,6 +594,9 @@
                     <div class="input-group-custom">
                       <label>IFSC Code</label>
                       <input type="text" class="form-control text-uppercase" formControlName="ifscCode" maxlength="11" placeholder="Example: SBIN0000000" />
+                      @if (isInvalid(paymentForm, 'ifscCode')) {
+                        <small class="field-error">IFSC code is required.</small>
+                      }
                     </div>
                   </div>
 
@@ -588,10 +604,13 @@
                     <div class="input-group-custom">
                       <label>UPI ID</label>
                       <input type="text" class="form-control" formControlName="upiId" placeholder="example@upi" />
+                      @if (isInvalid(paymentForm, 'upiId')) {
+                        <small class="field-error">UPI iD is required.</small>
+                      }
                     </div>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </section>
 
             <!-- Declaration -->

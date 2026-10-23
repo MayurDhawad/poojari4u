@@ -10,7 +10,6 @@ interface ServiceOption {
   description: string;
   icon: string;
 }
-
 interface DayOption {
   name: string;
   selected: boolean;
@@ -172,6 +171,7 @@ export class PoojariRegistrationFlowComponent {
 
   // Step 4 - Document & Payment Uploads
   profilePreview: string | null = null;
+  profilePhoto: File | null = null;
   files: UploadedFiles = {};
   payment: PaymentDetails = {
     accountName: '',
@@ -193,10 +193,16 @@ export class PoojariRegistrationFlowComponent {
     { id: 5, label: 'Review' },
   ];
 
+  uploading = false;
+  uploadMessage = '';
+
+  private readonly maxDocumentSize = 10 * 1024 * 1024; // 10 MB
+  private readonly maxVideoSize = 100 * 1024 * 1024; // 100 MB
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private _authService: AuthService
+    private _authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -212,7 +218,10 @@ export class PoojariRegistrationFlowComponent {
       mobile: ['9923808095', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       email: ['m@m.com', [Validators.required, Validators.email]],
       city: ['Nagpur', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      areas: ['Subhash Nagar', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      areas: [
+        'Subhash Nagar',
+        [Validators.required, Validators.minLength(2), Validators.maxLength(50)],
+      ],
       experience: [3, [Validators.required]],
       languages: [null, [Validators.required]],
       services: [[]],
@@ -249,12 +258,12 @@ export class PoojariRegistrationFlowComponent {
 
   private initPaymentForm(): void {
     this.paymentForm = this.fb.group({
-      accountHolderName: ['', Validators.required],
+      accountHolderName: ['', [Validators.required]],
       bankName: ['', [Validators.required]],
-      accountNumber: ['', [Validators.email]],
-      confirmAccountNumber: ['', Validators.required],
-      ifscCode: ['', Validators.required],
-      upiId: ['', Validators.required]
+      accountNumber: ['', [Validators.required]],
+      confirmAccountNumber: ['', [Validators.required]],
+      ifscCode: ['', [Validators.required]],
+      upiId: ['', [Validators.required]],
     });
   }
 
@@ -284,10 +293,10 @@ export class PoojariRegistrationFlowComponent {
     } else {
       list.push(item);
     }
-    this.personalForm.patchValue({
-      languages: this.selectedLanguages
+    (this.personalForm.patchValue({
+      languages: this.selectedLanguages,
     }),
-    (this.selectedLanguages.length === 0) ? this.showError = true : this.showError = false
+      this.selectedLanguages.length === 0 ? (this.showError = true) : (this.showError = false));
   }
 
   // --- Step 2 Helpers ---
@@ -298,8 +307,8 @@ export class PoojariRegistrationFlowComponent {
   toggleService(serviceName: string): void {
     this.toggleSelection(this.selectedServices, serviceName);
     this.personalForm.patchValue({
-      services: this.selectedServices
-    })
+      services: this.selectedServices,
+    });
     this.showError = false;
   }
 
@@ -307,52 +316,49 @@ export class PoojariRegistrationFlowComponent {
   toggleDay(day: { name: string; selected: boolean }): void {
     day.selected = !day.selected;
 
-    const selectedDays = this.days
-      .filter(d => d.selected)
-      .map(d => d.name);
+    const selectedDays = this.days.filter((d) => d.selected).map((d) => d.name);
 
     this.availabilityForm.patchValue({
-      days: selectedDays
+      days: selectedDays,
     });
 
-    (selectedDays.length === 0) ? this.showError = true : this.showError = false;
-    this.selectedDays = selectedDays
+    selectedDays.length === 0 ? (this.showError = true) : (this.showError = false);
+    this.selectedDays = selectedDays;
   }
 
   // --- Step 4 Helpers ---
-  onProfilePhotoSelected(event: Event): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => (this.profilePreview = reader.result as string);
-      reader.readAsDataURL(file);
-      this.documentsForm.patchValue({
-        profilePhoto: file
-      })
-    }
-  }
+  // onProfilePhotoSelected(event: Event): void {
+  //   const file = (event.target as HTMLInputElement).files?.[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = () => (this.profilePreview = reader.result as string);
+  //     reader.readAsDataURL(file);
+  //     this.documentsForm.patchValue({
+  //       profilePhoto: file,
+  //     });
+  //   }
+  // }
 
-  onFileSelected(event: Event, key: keyof UploadedFiles): void {
-    const file = (event.target as HTMLInputElement).files?.[0];
-    if (file) {
-      this.files[key] = file;
-      this.documentsForm.patchValue({
-        governmentIdProof: this.files[key]
-      })
-    }
-  }
+  // onFileSelected(event: Event, key: keyof UploadedFiles): void {
+  //   const file = (event.target as HTMLInputElement).files?.[0];
+  //   if (file) {
+  //     this.files[key] = file;
+  //     this.documentsForm.patchValue({
+  //       governmentIdProof: this.files[key],
+  //     });
+  //   }
+  // }
 
   // --- Navigation & Workflow ---
   nextStep(step: number): void {
     if (this.currentStep === 1) {
       if (this.personalForm.invalid) {
         this.personalForm.markAllAsTouched();
-        if(this.selectedLanguages.length === 0){
-          this.showError = true
+        if (this.selectedLanguages.length === 0) {
+          this.showError = true;
         }
         return;
       }
-      
     }
     this.currentStep = step;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -390,92 +396,88 @@ export class PoojariRegistrationFlowComponent {
     if (this.currentStep === 3) {
       if (this.availabilityForm.invalid) {
         this.availabilityForm.markAllAsTouched();
-        if(this.selectedDays.length === 0){
+        if (this.selectedDays.length === 0) {
           this.showError = true;
           return;
         }
-      }else{
+      } else {
         this.showError = false;
         this.nextStep(4);
         return;
       }
-      // const selectedDays = this.availabilityForm.get('days')?.value ?? [];
-      // if (selectedDays.length === 0) {
-      //   this.showError = true;
-      //   return;
-      // }
-      // this.showError = false;
-      // this.nextStep(4);
-      // return;
     }
   }
 
   submitRegistration(): void {
     // Step 4 verification logic
     if (this.currentStep === 4) {
+      if (this.paymentForm.invalid) {
+        this.paymentForm.markAllAsTouched();
+        return;
+      }
       if (!this.declarationAccepted) {
         this.errorMessage = 'Please accept the declaration before proceeding.';
         return;
       }
 
       let payload = {
-        "name": this.personalForm.value.fullName || "",
-        "email": this.personalForm.value.email || "",
-        "phone": this.personalForm.value.mobile || "",
-        "password": "SecurePass123",
-        "role": "poojari",
-        "profile": {
-          "personalDetails": {
-            "fullName": this.personalForm.value.fullName || "",
-            "mobileNumber": this.personalForm.value.mobile || "",
-            "emailAddress": this.personalForm.value.email || "",
-            "city": this.personalForm.value.city || "",
-            "serviceAreas": this.personalForm.value.areas || "",
-            "yearsofExperience": this.personalForm.value.experience || "",
-            "languages": this.personalForm.value.languages || [],
-            "services": this.personalForm.value.services || [],
-            "otherServices": this.personalForm.value.otherServices || "",
+        name: this.personalForm.value.fullName || '',
+        email: this.personalForm.value.email || '',
+        phone: this.personalForm.value.mobile || '',
+        password: 'SecurePass123',
+        role: 'poojari',
+        profile: {
+          personalDetails: {
+            fullName: this.personalForm.value.fullName || '',
+            mobileNumber: this.personalForm.value.mobile || '',
+            emailAddress: this.personalForm.value.email || '',
+            city: this.personalForm.value.city || '',
+            serviceAreas: this.personalForm.value.areas || '',
+            yearsofExperience: this.personalForm.value.experience || '',
+            languages: this.personalForm.value.languages || [],
+            services: this.personalForm.value.services || [],
+            otherServices: this.personalForm.value.otherServices || '',
           },
-          "availability": {
-            "state": this.availabilityForm.value.state || "",
-            "city": this.availabilityForm.value.city || "",
-            "area": this.availabilityForm.value.area || "",
-            "pincode": this.availabilityForm.value.pincode || "",
-            "radiusKm": this.availabilityForm.value.radius || "",
-            "availableDays": this.availabilityForm.value.days || [],
-            "startTime": this.availabilityForm.value.startTime || "",
-            "endTime": this.availabilityForm.value.endTime || "",
-            "advanceBooking": this.availabilityForm.value.advanceBooking || "",
-            "maxBookingDays": this.availabilityForm.value.maxBooking || "",
-            "sameDay": this.availabilityForm.value.sameDay || false,
-            "emergency": this.availabilityForm.value.emergency || false,
+          availability: {
+            state: this.availabilityForm.value.state || '',
+            city: this.availabilityForm.value.city || '',
+            area: this.availabilityForm.value.area || '',
+            pincode: this.availabilityForm.value.pincode || '',
+            radiusKm: this.availabilityForm.value.radius || '',
+            availableDays: this.availabilityForm.value.days || [],
+            startTime: this.availabilityForm.value.startTime || '',
+            endTime: this.availabilityForm.value.endTime || '',
+            advanceBooking: this.availabilityForm.value.advanceBooking || '',
+            maxBookingDays: this.availabilityForm.value.maxBooking || '',
+            sameDay: this.availabilityForm.value.sameDay || false,
+            emergency: this.availabilityForm.value.emergency || false,
           },
-          "documents":{
-            "url": this.documentsForm.value.state || "",
-            "publicId": this.documentsForm.value.state || "",
-            "originalName": this.documentsForm.value.state || "",
-            "mimeType": this.documentsForm.value.state || "",
-            "uploadedAt": this.documentsForm.value.state || "",
+          documents: {
+            url: this.documentsForm.value.state || '',
+            publicId: this.documentsForm.value.state || '',
+            originalName: this.documentsForm.value.state || '',
+            mimeType: this.documentsForm.value.state || '',
+            uploadedAt: this.documentsForm.value.state || '',
           },
-          "payment": {
-            "accountName": this.paymentForm.value.accountHolderName || "",
-            "bankName": this.paymentForm.value.bankName || "",
-            "accountNumberEncrypted": this.paymentForm.value.accountNumber || "",
-            "accountNumberLast4": this.paymentForm.value.confirmAccountNumber || "",
-            "ifsc": this.paymentForm.value.ifscCode || "",
-            "upi": this.paymentForm.value.upiId || ""
-          }
-        }
+          payment: {
+            accountName: this.paymentForm.value.accountHolderName || '',
+            bankName: this.paymentForm.value.bankName || '',
+            accountNumberEncrypted: this.paymentForm.value.accountNumber || '',
+            accountNumberLast4: this.paymentForm.value.confirmAccountNumber || '',
+            ifsc: this.paymentForm.value.ifscCode || '',
+            upi: this.paymentForm.value.upiId || '',
+          },
+        },
       };
 
       this._authService.register(payload).subscribe(
         (res: any) => {
-          console.log(res)
+          console.log(res);
         },
         (err: Error) => {
-          console.log(err)
-        }
-      )
+          console.log(err);
+        },
+      );
 
       this.errorMessage = '';
       this.prepareReviewData();
@@ -494,7 +496,6 @@ export class PoojariRegistrationFlowComponent {
 
       this.currentStep = 5;
     }
-    
   }
 
   private prepareReviewData(): void {
@@ -508,12 +509,74 @@ export class PoojariRegistrationFlowComponent {
     this.selectedExpertise = titles;
   }
 
-
   goToHome(): void {
     this.router.navigate(['/']);
   }
 
   goToLogin(): void {
     this.router.navigate(['/login']);
+  }
+
+  onProfilePhotoSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+
+    if (!['image/jpeg', 'image/png'].includes(file.type)) {
+      this.errorMessage = 'Please select a JPG or PNG profile photo.';
+      input.value = '';
+      return;
+    }
+
+    if (file.size > this.maxDocumentSize) {
+      this.errorMessage = 'Profile photo must be smaller than 10 MB.';
+      input.value = '';
+      return;
+    }
+
+    this.errorMessage = '';
+    this.profilePhoto = file;
+
+    if (this.profilePreview) {
+      URL.revokeObjectURL(this.profilePreview);
+    }
+
+    this.profilePreview = URL.createObjectURL(file);
+  }
+
+  onFileSelected(event: Event, key: any): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+
+    const isVideo = key === 'additionalDocument';
+
+    const allowedTypes = isVideo
+      ? ['video/mp4', 'video/webm', 'video/quicktime']
+      : ['image/jpeg', 'image/png', 'application/pdf'];
+
+    const maxSize = isVideo ? this.maxVideoSize : this.maxDocumentSize;
+
+    if (!allowedTypes.includes(file.type)) {
+      this.errorMessage = isVideo
+        ? 'Please select an MP4, WebM, or MOV video.'
+        : 'Please select a JPG, PNG, or PDF document.';
+
+      input.value = '';
+      return;
+    }
+
+    if (file.size > maxSize) {
+      this.errorMessage = `File size must not exceed ${isVideo ? '100 MB' : '10 MB'}.`;
+
+      input.value = '';
+      return;
+    }
+
+    // this.files[key] = file;
+    this.errorMessage = '';
+    this.uploadMessage = '';
   }
 }
