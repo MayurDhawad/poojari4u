@@ -1,2 +1,0 @@
-import{L as Jv,in as dc,nr as uc,pn as gE}from"./chunk-D9c48n8B.js";var r=class n{constructor(){}ngOnInit(){}static ɵfac=function(e){return new(e||n)};static ɵcmp=Jv({type:n,selectors:[[`app-my-services`]],decls:2,vars:0,template:function(e,a){e&1&&(uc(0,`p`),gE(1,` my-services works!
-`),dc())},encapsulation:2})};export{r as MyServicesComponent};
