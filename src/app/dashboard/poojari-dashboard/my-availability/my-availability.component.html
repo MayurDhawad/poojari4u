@@ -84,20 +84,36 @@
           <div class="col-md-6">
             <label class="form-label small text-muted fw-bold">Advance Booking Window</label>
             <select class="form-select" [(ngModel)]="bookingRules().advanceBooking">
-              <option value="same-day">Same-Day Allowed</option>
-              <option value="next-day">Next-Day Only</option>
+              <option value="same-day">same-day</option>
+              <option value="1-day">1 day</option>
+              <option value="2-days">2 days</option>
+              <option value="3-days">3 days</option>
+              <option value="7-days">7 days</option>
             </select>
           </div>
           <div class="col-md-6">
             <label class="form-label small text-muted fw-bold">Max Booking Horizon</label>
             <select class="form-select" [(ngModel)]="bookingRules().maxBookingDays">
               <option value="7 Days">7 Days</option>
-              <option value="14 Days">14 Days</option>
+              <option value="15 Days">15 Days</option>
               <option value="30 Days">30 Days</option>
+              <option value="60 Days">60 Days</option>
+              <option value="90 Days">90 Days</option>
             </select>
           </div>
           <div class="col-12 pt-3">
-            <div class="p-3 border rounded-3 bg-light d-flex justify-content-between align-items-center">
+            <div class="px-3 py-2 border rounded-3 bg-light d-flex justify-content-between align-items-center">
+              <div>
+                <h6 class="fw-bold mb-1">Same-Day Booking Support</h6>
+                <p class="text-muted small mb-0">Accept same-day requests</p>
+              </div>
+              <div class="form-check form-switch fs-4">
+                <input class="form-check-input" type="checkbox" role="switch" [(ngModel)]="bookingRules().sameDay">
+              </div>
+            </div>
+          </div>
+          <div class="col-12 pt-3">
+            <div class="px-3 py-2 border rounded-3 bg-light d-flex justify-content-between align-items-center">
               <div>
                 <h6 class="fw-bold mb-1">Emergency Booking Support</h6>
                 <p class="text-muted small mb-0">Accept urgent last-minute ritual requests</p>

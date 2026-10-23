@@ -125,6 +125,8 @@ export class LoginComponent  {
           this.dialogRef.close('poojari-login');
         }else if(this.selectedRole == 'bajanthri'){
           this.dialogRef.close('bajanthri-login');
+        }else if(this.selectedRole == 'admin'){
+          this.dialogRef.close('admin-login');
         }else{
           this.router.navigateByUrl('/')
           this.dialogRef.close('/');
@@ -132,14 +134,7 @@ export class LoginComponent  {
       }
     },
     error: (err) => {
-       if(this.selectedRole == 'poojari'){
-          this.dialogRef.close('poojari-login');
-        }else if(this.selectedRole == 'bajanthri'){
-          this.dialogRef.close('bajanthri-login');
-        }else{
-          this.router.navigateByUrl('/')
-          this.dialogRef.close('/');
-        }
+      
       const message =
         err.error?.message || 'Unable to log in. Please try again.';
 

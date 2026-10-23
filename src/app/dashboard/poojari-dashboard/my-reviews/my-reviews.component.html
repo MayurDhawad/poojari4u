@@ -1,0 +1,124 @@
+<div class="container-fluid py-4 px-4">
+  <!-- Page Header -->
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+    <div>
+      <h2 class="fw-bold text-dark mb-1">Devotee Reviews</h2>
+      <p class="text-muted mb-0">See feedback and ratings shared by devotees for your ritual services.</p>
+    </div>
+
+    <!-- Rating Summary Card Widget -->
+    <div class="card border-0 shadow-sm px-4 py-2 bg-white rounded-4 d-flex flex-row align-items-center gap-3">
+      <div class="text-warning fs-1 lh-1">★</div>
+      <div>
+        <div class="d-flex align-items-baseline gap-2">
+          <span class="fs-4 fw-bold text-dark">{{ averageRating() }}</span>
+          <span class="text-muted small">out of 5</span>
+        </div>
+        <span class="text-muted small d-block">Based on {{ reviews().length }} reviews</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Buttons -->
+  <div class="d-flex flex-wrap gap-2 mb-4">
+    <button class="btn btn-sm px-3 rounded-pill" 
+            [ngClass]="filterRating() === 'all' ? 'btn-primary' : 'btn-light text-secondary'"
+            (click)="setFilter('all')">
+      All Reviews
+    </button>
+    <button class="btn btn-sm px-3 rounded-pill" 
+            [ngClass]="filterRating() === 5 ? 'btn-primary' : 'btn-light text-secondary'"
+            (click)="setFilter(5)">
+      ★ 5 Stars
+    </button>
+    <button class="btn btn-sm px-3 rounded-pill" 
+            [ngClass]="filterRating() === 4 ? 'btn-primary' : 'btn-light text-secondary'"
+            (click)="setFilter(4)">
+      ★ 4 Stars
+    </button>
+    <button class="btn btn-sm px-3 rounded-pill" 
+            [ngClass]="filterRating() === 3 ? 'btn-primary' : 'btn-light text-secondary'"
+            (click)="setFilter(3)">
+      ★ 3 Stars & Below
+    </button>
+  </div>
+
+  <!-- Reviews List -->
+  <div class="row g-4">
+    @for (review of filteredReviews(); track review.id) {
+      <div class="col-12">
+        <div class="card border-0 shadow-sm rounded-4 p-4 review-card">
+          <div class="d-flex justify-content-between align-items-start mb-2">
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <h5 class="fw-bold text-dark mb-0">{{ review.devoteeName }}</h5>
+                <span class="badge bg-light text-muted small"><i class="bi bi-geo-alt me-1"></i>{{ review.location }}</span>
+              </div>
+              <span class="text-primary small fw-semibold">Service: {{ review.serviceName }}</span>
+            </div>
+            <div class="text-end">
+              <!-- Star Rating display -->
+              <div class="text-warning fs-5 mb-1">
+                @for (s of [1,2,3,4,5]; track s) {
+                  <span [class.text-muted]="s > review.rating">★</span>
+                }
+              </div>
+              <span class="text-muted small">{{ review.date }}</span>
+            </div>
+          </div>
+
+          <p class="text-secondary mt-2 mb-3">{{ review.comment }}</p>
+
+          <!-- Host / Poojari Response Section if available -->
+          @if (review.response) {
+            <div class="bg-light p-3 rounded-3 border-start border-primary border-4 mt-3">
+              <span class="small fw-bold text-dark d-block mb-1">Your Response:</span>
+              <p class="small text-secondary mb-0">{{ review.response }}</p>
+            </div>
+          }
+
+          <div class="mt-3 pt-3 border-top d-flex justify-content-end">
+            <button class="btn btn-outline-primary btn-sm px-3 rounded-pill" (click)="openReplyModal(review)">
+              <i class="bi bi-reply me-1"></i> {{ review.response ? 'Edit Response' : 'Reply to Review' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    } @empty {
+      <div class="col-12 text-center py-5">
+        <div class="py-5 bg-white rounded-4 shadow-sm">
+          <i class="bi bi-star fs-1 text-muted mb-3 d-block"></i>
+          <h5 class="fw-semibold text-secondary">No reviews found</h5>
+          <p class="text-muted small mb-0">No reviews match the selected filter category.</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Reply Modal -->
+  @if (selectedReview()) {
+    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5);">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+          <div class="modal-header border-0 pb-0">
+            <h5 class="modal-title fw-bold">Reply to {{ selectedReview()?.devoteeName }}</h5>
+            <button type="button" class="btn-close" (click)="closeReplyModal()"></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="p-3 bg-light rounded-3 mb-3">
+              <p class="small text-muted mb-1 font-italic">"{{ selectedReview()?.comment }}"</p>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Your Reply</label>
+              <textarea class="form-control" rows="3" [(ngModel)]="replyText" placeholder="Write a polite response to the devotee..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer border-0 pt-0">
+            <button type="button" class="btn btn-light px-4" (click)="closeReplyModal()">Cancel</button>
+            <button type="button" class="btn btn-primary px-4" (click)="submitReply()">Post Reply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

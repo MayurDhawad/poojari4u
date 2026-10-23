@@ -10,8 +10,8 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     loadComponent: () =>
-      import('./dashboard/dashboard.component')
-        .then(m => m.DashboardComponent)
+      import('./dashboard/admin-dashboard/admin-dashboard.component')
+        .then(m => m.AdminDashboardComponent)
   },
   {
     path: 'poojari-dashboard',
@@ -53,6 +53,12 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./dashboard/poojari-dashboard/my-profile/my-profile.component')
             .then(m => m.MyProfileComponent),
+      },
+      {
+        path: 'my-reviews',
+        loadComponent: () =>
+          import('./dashboard/poojari-dashboard/my-reviews/my-reviews.component')
+            .then(m => m.MyReviewsComponent),
       },
     ],
   },

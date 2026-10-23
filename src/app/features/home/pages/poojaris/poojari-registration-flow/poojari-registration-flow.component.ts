@@ -153,7 +153,7 @@ export class PoojariRegistrationFlowComponent {
   city = '';
   area = '';
   pincode = '';
-  radius = 15;
+  radius = 50;
   days: DayOption[] = [
     { name: 'Monday', selected: false },
     { name: 'Tuesday', selected: false },
@@ -208,13 +208,13 @@ export class PoojariRegistrationFlowComponent {
 
   private initPersonalForm(): void {
     this.personalForm = this.fb.group({
-      fullName: ['Mayur', Validators.required],
-      mobile: ['9923238080', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
-      email: ['mayur@gmail.com', [Validators.email]],
-      city: ['Nagpur', Validators.required],
-      areas: ['Subhash Nagar'],
-      experience: [2, Validators.required],
-      languages: [[]],
+      fullName: ['Mayur', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      mobile: ['9923808095', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      email: ['m@m.com', [Validators.required, Validators.email]],
+      city: ['Nagpur', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      areas: ['Subhash Nagar', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      experience: [3, [Validators.required]],
+      languages: [null, [Validators.required]],
       services: [[]],
       otherServices: [''],
     });
@@ -222,18 +222,18 @@ export class PoojariRegistrationFlowComponent {
 
   private initAvailabilityForm(): void {
     this.availabilityForm = this.fb.group({
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      area: ['', Validators.required],
-      pincode: ['', Validators.required],
-      radius: [50, Validators.required],
-      days: [[], Validators.required],
-      startTime: ['', Validators.required],
-      endTime: ['', Validators.required],
-      advanceBooking: ['', Validators.required],
-      maxBooking: ['', Validators.required],
-      sameDay: ['', Validators.required],
-      emergency: ['', Validators.required],
+      state: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      area: ['', [Validators.required]],
+      pincode: ['', [Validators.required]],
+      radius: [50],
+      days: [[], [Validators.required]],
+      startTime: ['', [Validators.required]],
+      endTime: ['', [Validators.required]],
+      advanceBooking: ['', [Validators.required]],
+      maxBooking: ['', [Validators.required]],
+      sameDay: [false],
+      emergency: [true],
     });
   }
 
@@ -272,6 +272,11 @@ export class PoojariRegistrationFlowComponent {
     }
   }
 
+  onRadiusChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    this.radius = Number(input.value);
+  }
+
   toggleSelection(list: string[], item: string): void {
     const index = list.indexOf(item);
     if (index > -1) {
@@ -281,7 +286,8 @@ export class PoojariRegistrationFlowComponent {
     }
     this.personalForm.patchValue({
       languages: this.selectedLanguages
-    })
+    }),
+    (this.selectedLanguages.length === 0) ? this.showError = true : this.showError = false
   }
 
   // --- Step 2 Helpers ---
@@ -309,9 +315,8 @@ export class PoojariRegistrationFlowComponent {
       days: selectedDays
     });
 
-    console.log(this.availabilityForm.value.days)
-
-    this.showError = selectedDays.length === 0;
+    (selectedDays.length === 0) ? this.showError = true : this.showError = false;
+    this.selectedDays = selectedDays
   }
 
   // --- Step 4 Helpers ---
@@ -342,8 +347,12 @@ export class PoojariRegistrationFlowComponent {
     if (this.currentStep === 1) {
       if (this.personalForm.invalid) {
         this.personalForm.markAllAsTouched();
+        if(this.selectedLanguages.length === 0){
+          this.showError = true
+        }
         return;
       }
+      
     }
     this.currentStep = step;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -379,14 +388,25 @@ export class PoojariRegistrationFlowComponent {
 
     // Step 3 validation
     if (this.currentStep === 3) {
-      const selectedDays = this.availabilityForm.get('days')?.value ?? [];
-      if (selectedDays.length === 0) {
-        this.showError = true;
+      if (this.availabilityForm.invalid) {
+        this.availabilityForm.markAllAsTouched();
+        if(this.selectedDays.length === 0){
+          this.showError = true;
+          return;
+        }
+      }else{
+        this.showError = false;
+        this.nextStep(4);
         return;
       }
-      this.showError = false;
-      this.nextStep(4);
-      return;
+      // const selectedDays = this.availabilityForm.get('days')?.value ?? [];
+      // if (selectedDays.length === 0) {
+      //   this.showError = true;
+      //   return;
+      // }
+      // this.showError = false;
+      // this.nextStep(4);
+      // return;
     }
   }
 

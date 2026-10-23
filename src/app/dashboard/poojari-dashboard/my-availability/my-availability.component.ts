@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PoojariDashboardService } from '../poojariDashboard.service';
 
 interface DaySchedule {
   day: string;
@@ -17,23 +18,51 @@ interface DaySchedule {
 })
 export class MyAvailabilityComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _poojariDashboardService : PoojariDashboardService) { }
 
   ngOnInit() {
+    this.getPoojariAvailability();
   }
+
+  getPoojariAvailability(){
+    this._poojariDashboardService.getAvalibility().subscribe(
+      (res: any) => {
+        console.log(res.availability);
+        let data = res.availability;
+        this.serviceArea.set({
+          state: data.state,
+          city: data.city,
+          area: data.area,
+          pincode: data.pincode,
+          radiusKm: data.radiusKm
+        });
+        this.bookingRules.set({
+          advanceBooking: data.advanceBooking,
+          maxBookingDays: data.maxBookingDays,
+          sameDay: data.sameDay,
+          emergency: data.emergency
+        });
+      },
+      (err: Error) => {
+        console.log(err)
+      }
+    )
+  }
+
 // Region & Travel Settings
   serviceArea = signal({
-    state: 'Maharashtra',
-    city: 'Naveen Nagpur',
-    area: 'Dharampeth',
-    pincode: '440010',
-    radiusKm: 25
+    state: '',
+    city: '',
+    area: '',
+    pincode: '',
+    radiusKm: 0
   });
 
   // Booking Rules
   bookingRules = signal({
     advanceBooking: 'same-day', // 'same-day' | 'next-day'
     maxBookingDays: '7 Days',
+    sameDay: false,
     emergency: false
   });
 
@@ -65,17 +94,36 @@ export class MyAvailabilityComponent implements OnInit {
   }
 
   saveAvailability() {
+    // const payload = {
+    //   success: true,
+    //   availability: {
+    //     ...this.serviceArea(),
+    //     ...this.bookingRules(),
+    //     availableDays: this.weeklySchedule().filter(d => d.enabled).map(d => d.day),
+    //     sameDay: this.bookingRules().advanceBooking === 'same-day',
+    //     emergency: this.bookingRules().emergency
+    //   },
+    //   isAvailable: !this.vacationMode()
+    // };
     const payload = {
-      success: true,
-      availability: {
-        ...this.serviceArea(),
-        ...this.bookingRules(),
-        availableDays: this.weeklySchedule().filter(d => d.enabled).map(d => d.day),
-        sameDay: this.bookingRules().advanceBooking === 'same-day',
-        emergency: this.bookingRules().emergency
+      state: this.serviceArea().state,
+      city: this.serviceArea().city,
+      area: this.serviceArea().area,
+      pincode: this.serviceArea().pincode,
+      radiusKm: this.serviceArea().radiusKm,
+      advanceBooking: this.bookingRules().advanceBooking,
+      maxBookingDays: this.bookingRules().maxBookingDays,
+      sameDay: this.bookingRules().sameDay,
+      emergency: this.bookingRules().emergency,
+    }
+    this._poojariDashboardService.patchAvalibility(payload).subscribe(
+      (res: any) => {
+        console.log(res);
+       
       },
-      isAvailable: !this.vacationMode()
-    };
-    console.log('Saving complete availability payload:', payload);
+      (err: Error) => {
+        console.log(err)
+      }
+    )
   }
 }

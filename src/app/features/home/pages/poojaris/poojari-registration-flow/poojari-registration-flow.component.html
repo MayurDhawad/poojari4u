@@ -86,6 +86,9 @@
                     formControlName="email"
                     placeholder="Enter your email address"
                   />
+                   @if (isInvalid(personalForm, 'email')) {
+                    <small class="field-error">Enter a valid email address.</small>
+                  }
                 </div>
 
                 <div class="col-md-6">
@@ -109,6 +112,9 @@
                     formControlName="areas"
                     placeholder="Example: Gachibowli, Kondapur, Madhapur"
                   />
+                  @if (isInvalid(personalForm, 'areas')) {
+                    <small class="field-error">Service areas is required.</small>
+                  }
                 </div>
 
                 <div class="col-md-6">
@@ -120,6 +126,9 @@
                     formControlName="experience"
                     placeholder="Example: 10"
                   />
+                  @if (isInvalid(personalForm, 'experience')) {
+                    <small class="field-error">Years of experience is required.</small>
+                  }
                 </div>
 
                 <div class="col-md-6">
@@ -136,6 +145,9 @@
                       </label>
                     }
                   </div>
+                  @if (showError) {
+                    <small class="field-error">Please select at least one Language.</small>
+                  }
                 </div>
               </div>
             </form>
@@ -157,47 +169,49 @@
               <p>Select all the poojas and religious services you are qualified to perform.</p>
             </div>
 
-            <!-- Service Grid -->
-            <div class="row g-3 service-grid">
-              @for (service of services; track service.name) {
-                <div class="col-12 col-md-6 col-lg-4">
-                  <button
-                    type="button"
-                    class="service-card w-100 text-start"
-                    [class.selected]="isSelected(service.name)"
-                    [attr.aria-pressed]="isSelected(service.name)"
-                    (click)="toggleService(service.name)"
-                  >
-                    <div class="service-icon">{{ service.icon }}</div>
-                    <div class="service-content">
-                      <h3>{{ service.title }}</h3>
-                      <p>{{ service.description }}</p>
-                    </div>
-                    <span class="service-check">
-                      @if (isSelected(service.name)) {
-                        <span>✓</span>
-                      }
-                    </span>
-                  </button>
-                </div>
-              }
-            </div>
+            <form [formGroup]="personalForm">
+              <!-- Service Grid -->
+              <div class="row g-3 service-grid">
+                @for (service of services; track service.name) {
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <button
+                      type="button"
+                      class="service-card w-100 text-start"
+                      [class.selected]="isSelected(service.name)"
+                      [attr.aria-pressed]="isSelected(service.name)"
+                      (click)="toggleService(service.name)"
+                    >
+                      <div class="service-icon">{{ service.icon }}</div>
+                      <div class="service-content">
+                        <h3>{{ service.title }}</h3>
+                        <p>{{ service.description }}</p>
+                      </div>
+                      <span class="service-check">
+                        @if (isSelected(service.name)) {
+                          <span>✓</span>
+                        }
+                      </span>
+                    </button>
+                  </div>
+                }
+              </div>
 
-            <!-- Other Services -->
-            <div class="other-service">
-              <label for="otherServices" class="form-label">
-                Other services / Specializations
-              </label>
-              <textarea
-                id="otherServices"
-                name="otherServices"
-                class="form-control"
-                rows="4"
-                [(ngModel)]="otherServices"
-                (ngModelChange)="showError = false"
-                placeholder="Example: Navagraha Pooja, Rudrabhishekam, Saraswati Pooja..."
-              ></textarea>
-            </div>
+              <!-- Other Services -->
+              <div class="other-service">
+                <label for="otherServices" class="form-label">
+                  Other services / Specializations
+                </label>
+                <textarea
+                  id="otherServices"
+                  name="otherServices"
+                  class="form-control"
+                  rows="4"
+                  formControlName="otherServices"
+                  (ngModelChange)="showError = false"
+                  placeholder="Example: Navagraha Pooja, Rudrabhishekam, Saraswati Pooja..."
+                ></textarea>
+              </div>
+            </form>
 
             @if (showError) {
               <div class="validation-error">
@@ -242,6 +256,9 @@
                         <option [value]="item">{{ item }}</option>
                         }
                       </select>
+                      @if (isInvalid(availabilityForm, 'state')) {
+                        <small class="field-error">State is required.</small>
+                      }
                     </div>
                   </div>
             
@@ -249,6 +266,9 @@
                     <div class="input-group-custom">
                       <label for="city">City / Town</label>
                       <input id="city" type="text" class="form-control" formControlName="city" placeholder="Example: Hyderabad" />
+                      @if (isInvalid(availabilityForm, 'city')) {
+                        <small class="field-error">City / Town is required.</small>
+                      }
                     </div>
                   </div>
             
@@ -256,14 +276,20 @@
                     <div class="input-group-custom">
                       <label for="area">Area / Locality</label>
                       <input id="area" type="text" class="form-control" formControlName="area" placeholder="Example: Kukatpally" />
+                      @if (isInvalid(availabilityForm, 'area')) {
+                        <small class="field-error">Area / Locality is required.</small>
+                      }
                     </div>
                   </div>
             
                   <div class="col-12 col-md-6">
                     <div class="input-group-custom">
-                      <label for="pincode">PIN Code</label>
+                      <label for="pincode">Pin Code</label>
                       <input id="pincode" type="text" class="form-control" formControlName="pincode" maxlength="6" inputmode="numeric"
                         placeholder="Enter PIN code" />
+                      @if (isInvalid(availabilityForm, 'pincode')) {
+                        <small class="field-error">Pincode is required.</small>
+                      }
                     </div>
                   </div>
                 </div>
@@ -273,7 +299,7 @@
                     <div>Maximum Service Distance</div>
                     <div class="radius-value"><span>{{ radius }}</span> KM</div>
                   </div>
-                  <input type="range" class="form-range service-range" min="1" max="100" formControlName="radius" />
+                  <input type="range" class="form-range service-range" min="1" max="100" formControlName="radius" (input)="onRadiusChange($event)"/>
                   <small>You can receive booking requests within this distance.</small>
                 </div>
               </div>
@@ -293,6 +319,9 @@
                   </button>
                   }
                 </div>
+                @if (showError) {
+                  <small class="field-error">Please select at least one available day.</small>
+                }
               </div>
             
               <!-- Working Hours -->
@@ -305,6 +334,9 @@
                     <div class="input-group-custom">
                       <label for="startTime">Available From</label>
                       <input id="startTime" type="time" class="form-control" formControlName="startTime" />
+                      @if (isInvalid(availabilityForm, 'startTime')) {
+                        <small class="field-error">Available From is required.</small>
+                      }
                     </div>
                   </div>
             
@@ -312,6 +344,9 @@
                     <div class="input-group-custom">
                       <label for="endTime">Available Until</label>
                       <input id="endTime" type="time" class="form-control" formControlName="endTime" />
+                      @if (isInvalid(availabilityForm, 'endTime')) {
+                        <small class="field-error">Available Until is required.</small>
+                      }
                     </div>
                   </div>
                 </div>
@@ -333,6 +368,9 @@
                         <option value="3-days">3 Days Before</option>
                         <option value="7-days">7 Days Before</option>
                       </select>
+                      @if (isInvalid(availabilityForm, 'advanceBooking')) {
+                        <small class="field-error">Booking Preferences is required.</small>
+                      }
                     </div>
                   </div>
             
@@ -346,6 +384,9 @@
                         <option value="60 Days">Up to 60 Days</option>
                         <option value="90 Days">Up to 90 Days</option>
                       </select>
+                      @if (isInvalid(availabilityForm, 'maxBooking')) {
+                        <small class="field-error">Maximum Advance Booking is required.</small>
+                      }
                     </div>
                   </div>
                 </div>
@@ -372,13 +413,6 @@
                   </label>
                 </div>
               </div>
-            
-              @if (showError) {
-              <div class="validation-error">
-                <span class="error-icon">!</span>
-                <span>Please select at least one available day.</span>
-              </div>
-              }
             
               <div class="form-actions">
                 <button type="button" class="btn btn-previous" (click)="goPrevious()">

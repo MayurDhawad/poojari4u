@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PoojariDashboardService } from '../poojariDashboard.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -10,12 +11,6 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule],
 })
 export class MyProfileComponent implements OnInit {
-
-  constructor(){}
-
-  ngOnInit(): void {
-    
-  }
 
   profile = {
     fullName: 'Ravi Sharma',
@@ -29,6 +24,36 @@ export class MyProfileComponent implements OnInit {
   };
 
   isEditing = false;
+
+  constructor(private _poojariDashboardService: PoojariDashboardService){}
+
+  ngOnInit(): void {
+    this.getPoojariAvailability();
+  }
+
+  getPoojariAvailability(){
+    this._poojariDashboardService.getProfileData().subscribe(
+      (res: any) => {
+        console.log(res.profile.personalDetails);
+        let data = res.profile.personalDetails
+        this.profile = {
+          fullName : data.fullName,
+          email: data.emailAddress,
+          phone: data.mobileNumber,
+          experience: data.yearsofExperience,
+          specialization: 'Vedic Rituals, Griha Pravesh, Satyanarayan Puja',
+          languages: 'Hindi, Sanskrit, English, Marathi',
+          location: data.city,
+          bio: ''
+        }
+      },
+      (err: Error) => {
+        console.log(err)
+      }
+    )
+  }
+
+
 
   saveProfile() {
     this.isEditing = false;

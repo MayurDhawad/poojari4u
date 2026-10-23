@@ -21,23 +21,14 @@ constructor() { }
   }
 
   getAvalibility(): Observable<any> {
-    return this.http
-      .get<any>(`${this.apiUrl}/poojari/availability`)
-      .pipe(
-        tap(response => this.saveSession(response))
-      ); 
+    return this.http.get<any>(`${this.apiUrl}/poojari/availability`)
   }
 
-  private saveSession(response: any): void {
-      if (!response.success) {
-        throw new Error('Authentication response is invalid.');
-      }
-  
-      localStorage.setItem(this.tokenKey, response.token);
-      localStorage.setItem(
-        this.userKey,
-        JSON.stringify(response.user)
-      );
-    }
+  patchAvalibility(body: any){
+    return this.http.patch<any>(`${this.apiUrl}/poojari/availability`, body)
+  }
 
+  getProfileData(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/poojari/profiledata`)
+  }
 }

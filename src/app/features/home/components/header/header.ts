@@ -52,6 +52,8 @@ export class Header {
           this.router.navigateByUrl('/poojari-dashboard/my-dashboard')
         }else if(res == 'bajanthri-login'){
           this.router.navigateByUrl('/bajanthris-dashboard')
+        }else if(res == 'admin-login'){
+          this.router.navigateByUrl('/dashboard')
         }else{
           this.router.navigate(['/']);
         }
@@ -63,7 +65,9 @@ export class Header {
         }else if(res == 'poojari-login'){
           this.router.navigateByUrl('/poojari-dashboard/my-dashboard')
         }else if(res == 'bajanthri-login'){
-          this.router.navigateByUrl('/bajanthris-dashboard')
+          this.router.navigateByUrl('/bajanthris-dashboard/my-dashboard')
+        }else if(res == 'admin-login'){
+          this.router.navigateByUrl('/dashboard')
         }else{
           this.router.navigate(['/']);
         }

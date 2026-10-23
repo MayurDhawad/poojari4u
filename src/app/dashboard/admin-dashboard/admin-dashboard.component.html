@@ -1,0 +1,388 @@
+
+<div class="admin-layout">
+  <!-- Mobile overlay -->
+  <div
+    class="sidebar-overlay"
+    *ngIf="sidebarOpen"
+    (click)="closeSidebar()">
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" [class.sidebar-open]="sidebarOpen">
+    <a routerLink="/admin" class="brand" (click)="closeSidebar()">
+      <span class="brand-icon">ॐ</span>
+      <span>
+        <strong>Poojari4U</strong>
+        <small>ADMIN PANEL</small>
+      </span>
+    </a>
+
+    <div class="sidebar-label">WORKSPACE</div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/admin"
+         [routerLinkActiveOptions]="{ exact: true }"
+         routerLinkActive="active"
+         class="nav-item"
+         (click)="closeSidebar()">
+        <span>▦</span> Dashboard
+      </a>
+
+      <a routerLink="/admin/users"
+         routerLinkActive="active"
+         class="nav-item"
+         (click)="closeSidebar()">
+        <span>♙</span> All Users
+      </a>
+
+      <a routerLink="/admin/poojaris"
+         routerLinkActive="active"
+         class="nav-item"
+         (click)="closeSidebar()">
+        <span>ॐ</span> Poojari Management
+      </a>
+
+      <a routerLink="/admin/bajantris"
+         routerLinkActive="active"
+         class="nav-item"
+         (click)="closeSidebar()">
+        <span>♫</span> Bajantri Management
+      </a>
+
+      <div class="sidebar-label mt-4">MANAGEMENT</div>
+
+      <a routerLink="/admin/reviews"
+         routerLinkActive="active"
+         class="nav-item"
+         (click)="closeSidebar()">
+        <span>✓</span> Profile Reviews
+        <span class="nav-count">12</span>
+      </a>
+
+      <a routerLink="/admin/bookings"
+         routerLinkActive="active"
+         class="nav-item"
+         (click)="closeSidebar()">
+        <span>▣</span> Bookings
+      </a>
+
+      <a routerLink="/admin/reports"
+         routerLinkActive="active"
+         class="nav-item"
+         (click)="closeSidebar()">
+        <span>▤</span> Reports & Analytics
+      </a>
+
+      <!-- <div class="sidebar-label mt-4">SYSTEM</div>
+
+      <a routerLink="/admin/settings"
+         routerLinkActive="active"
+         class="nav-item"
+         (click)="closeSidebar()">
+        <span>⚙</span> Settings
+      </a> -->
+    </nav>
+
+    <!-- <div class="sidebar-footer">
+      <div class="admin-avatar">A</div>
+      <div class="admin-identity">
+        <strong>Administrator</strong>
+        <small>Platform Admin</small>
+      </div>
+      <button type="button" class="logout-button"
+              aria-label="Logout">
+        ↗
+      </button>
+    </div> -->
+  </aside>
+
+  <!-- Main content -->
+  <main class="admin-main">
+    <header class="topbar">
+      <div class="d-flex align-items-center gap-3">
+        <button class="mobile-menu" type="button"
+                (click)="toggleSidebar()"
+                aria-label="Toggle sidebar">
+          ☰
+        </button>
+
+        <div>
+          <div class="breadcrumb-text">Workspace / Overview</div>
+          <h1 class="page-title">Dashboard</h1>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <button type="button" class="icon-button"
+                aria-label="Notifications">
+          ♧
+          <span class="notification-dot"></span>
+        </button>
+        <div class="topbar-avatar">A</div>
+      </div>
+    </header>
+
+    <section class="dashboard-content">
+      <div class="welcome-section">
+        <div>
+          <h2>Namaste, Administrator 🙏</h2>
+          <p>Here's what's happening across your Poojari4U platform.</p>
+        </div>
+        <button type="button" class="btn btn-gold"
+                (click)="selectedStatus = 'pending'">
+          Review Pending Profiles
+        </button>
+      </div>
+
+      <!-- Statistics -->
+      <div class="row g-3 stats-row">
+        <div class="col-12 col-sm-6 col-xl-3"
+             *ngFor="let stat of stats">
+          <a class="stat-card"
+             [routerLink]="stat.route">
+            <div class="stat-top">
+              <span class="stat-icon" [ngClass]="stat.color">
+                {{ stat.icon }}
+              </span>
+              <span class="stat-change"
+                    [class.needs-attention]="stat.color === 'purple'">
+                {{ stat.change }}
+              </span>
+            </div>
+            <div class="stat-value">{{ stat.value | number }}</div>
+            <div class="stat-title">{{ stat.title }}</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Analytics and actions -->
+      <div class="row g-3 mt-1">
+        <div class="col-12 col-xl-8">
+          <section class="panel analytics-panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Platform Overview</h3>
+                <p>User distribution across account roles</p>
+              </div>
+              <select class="form-select period-select"
+                      [(ngModel)]="activePeriod"
+                      aria-label="Analytics period">
+                <option>7 days</option>
+                <option>30 days</option>
+                <option>90 days</option>
+              </select>
+            </div>
+
+            <div class="chart-summary">
+              <div>
+                <span class="chart-dot blue-dot"></span>
+                <span>Poojaris</span>
+                <strong>186</strong>
+              </div>
+              <div>
+                <span class="chart-dot gold-dot"></span>
+                <span>Bajantris</span>
+                <strong>74</strong>
+              </div>
+              <div>
+                <span class="chart-dot green-dot"></span>
+                <span>Admins</span>
+                <strong>—</strong>
+              </div>
+            </div>
+
+            <div class="distribution-chart">
+              <div class="chart-row">
+                <div class="chart-label">
+                  <span>Poojaris</span><strong>186</strong>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar bg-blue"
+                       style="width: 72%"></div>
+                </div>
+              </div>
+
+              <div class="chart-row">
+                <div class="chart-label">
+                  <span>Bajantris</span><strong>74</strong>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar bg-gold"
+                       style="width: 38%"></div>
+                </div>
+              </div>
+
+              <div class="chart-row">
+                <div class="chart-label">
+                  <span>Pending profiles</span><strong>12</strong>
+                </div>
+                <div class="progress">
+                  <div class="progress-bar bg-green"
+                       style="width: 18%"></div>
+                </div>
+              </div>
+            </div>
+
+            <p class="chart-note">
+              Illustrative figures. Connect your analytics API to display
+              live registration trends.
+            </p>
+          </section>
+        </div>
+
+        <div class="col-12 col-xl-4">
+          <section class="panel quick-panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Quick Actions</h3>
+                <p>Common administrative tasks</p>
+              </div>
+            </div>
+
+            <a routerLink="/admin/users" class="quick-action">
+              <span class="quick-icon blue">♙</span>
+              <span>
+                <strong>Manage Users</strong>
+                <small>View and manage accounts</small>
+              </span>
+              <span class="action-arrow">›</span>
+            </a>
+
+            <a routerLink="/admin/reviews" class="quick-action">
+              <span class="quick-icon orange">✓</span>
+              <span>
+                <strong>Review Profiles</strong>
+                <small>Check submitted registrations</small>
+              </span>
+              <span class="action-arrow">›</span>
+            </a>
+
+            <a routerLink="/admin/reports" class="quick-action">
+              <span class="quick-icon purple">▤</span>
+              <span>
+                <strong>View Reports</strong>
+                <small>Review platform activity</small>
+              </span>
+              <span class="action-arrow">›</span>
+            </a>
+          </section>
+        </div>
+      </div>
+
+      <!-- Recent registrations -->
+      <section class="panel users-panel mt-4">
+        <div class="panel-heading users-heading">
+          <div>
+            <h3>Recent Registrations</h3>
+            <p>Manage the latest registered accounts</p>
+          </div>
+          <a routerLink="/admin/users" class="view-all">
+            View all users →
+          </a>
+        </div>
+
+        <div class="filters-row">
+          <div class="search-box">
+            <span>⌕</span>
+            <input type="search"
+                   class="form-control"
+                   placeholder="Search by name or email..."
+                   [(ngModel)]="searchTerm">
+          </div>
+
+          <select class="form-select filter-select"
+                  [(ngModel)]="selectedRole"
+                  aria-label="Filter by role">
+            <option value="all">All roles</option>
+            <option value="poojari">Poojari</option>
+            <option value="bajantri">Bajantri</option>
+            <option value="admin">Admin</option>
+          </select>
+
+          <select class="form-select filter-select"
+                  [(ngModel)]="selectedStatus"
+                  aria-label="Filter by status">
+            <option value="all">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-middle admin-table">
+            <thead>
+              <tr>
+                <th>USER</th>
+                <th>ROLE</th>
+                <th>REGISTERED</th>
+                <th>STATUS</th>
+                <th>ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of filteredUsers">
+                <td>
+                  <div class="user-cell">
+                    <div class="user-avatar">
+                      {{ user.name.charAt(0) }}
+                    </div>
+                    <div>
+                      <strong>{{ user.name }}</strong>
+                      <small>{{ user.email }}</small>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="role-label"
+                        [ngClass]="user.role">
+                    {{ user.role | titlecase }}
+                  </span>
+                </td>
+                <td>{{ user.joined }}</td>
+                <td>
+                  <span class="status-badge"
+                        [ngClass]="user.status.toLowerCase()">
+                    {{ user.status }}
+                  </span>
+                </td>
+                <td>
+                  <div class="d-flex gap-2">
+                    <button type="button"
+                            class="btn btn-sm btn-outline-secondary"
+                            *ngIf="user.status === 'Pending'"
+                            (click)="setStatus(user, 'Approved')">
+                      Approve
+                    </button>
+                    <button type="button"
+                            class="btn btn-sm btn-light"
+                            [routerLink]="user.role === 'poojari'
+                              ? '/admin/poojaris'
+                              : '/admin/bajantris'">
+                      View
+                    </button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr *ngIf="filteredUsers.length === 0">
+                <td colspan="5" class="empty-state">
+                  No registrations match your filters.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          Showing {{ filteredUsers.length }} registrations
+          <span>Sample data — API integration pending</span>
+        </div>
+      </section>
+
+      <footer class="dashboard-footer">
+        © 2026 Poojari4U. Your Poojari. Your Puja. Your Way.
+      </footer>
+    </section>
+  </main>
+</div>
