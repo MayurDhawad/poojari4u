@@ -49,6 +49,12 @@ export const routes: Routes = [
             .then(m => m.MyAvailabilityComponent),
       },
       {
+        path: 'my-earnings',
+        loadComponent: () =>
+          import('./dashboard/poojari-dashboard/my-earnings/my-earnings.component')
+            .then(m => m.MyEarningsComponent),
+      },
+      {
         path: 'my-profile',
         loadComponent: () =>
           import('./dashboard/poojari-dashboard/my-profile/my-profile.component')

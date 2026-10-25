@@ -26,7 +26,7 @@
       </div>
     }
 
-    @if (bookingStatus() === 'NEW REQUEST') {
+    @if (bookingStatus() === 'BOOKING ACCEPTED') {
       <div class="result-message accepted-message" role="status">
         <span class="result-icon">✓</span>
         <div>
@@ -36,7 +36,7 @@
       </div>
     }
 
-    @if (bookingStatus() === 'NEW REQUEST') {
+    @if (bookingStatus() === 'BOOKING DECLINED') {
       <div class="result-message declined-message" role="status">
         <span class="result-icon">!</span>
         <div>
@@ -46,7 +46,7 @@
       </div>
     }
 
-    <section>
+    <section class="d-none">
       <!-- Success Card Container -->
       <div class="card border-0 shadow-sm rounded-4 mb-4 p-5 text-center bg-white">
     

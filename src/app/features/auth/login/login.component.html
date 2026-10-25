@@ -100,6 +100,66 @@
         </a>
       </div>
       <div class="text-center text-muted fs-7">
+        Forgot password?
+        <a role="button" class="text-purple fw-bold text-decoration-none ms-1 cursor-pointer" (click)="onforgotPassword()">
+          Click here
+        </a>
+      </div>
+      <div class="text-center text-muted fs-7">
+        Track your application here
+        <a role="button" class="text-purple fw-bold text-decoration-none ms-1 cursor-pointer"
+          (click)="onApplicationStatusClick()">
+          Application status
+        </a>
+      </div>
+    </ng-container>
+    }
+
+    <!-- STEP 2: Forgot Password -->
+    @if(currentStep === 3){
+    <ng-container>
+      <!-- Back Link -->
+      <button type="button"
+        class="btn-back border-0 bg-transparent p-0 position-absolute text-purple text-decoration-none fw-medium"
+        (click)="goBackToRoleSelection()">
+        &larr; Back
+      </button>
+
+      <!-- Header -->
+      <div class="text-center mt-3 mb-4">
+        <!-- <h2 class="brand-title fw-bold mb-3">
+          Poojari<span class="text-orange">4U</span>
+        </h2> -->
+        <h3 class="card-title fw-bold text-purple mb-1">Forgot Password</h3>
+        <p class="text-secondary fs-7 mb-0">Update you password here!</p>
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="forgotForm" (ngSubmit)="onLoginSubmit()">
+        <!-- email Input -->
+        <div class="mb-3">
+          <label for="email" class="form-label text-dark fw-semibold fs-7 mb-2">
+            Email
+          </label>
+          <input type="text" id="email" formControlName="email" class="form-control custom-input py-2 px-3"
+            placeholder="Enter mobile number or email"
+            [class.is-invalid]="forgotForm.get('identifier')?.touched && forgotForm.get('identifier')?.invalid">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-purple w-100 py-2.5 rounded-3 fw-semibold text-white mb-4">
+          Submit
+        </button>
+      </form>
+
+      <!-- Registration Footer Link -->
+      <div class="text-center text-muted fs-7">
+        Are you a new {{ selectedRoleLabel }}?
+        <a role="button" class="text-purple fw-bold text-decoration-none ms-1 cursor-pointer" (click)="onRegisterClick()">
+          Click here to Register
+        </a>
+      </div>
+      <div class="text-center text-muted fs-7">
         Track your application here
         <a role="button" class="text-purple fw-bold text-decoration-none ms-1 cursor-pointer"
           (click)="onApplicationStatusClick()">

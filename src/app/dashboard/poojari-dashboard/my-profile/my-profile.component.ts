@@ -19,8 +19,15 @@ export class MyProfileComponent implements OnInit {
     experience: '8+ Years',
     specialization: 'Vedic Rituals, Griha Pravesh, Satyanarayan Puja',
     languages: 'Hindi, Sanskrit, English, Marathi',
-    location: 'Nagpur, Maharashtra',
-    bio: 'Certified Vedic priest specializing in traditional housewarmings, havan, and wedding ceremonies with deep knowledge of ancient scriptures.'
+    city: 'Nagpur, Maharashtra',
+    serviceAreas: 'Nagpur',
+    bio: 'Certified Vedic priest specializing in traditional housewarmings, havan, and wedding ceremonies with deep knowledge of ancient scriptures.',
+    accountHolderName: 'Ravi Sharma',
+    bankName: 'State Bank of India',
+    accountNumber: '123456789',
+    confirmAccountNumber: '123456789',
+    ifscCode: 'SBIN0000015',
+    upiId: 'ravi@sbi'
   };
 
   isEditing = false;
@@ -43,8 +50,15 @@ export class MyProfileComponent implements OnInit {
           experience: data.yearsofExperience,
           specialization: 'Vedic Rituals, Griha Pravesh, Satyanarayan Puja',
           languages: 'Hindi, Sanskrit, English, Marathi',
-          location: data.city,
-          bio: ''
+          city: data.city,
+          serviceAreas: data.serviceAreas,
+          bio: '',
+          accountHolderName: '',
+          bankName: '',
+          accountNumber: '',
+          confirmAccountNumber: '',
+          ifscCode: '',
+          upiId: ''
         }
       },
       (err: Error) => {
@@ -53,7 +67,13 @@ export class MyProfileComponent implements OnInit {
     )
   }
 
-
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      // Handle file upload logic or preview here
+    }
+  }
 
   saveProfile() {
     this.isEditing = false;

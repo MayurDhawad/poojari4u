@@ -56,6 +56,7 @@ export class LoginComponent  {
 
   selectedRole: UserRole = 'poojari';
   loginForm: FormGroup;
+  forgotForm: FormGroup;
   payload: any;
   loginError = '';
 
@@ -77,6 +78,10 @@ export class LoginComponent  {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
+
+    this.forgotForm = this.fb.group({
+      email: ['', [Validators.required]]
+    })
   }
 
   // Get human-readable role name for title/subtitle
@@ -91,7 +96,6 @@ export class LoginComponent  {
 
   goToLogin(): void {
     this.currentStep = 2;
-
   }
 
   goBackToHome(): void {
@@ -166,6 +170,10 @@ export class LoginComponent  {
     }
   }
 
+  onforgotPassword(){
+    this.currentStep = 3;
+  }
+
   onApplicationStatusClick(){
     const dialogRef = this.dialog.open(ApplicationTrackingComponent, {
       // maxWidth: '60vw',
@@ -174,7 +182,6 @@ export class LoginComponent  {
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         console.log('result:', res);
-        
       }
     });
   }
