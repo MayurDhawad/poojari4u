@@ -95,7 +95,8 @@ export class AuthService {
       );
   }
 
-  register(data: RegisterRequest): Observable<AuthResponse> {
+  // register(data: RegisterRequest): Observable<AuthResponse> {   
+  register(data: any): Observable<AuthResponse> {
     return this.http
       .post<AuthResponse>(`${this.apiUrl}/auth/register`, data)
       .pipe(
@@ -164,6 +165,18 @@ export class AuthService {
       .pipe(
         tap(() => this.clearSession())
       );
+  }
+
+  uploadDocuments(formData: FormData) {
+    return this.http.post(`${this.apiUrl}/poojari/profile/documents`,
+      formData
+    );
+  }
+
+  getProfileDocuments() {
+    return this.http.get<any>(
+      `${this.apiUrl}/poojari/profile/documents`
+    );
   }
 
   clearSession(): void {

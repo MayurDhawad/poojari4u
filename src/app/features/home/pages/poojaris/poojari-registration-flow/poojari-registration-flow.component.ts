@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../../core/services/auth.service';
 
@@ -23,7 +23,13 @@ interface PaymentDetails {
   ifsc: string;
   upi: string;
 }
-
+interface UploadedDocument {
+  url: string;
+  publicId: string;
+  originalName: string;
+  mimeType: string;
+  uploadedAt: string;
+}
 interface UploadedFiles {
   idProof?: File;
   addressProof?: File;
@@ -231,16 +237,16 @@ export class PoojariRegistrationFlowComponent {
 
   private initAvailabilityForm(): void {
     this.availabilityForm = this.fb.group({
-      state: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      area: ['', [Validators.required]],
-      pincode: ['', [Validators.required]],
+      state: ['', []],
+      city: ['', []],
+      area: ['', []],
+      pincode: ['', []],
       radius: [50],
-      days: [[], [Validators.required]],
-      startTime: ['', [Validators.required]],
-      endTime: ['', [Validators.required]],
-      advanceBooking: ['', [Validators.required]],
-      maxBooking: ['', [Validators.required]],
+      days: [[], []],
+      startTime: ['', []],
+      endTime: ['', []],
+      advanceBooking: ['', []],
+      maxBooking: ['', []],
       sameDay: [false],
       emergency: [true],
     });
@@ -248,23 +254,50 @@ export class PoojariRegistrationFlowComponent {
 
   private initDocumentsForm(): void {
     this.documentsForm = this.fb.group({
-      profilePhoto: ['', Validators.required],
-      governmentIdProof: ['', Validators.required],
-      addressProof: ['', [Validators.required]],
-      poojaVedicQualification: ['', [Validators.required]],
-      poojaPerformingVideo: ['', Validators.required],
+      profilePhoto: [null as File | null, Validators.required],
+      governmentIdProof: [null as File | null, Validators.required],
+      addressProof: [null as File | null, Validators.required],
+      poojaVedicQualification: [null as File | null, Validators.required],
+      poojaPerformingVideo: [null as File | null, Validators.required]
     });
   }
 
+  // private initPaymentForm(): void {
+  //   this.paymentForm = this.fb.group({
+  //     accountHolderName: ['', [Validators.required]],
+  //     bankName: ['', [Validators.required]],
+  //     accountNumber: ['', [Validators.required]],
+  //     confirmAccountNumber: ['', [Validators.required]],
+  //     ifscCode: ['', [Validators.required]],
+  //     upiId: ['', [Validators.required]],
+  //   });
+  // }
+
   private initPaymentForm(): void {
     this.paymentForm = this.fb.group({
-      accountHolderName: ['', [Validators.required]],
-      bankName: ['', [Validators.required]],
-      accountNumber: ['', [Validators.required]],
-      confirmAccountNumber: ['', [Validators.required]],
-      ifscCode: ['', [Validators.required]],
-      upiId: ['', [Validators.required]],
-    });
+      accountHolderName: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(100),Validators.pattern(/^[a-zA-Z\s.'-]+$/)]],
+      bankName: ['',[Validators.required,Validators.minLength(2),Validators.maxLength(100),Validators.pattern(/^[a-zA-Z0-9\s&.'()-]+$/)]],
+      accountNumber: ['',[Validators.required,Validators.pattern(/^[0-9]{9,18}$/)]],
+      confirmAccountNumber: ['',[Validators.required]],
+      ifscCode: ['',[Validators.required,Validators.pattern(/^[A-Z]{4}0[A-Z0-9]{6}$/)]],
+      upiId: ['',[Validators.required,Validators.pattern(/^[a-zA-Z0-9._-]{2,256}@[a-zA-Z0-9.-]{2,64}$/)]]
+    },
+    {validators: this.accountNumberMatchValidator})
+  };
+
+  private accountNumberMatchValidator(
+    control: AbstractControl
+  ): ValidationErrors | null {
+    const accountNumber = control.get('accountNumber')?.value;
+    const confirmAccountNumber = control.get('confirmAccountNumber')?.value;
+
+    if (!accountNumber || !confirmAccountNumber) {
+      return null;
+    }
+
+    return accountNumber === confirmAccountNumber
+      ? null
+      : { accountNumberMismatch: true };
   }
 
   // --- Step 1 Helpers ---
@@ -327,25 +360,69 @@ export class PoojariRegistrationFlowComponent {
   }
 
   // --- Step 4 Helpers ---
-  // onProfilePhotoSelected(event: Event): void {
-  //   const file = (event.target as HTMLInputElement).files?.[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onload = () => (this.profilePreview = reader.result as string);
-  //     reader.readAsDataURL(file);
-  //     this.documentsForm.patchValue({
-  //       profilePhoto: file,
-  //     });
-  //   }
-  // }
+  onProfilePhotoSelected(event: Event): void {
+   const input = event.target as HTMLInputElement;
+   const file = input.files?.[0];
+
+    if (file) {
+
+      const formData = new FormData();
+      formData.append('profilePhoto', file, file.name);
+      console.log(formData)
+
+      const reader = new FileReader();
+      reader.onload = () => (this.profilePreview = reader.result as string);
+      reader.readAsDataURL(file);
+
+      // Allow JPG and PNG only
+      if (!['image/jpeg', 'image/png'].includes(file.type)) {
+        alert('Please select a JPG or PNG image.');
+        input.value = '';
+        return;
+      }
+
+      // Maximum size: 5 MB
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Profile photo must be smaller than 5 MB.');
+        input.value = '';
+        return;
+      }
+      this.profilePhoto = file;
+      this.documentsForm.patchValue({
+        profilePhoto: file,
+      });
+      console.log(this.documentsForm.value.profilePhoto)
+    }
+  }
+
+  onFileSelected(event: Event, fieldName: string): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+
+    const control = this.documentsForm.get(fieldName);
+
+    control?.setValue(file);
+    control?.markAsTouched();
+    control?.updateValueAndValidity();
+  }
 
   // onFileSelected(event: Event, key: keyof UploadedFiles): void {
   //   const file = (event.target as HTMLInputElement).files?.[0];
   //   if (file) {
   //     this.files[key] = file;
-  //     this.documentsForm.patchValue({
-  //       governmentIdProof: this.files[key],
-  //     });
+
+  //   const controlMap: Record<keyof UploadedFiles, string> = {
+  //     idProof: 'governmentIdProof',
+  //     addressProof: 'addressProof',
+  //     qualification: 'poojaVedicQualification',
+  //     additionalDocument: 'poojaPerformingVideo'
+  //   };
+
+  //   this.documentsForm.patchValue({
+  //     [controlMap[key]]: file
+  //   });
   //   }
   // }
 
@@ -377,6 +454,33 @@ export class PoojariRegistrationFlowComponent {
 
   previousStep(): void {
     this.goPrevious();
+  }
+
+  uploadDocuments(): void {
+    if (this.documentsForm.invalid) {
+      this.documentsForm.markAllAsTouched();
+      return;
+    }
+
+    const formData = new FormData();
+
+    Object.entries(this.documentsForm.getRawValue()).forEach(
+      ([key, value]) => {
+        if (value instanceof File) {
+          formData.append(key, value, value.name);
+        }
+      }
+    );
+
+    this._authService.uploadDocuments(formData)
+      .subscribe({
+        next: (response) => {
+          console.log('Upload successful:', response);
+        },
+        error: (error) => {
+          console.error('Upload failed:', error);
+        }
+      });
   }
 
   continueRegistration(): void {
@@ -420,7 +524,9 @@ export class PoojariRegistrationFlowComponent {
         return;
       }
 
-      let payload = {
+      this.uploadDocuments();
+
+      let payload: any = {
         name: this.personalForm.value.fullName || '',
         email: this.personalForm.value.email || '',
         phone: this.personalForm.value.mobile || '',
@@ -453,11 +559,11 @@ export class PoojariRegistrationFlowComponent {
             emergency: this.availabilityForm.value.emergency || false,
           },
           documents: {
-            url: this.documentsForm.value.state || '',
-            publicId: this.documentsForm.value.state || '',
-            originalName: this.documentsForm.value.state || '',
-            mimeType: this.documentsForm.value.state || '',
-            uploadedAt: this.documentsForm.value.state || '',
+            profilePhoto: this.documentsForm.value.profilePhoto,
+            governmentIdProof: this.documentsForm.value.governmentIdProof || '',
+            addressProof: this.documentsForm.value.addressProof || '',
+            poojaVedicQualification: this.documentsForm.value.poojaVedicQualification || '',
+            poojaPerformingVideo: this.documentsForm.value.poojaPerformingVideo || '',
           },
           payment: {
             accountName: this.paymentForm.value.accountHolderName || '',
@@ -517,66 +623,4 @@ export class PoojariRegistrationFlowComponent {
     this.router.navigate(['/login']);
   }
 
-  onProfilePhotoSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-
-    if (!file) return;
-
-    if (!['image/jpeg', 'image/png'].includes(file.type)) {
-      this.errorMessage = 'Please select a JPG or PNG profile photo.';
-      input.value = '';
-      return;
-    }
-
-    if (file.size > this.maxDocumentSize) {
-      this.errorMessage = 'Profile photo must be smaller than 10 MB.';
-      input.value = '';
-      return;
-    }
-
-    this.errorMessage = '';
-    this.profilePhoto = file;
-
-    if (this.profilePreview) {
-      URL.revokeObjectURL(this.profilePreview);
-    }
-
-    this.profilePreview = URL.createObjectURL(file);
-  }
-
-  onFileSelected(event: Event, key: any): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-
-    if (!file) return;
-
-    const isVideo = key === 'additionalDocument';
-
-    const allowedTypes = isVideo
-      ? ['video/mp4', 'video/webm', 'video/quicktime']
-      : ['image/jpeg', 'image/png', 'application/pdf'];
-
-    const maxSize = isVideo ? this.maxVideoSize : this.maxDocumentSize;
-
-    if (!allowedTypes.includes(file.type)) {
-      this.errorMessage = isVideo
-        ? 'Please select an MP4, WebM, or MOV video.'
-        : 'Please select a JPG, PNG, or PDF document.';
-
-      input.value = '';
-      return;
-    }
-
-    if (file.size > maxSize) {
-      this.errorMessage = `File size must not exceed ${isVideo ? '100 MB' : '10 MB'}.`;
-
-      input.value = '';
-      return;
-    }
-
-    // this.files[key] = file;
-    this.errorMessage = '';
-    this.uploadMessage = '';
-  }
 }

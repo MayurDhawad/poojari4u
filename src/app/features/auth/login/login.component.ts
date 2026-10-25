@@ -106,42 +106,53 @@ export class LoginComponent  {
   }
 
   onLoginSubmit(): void {
-  if (this.loginForm.invalid) {
-    this.loginForm.markAllAsTouched();
-    return;
-  }
-
-  const payload = {
-    email: this.loginForm.value.email!,
-    password: this.loginForm.value.password!
-  };
-
-  this._authService.login(payload).subscribe({
-    next: (res) => {
-      localStorage.setItem('token', res.token)
-      this.selectRole = res['user'].role
-      if (res.success) {
-        if(this.selectedRole == 'poojari'){
-          this.dialogRef.close('poojari-login');
-        }else if(this.selectedRole == 'bajanthri'){
-          this.dialogRef.close('bajanthri-login');
-        }else if(this.selectedRole == 'admin'){
-          this.dialogRef.close('admin-login');
-        }else{
-          this.router.navigateByUrl('/')
-          this.dialogRef.close('/');
-        }
-      }
-    },
-    error: (err) => {
-      
-      const message =
-        err.error?.message || 'Unable to log in. Please try again.';
-
-      // Bind this property to your login error message in the template.
-      this.loginError = message;
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
     }
-  });
+
+    const payload = {
+      email: this.loginForm.value.email!,
+      password: this.loginForm.value.password!
+    };
+
+    this._authService.login(payload).subscribe({
+      next: (res) => {
+        localStorage.setItem('token', res.token)
+        this.selectRole = res['user'].role
+        if (res.success) {
+          if(this.selectedRole == 'poojari'){
+            this.dialogRef.close('poojari-login');
+          }else if(this.selectedRole == 'bajanthri'){
+            this.dialogRef.close('bajanthri-login');
+          }else if(this.selectedRole == 'admin'){
+            this.dialogRef.close('admin-login');
+          }else{
+            this.router.navigateByUrl('/')
+            this.dialogRef.close('/');
+          }
+        }
+      },
+      error: (err) => {
+        
+        const message =
+          err.error?.message || 'Unable to log in. Please try again.';
+
+        // Bind this property to your login error message in the template.
+        this.loginError = message;
+      }
+    });
+
+    if(this.selectedRole == 'poojari'){
+      this.dialogRef.close('poojari-login');
+    }else if(this.selectedRole == 'bajanthri'){
+      this.dialogRef.close('bajanthri-login');
+    }else if(this.selectedRole == 'admin'){
+      this.dialogRef.close('admin-login');
+    }else{
+      this.router.navigateByUrl('/')
+      this.dialogRef.close('/');
+    }
   }
 
   onRegisterClick(): void {

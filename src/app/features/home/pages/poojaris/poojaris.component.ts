@@ -7,6 +7,7 @@ import { PoojariProfileCardComponent } from './profile-card/poojari-profile-card
 import { Router } from '@angular/router';
 import { HeroData, HeroFeature, HeroSectionComponent, HeroSlide } from '../../../shared/hero-section/hero-section/hero-section.component';
 import { showSection } from '../../../shared/search-box/search-box';
+import { AuthService } from '../../../../core/services/auth.service';
 
 export interface SearchCriteria {
   ceremony: string;
@@ -79,7 +80,9 @@ export class PoojarisComponent implements OnInit {
     private router: Router,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+   
+  }
 
 
   searchText = '';

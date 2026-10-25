@@ -454,7 +454,7 @@
                     <p>Use a recent, clear photograph. JPG or PNG recommended.</p>
                     <label class="upload-button">
                       <i class="bi bi-upload"></i> Choose Photo
-                      <input type="file" accept="image/jpeg,image/png" (change)="onProfilePhotoSelected($event)" />
+                      <input type="file" accept="image/jpeg,image/png" (change)="onFileSelected($event, 'profilePhoto')" />
                     </label>
                   </div>
                 </div>
@@ -475,7 +475,7 @@
                       <label class="file-box">
                         <i class="bi bi-file-earmark-text"></i>
                         <span>Upload ID</span>
-                        <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'idProof')" />
+                        <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'governmentIdProof')" />
                         @if (files.idProof) {
                         <small class="file-name">
                           <i class="bi bi-check-circle-fill"></i> {{ files.idProof.name }}
@@ -509,7 +509,7 @@
                       <label class="file-box">
                         <i class="bi bi-file-earmark-medical"></i>
                         <span>Upload Certificate</span>
-                        <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'qualification')" />
+                        <input type="file" accept=".jpg,.jpeg,.png,.pdf" (change)="onFileSelected($event, 'poojaVedicQualification')" />
                         @if (files.qualification) {
                         <small class="file-name">
                           <i class="bi bi-check-circle-fill"></i> {{ files.qualification.name }}
@@ -527,7 +527,7 @@
                         <i class="bi bi-paperclip"></i>
                         <span>Upload Document</span>
                         <input type="file" accept="video/mp4,video/webm,video/quicktime"
-                          (change)="onFileSelected($event, 'additionalDocument')" />
+                          (change)="onFileSelected($event, 'poojaPerformingVideo')" />
                         @if (files.additionalDocument) {
                         <small class="file-name">
                           <i class="bi bi-check-circle-fill"></i> {{ files.additionalDocument.name }}
@@ -574,8 +574,17 @@
                     <div class="input-group-custom">
                       <label>Account Number</label>
                       <input type="password" class="form-control" formControlName="accountNumber" placeholder="Enter account number" />
-                      @if (isInvalid(paymentForm, 'accountNumber')) {
-                        <small class="field-error">Account number is required.</small>
+                      @if (
+                        paymentForm.get('accountNumber')?.touched &&
+                        paymentForm.get('accountNumber')?.errors
+                      ) {
+                        <small class="text-danger">
+                          @if (paymentForm.get('accountNumber')?.hasError('required')) {
+                            Account number is required.
+                          } @else if (paymentForm.get('accountNumber')?.hasError('pattern')) {
+                            Account number must contain 9–18 digits.
+                          }
+                        </small>
                       }
                     </div>
                   </div>
