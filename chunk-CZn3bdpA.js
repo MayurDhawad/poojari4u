@@ -1,2 +1,0 @@
-import{F as Kv,Xt as dc,nr as uc,sn as hE}from"./chunk-Ch356GAU.js";var r=class n{constructor(){}ngOnInit(){}static ɵfac=function(a){return new(a||n)};static ɵcmp=Kv({type:n,selectors:[[`app-bajanthris-dashboard`]],decls:2,vars:0,template:function(a,d){a&1&&(uc(0,`p`),hE(1,` bajantris-dashboard works!
-`),dc())},encapsulation:2})};export{r as BajanthrisDashboardComponent};
