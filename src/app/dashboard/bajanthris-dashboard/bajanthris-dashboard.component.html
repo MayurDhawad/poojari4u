@@ -1,3 +1,463 @@
-<p>
-  bajantris-dashboard works!
-</p>
+
+<div class="bajantri-layout">
+
+  <!-- Sidebar -->
+  <aside class="bj-sidebar" [class.sidebar-open]="sidebarOpen">
+    <a class="bj-brand" href="#" (click)="$event.preventDefault()">
+      <span class="brand-symbol">
+        <i class="bi bi-music-note-beamed"></i>
+      </span>
+      <span>
+        <strong>Bajanthri</strong>
+        <small>Music for Divine Moments</small>
+      </span>
+    </a>
+
+    <div class="bj-menu-label">WORKSPACE</div>
+
+    <nav class="bj-navigation">
+      @for (item of menuItems; track item.label) {
+        <button
+          type="button"
+          class="bj-nav-item"
+          [class.active]="activeMenu === item.label"
+          (click)="setActiveMenu(item.label)">
+          <i class="bi" [class]="item.icon"></i>
+          <span>{{ item.label }}</span>
+
+          @if (item.label === 'Bookings' && pendingCount > 0) {
+            <span class="bj-menu-count">{{ pendingCount }}</span>
+          }
+        </button>
+      }
+    </nav>
+
+    <div class="bj-sidebar-bottom">
+      <div class="availability-card">
+        <div class="availability-heading">
+          <span class="online-dot"
+                [class.offline-dot]="!profile.available"></span>
+          <strong>Service Availability</strong>
+        </div>
+
+        <p>
+          {{ profile.available
+            ? 'You can receive new booking requests.'
+            : 'You are not accepting new bookings.' }}
+        </p>
+
+        <label class="bj-toggle">
+          <span>{{ profile.available ? 'Available' : 'Unavailable' }}</span>
+          <input
+            type="checkbox"
+            [checked]="profile.available"
+            (change)="setAvailability($any($event.target).checked)"
+            aria-label="Toggle service availability">
+          <span class="toggle-track"></span>
+        </label>
+      </div>
+
+      <div class="bj-profile-mini">
+        <div class="bj-avatar">SG</div>
+        <div class="bj-profile-info">
+          <strong>{{ profile.name }}</strong>
+          <small>{{ profile.type }}</small>
+        </div>
+        <i class="bi bi-three-dots-vertical"></i>
+      </div>
+    </div>
+  </aside>
+
+  @if (sidebarOpen) {
+    <div class="bj-overlay" (click)="sidebarOpen = false"></div>
+  }
+
+  <!-- Main -->
+  <main class="bj-main">
+
+    <!-- Top bar -->
+    <header class="bj-topbar">
+      <div class="bj-header-left">
+        <button
+          class="bj-mobile-menu"
+          type="button"
+          (click)="sidebarOpen = !sidebarOpen"
+          aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <div>
+          <div class="bj-breadcrumb">
+            Workspace / {{ activeMenu }}
+          </div>
+          <h1>{{ activeMenu }}</h1>
+        </div>
+      </div>
+
+      <div class="bj-header-actions">
+        <label class="bj-search">
+          <i class="bi bi-search"></i>
+          <input
+            type="search"
+            placeholder="Search bookings..."
+            aria-label="Search bookings">
+        </label>
+
+        <button class="bj-icon-button"
+                type="button"
+                aria-label="Notifications">
+          <i class="bi bi-bell"></i>
+          <span class="bj-notification-dot"></span>
+        </button>
+
+        <div class="bj-user-menu">
+          <div class="bj-avatar">SG</div>
+          <div>
+            <strong>{{ profile.name }}</strong>
+            <small>
+              {{ profile.verificationStatus }} Bajantri
+            </small>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
+      </div>
+    </header>
+
+    <section class="bj-content">
+
+      <!-- Welcome -->
+      <div class="bj-welcome">
+        <div>
+          <div class="bj-welcome-title">
+            Namaste, {{ profile.name }} <span>🙏</span>
+          </div>
+          <p>Here's an overview of your services and upcoming events.</p>
+        </div>
+
+        <button
+          type="button"
+          class="bj-primary-button"
+          (click)="setActiveMenu('Bookings')">
+          <i class="bi bi-calendar-plus me-2"></i>
+          Manage Bookings
+        </button>
+      </div>
+
+      <!-- Profile notice -->
+      <div class="bj-profile-notice">
+        <div class="notice-icon">
+          <i class="bi bi-patch-check-fill"></i>
+        </div>
+        <div class="notice-copy">
+          <strong>
+            {{ profile.verificationStatus === 'Verified'
+              ? 'Your Bajantri profile is verified'
+              : 'Your profile needs verification' }}
+          </strong>
+          <p>
+            {{ profile.verificationStatus === 'Verified'
+              ? 'Your profile can be displayed to customers according to platform settings.'
+              : 'Complete the required verification documents to finish your profile.' }}
+          </p>
+        </div>
+        <span class="bj-verified-badge">
+          <i class="bi bi-check-circle-fill me-1"></i>
+          {{ profile.verificationStatus }}
+        </span>
+      </div>
+
+      <!-- KPI cards -->
+      <div class="row g-3 bj-stats-row">
+        @for (stat of stats; track stat.title) {
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="bj-stat-card">
+              <div class="bj-stat-top">
+                <div
+                  class="bj-stat-icon"
+                  [style.background]="stat.bg"
+                  [style.color]="stat.color">
+                  <i class="bi" [class]="stat.icon"></i>
+                </div>
+                <button class="bj-more-button"
+                        type="button"
+                        aria-label="More statistics options">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+              </div>
+
+              <div class="bj-stat-value">{{ stat.value }}</div>
+              <div class="bj-stat-title">{{ stat.title }}</div>
+
+              <div class="bj-stat-footer">
+                <span class="bj-growth">
+                  <i class="bi bi-arrow-up-right"></i>
+                  {{ stat.change }}
+                </span>
+                <span>from last month</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Analytics -->
+      <div class="row g-3 bj-analytics-row">
+
+        <!-- Booking chart -->
+        <div class="col-12 col-xl-7">
+          <div class="bj-panel h-100">
+            <div class="bj-panel-heading">
+              <div>
+                <h2>Booking Activity</h2>
+                <p>Your booking requests throughout the week</p>
+              </div>
+
+              <select class="form-select bj-period-select"
+                      aria-label="Booking chart period">
+                <option>Last 7 Days</option>
+                <option>Last 30 Days</option>
+                <option>This Year</option>
+              </select>
+            </div>
+
+            <div class="bj-chart-summary">
+              <strong>86</strong>
+              <span>Total bookings</span>
+              <span class="bj-growth">
+                <i class="bi bi-arrow-up-right"></i>
+                15%
+              </span>
+            </div>
+
+            <div class="bj-chart">
+              <div class="bj-chart-y">
+                <span>100</span>
+                <span>75</span>
+                <span>50</span>
+                <span>25</span>
+                <span>0</span>
+              </div>
+
+              <div class="bj-chart-plot">
+                <div class="bj-chart-grid">
+                  <span></span><span></span><span></span>
+                  <span></span><span></span>
+                </div>
+
+                <div class="bj-chart-bars">
+                  @for (day of bookingTrend; track day.label) {
+                    <div class="bj-bar-column">
+                      <div class="bj-bar-track">
+                        <div
+                          class="bj-bar"
+                          [style.height.%]="day.value"
+                          [title]="day.label + ': ' + day.value">
+                        </div>
+                      </div>
+                      <span>{{ day.label }}</span>
+                    </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Instrument distribution -->
+        <div class="col-12 col-xl-5">
+          <div class="bj-panel h-100">
+            <div class="bj-panel-heading">
+              <div>
+                <h2>Instrument Categories</h2>
+                <p>Breakdown of listed Bajantri instruments</p>
+              </div>
+            </div>
+
+            <div class="bj-instrument-layout">
+              <div class="bj-donut">
+                <div class="bj-donut-inner">
+                  <strong>128</strong>
+                  <span>Listed profiles</span>
+                </div>
+              </div>
+
+              <div class="bj-instrument-legend">
+                @for (instrument of instrumentTypes; track instrument.name) {
+                  <div class="bj-legend-row">
+                    <span
+                      class="bj-legend-dot"
+                      [style.background]="instrument.color">
+                    </span>
+                    <span class="bj-legend-name">
+                      {{ instrument.name }}
+                    </span>
+                    <strong>{{ instrument.count }}</strong>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <div class="bj-chart-footnote">
+              <i class="bi bi-info-circle me-1"></i>
+              Illustrative instrument distribution
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking list and events -->
+      <div class="row g-3">
+
+        <div class="col-12 col-xl-7">
+          <div class="bj-panel h-100">
+            <div class="bj-panel-heading">
+              <div>
+                <h2>Recent Bookings</h2>
+                <p>Keep track of your latest customer requests</p>
+              </div>
+
+              <button
+                class="bj-link-button"
+                type="button"
+                (click)="setActiveMenu('Bookings')">
+                View All <i class="bi bi-arrow-right ms-1"></i>
+              </button>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table bj-table align-middle">
+                <thead>
+                  <tr>
+                    <th>EVENT</th>
+                    <th>DATE</th>
+                    <th>AMOUNT</th>
+                    <th>STATUS</th>
+                    <th>ACTION</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  @for (booking of bookings; track booking.id) {
+                    <tr>
+                      <td>
+                        <strong class="bj-event-name">
+                          {{ booking.event }}
+                        </strong>
+                        <small class="bj-subtext">
+                          {{ booking.customer }}
+                        </small>
+                      </td>
+                      <td>{{ booking.date }}</td>
+                      <td class="bj-amount">
+                        {{ formatCurrency(booking.amount) }}
+                      </td>
+                      <td>
+                        <span
+                          class="bj-status"
+                          [class.status-pending]="booking.status === 'Pending'"
+                          [class.status-confirmed]="booking.status === 'Confirmed'"
+                          [class.status-completed]="booking.status === 'Completed'"
+                          [class.status-cancelled]="booking.status === 'Cancelled'">
+                          {{ booking.status }}
+                        </span>
+                      </td>
+                      <td>
+                        @if (booking.status === 'Pending') {
+                          <div class="bj-action-group">
+                            <button
+                              class="bj-action-accept"
+                              type="button"
+                              title="Accept booking"
+                              aria-label="Accept booking"
+                              (click)="updateBookingStatus(booking, 'Confirmed')">
+                              <i class="bi bi-check-lg"></i>
+                            </button>
+                            <button
+                              class="bj-action-reject"
+                              type="button"
+                              title="Reject booking"
+                              aria-label="Reject booking"
+                              (click)="updateBookingStatus(booking, 'Cancelled')">
+                              <i class="bi bi-x-lg"></i>
+                            </button>
+                          </div>
+                        } @else {
+                          <button
+                            class="bj-view-button"
+                            type="button"
+                            [attr.aria-label]="'View booking ' + booking.id"
+                            (click)="setActiveMenu('Bookings')">
+                            <i class="bi bi-arrow-up-right"></i>
+                          </button>
+                        }
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming events -->
+        <div class="col-12 col-xl-5">
+          <div class="bj-panel h-100">
+            <div class="bj-panel-heading">
+              <div>
+                <h2>Upcoming Events</h2>
+                <p>Plan your next performances</p>
+              </div>
+              <button
+                class="bj-link-button"
+                type="button"
+                (click)="setActiveMenu('Events Calendar')">
+                View All
+              </button>
+            </div>
+
+            <div class="bj-event-list">
+              @for (event of upcomingEvents; track event.title + event.date) {
+                <div class="bj-upcoming-event">
+                  <div class="bj-event-icon">
+                    <i class="bi bi-calendar-event"></i>
+                  </div>
+
+                  <div class="bj-upcoming-copy">
+                    <strong>{{ event.title }}</strong>
+                    <span>{{ event.location }}</span>
+                    <small>
+                      <i class="bi bi-calendar3 me-1"></i>
+                      {{ event.date }}
+                    </small>
+                  </div>
+
+                  <span
+                    class="bj-status"
+                    [class.status-pending]="event.status === 'Pending'"
+                    [class.status-confirmed]="event.status === 'Confirmed'">
+                    {{ event.status }}
+                  </span>
+                </div>
+              }
+            </div>
+
+            <button
+              class="bj-calendar-button"
+              type="button"
+              (click)="setActiveMenu('Events Calendar')">
+              <i class="bi bi-calendar3 me-2"></i>
+              Open Events Calendar
+              <i class="bi bi-arrow-right ms-auto"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="bj-footer">
+        <span>© 2026 Poojari4U. All rights reserved.</span>
+        <span>Made for your musical journey <i class="bi bi-heart-fill"></i></span>
+      </footer>
+
+    </section>
+  </main>
+</div>

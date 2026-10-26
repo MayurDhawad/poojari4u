@@ -1,16 +1,24 @@
-
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { DashboardService } from '../dashboard.service';
 
-interface DashboardUser {
+interface DashboardStat {
+  title: string;
+  value: string;
+  change: string;
+  icon: string;
+  color: string;
+  bg: string;
+}
+
+interface Verification {
   name: string;
-  email: string;
-  role: 'poojari' | 'bajantri' | 'admin';
+  role: string;
+  document: string;
+  date: string;
+  initials: string;
   status: 'Pending' | 'Approved' | 'Rejected';
-  joined: string;
 }
 
 @Component({
@@ -20,134 +28,143 @@ interface DashboardUser {
   styleUrl: './admin-dashboard.component.scss',
   imports: [CommonModule,FormsModule,RouterLink,RouterLinkActive],
 })
-export class AdminDashboardComponent implements OnInit{
+export class AdminDashboardComponent{
   sidebarOpen = false;
-  activePeriod = '7 days';
 
-  constructor(private _dashboardService: DashboardService){}
+  activeMenu = 'Dashboard';
 
-  ngOnInit(): void {
-    this.getUserData()
-  }
-
-  getUserData(){
-    this._dashboardService.getUserData().subscribe({
-      next: (res: any) => {
-        console.log(res)
-      },
-      error: (err: Error) => {
-        console.log(err)
-      }
-    })
-  }
-
-  stats = [
+  stats: DashboardStat[] = [
     {
-      title: 'Total Users',
-      value: 1248,
+      title: 'Total Poojaris',
+      value: '1,284',
       change: '+12.5%',
-      icon: '♙',
-      color: 'blue',
-      route: '/admin/users'
+      icon: 'bi-people',
+      color: '#EA580C',
+      bg: '#FFF1E8'
     },
     {
-      title: 'Poojaris',
-      value: 186,
+      title: 'Bajantri Profiles',
+      value: '356',
       change: '+8.2%',
-      icon: 'ॐ',
-      color: 'green',
-      route: '/admin/poojaris'
+      icon: 'bi-music-note-beamed',
+      color: '#7C3AED',
+      bg: '#F3E8FF'
     },
     {
-      title: 'Bajantris',
-      value: 74,
-      change: '+5.4%',
-      icon: '♫',
-      color: 'orange',
-      route: '/admin/bajantris'
+      title: 'Total Bookings',
+      value: '892',
+      change: '+15.3%',
+      icon: 'bi-calendar-check',
+      color: '#2563EB',
+      bg: '#DBEAFE'
     },
     {
-      title: 'Pending Reviews',
-      value: 12,
-      change: 'Needs attention',
-      icon: '◷',
-      color: 'purple',
-      route: '/admin/reviews'
+      title: 'Pending Verifications',
+      value: '24',
+      change: 'Needs review',
+      icon: 'bi-shield-check',
+      color: '#D97706',
+      bg: '#FEF3C7'
     }
   ];
 
-  users: DashboardUser[] = [
+  bookingMonths = [
+    { month: 'May', value: 45 },
+    { month: 'Jun', value: 62 },
+    { month: 'Jul', value: 53 },
+    { month: 'Aug', value: 78 },
+    { month: 'Sep', value: 67 },
+    { month: 'Oct', value: 92 },
+    { month: 'Nov', value: 72 },
+    { month: 'Dec', value: 85 }
+  ];
+
+  verifications: Verification[] = [
     {
-      name: 'Ravi Sharma',
-      email: 'ravi@example.com',
-      role: 'poojari',
-      status: 'Pending',
-      joined: '22 Oct 2026'
+      name: 'Rahul Sharma',
+      role: 'Poojari',
+      document: 'Government ID',
+      date: '26 Oct 2026',
+      initials: 'RS',
+      status: 'Pending'
     },
     {
-      name: 'Ganesh Bajantri Group',
-      email: 'ganesh@example.com',
-      role: 'bajantri',
-      status: 'Approved',
-      joined: '21 Oct 2026'
+      name: 'Ganesh Joshi',
+      role: 'Poojari',
+      document: 'Vedic Qualification',
+      date: '25 Oct 2026',
+      initials: 'GJ',
+      status: 'Pending'
     },
     {
-      name: 'Suresh Joshi',
-      email: 'suresh@example.com',
-      role: 'poojari',
-      status: 'Approved',
-      joined: '20 Oct 2026'
+      name: 'Shree Ganesh Bajantri',
+      role: 'Bajantri',
+      document: 'Profile Documents',
+      date: '24 Oct 2026',
+      initials: 'GB',
+      status: 'Pending'
     },
     {
-      name: 'Mahesh Bajantri',
-      email: 'mahesh@example.com',
-      role: 'bajantri',
-      status: 'Pending',
-      joined: '19 Oct 2026'
-    },
-    {
-      name: 'Amit Kulkarni',
-      email: 'amit@example.com',
-      role: 'poojari',
-      status: 'Rejected',
-      joined: '18 Oct 2026'
+      name: 'Amit Deshmukh',
+      role: 'Poojari',
+      document: 'Address Proof',
+      date: '23 Oct 2026',
+      initials: 'AD',
+      status: 'Approved'
     }
   ];
 
-  searchTerm = '';
-  selectedRole = 'all';
-  selectedStatus = 'all';
+  recentBookings = [
+    {
+      id: 'BK1001',
+      customer: 'Amit Patil',
+      service: 'Satyanarayan Pooja',
+      provider: 'Rahul Sharma',
+      date: '28 Oct 2026',
+      amount: '₹3,500',
+      status: 'Confirmed'
+    },
+    {
+      id: 'BK1002',
+      customer: 'Priya Kulkarni',
+      service: 'Griha Pravesh',
+      provider: 'Ganesh Joshi',
+      date: '29 Oct 2026',
+      amount: '₹5,000',
+      status: 'Pending'
+    },
+    {
+      id: 'BK1003',
+      customer: 'Rohan Patil',
+      service: 'Wedding Ceremony',
+      provider: 'Shree Ganesh Bajantri',
+      date: '30 Oct 2026',
+      amount: '₹8,500',
+      status: 'Confirmed'
+    }
+  ];
 
-  get filteredUsers(): DashboardUser[] {
-    const term = this.searchTerm.trim().toLowerCase();
+  menuItems = [
+    { label: 'Dashboard', icon: 'bi-grid-1x2' },
+    { label: 'Poojaris', icon: 'bi-person-badge' },
+    { label: 'Bajantris', icon: 'bi-music-note-list' },
+    { label: 'Customers', icon: 'bi-people' },
+    { label: 'Bookings', icon: 'bi-calendar2-check' },
+    { label: 'Verifications', icon: 'bi-patch-check' },
+    { label: 'Payments', icon: 'bi-wallet2' },
+    { label: 'Reports', icon: 'bi-bar-chart-line' },
+    { label: 'Settings', icon: 'bi-gear' }
+  ];
 
-    return this.users.filter(user => {
-      const matchesSearch =
-        !term ||
-        user.name.toLowerCase().includes(term) ||
-        user.email.toLowerCase().includes(term);
-
-      const matchesRole =
-        this.selectedRole === 'all' ||
-        user.role === this.selectedRole;
-
-      const matchesStatus =
-        this.selectedStatus === 'all' ||
-        user.status.toLowerCase() === this.selectedStatus;
-
-      return matchesSearch && matchesRole && matchesStatus;
-    });
-  }
-
-  setStatus(user: DashboardUser, status: DashboardUser['status']): void {
-    user.status = status;
-  }
-
-  toggleSidebar(): void {
-    this.sidebarOpen = !this.sidebarOpen;
-  }
-
-  closeSidebar(): void {
+  setActiveMenu(label: string): void {
+    this.activeMenu = label;
     this.sidebarOpen = false;
+  }
+
+  setVerificationStatus(
+    item: Verification,
+    status: 'Approved' | 'Rejected'
+  ): void {
+    item.status = status;
   }
 }

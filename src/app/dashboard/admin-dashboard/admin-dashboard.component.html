@@ -1,388 +1,404 @@
 
 <div class="admin-layout">
-  <!-- Mobile overlay -->
-  <div
-    class="sidebar-overlay"
-    *ngIf="sidebarOpen"
-    (click)="closeSidebar()">
-  </div>
 
   <!-- Sidebar -->
-  <aside class="admin-sidebar" [class.sidebar-open]="sidebarOpen">
-    <a routerLink="/admin" class="brand" (click)="closeSidebar()">
-      <span class="brand-icon">ॐ</span>
+  <aside class="sidebar" [class.sidebar-open]="sidebarOpen">
+    <a class="brand" href="#" (click)="$event.preventDefault()">
+      <span class="brand-icon">
+        <i class="bi bi-flower1"></i>
+      </span>
       <span>
         <strong>Poojari4U</strong>
-        <small>ADMIN PANEL</small>
+        <small>Admin Portal</small>
       </span>
     </a>
 
-    <div class="sidebar-label">WORKSPACE</div>
+    <div class="sidebar-label">MAIN MENU</div>
 
     <nav class="sidebar-nav">
-      <a routerLink="/admin"
-         [routerLinkActiveOptions]="{ exact: true }"
-         routerLinkActive="active"
-         class="nav-item"
-         (click)="closeSidebar()">
-        <span>▦</span> Dashboard
-      </a>
+      @for (item of menuItems; track item.label) {
+        <button
+          type="button"
+          class="nav-item"
+          [class.active]="activeMenu === item.label"
+          (click)="setActiveMenu(item.label)">
+          <i class="bi" [class]="item.icon"></i>
+          <span>{{ item.label }}</span>
 
-      <a routerLink="/admin/users"
-         routerLinkActive="active"
-         class="nav-item"
-         (click)="closeSidebar()">
-        <span>♙</span> All Users
-      </a>
-
-      <a routerLink="/admin/poojaris"
-         routerLinkActive="active"
-         class="nav-item"
-         (click)="closeSidebar()">
-        <span>ॐ</span> Poojari Management
-      </a>
-
-      <a routerLink="/admin/bajantris"
-         routerLinkActive="active"
-         class="nav-item"
-         (click)="closeSidebar()">
-        <span>♫</span> Bajantri Management
-      </a>
-
-      <div class="sidebar-label mt-4">MANAGEMENT</div>
-
-      <a routerLink="/admin/reviews"
-         routerLinkActive="active"
-         class="nav-item"
-         (click)="closeSidebar()">
-        <span>✓</span> Profile Reviews
-        <span class="nav-count">12</span>
-      </a>
-
-      <a routerLink="/admin/bookings"
-         routerLinkActive="active"
-         class="nav-item"
-         (click)="closeSidebar()">
-        <span>▣</span> Bookings
-      </a>
-
-      <a routerLink="/admin/reports"
-         routerLinkActive="active"
-         class="nav-item"
-         (click)="closeSidebar()">
-        <span>▤</span> Reports & Analytics
-      </a>
-
-      <!-- <div class="sidebar-label mt-4">SYSTEM</div>
-
-      <a routerLink="/admin/settings"
-         routerLinkActive="active"
-         class="nav-item"
-         (click)="closeSidebar()">
-        <span>⚙</span> Settings
-      </a> -->
+          @if (item.label === 'Verifications') {
+            <span class="menu-count">24</span>
+          }
+        </button>
+      }
     </nav>
 
-    <!-- <div class="sidebar-footer">
-      <div class="admin-avatar">A</div>
-      <div class="admin-identity">
-        <strong>Administrator</strong>
-        <small>Platform Admin</small>
+    <div class="sidebar-bottom">
+      <div class="support-card">
+        <i class="bi bi-headset"></i>
+        <strong>Need assistance?</strong>
+        <p>Manage your platform with confidence.</p>
+        <button class="btn btn-light btn-sm w-100">
+          Contact Support
+        </button>
       </div>
-      <button type="button" class="logout-button"
-              aria-label="Logout">
-        ↗
-      </button>
-    </div> -->
+
+      <div class="admin-profile">
+        <div class="avatar avatar-orange">AD</div>
+        <div class="profile-info">
+          <strong>Admin User</strong>
+          <small>Super Administrator</small>
+        </div>
+        <i class="bi bi-three-dots-vertical"></i>
+      </div>
+    </div>
   </aside>
 
+  <!-- Mobile overlay -->
+  @if (sidebarOpen) {
+    <div class="sidebar-overlay" (click)="sidebarOpen = false"></div>
+  }
+
   <!-- Main content -->
-  <main class="admin-main">
+  <main class="main-content">
+
+    <!-- Header -->
     <header class="topbar">
       <div class="d-flex align-items-center gap-3">
-        <button class="mobile-menu" type="button"
-                (click)="toggleSidebar()"
-                aria-label="Toggle sidebar">
-          ☰
+        <button
+          class="mobile-menu-btn"
+          type="button"
+          (click)="sidebarOpen = !sidebarOpen"
+          aria-label="Toggle sidebar">
+          <i class="bi bi-list"></i>
         </button>
 
         <div>
-          <div class="breadcrumb-text">Workspace / Overview</div>
-          <h1 class="page-title">Dashboard</h1>
+          <div class="breadcrumb-text">Pages / {{ activeMenu }}</div>
+          <h1>{{ activeMenu }}</h1>
         </div>
       </div>
 
       <div class="topbar-actions">
-        <button type="button" class="icon-button"
-                aria-label="Notifications">
-          ♧
+        <label class="search-box">
+          <i class="bi bi-search"></i>
+          <input
+            type="search"
+            placeholder="Search anything..."
+            aria-label="Search dashboard">
+          <span class="search-shortcut">/</span>
+        </label>
+
+        <button class="icon-btn" aria-label="Notifications" type="button">
+          <i class="bi bi-bell"></i>
           <span class="notification-dot"></span>
         </button>
-        <div class="topbar-avatar">A</div>
+
+        <div class="topbar-divider"></div>
+
+        <div class="header-user">
+          <div class="avatar avatar-orange">AD</div>
+          <div class="profile-info">
+            <strong>Admin User</strong>
+            <small>Administrator</small>
+          </div>
+          <i class="bi bi-chevron-down"></i>
+        </div>
       </div>
     </header>
 
-    <section class="dashboard-content">
-      <div class="welcome-section">
+    <!-- Dashboard body -->
+    <section class="dashboard-body">
+
+      <div class="welcome-row">
         <div>
-          <h2>Namaste, Administrator 🙏</h2>
-          <p>Here's what's happening across your Poojari4U platform.</p>
+          <h2>Welcome back, Admin! <span>🙏</span></h2>
+          <p>Here's what's happening with your Poojari4U platform today.</p>
         </div>
-        <button type="button" class="btn btn-gold"
-                (click)="selectedStatus = 'pending'">
-          Review Pending Profiles
+
+        <button class="btn btn-primary-custom">
+          <i class="bi bi-download me-2"></i>
+          Export Report
         </button>
       </div>
 
       <!-- Statistics -->
-      <div class="row g-3 stats-row">
-        <div class="col-12 col-sm-6 col-xl-3"
-             *ngFor="let stat of stats">
-          <a class="stat-card"
-             [routerLink]="stat.route">
-            <div class="stat-top">
-              <span class="stat-icon" [ngClass]="stat.color">
-                {{ stat.icon }}
-              </span>
-              <span class="stat-change"
-                    [class.needs-attention]="stat.color === 'purple'">
-                {{ stat.change }}
-              </span>
+      <div class="row g-3 mb-4">
+        @for (stat of stats; track stat.title) {
+          <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card">
+              <div class="stat-card-top">
+                <div
+                  class="stat-icon"
+                  [style.background]="stat.bg"
+                  [style.color]="stat.color">
+                  <i class="bi" [class]="stat.icon"></i>
+                </div>
+                <button class="subtle-icon" aria-label="More options">
+                  <i class="bi bi-three-dots"></i>
+                </button>
+              </div>
+
+              <div class="stat-value">{{ stat.value }}</div>
+              <div class="stat-title">{{ stat.title }}</div>
+
+              <div class="stat-footer">
+                @if (stat.title !== 'Pending Verifications') {
+                  <span class="trend-positive">
+                    <i class="bi bi-arrow-up-right"></i>
+                    {{ stat.change }}
+                  </span>
+                  <span class="muted-text">vs last month</span>
+                } @else {
+                  <span class="pending-text">
+                    <i class="bi bi-clock-history"></i>
+                    {{ stat.change }}
+                  </span>
+                }
+              </div>
             </div>
-            <div class="stat-value">{{ stat.value | number }}</div>
-            <div class="stat-title">{{ stat.title }}</div>
-          </a>
-        </div>
+          </div>
+        }
       </div>
 
-      <!-- Analytics and actions -->
-      <div class="row g-3 mt-1">
+      <!-- Charts and activity -->
+      <div class="row g-3 mb-4">
+
         <div class="col-12 col-xl-8">
-          <section class="panel analytics-panel">
-            <div class="panel-heading">
+          <div class="panel h-100">
+            <div class="panel-header">
               <div>
-                <h3>Platform Overview</h3>
-                <p>User distribution across account roles</p>
+                <h3>Booking Overview</h3>
+                <p>Track booking activity across the platform</p>
               </div>
+
               <select class="form-select period-select"
-                      [(ngModel)]="activePeriod"
-                      aria-label="Analytics period">
-                <option>7 days</option>
-                <option>30 days</option>
-                <option>90 days</option>
+                      aria-label="Chart period">
+                <option>This Year</option>
+                <option>This Month</option>
+                <option>Last 30 Days</option>
               </select>
             </div>
 
             <div class="chart-summary">
               <div>
-                <span class="chart-dot blue-dot"></span>
-                <span>Poojaris</span>
-                <strong>186</strong>
+                <div class="chart-total">8,492</div>
+                <span class="muted-text">Total bookings</span>
               </div>
-              <div>
-                <span class="chart-dot gold-dot"></span>
-                <span>Bajantris</span>
-                <strong>74</strong>
-              </div>
-              <div>
-                <span class="chart-dot green-dot"></span>
-                <span>Admins</span>
-                <strong>—</strong>
-              </div>
+              <span class="trend-positive">
+                <i class="bi bi-arrow-up-right"></i>
+                18.6%
+              </span>
             </div>
 
-            <div class="distribution-chart">
-              <div class="chart-row">
-                <div class="chart-label">
-                  <span>Poojaris</span><strong>186</strong>
-                </div>
-                <div class="progress">
-                  <div class="progress-bar bg-blue"
-                       style="width: 72%"></div>
-                </div>
+            <div class="chart-area">
+              <div class="chart-grid">
+                <span>1,000</span>
+                <span>750</span>
+                <span>500</span>
+                <span>250</span>
+                <span>0</span>
               </div>
 
-              <div class="chart-row">
-                <div class="chart-label">
-                  <span>Bajantris</span><strong>74</strong>
-                </div>
-                <div class="progress">
-                  <div class="progress-bar bg-gold"
-                       style="width: 38%"></div>
-                </div>
-              </div>
-
-              <div class="chart-row">
-                <div class="chart-label">
-                  <span>Pending profiles</span><strong>12</strong>
-                </div>
-                <div class="progress">
-                  <div class="progress-bar bg-green"
-                       style="width: 18%"></div>
-                </div>
+              <div class="bar-chart">
+                @for (month of bookingMonths; track month.month) {
+                  <div class="bar-column">
+                    <div class="bar-track">
+                      <div
+                        class="bar-fill"
+                        [style.height.%]="month.value"
+                        [title]="month.month + ': ' + month.value + '%'">
+                      </div>
+                    </div>
+                    <span>{{ month.month }}</span>
+                  </div>
+                }
               </div>
             </div>
-
-            <p class="chart-note">
-              Illustrative figures. Connect your analytics API to display
-              live registration trends.
-            </p>
-          </section>
+          </div>
         </div>
 
         <div class="col-12 col-xl-4">
-          <section class="panel quick-panel">
-            <div class="panel-heading">
+          <div class="panel h-100">
+            <div class="panel-header">
               <div>
-                <h3>Quick Actions</h3>
-                <p>Common administrative tasks</p>
+                <h3>Verification Status</h3>
+                <p>Provider document review</p>
+              </div>
+              <i class="bi bi-three-dots subtle-icon"></i>
+            </div>
+
+            <div class="verification-total">
+              <div class="verification-ring">
+                <div class="ring-inner">
+                  <strong>356</strong>
+                  <small>Profiles</small>
+                </div>
               </div>
             </div>
 
-            <a routerLink="/admin/users" class="quick-action">
-              <span class="quick-icon blue">♙</span>
-              <span>
-                <strong>Manage Users</strong>
-                <small>View and manage accounts</small>
-              </span>
-              <span class="action-arrow">›</span>
-            </a>
+            <div class="status-legend">
+              <div>
+                <span class="legend-dot dot-green"></span>
+                <span>Approved</span>
+                <strong>286</strong>
+              </div>
+              <div>
+                <span class="legend-dot dot-orange"></span>
+                <span>Pending</span>
+                <strong>24</strong>
+              </div>
+              <div>
+                <span class="legend-dot dot-red"></span>
+                <span>Rejected</span>
+                <strong>46</strong>
+              </div>
+            </div>
 
-            <a routerLink="/admin/reviews" class="quick-action">
-              <span class="quick-icon orange">✓</span>
-              <span>
-                <strong>Review Profiles</strong>
-                <small>Check submitted registrations</small>
-              </span>
-              <span class="action-arrow">›</span>
-            </a>
-
-            <a routerLink="/admin/reports" class="quick-action">
-              <span class="quick-icon purple">▤</span>
-              <span>
-                <strong>View Reports</strong>
-                <small>Review platform activity</small>
-              </span>
-              <span class="action-arrow">›</span>
-            </a>
-          </section>
+            <button
+              class="btn btn-outline-custom w-100 mt-4"
+              (click)="setActiveMenu('Verifications')">
+              Review Verifications
+              <i class="bi bi-arrow-right ms-2"></i>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Recent registrations -->
-      <section class="panel users-panel mt-4">
-        <div class="panel-heading users-heading">
+      <!-- Verification table -->
+      <div class="panel mb-4">
+        <div class="panel-header">
           <div>
-            <h3>Recent Registrations</h3>
-            <p>Manage the latest registered accounts</p>
+            <h3>Pending Verifications</h3>
+            <p>Review provider profiles and submitted documents</p>
           </div>
-          <a routerLink="/admin/users" class="view-all">
-            View all users →
-          </a>
-        </div>
-
-        <div class="filters-row">
-          <div class="search-box">
-            <span>⌕</span>
-            <input type="search"
-                   class="form-control"
-                   placeholder="Search by name or email..."
-                   [(ngModel)]="searchTerm">
-          </div>
-
-          <select class="form-select filter-select"
-                  [(ngModel)]="selectedRole"
-                  aria-label="Filter by role">
-            <option value="all">All roles</option>
-            <option value="poojari">Poojari</option>
-            <option value="bajantri">Bajantri</option>
-            <option value="admin">Admin</option>
-          </select>
-
-          <select class="form-select filter-select"
-                  [(ngModel)]="selectedStatus"
-                  aria-label="Filter by status">
-            <option value="all">All statuses</option>
-            <option value="pending">Pending</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
-          </select>
+          <button
+            class="btn btn-outline-custom btn-sm"
+            (click)="setActiveMenu('Verifications')">
+            View All
+          </button>
         </div>
 
         <div class="table-responsive">
-          <table class="table align-middle admin-table">
+          <table class="table admin-table align-middle">
             <thead>
               <tr>
-                <th>USER</th>
+                <th>PROVIDER</th>
                 <th>ROLE</th>
-                <th>REGISTERED</th>
+                <th>DOCUMENT</th>
+                <th>SUBMITTED</th>
                 <th>STATUS</th>
-                <th>ACTIONS</th>
+                <th>ACTION</th>
               </tr>
             </thead>
-            <tbody>
-              <tr *ngFor="let user of filteredUsers">
-                <td>
-                  <div class="user-cell">
-                    <div class="user-avatar">
-                      {{ user.name.charAt(0) }}
-                    </div>
-                    <div>
-                      <strong>{{ user.name }}</strong>
-                      <small>{{ user.email }}</small>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <span class="role-label"
-                        [ngClass]="user.role">
-                    {{ user.role | titlecase }}
-                  </span>
-                </td>
-                <td>{{ user.joined }}</td>
-                <td>
-                  <span class="status-badge"
-                        [ngClass]="user.status.toLowerCase()">
-                    {{ user.status }}
-                  </span>
-                </td>
-                <td>
-                  <div class="d-flex gap-2">
-                    <button type="button"
-                            class="btn btn-sm btn-outline-secondary"
-                            *ngIf="user.status === 'Pending'"
-                            (click)="setStatus(user, 'Approved')">
-                      Approve
-                    </button>
-                    <button type="button"
-                            class="btn btn-sm btn-light"
-                            [routerLink]="user.role === 'poojari'
-                              ? '/admin/poojaris'
-                              : '/admin/bajantris'">
-                      View
-                    </button>
-                  </div>
-                </td>
-              </tr>
 
-              <tr *ngIf="filteredUsers.length === 0">
-                <td colspan="5" class="empty-state">
-                  No registrations match your filters.
-                </td>
-              </tr>
+            <tbody>
+              @for (item of verifications; track item.name) {
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="avatar avatar-purple">
+                        {{ item.initials }}
+                      </div>
+                      <strong>{{ item.name }}</strong>
+                    </div>
+                  </td>
+                  <td>{{ item.role }}</td>
+                  <td>{{ item.document }}</td>
+                  <td>{{ item.date }}</td>
+                  <td>
+                    <span
+                      class="status-badge"
+                      [class.status-pending]="item.status === 'Pending'"
+                      [class.status-approved]="item.status === 'Approved'"
+                      [class.status-rejected]="item.status === 'Rejected'">
+                      {{ item.status }}
+                    </span>
+                  </td>
+                  <td>
+                    @if (item.status === 'Pending') {
+                      <div class="d-flex gap-2">
+                        <button
+                          class="action-btn action-approve"
+                          title="Approve"
+                          aria-label="Approve verification"
+                          (click)="setVerificationStatus(item, 'Approved')">
+                          <i class="bi bi-check-lg"></i>
+                        </button>
+                        <button
+                          class="action-btn action-reject"
+                          title="Reject"
+                          aria-label="Reject verification"
+                          (click)="setVerificationStatus(item, 'Rejected')">
+                          <i class="bi bi-x-lg"></i>
+                        </button>
+                      </div>
+                    } @else {
+                      <span class="muted-text">Reviewed</span>
+                    }
+                  </td>
+                </tr>
+              }
             </tbody>
           </table>
         </div>
+      </div>
 
-        <div class="table-footer">
-          Showing {{ filteredUsers.length }} registrations
-          <span>Sample data — API integration pending</span>
+      <!-- Recent bookings -->
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <h3>Recent Bookings</h3>
+            <p>Latest service requests from customers</p>
+          </div>
+          <button
+            class="btn btn-outline-custom btn-sm"
+            (click)="setActiveMenu('Bookings')">
+            All Bookings
+          </button>
         </div>
-      </section>
+
+        <div class="table-responsive">
+          <table class="table admin-table align-middle">
+            <thead>
+              <tr>
+                <th>BOOKING ID</th>
+                <th>CUSTOMER</th>
+                <th>SERVICE</th>
+                <th>PROVIDER</th>
+                <th>DATE</th>
+                <th>AMOUNT</th>
+                <th>STATUS</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (booking of recentBookings; track booking.id) {
+                <tr>
+                  <td class="booking-id">{{ booking.id }}</td>
+                  <td>{{ booking.customer }}</td>
+                  <td>{{ booking.service }}</td>
+                  <td>{{ booking.provider }}</td>
+                  <td>{{ booking.date }}</td>
+                  <td><strong>{{ booking.amount }}</strong></td>
+                  <td>
+                    <span
+                      class="status-badge"
+                      [class.status-approved]="booking.status === 'Confirmed'"
+                      [class.status-pending]="booking.status === 'Pending'">
+                      {{ booking.status }}
+                    </span>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <footer class="dashboard-footer">
-        © 2026 Poojari4U. Your Poojari. Your Puja. Your Way.
+        <span>© 2026 Poojari4U. All rights reserved.</span>
+        <span>Admin Dashboard · Version 1.0</span>
       </footer>
+
     </section>
   </main>
 </div>
