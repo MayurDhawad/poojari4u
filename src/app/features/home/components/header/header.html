@@ -57,7 +57,11 @@
         <ul class="navbar-nav main-nav">
           @for (item of navItems; track item.path) {
             <li class="nav-item nav-item-link">
-              <a class="nav-link" [routerLink]="item.path"routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.path === '/'}"(click)="closeMobileMenu()">
+              <a class="nav-link" 
+                [routerLink]="item.path 
+                "routerLinkActive="active" 
+                [routerLinkActiveOptions]="{ exact: item.path === '/'}" 
+                (click)="closeMobileMenu()">
                 {{ item.label }}
                 <i class="bi bi-chevron-right mobile-chevron"></i>
               </a>
@@ -72,7 +76,7 @@
 
                 <!-- Desktop actions -->
         <div class="header-actions d-none d-lg-flex align-items-center">
-          <button type="button" class="book-poojari-btn"(click)="onRegistration()">
+          <button type="button" class="book-poojari-btn" (click)="onRegistration()" [disabled]="disableLoginRegister">
             <i class="bi bi-person-circle me-2"></i>
             <span>Login/Register</span>
           </button>

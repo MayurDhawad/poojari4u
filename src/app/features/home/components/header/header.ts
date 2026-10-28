@@ -26,7 +26,7 @@ export class Header {
 
   constructor(
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
   ){
     afterNextRender(() => {
       const audio = this.audioRef()?.nativeElement;
@@ -39,6 +39,11 @@ export class Header {
         });
       }
     });
+  }
+
+  get disableLoginRegister(): boolean {
+    return this.router.url.split('?')[0].split('#')[0] === '/poojari-registration' || 
+           this.router.url.split('?')[0].split('#')[0] === '/bajanthri-registration';
   }
 
   navItems = [

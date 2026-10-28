@@ -46,6 +46,272 @@
       </div>
     }
 
+    <section class="mb-3">
+      <!-- BOOKING TABS -->
+      <div class="booking-tabs mb-4">
+
+        <!-- Pending Bookings -->
+        <button
+          type="button"
+          class="booking-tab"
+          [class.active]="activeTab === 'pending'"
+          (click)="setActiveTab('pending')">
+
+          <i class="bi bi-hourglass-split"></i>
+          <span>Pending Bookings</span>
+          <span class="tab-count">{{ countBookings('pending') }}</span>
+        </button>
+
+        <!-- Accepted Bookings -->
+        <button
+          type="button"
+          class="booking-tab"
+          [class.active]="activeTab === 'accepted'"
+          (click)="setActiveTab('accepted')">
+
+          <i class="bi bi-calendar-check"></i>
+          <span>Accepted Bookings</span>
+          <span class="tab-count">{{ countBookings('accepted') }}</span>
+        </button>
+
+        <!-- Completed Bookings -->
+        <button
+          type="button"
+          class="booking-tab"
+          [class.active]="activeTab === 'completed'"
+          (click)="setActiveTab('completed')">
+
+          <i class="bi bi-check-circle"></i>
+          <span>Completed Bookings</span>
+          <span class="tab-count">{{ countBookings('completed') }}</span>
+        </button>
+
+        <!-- Declined Bookings -->
+        <button
+          type="button"
+          class="booking-tab"
+          [class.active]="activeTab === 'declined'"
+          (click)="setActiveTab('declined')">
+
+          <i class="bi bi-calendar-x"></i>
+          <span>Declined Bookings</span>
+          <span class="tab-count">{{ countBookings('declined') }}</span>
+        </button>
+
+      </div>
+
+      <!-- LOADING -->
+      @if (loading) {
+        <div class="text-center py-5">
+          <div class="spinner-border text-warning" role="status">
+            <span class="visually-hidden">Loading bookings...</span>
+          </div>
+          <p class="text-secondary mt-3">Loading bookings...</p>
+        </div>
+      }
+
+      <!-- ERROR MESSAGE -->
+      @if (errorMessage) {
+        <div class="alert alert-danger" role="alert">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <!-- SUCCESS MESSAGE -->
+      @if (successMessage) {
+        <div class="alert alert-success" role="status">
+          {{ successMessage }}
+        </div>
+      }
+
+      <!-- BOOKING LIST -->
+      @if (!loading) {
+        <div class="row g-4">
+
+          @for (booking of filteredBookings; track booking._id) {
+            <div class="col-12 col-xl-12">
+
+              <div class="booking-card h-100">
+
+                <!-- CUSTOMER DETAILS -->
+                <div class="booking-card-header">
+
+                  <div class="customer-avatar">
+                    {{ booking.customerName.charAt(0).toUpperCase() }}
+                  </div>
+
+                  <div class="flex-grow-1">
+                    <h5 class="customer-name mb-1">
+                      {{ booking.customerName }}
+                    </h5>
+
+                    <p class="booking-id mb-0">
+                      Booking #{{ booking._id }}
+                    </p>
+                  </div>
+
+                  <span
+                    class="status-badge"
+                    [ngClass]="'status-' + booking.status">
+                    {{ booking.status | titlecase }}
+                  </span>
+
+                </div>
+
+                <!-- BOOKING INFORMATION -->
+                <div class="booking-details">
+
+                  <div class="detail-item">
+                    <div class="detail-icon">
+                      <i class="bi bi-flower1"></i>
+                    </div>
+                    <div>
+                      <small>Service</small>
+                      <p>{{ booking.serviceName }}</p>
+                    </div>
+                  </div>
+
+                  <div class="detail-item">
+                    <div class="detail-icon">
+                      <i class="bi bi-calendar-event"></i>
+                    </div>
+                    <div>
+                      <small>Booking Date</small>
+                      <p>
+                        {{ booking.bookingDate | date:'dd MMM yyyy' }}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="detail-item">
+                    <div class="detail-icon">
+                      <i class="bi bi-clock"></i>
+                    </div>
+                    <div>
+                      <small>Booking Time</small>
+                      <p>{{ booking.bookingTime }}</p>
+                    </div>
+                  </div>
+
+                  <div class="detail-item">
+                    <div class="detail-icon">
+                      <i class="bi bi-geo-alt"></i>
+                    </div>
+                    <div>
+                      <small>Location</small>
+                      <p>{{ booking.location }}</p>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- AMOUNT AND ACTIONS -->
+                <div class="booking-footer">
+
+                  <div class="booking-amount">
+                    <small>Booking Amount</small>
+                    <h4 class="mb-0">
+                      {{ booking.amount | currency:'INR':'symbol':'1.0-0' }}
+                    </h4>
+                  </div>
+
+                  <div class="booking-actions">
+
+                    <!-- ACCEPT / DECLINE -->
+                    @if (booking.status === 'pending') {
+
+                      <button
+                        type="button"
+                        class="btn btn-decline"
+                        [disabled]="updatingId !== null"
+                        (click)="updateBookingStatus(booking, 'declined')">
+
+                        @if (updatingId === booking._id) {
+                          <span class="spinner-border spinner-border-sm me-1"></span>
+                        }
+
+                        Decline
+                      </button>
+
+                      <button
+                        type="button"
+                        class="btn btn-accept"
+                        [disabled]="updatingId !== null"
+                        (click)="updateBookingStatus(booking, 'accepted')">
+
+                        @if (updatingId === booking._id) {
+                          <span class="spinner-border spinner-border-sm me-1"></span>
+                        }
+
+                        <i class="bi bi-check-lg me-1"></i>
+                        Accept
+                      </button>
+
+                    }
+
+                    <!-- MARK COMPLETED -->
+                    @if (booking.status === 'accepted') {
+
+                      <button
+                        type="button"
+                        class="btn btn-complete"
+                        [disabled]="updatingId !== null"
+                        (click)="updateBookingStatus(booking, 'completed')">
+
+                        <i class="bi bi-check-circle me-1"></i>
+                        Mark as Completed
+                      </button>
+
+                    }
+
+                    <!-- COMPLETED STATUS -->
+                    @if (booking.status === 'completed') {
+                      <span class="text-success fw-semibold">
+                        <i class="bi bi-check-circle-fill me-1"></i>
+                        Service Completed
+                      </span>
+                    }
+
+                    <!-- DECLINED STATUS -->
+                    @if (booking.status === 'declined') {
+                      <span class="text-danger fw-semibold">
+                        <i class="bi bi-x-circle-fill me-1"></i>
+                        Booking Declined
+                      </span>
+                    }
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          } @empty {
+
+            <!-- EMPTY STATE -->
+            <div class="col-12">
+              <div class="empty-state">
+
+                <div class="empty-icon">
+                  <i class="bi bi-calendar2-x"></i>
+                </div>
+
+                <h5>No {{ activeTab | titlecase }} Bookings</h5>
+
+                <p class="text-secondary mb-0">
+                  Bookings will appear here when they match this status.
+                </p>
+
+              </div>
+            </div>
+
+          }
+
+        </div>
+      }
+    </section>
+
     <section class="d-none">
       <!-- Success Card Container -->
       <div class="card border-0 shadow-sm rounded-4 mb-4 p-5 text-center bg-white">

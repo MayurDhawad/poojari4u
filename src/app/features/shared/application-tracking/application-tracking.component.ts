@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { LoginComponent } from '../../auth/login/login.component';
 
 type ApplicationStatus =
   | 'Submitted'
@@ -43,6 +46,10 @@ export class ApplicationTrackingComponent {
   application = signal<ApplicationRecord | null>(null);
   searched = signal(false);
   errorMessage = signal('');
+
+  constructor(
+    private dialogRef: MatDialogRef<LoginComponent>,
+  ){}
 
   readonly applications: ApplicationRecord[] = [
     {
@@ -109,6 +116,10 @@ export class ApplicationTrackingComponent {
       description: 'Your registration has been approved.'
     }
   ];
+
+  closeTrackingPage(): void {
+    this.dialogRef.close(true);
+  }
 
   timeline = computed<ApplicationStep[]>(() => {
     const record = this.application();

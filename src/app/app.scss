@@ -2,7 +2,7 @@ html {
   scroll-behavior: auto;
 }
 .main-content {
-  padding-top: 110px;
+  padding-top: 85px;
 }
 .site-header {
   background-color: #fff;
@@ -97,22 +97,15 @@ html {
 }
 
 @media (max-width: 576px) {
-   .instant-booking-float {
-    display: none;
-    // right: 16px;
-    // bottom: 16px;
-    // width: 40px;
-    // height: 40px;
-    // border-radius: 50%;
-    // i{
-    //   font-size: 18px;
-    // }
+  .main-content {
+    padding-top: 80px;
   }
-
+  .instant-booking-float {
+    display: none;
+  }
   .instant-booking-float span {
     display: none !important;
   }
-  
   .whatsapp-float {
     right: 16px;
     bottom: 16px;
@@ -124,21 +117,6 @@ html {
   }
 
   .book-pandit-floating{
-    width: 35px;
+    width: 30px;
   }
-  // .book-pandit-floating {
-  //   width: auto;
-  //   height: 48px;
-  //   right: 15px;
-  //   bottom: 20px;
-  //   top: auto;
-  //   transform: none;
-  //   padding: 0 20px;
-  //   border-radius: 25px;
-  // }
-
-  // .book-pandit-floating span {
-  //   writing-mode: initial;
-  //   transform: none;
-  // }
 }

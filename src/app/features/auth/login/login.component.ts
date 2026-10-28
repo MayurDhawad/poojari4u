@@ -179,9 +179,13 @@ export class LoginComponent  {
       // maxWidth: '60vw',
       maxHeight: '90vh',
     });
+    this.dialogRef.close();
     dialogRef.afterClosed().subscribe((res) => {
       if (res) {
         console.log('result:', res);
+        if(res){
+          this.dialogRef.close();
+        }
       }
     });
   }
