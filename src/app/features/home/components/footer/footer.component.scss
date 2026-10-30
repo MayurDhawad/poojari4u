@@ -68,3 +68,32 @@ footer a.text-white-50:hover {
   z-index: 9999;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
+// Variables
+$social-btn-size: 45px;
+$social-btn-bg: rgba(255, 255, 255, 0.08);
+$social-btn-hover-bg: rgba(255, 255, 255, 0.15);
+$primary-accent: #f39c12; // Adjust to match your theme orange/gold
+
+.footer {
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $social-btn-size;
+    height: $social-btn-size;
+    background-color: $social-btn-bg;
+    color: $primary-accent;
+    border-radius: 50%;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:hover {
+      background-color: $social-btn-hover-bg;
+      color: lighten($primary-accent, 10%);
+      transform: translateY(-2px);
+    }
+  }
+}

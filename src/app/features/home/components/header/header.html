@@ -69,6 +69,22 @@
             @if (item.label === 'Poojaris') {
               <li class="nav-item vinayaka-item">
                 <img src="header/vinayaka.png" alt="Lord Vinayaka" class="vinayaka-img"/>
+
+                <div class="audio-player-container">
+                  <audio #bgAudio loop>
+                    <source src="../../../../../assets/audios/Om-Namo-Venkatesaya.mp3" type="audio/mpeg">
+                  </audio>
+
+                  <button class="btn btn-sm btn-outline-warning rounded-circle p-2 d-flex align-items-center justify-content-center" (click)="toggleAudio()" [attr.aria-label]="isPlaying ? 'Pause music' : 'Play music'">
+                    @if (!isPlaying) {
+                      <!-- Play Icon -->
+                      <i class="bi bi-play-fill"></i>
+                    } @else {
+                      <!-- Pause Icon -->
+                      <i class="bi bi-pause-fill"></i>
+                    }
+                  </button>
+                </div>
               </li>
             }
           }
@@ -80,22 +96,6 @@
             <i class="bi bi-person-circle me-2"></i>
             <span>Login/Register</span>
           </button>
-
-          <div class="audio-player-container">
-            <audio #bgAudio loop>
-              <source src="../../../../../assets/audios/Om-Namo-Venkatesaya.mp3" type="audio/mpeg">
-            </audio>
-
-            <button class="btn btn-sm btn-outline-warning rounded-circle p-2 d-flex align-items-center justify-content-center" (click)="toggleAudio()" [attr.aria-label]="isPlaying ? 'Pause music' : 'Play music'">
-              @if (!isPlaying) {
-                <!-- Play Icon -->
-                <i class="bi bi-play-fill"></i>
-              } @else {
-                <!-- Pause Icon -->
-                <i class="bi bi-pause-fill"></i>
-              }
-            </button>
-          </div>
 
           <button type="button" class="desktop-cart-btn" aria-label="View cart" (click)="onCartClick()">
             <i class="bi bi-cart3"></i>
